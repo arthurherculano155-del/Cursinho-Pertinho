@@ -1,0 +1,910 @@
+$primary: #2563eb;
+$primary-hover: #1d4ed8;
+$primary-light: #eff6ff;
+
+$success: #15803d;
+$success-background: #f0fdf4;
+$success-border: #bbf7d0;
+
+$danger: #dc2626;
+$danger-hover: #b91c1c;
+$danger-background: #fef2f2;
+
+$background: #f5f7fa;
+$surface: #ffffff;
+
+$text: #182230;
+$text-secondary: #475467;
+$text-muted: #98a2b3;
+
+$border: #d0d5dd;
+$border-hover: #98a2b3;
+
+$shadow:
+    0 1px 3px rgba(16, 24, 40, 0.05),
+    0 8px 24px rgba(16, 24, 40, 0.06);
+
+$shadow-hover:
+    0 4px 8px rgba(16, 24, 40, 0.06),
+    0 12px 28px rgba(16, 24, 40, 0.1);
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: $background;
+    color: $text;
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+h1 {
+    width: min(760px, calc(100% - 40px));
+
+    margin:
+        48px auto
+        20px;
+
+    color: $text;
+
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+}
+
+.formulario {
+    width: 100%;
+
+    padding:
+        0 20px
+        48px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
+
+    .postar {
+        width: min(760px, 100%);
+
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 18px;
+        padding: 32px;
+
+        background: $surface;
+
+        border: 1px solid #e4e7ec;
+        border-radius: 14px;
+
+        box-shadow: $shadow;
+
+        input,
+        select {
+            width: 100%;
+            height: 50px;
+
+            padding: 0 14px;
+
+            border: 1px solid $border;
+            border-radius: 8px;
+
+            outline: none;
+
+            background: $surface;
+            color: $text;
+
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 400;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background-color 0.2s ease;
+
+            &:hover {
+                border-color: $border-hover;
+            }
+
+            &:focus {
+                border-color: $primary;
+
+                box-shadow:
+                    0 0 0 3px rgba($primary, 0.12);
+            }
+
+            &::placeholder {
+                color: $text-muted;
+            }
+        }
+
+        select {
+            cursor: pointer;
+
+            appearance: none;
+            -webkit-appearance: none;
+
+            padding-right: 42px;
+
+            background-image:
+                linear-gradient(
+                    45deg,
+                    transparent 50%,
+                    $text-secondary 50%
+                ),
+                linear-gradient(
+                    135deg,
+                    $text-secondary 50%,
+                    transparent 50%
+                );
+
+            background-position:
+                calc(100% - 18px) 22px,
+                calc(100% - 13px) 22px;
+
+            background-size:
+                5px 5px,
+                5px 5px;
+
+            background-repeat: no-repeat;
+
+            &:invalid {
+                color: $text-muted;
+            }
+
+            option {
+                color: $text;
+                background: $surface;
+            }
+        }
+
+        input[type="number"] {
+            appearance: textfield;
+            -moz-appearance: textfield;
+
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                margin: 0;
+            }
+        }
+
+        input[placeholder="URL da imagem"],
+        input[placeholder="Descrição do curso"],
+        input[placeholder="Link de Inscrição"] {
+            grid-column: 1 / -1;
+        }
+
+        input[type="submit"] {
+            grid-column: 1 / -1;
+
+            height: 52px;
+
+            margin-top: 4px;
+            padding: 0 24px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: $primary;
+            color: #ffffff;
+
+            font-size: 0.95rem;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 1px 2px rgba(16, 24, 40, 0.08);
+
+            transition:
+                background-color 0.2s ease,
+                box-shadow 0.2s ease,
+                transform 0.1s ease;
+
+            &:hover {
+                background: $primary-hover;
+
+                box-shadow:
+                    0 5px 12px rgba($primary, 0.2);
+            }
+
+            &:active {
+                transform: translateY(1px);
+
+                box-shadow:
+                    0 1px 2px rgba(16, 24, 40, 0.08);
+            }
+
+            &:focus-visible {
+                box-shadow:
+                    0 0 0 4px rgba($primary, 0.18);
+            }
+        }
+    }
+
+    h2 {
+        width: min(760px, 100%);
+
+        margin: 0;
+        padding: 16px 20px;
+
+        background: $success-background;
+
+        border: 1px solid $success-border;
+        border-radius: 10px;
+
+        color: $success;
+
+        font-size: 0.95rem;
+        font-weight: 600;
+        line-height: 1.5;
+
+        box-shadow:
+            0 1px 2px rgba(16, 24, 40, 0.03);
+    }
+}
+
+.cards-oferta {
+    width: min(1100px, calc(100% - 40px));
+
+    margin:
+        0 auto
+        80px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+
+    > input {
+        grid-column: 1 / -1;
+
+        width: 100%;
+        height: 52px;
+
+        margin-bottom: 8px;
+
+        padding: 0 16px;
+
+        background: $surface;
+        color: $text;
+
+        border: 1px solid $border;
+        border-radius: 10px;
+
+        outline: none;
+
+        font-family: inherit;
+        font-size: 0.95rem;
+
+        box-shadow:
+            0 1px 2px rgba(16, 24, 40, 0.03);
+
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+
+        &::placeholder {
+            color: $text-muted;
+        }
+
+        &:hover {
+            border-color: $border-hover;
+        }
+
+        &:focus {
+            border-color: $primary;
+
+            box-shadow:
+                0 0 0 3px rgba($primary, 0.12);
+        }
+    }
+
+    .card-Oferta {
+        position: relative;
+
+        min-width: 0;
+        min-height: 420px;
+
+        display: flex;
+        flex-direction: column;
+
+        background: $surface;
+
+        border: 1px solid #e4e7ec;
+        border-radius: 16px;
+
+        box-shadow: $shadow;
+
+        overflow: hidden;
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+
+            border-color: #d6dae1;
+
+            box-shadow: $shadow-hover;
+
+            > img {
+                transform: scale(1.04);
+            }
+        }
+
+        > img {
+            width: 100%;
+            height: 190px;
+
+            display: block;
+
+            flex-shrink: 0;
+
+            object-fit: cover;
+            object-position: center;
+
+            background: $primary-light;
+
+            border-bottom: 1px solid #e4e7ec;
+
+            transition:
+                transform 0.4s ease;
+        }
+
+        a{
+            color: black;
+        }
+
+        h2 {
+            margin:
+                22px 22px
+                14px;
+
+            padding: 0;
+            padding-right: 35px;
+
+            color: $text;
+
+            font-size: 1.18rem;
+            font-weight: 700;
+            line-height: 1.35;
+
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            display: inline-flex;
+            align-self: flex-start;
+
+            margin:
+                0 22px
+                16px;
+
+            padding: 6px 10px;
+
+            background: $primary-light;
+            color: $primary;
+
+            border-radius: 6px;
+
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        h5 {
+            position: relative;
+
+            margin:
+                0 22px
+                10px;
+
+            padding-left: 15px;
+
+            color: $text-secondary;
+
+            font-size: 0.88rem;
+            font-weight: 500;
+            line-height: 1.5;
+
+            overflow-wrap: anywhere;
+
+            &::before {
+                content: "";
+
+                position: absolute;
+
+                top: 8px;
+                left: 0;
+
+                width: 5px;
+                height: 5px;
+
+                background: $primary;
+
+                border-radius: 50%;
+            }
+        }
+
+        h5:last-of-type {
+            margin-bottom: 72px;
+        }
+
+        .lixeira {
+            position: absolute;
+
+            right: 18px;
+            bottom: 18px;
+
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: $danger-background;
+            color: $danger;
+
+            border: 1px solid rgba($danger, 0.12);
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 1rem;
+
+            transition:
+                background-color 0.2s ease,
+                color 0.2s ease,
+                transform 0.15s ease,
+                box-shadow 0.2s ease;
+
+            &:hover {
+                background: $danger;
+                color: #ffffff;
+
+                transform: translateY(-2px);
+
+                box-shadow:
+                    0 5px 12px rgba($danger, 0.2);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+
+            i {
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+.fundo {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    animation: aparecerFundo 0.2s ease;
+
+    .apagar {
+        width: min(440px, 100%);
+
+        padding: 32px;
+
+        background: $surface;
+
+        border: 1px solid #e4e7ec;
+        border-radius: 18px;
+
+        box-shadow:
+            0 24px 48px rgba(16, 24, 40, 0.18),
+            0 8px 20px rgba(16, 24, 40, 0.08);
+
+        animation: aparecerModal 0.25s ease;
+
+        h2 {
+            margin: 0 0 28px;
+            padding: 0;
+
+            color: $text;
+
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.5;
+            letter-spacing: -0.02em;
+
+            text-align: center;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 12px;
+
+            button {
+                width: 100%;
+                height: 48px;
+
+                border: none;
+                border-radius: 10px;
+
+                font-family: inherit;
+                font-size: 0.95rem;
+                font-weight: 600;
+
+                cursor: pointer;
+
+                transition:
+                    background-color 0.2s ease,
+                    color 0.2s ease,
+                    border-color 0.2s ease,
+                    transform 0.15s ease,
+                    box-shadow 0.2s ease;
+
+                &:active {
+                    transform: scale(0.97);
+                }
+            }
+
+            .yep {
+                background: $primary;
+                color: #ffffff;
+
+                box-shadow:
+                    0 2px 5px rgba($primary, 0.15);
+
+                &:hover {
+                    background: $primary-hover;
+
+                    transform: translateY(-2px);
+
+                    box-shadow:
+                        0 6px 14px rgba($primary, 0.25);
+                }
+
+                &:focus-visible {
+                    outline: none;
+
+                    box-shadow:
+                        0 0 0 4px rgba($primary, 0.18);
+                }
+            }
+
+            .not {
+                background: $surface;
+                color: $text-secondary;
+
+                border: 1px solid $border;
+
+                &:hover {
+                    background: $background;
+                    color: $text;
+
+                    border-color: $border-hover;
+
+                    transform: translateY(-2px);
+
+                    box-shadow:
+                        0 4px 10px rgba(16, 24, 40, 0.06);
+                }
+
+                &:focus-visible {
+                    outline: none;
+
+                    border-color: $primary;
+
+                    box-shadow:
+                        0 0 0 4px rgba($primary, 0.12);
+                }
+            }
+        }
+    }
+}
+
+@keyframes aparecerFundo {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes aparecerModal {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 1000px) {
+    .cards-oferta {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        margin-top: 36px;
+
+        font-size: 1.6rem;
+    }
+
+    .formulario {
+        .postar {
+            padding: 26px;
+
+            gap: 16px;
+        }
+    }
+
+    .cards-oferta {
+        width: calc(100% - 32px);
+
+        gap: 18px;
+
+        .card-Oferta {
+            > img {
+                height: 200px;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        width: calc(100% - 32px);
+
+        margin:
+            28px auto
+            16px;
+
+        font-size: 1.45rem;
+    }
+
+    .formulario {
+        padding:
+            0 16px
+            40px;
+
+        gap: 16px;
+
+        .postar {
+            grid-template-columns: 1fr;
+
+            padding: 20px;
+
+            gap: 14px;
+
+            border-radius: 12px;
+
+            input,
+            select {
+                grid-column: 1;
+
+                height: 50px;
+
+                font-size: 1rem;
+            }
+
+            input[placeholder="URL da imagem"],
+            input[placeholder="Descrição do curso"],
+            input[placeholder="Link de Inscrição"],
+            input[type="submit"] {
+                grid-column: 1;
+            }
+
+            input[type="submit"] {
+                margin-top: 4px;
+            }
+        }
+
+        h2 {
+            padding:
+                14px 16px;
+
+            border-radius: 8px;
+
+            font-size: 0.9rem;
+        }
+    }
+
+    .cards-oferta {
+        width: calc(100% - 32px);
+
+        margin-bottom: 50px;
+
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+
+        > input {
+            height: 50px;
+
+            margin-bottom: 2px;
+
+            font-size: 1rem;
+        }
+
+        .card-Oferta {
+            min-height: auto;
+
+            border-radius: 14px;
+
+            > img {
+                height: 210px;
+            }
+
+            h2 {
+                margin:
+                    20px 20px
+                    14px;
+
+                padding-right: 32px;
+
+                font-size: 1.08rem;
+            }
+
+            p {
+                margin:
+                    0 20px
+                    14px;
+            }
+
+            h5 {
+                margin:
+                    0 20px
+                    10px;
+
+                font-size: 0.86rem;
+            }
+
+            h5:last-of-type {
+                margin-bottom: 70px;
+            }
+
+            .lixeira {
+                right: 16px;
+                bottom: 16px;
+
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+
+    .fundo {
+        padding: 16px;
+
+        .apagar {
+            padding: 26px 20px;
+
+            border-radius: 16px;
+
+            h2 {
+                margin-bottom: 24px;
+
+                font-size: 1.08rem;
+            }
+
+            .buttons {
+                gap: 10px;
+
+                button {
+                    height: 46px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 380px) {
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .formulario {
+        .postar {
+            padding: 16px;
+        }
+    }
+
+    .cards-oferta {
+        width: calc(100% - 24px);
+
+        .card-Oferta {
+            border-radius: 12px;
+
+            > img {
+                height: 185px;
+            }
+
+            h2 {
+                margin:
+                    18px 16px
+                    12px;
+
+                font-size: 1rem;
+            }
+
+            p {
+                margin:
+                    0 16px
+                    14px;
+            }
+
+            h5 {
+                margin:
+                    0 16px
+                    9px;
+            }
+
+            h5:last-of-type {
+                margin-bottom: 64px;
+            }
+
+            .lixeira {
+                right: 14px;
+                bottom: 14px;
+            }
+        }
+    }
+
+    .fundo {
+        padding: 12px;
+
+        .apagar {
+            padding: 22px 16px;
+
+            .buttons {
+                grid-template-columns: 1fr;
+
+                .not {
+                    order: 1;
+                }
+
+                .yep {
+                    order: 2;
+                }
+            }
+        }
+    }
+}

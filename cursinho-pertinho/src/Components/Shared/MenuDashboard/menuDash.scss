@@ -1,0 +1,120 @@
+$primary: #2563eb;
+$primary-hover: #1d4ed8;
+$primary-light: #eff6ff;
+
+$surface: #ffffff;
+
+$text: #182230;
+$text-secondary: #475467;
+
+$border: #e4e7ec;
+
+
+.link-dashboard {
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 30px auto 0;
+    padding: 6px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    background-color: $surface;
+
+    border: 1px solid $border;
+    border-radius: 12px;
+
+    box-shadow:
+        0 1px 3px rgba(16, 24, 40, 0.05),
+        0 4px 12px rgba(16, 24, 40, 0.04);
+
+
+    a {
+        position: relative;
+
+        padding: 11px 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: $text-secondary;
+
+        font-size: 14px;
+        font-weight: 500;
+
+        text-decoration: none;
+
+        border-radius: 8px;
+
+        transition:
+            color 0.2s ease,
+            background-color 0.2s ease,
+            transform 0.2s ease;
+
+
+        &:hover {
+            color: $primary;
+
+            background-color: #f8fafc;
+        }
+
+
+        &:active {
+            transform: scale(0.97);
+        }
+
+
+        &.Troca {
+            color: $primary;
+
+            background-color: $primary-light;
+
+            font-weight: 600;
+
+
+            &::after {
+                content: "";
+
+                position: absolute;
+
+                left: 20px;
+                right: 20px;
+                bottom: 5px;
+
+                height: 2px;
+
+                background-color: $primary;
+
+                border-radius: 10px;
+            }
+
+
+            &:hover {
+                color: $primary-hover;
+
+                background-color: $primary-light;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 480px) {
+    .link {
+        width: 94%;
+
+        padding: 5px;
+
+
+        a {
+            flex: 1;
+
+            padding: 10px 14px;
+
+            font-size: 13px;
+        }
+    }
+}
