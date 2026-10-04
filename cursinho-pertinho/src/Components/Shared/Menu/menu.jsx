@@ -8,6 +8,9 @@ export default function Menu() {
     const [signUp, setSignUp] = useState(false);
     const [login, setLogin] = useState(false);
 
+    const [menuMobile, setMenuMobile] = useState(false);
+    const [menu, setMenu] = useState(true);
+
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
@@ -91,6 +94,27 @@ export default function Menu() {
         }
     }, []);
 
+    useEffect(() => {
+                function verificarTela() {
+            if (window.innerWidth <= 800) {
+                setMenu(false);
+                setMenuMobile(true);
+            }
+            else {
+                setMenu(true);
+                setMenuMobile(false);
+            }
+        }
+
+        verificarTela();
+
+        window.addEventListener("resize", verificarTela);
+
+        return () => {
+            window.removeEventListener("resize", verificarTela);
+        };
+    }, []);
+
     return (
         <>
             <header className="menu">
@@ -98,87 +122,67 @@ export default function Menu() {
                     <img src="../../../Assets/Imgs/LogoCursinho.png" alt="Logo-Menu" />
                     <h2>Cursinho <span>Pertinho</span></h2>
                 </div>
-
-                <ul className="links">
-                    <li className="link">
-                        <NavLink to='/'
-                            className={({ isActive }) =>
-                                isActive ? "Ativo" : ""
-                            }>
-                            Início
-                        </NavLink>
-                    </li>
-
-                    <li className="link">
-                        <NavLink to='/cursos'
-                            className={({ isActive }) =>
-                                isActive ? "Ativo" : ""
-                            }>
-                            Cursos
-                        </NavLink>
-                    </li>
-
-                    <li className="link">
-                        <NavLink to='/instituições'
-                            className={({ isActive }) =>
-                                isActive ? "Ativo" : ""
-                            }>
-                            Instituições
-                        </NavLink>
-                    </li>
-
-                    <li className="link">
-                        <NavLink to='/sobre'
-                            className={({ isActive }) =>
-                                isActive ? "Ativo" : ""
-                            }>
-                            Sobre
-                        </NavLink>
-                    </li>
-                </ul>
-
-                <div className="final">
-                    <div className="local">
-                        <i class="fa-solid fa-location-dot" />
-                        <h3>São Paulo - SP</h3>
+                {
+                menuMobile ? (
+                    <div className="abrir-menu">
+                        <i className={menu ? "fa-solid fa-xmark" : "fa-solid fa-bars"}
+                            onClick={() => setMenu(!menu)} />
                     </div>
-
-                    {usuarioLogado ? (
-                        <section className="user">
-                            <img src=""
-                                alt={usuarioLogado.nome.charAt(0).toUpperCase()}
-                                className="avatar"
-                            />
-                            <p>{usuarioLogado.primeiro_nome}</p>
-
-                            <div
-                                className="sair"
-                                onClick={() => sairUsuario()}>
-                                <i class="fa-solid fa-arrow-right-from-bracket" />
-                            </div>
-                        </section>
-                    ) : (
-                            <div className="bnts">
-                                <button
-                                    className="login"
-                                    onClick={(e) => setLogin(true)}>
-                                    Entrar
-                                </button>
-
-                                <button
-                                    className="sign-up"
-                                    onClick={() => setSignUp(true)}>
-                                    Cadastrar-se
-                                </button>
-                            </div>
-
-                    )}
-
-                </div>
-
+                ) : (
+                    menu
+                )
+            }
             </header>
 
-            {signUp && (
+            {menu && (
+                <>
+                    <ul className="links">
+                        <li className="link">
+                            <NavLink to='/'
+                                className={({ isActive }) =>
+                                    isActive ? "Ativo" : ""
+                                }>
+                                Início
+                            </NavLink>
+                        </li>
+
+                        <li className="link">
+                            <NavLink to='/cursos'
+                                className={({ isActive }) =>
+                                    isActive ? "Ativo" : ""
+                                }>
+                                Cursos
+                            </NavLink>
+                        </li>
+
+                        <li className="link">
+                            <NavLink to='/instituições'
+                                className={({ isActive }) =>
+                                    isActive ? "Ativo" : ""
+                                }>
+                                Instituições
+                            </NavLink>
+                        </li>
+
+                        <li className="link">
+                            <NavLink to='/sobre'
+                                className={({ isActive }) =>
+                                    isActive ? "Ativo" : ""
+                                }>
+                                Sobre
+                            </NavLink>
+                        </li>
+                    </ul>
+
+                    <div className="final">
+                        <div className="local">
+                            <i className="fa-solid fa-location-dot" />
+                            <h3>São Paulo - SP</h3>
+                        </div>
+
+                    </div>
+
+                    {signUp && (
                 <div className="fundo">
                     <section className="cadastro">
                         <button
@@ -223,6 +227,37 @@ export default function Menu() {
                 </div>
             )}
 
+            {usuarioLogado ? (
+                <section className="user">
+                    <img src=""
+                        alt={usuarioLogado.nome.charAt(0).toUpperCase()}
+                        className="avatar"
+                    />
+                    <p>{usuarioLogado.primeiro_nome}</p>
+
+                    <div
+                        className="sair"
+                        onClick={() => sairUsuario()}>
+                        <i className="fa-solid fa-arrow-right-from-bracket" />
+                    </div>
+                </section>
+            ) : (
+                <div className="bnts">
+                    <button
+                        className="login"
+                        onClick={(e) => setLogin(true)}>
+                        Entrar
+                    </button>
+
+                    <button
+                        className="sign-up"
+                        onClick={() => setSignUp(true)}>
+                        Cadastrar-se
+                    </button>
+                </div>
+
+            )}
+
             {login && (
                 <section className="logar">
                     <div className="fundo">
@@ -261,6 +296,8 @@ export default function Menu() {
                         </div>
                     </div>
                 </section>
+            )}
+                </>
             )}
         </>
     );
