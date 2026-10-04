@@ -95,23 +95,21 @@ export default function Menu() {
     }, []);
 
     useEffect(() => {
-                function verificarTela() {
-            if (window.innerWidth <= 800) {
-                setMenu(false);
-                setMenuMobile(true);
-            }
-            else {
-                setMenu(true);
-                setMenuMobile(false);
-            }
+        const media = window.matchMedia("(max-width: 800px)");
+
+        function verificarTela(evento) {
+            const mobile = evento.matches;
+
+            setMenuMobile(mobile);
+            setMenu(!mobile);
         }
 
-        verificarTela();
+        verificarTela(media);
 
-        window.addEventListener("resize", verificarTela);
+        media.addEventListener("change", verificarTela);
 
         return () => {
-            window.removeEventListener("resize", verificarTela);
+            media.removeEventListener("change", verificarTela);
         };
     }, []);
 
@@ -122,16 +120,15 @@ export default function Menu() {
                     <img src="../../../Assets/Imgs/LogoCursinho.png" alt="Logo-Menu" />
                     <h2>Cursinho <span>Pertinho</span></h2>
                 </div>
-                {
-                menuMobile ? (
+                
+                {menuMobile && (
                     <div className="abrir-menu">
-                        <i className={menu ? "fa-solid fa-xmark" : "fa-solid fa-bars"}
-                            onClick={() => setMenu(!menu)} />
+                        <i
+                            className={menu ? "fa-solid fa-xmark" : "fa-solid fa-bars"}
+                            onClick={() => setMenu(!menu)}
+                        />
                     </div>
-                ) : (
-                    menu
-                )
-            }
+                )}
             </header>
 
             {menu && (
@@ -183,120 +180,120 @@ export default function Menu() {
                     </div>
 
                     {signUp && (
-                <div className="fundo">
-                    <section className="cadastro">
-                        <button
-                            className="fechar"
-                            onClick={() => setSignUp(false)}
-                        >
-                            <i className="fa-solid fa-xmark"></i>
-                        </button>
-
-                        <h1>Cadastre-se</h1>
-
-                        <div className="inputs">
-                            <input
-                                type="text"
-                                required
-                                placeholder="Insira seu nome"
-                                value={nome}
-                                onChange={(e) => setNome(e.target.value)}
-                            />
-
-                            <input
-                                type="text"
-                                required
-                                placeholder="Insira seu email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-
-                            <input
-                                type="password"
-                                required
-                                placeholder="Crie uma senha"
-                                value={senha}
-                                onChange={(e) => setSenha(e.target.value)}
-                            />
-
-                            <button onClick={cadastrarUsuario}>
-                                Cadastre-se
-                            </button>
-                        </div>
-                    </section>
-                </div>
-            )}
-
-            {usuarioLogado ? (
-                <section className="user">
-                    <img src=""
-                        alt={usuarioLogado.nome.charAt(0).toUpperCase()}
-                        className="avatar"
-                    />
-                    <p>{usuarioLogado.primeiro_nome}</p>
-
-                    <div
-                        className="sair"
-                        onClick={() => sairUsuario()}>
-                        <i className="fa-solid fa-arrow-right-from-bracket" />
-                    </div>
-                </section>
-            ) : (
-                <div className="bnts">
-                    <button
-                        className="login"
-                        onClick={(e) => setLogin(true)}>
-                        Entrar
-                    </button>
-
-                    <button
-                        className="sign-up"
-                        onClick={() => setSignUp(true)}>
-                        Cadastrar-se
-                    </button>
-                </div>
-
-            )}
-
-            {login && (
-                <section className="logar">
-                    <div className="fundo">
-                        <div className="login-container">
-                            <button
-                                className="fechar"
-                                onClick={() => setLogin(false)}
-                            >
-                                <i className="fa-solid fa-xmark"></i>
-                            </button>
-
-                            <h1>Logar</h1>
-
-                            <div className="informacoes">
-                                <input
-                                    type="text"
-                                    value={emailLogin}
-                                    placeholder="Insira seu email"
-                                    onChange={(e) => setEmailLogin(e.target.value)}
-                                />
-
-                                <input
-                                    type="password"
-                                    value={senhaLogin}
-                                    placeholder="Insira a senha"
-                                    onChange={(e) => setSenhaLogin(e.target.value)}
-                                />
-
+                        <div className="fundo">
+                            <section className="cadastro">
                                 <button
-                                    className="log"
-                                    onClick={LogarUsuario}
+                                    className="fechar"
+                                    onClick={() => setSignUp(false)}
                                 >
-                                    Entrar
+                                    <i className="fa-solid fa-xmark"></i>
                                 </button>
-                            </div>
+
+                                <h1>Cadastre-se</h1>
+
+                                <div className="inputs">
+                                    <input
+                                        type="text"
+                                        required
+                                        placeholder="Insira seu nome"
+                                        value={nome}
+                                        onChange={(e) => setNome(e.target.value)}
+                                    />
+
+                                    <input
+                                        type="text"
+                                        required
+                                        placeholder="Insira seu email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
+
+                                    <input
+                                        type="password"
+                                        required
+                                        placeholder="Crie uma senha"
+                                        value={senha}
+                                        onChange={(e) => setSenha(e.target.value)}
+                                    />
+
+                                    <button onClick={cadastrarUsuario}>
+                                        Cadastre-se
+                                    </button>
+                                </div>
+                            </section>
                         </div>
-                    </div>
-                </section>
-            )}
+                    )}
+
+                    {usuarioLogado ? (
+                        <section className="user">
+                            <img src=""
+                                alt={usuarioLogado.nome.charAt(0).toUpperCase()}
+                                className="avatar"
+                            />
+                            <p>{usuarioLogado.primeiro_nome}</p>
+
+                            <div
+                                className="sair"
+                                onClick={() => sairUsuario()}>
+                                <i className="fa-solid fa-arrow-right-from-bracket" />
+                            </div>
+                        </section>
+                    ) : (
+                        <div className="bnts">
+                            <button
+                                className="login"
+                                onClick={(e) => setLogin(true)}>
+                                Entrar
+                            </button>
+
+                            <button
+                                className="sign-up"
+                                onClick={() => setSignUp(true)}>
+                                Cadastrar-se
+                            </button>
+                        </div>
+
+                    )}
+
+                    {login && (
+                        <section className="logar">
+                            <div className="fundo">
+                                <div className="login-container">
+                                    <button
+                                        className="fechar"
+                                        onClick={() => setLogin(false)}
+                                    >
+                                        <i className="fa-solid fa-xmark"></i>
+                                    </button>
+
+                                    <h1>Logar</h1>
+
+                                    <div className="informacoes">
+                                        <input
+                                            type="text"
+                                            value={emailLogin}
+                                            placeholder="Insira seu email"
+                                            onChange={(e) => setEmailLogin(e.target.value)}
+                                        />
+
+                                        <input
+                                            type="password"
+                                            value={senhaLogin}
+                                            placeholder="Insira a senha"
+                                            onChange={(e) => setSenhaLogin(e.target.value)}
+                                        />
+
+                                        <button
+                                            className="log"
+                                            onClick={LogarUsuario}
+                                        >
+                                            Entrar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    )}
                 </>
             )}
         </>
