@@ -5,9 +5,7 @@ html {
 * {
     margin: 0;
     padding: 0;
-
     box-sizing: border-box;
-
     font-family: sans-serif;
 }
 
@@ -401,7 +399,7 @@ body {
 
     backdrop-filter: blur(5px);
 
-    z-index: 99999;
+    z-index: 100000;
 
     animation: aparecerFundo .2s ease;
 
@@ -421,8 +419,6 @@ body {
         box-shadow:
             0 24px 48px rgba(16, 24, 40, 0.18),
             0 8px 16px rgba(16, 24, 40, 0.08);
-
-        z-index: 100000;
 
         animation: abrirModal .25s ease-out;
 
@@ -563,15 +559,249 @@ body {
             }
         }
     }
+
+    .personalizar {
+        width: 100%;
+        max-width: 720px;
+
+        padding: 34px;
+
+        position: relative;
+
+        background: rgb(255, 255, 255);
+
+        border: 1px solid rgb(234, 236, 240);
+        border-radius: 20px;
+
+        box-shadow:
+            0 24px 48px rgba(16, 24, 40, 0.18),
+            0 8px 16px rgba(16, 24, 40, 0.08);
+
+        animation: abrirModal .25s ease-out;
+
+        .fechar {
+            width: 36px;
+            height: 36px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+
+            top: 15px;
+            right: 15px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: rgb(242, 244, 247);
+            color: rgb(102, 112, 133);
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+
+            &:hover {
+                background: rgb(228, 231, 236);
+                color: rgb(24, 34, 48);
+
+                transform: rotate(90deg);
+            }
+
+            &:active {
+                transform: rotate(90deg) scale(.9);
+            }
+        }
+
+        > h1 {
+            margin-bottom: 30px;
+
+            text-align: center;
+
+            color: rgb(24, 34, 48);
+
+            font-size: 27px;
+            font-weight: 700;
+
+            &::after {
+                content: "";
+
+                width: 42px;
+                height: 4px;
+
+                display: block;
+
+                margin: 10px auto 0;
+
+                border-radius: 20px;
+
+                background: rgb(37, 99, 235);
+            }
+        }
+
+        > .informacoes {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+
+            gap: 30px;
+            align-items: stretch;
+
+            .userInformation {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                padding: 25px 20px;
+
+                border: 1px solid rgb(229, 231, 235);
+                border-radius: 16px;
+
+                background: rgb(248, 250, 252);
+
+                text-align: center;
+
+                img {
+                    width: 105px;
+                    height: 105px;
+
+                    margin-bottom: 17px;
+
+                    border: 4px solid rgb(255, 255, 255);
+                    border-radius: 50%;
+
+                    background: rgb(239, 246, 255);
+
+                    object-fit: cover;
+
+                    box-shadow:
+                        0 0 0 2px rgb(219, 234, 254),
+                        0 6px 18px rgba(16, 24, 40, 0.1);
+                }
+
+                h3 {
+                    width: 100%;
+
+                    margin-bottom: 6px;
+
+                    color: rgb(24, 34, 48);
+
+                    font-size: 20px;
+                    font-weight: 700;
+
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                p {
+                    width: 100%;
+
+                    margin-top: 5px;
+
+                    color: rgb(102, 112, 133);
+
+                    font-size: 12px;
+                    font-weight: 500;
+
+                    overflow-wrap: anywhere;
+                }
+
+                p:first-of-type {
+                    color: rgb(71, 84, 103);
+
+                    font-size: 13px;
+                    font-weight: 600;
+                }
+            }
+
+            .atualizar-informacoes {
+                display: flex;
+                align-items: center;
+
+                form {
+                    width: 100%;
+
+                    display: flex;
+                    flex-direction: column;
+
+                    gap: 15px;
+
+                    input {
+                        width: 100%;
+
+                        padding: 14px 15px;
+
+                        border: 1px solid rgb(208, 213, 221);
+                        border-radius: 9px;
+
+                        outline: none;
+
+                        background: rgb(255, 255, 255);
+                        color: rgb(24, 34, 48);
+
+                        font-size: 14px;
+
+                        transition: .2s ease;
+
+                        &::placeholder {
+                            color: rgb(152, 162, 179);
+                        }
+
+                        &:hover {
+                            border-color: rgb(152, 162, 179);
+                        }
+
+                        &:focus {
+                            border-color: rgb(37, 99, 235);
+
+                            box-shadow:
+                                0 0 0 3px rgba(37, 99, 235, 0.1);
+                        }
+                    }
+
+                    input[type="submit"] {
+                        margin-top: 5px;
+
+                        border: 1px solid rgb(37, 99, 235);
+
+                        background: rgb(37, 99, 235);
+                        color: rgb(255, 255, 255);
+
+                        font-weight: 700;
+
+                        cursor: pointer;
+
+                        &:hover {
+                            border-color: rgb(29, 78, 216);
+
+                            background: rgb(29, 78, 216);
+
+                            transform: translateY(-1px);
+
+                            box-shadow:
+                                0 6px 14px rgba(37, 99, 235, 0.2);
+                        }
+
+                        &:active {
+                            transform: scale(.98);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .logar {
     position: relative;
 
-    z-index: 99999;
+    z-index: 100000;
 
     .fundo {
-        z-index: 99999;
+        z-index: 100000;
 
         .login-container {
             width: 100%;
@@ -589,8 +819,6 @@ body {
             box-shadow:
                 0 24px 48px rgba(16, 24, 40, 0.18),
                 0 8px 16px rgba(16, 24, 40, 0.08);
-
-            z-index: 100000;
 
             animation: abrirModal .25s ease-out;
 
@@ -1017,6 +1245,35 @@ body {
             }
         }
     }
+
+    .fundo {
+        z-index: 100000;
+
+        .personalizar {
+            max-width: 600px;
+
+            padding: 30px;
+
+            > .informacoes {
+                grid-template-columns: 200px 1fr;
+
+                gap: 22px;
+
+                .userInformation {
+                    padding: 22px 16px;
+
+                    img {
+                        width: 90px;
+                        height: 90px;
+                    }
+
+                    h3 {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media (max-width: 600px) {
@@ -1132,6 +1389,57 @@ body {
                 font-size: 23px;
             }
         }
+
+        .personalizar {
+            max-width: 420px;
+            max-height: calc(100vh - 24px);
+
+            padding: 30px 20px;
+
+            border-radius: 16px;
+
+            overflow-y: auto;
+
+            > h1 {
+                margin-bottom: 23px;
+
+                font-size: 23px;
+            }
+
+            > .informacoes {
+                display: flex;
+                flex-direction: column;
+
+                gap: 18px;
+
+                .userInformation {
+                    padding: 20px 15px;
+
+                    img {
+                        width: 85px;
+                        height: 85px;
+
+                        margin-bottom: 13px;
+                    }
+
+                    h3 {
+                        font-size: 18px;
+                    }
+                }
+
+                .atualizar-informacoes {
+                    form {
+                        gap: 12px;
+
+                        input {
+                            padding: 13px;
+
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .logar {
@@ -1234,6 +1542,8 @@ body {
     }
 
     .fundo {
+        padding: 10px;
+
         .cadastro {
             padding: 30px 17px;
 
@@ -1248,6 +1558,69 @@ body {
 
                 button {
                     font-size: 13px;
+                }
+            }
+        }
+
+        .personalizar {
+            padding: 27px 15px 18px;
+
+            border-radius: 15px;
+
+            .fechar {
+                width: 32px;
+                height: 32px;
+
+                top: 11px;
+                right: 11px;
+
+                font-size: 15px;
+            }
+
+            > h1 {
+                margin-bottom: 20px;
+
+                font-size: 21px;
+            }
+
+            > .informacoes {
+                gap: 14px;
+
+                .userInformation {
+                    padding: 17px 12px;
+
+                    border-radius: 13px;
+
+                    img {
+                        width: 75px;
+                        height: 75px;
+                    }
+
+                    h3 {
+                        font-size: 17px;
+                    }
+
+                    p {
+                        font-size: 11px;
+                    }
+
+                    p:first-of-type {
+                        font-size: 12px;
+                    }
+                }
+
+                .atualizar-informacoes {
+                    form {
+                        input {
+                            padding: 12px;
+
+                            font-size: 12px;
+                        }
+
+                        input[type="submit"] {
+                            font-size: 13px;
+                        }
+                    }
                 }
             }
         }

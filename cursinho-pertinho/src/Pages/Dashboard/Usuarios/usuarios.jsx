@@ -72,6 +72,10 @@ export default function Usuarios() {
                     <div
                         className="usuario"
                         key={usuario.id_usuario}>
+                            <img src={usuario.imagem_url || "/Assets/Imgs/usuario-padrao.webp"} 
+                            alt={usuario.nome.charAt(0).toUpperCase()} 
+                            className="userImg" 
+                        />
                         <h3>Nome: {usuario.nome}</h3>
                         <h3>Email: {usuario.email}</h3>
                         <h3>Cargo: {usuario.cargo}</h3>

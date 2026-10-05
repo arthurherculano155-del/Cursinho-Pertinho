@@ -8,6 +8,11 @@ export default function Menu() {
     const [signUp, setSignUp] = useState(false);
     const [login, setLogin] = useState(false);
 
+    const [personalizacaoModal, setPersonalizacaoModal] = useState(false);
+
+    const [primeiroNome, setPrimeiroNome] = useState("");
+    const [perfil, setPerfil] = useState("");
+
     const [menuMobile, setMenuMobile] = useState(false);
     const [menu, setMenu] = useState(true);
 
@@ -85,6 +90,46 @@ export default function Menu() {
         setUsuarioLogado(null);
     }
 
+    async function atualizarUsuario(e) {
+        e.preventDefault();
+
+        const resposta = await fetch(`${API_URL}/usuario/personalizar`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: usuarioLogado.email,
+                primeiro_nome: primeiroNome,
+                imagem_url: perfil
+            })
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            alert(dados.erro);
+            return;
+        }
+
+        const usuarioAtualizado = {
+            ...usuarioLogado,
+            primeiro_nome: primeiroNome,
+            imagem_url: perfil
+        };
+
+        setUsuarioLogado(usuarioAtualizado);
+
+        localStorage.setItem(
+            "usuario",
+            JSON.stringify(usuarioAtualizado)
+        );
+
+        setPersonalizacaoModal(false);
+
+        alert("Perfil atualizado com sucesso!");
+    }
+
 
     useEffect(() => {
         const usuario = localStorage.getItem("usuario");
@@ -120,7 +165,7 @@ export default function Menu() {
                     <img src="../../../Assets/Imgs/LogoCursinho.png" alt="Logo-Menu" />
                     <h2>Cursinho <span>Pertinho</span></h2>
                 </div>
-                
+
                 {menuMobile && (
                     <div className="abrir-menu">
                         <i
@@ -226,9 +271,10 @@ export default function Menu() {
 
                     {usuarioLogado ? (
                         <section className="user">
-                            <img src=""
-                                alt={usuarioLogado.nome.charAt(0).toUpperCase()}
+                            <img src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
+                                alt={usuarioLogado.primeiro_nome.charAt(0).toUpperCase()}
                                 className="avatar"
+                                onClick={() => setPersonalizacaoModal(true)}
                             />
                             <p>{usuarioLogado.primeiro_nome}</p>
 
@@ -293,6 +339,59 @@ export default function Menu() {
                                 </div>
                             </div>
                         </section>
+                    )}
+
+                    {personalizacaoModal && (
+                        <div className="fundo">
+                            <section className="personalizar">
+                                <button
+                                    className="fechar"
+                                    onClick={() => setPersonalizacaoModal(false)}
+                                >
+                                    <i className="fa-solid fa-xmark"></i>
+                                </button>
+                                <h1>Personalizar</h1>
+                                <div className="informacoes">
+                                    <div className="userInformation">
+                                        <img src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
+                                            alt={usuarioLogado.primeiro_nome.charAt(0).toUpperCase()} />
+
+                                        <h3>{usuarioLogado.primeiro_nome}</h3>
+                                        <p>{usuarioLogado.nome}</p>
+                                        <p>{usuarioLogado.email}</p>
+                                    </div>
+
+                                    <div className="atualizar-informacoes">
+                                        <form onSubmit={atualizarUsuario}>
+                                            <input
+                                                type="text"
+                                                name=""
+                                                id=""
+                                                value={primeiroNome}
+                                                placeholder="Como deseja ser chamado?"
+                                                onChange={(e) => setPrimeiroNome(e.target.value)}
+                                                required
+                                            />
+
+                                            <input
+                                                type="text"
+                                                name=""
+                                                id=""
+                                                value={perfil}
+                                                placeholder="URL da imagem de perfil"
+                                                onChange={(e) => setPerfil(e.target.value)}
+                                                required
+                                            />
+
+                                            <input
+                                                type="submit"
+                                                value="Atualizar" />
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
                     )}
                 </>
             )}
