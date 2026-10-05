@@ -1,41 +1,11 @@
-$primary: #2563eb;
-$primary-hover: #1d4ed8;
-$primary-light: #eff6ff;
-
-$success: #15803d;
-$success-background: #f0fdf4;
-$success-border: #bbf7d0;
-
-$danger: #dc2626;
-$danger-hover: #b91c1c;
-$danger-background: #fef2f2;
-
-$background: #f5f7fa;
-$surface: #ffffff;
-
-$text: #182230;
-$text-secondary: #475467;
-$text-muted: #98a2b3;
-
-$border: #d0d5dd;
-$border-hover: #98a2b3;
-
-$shadow:
-    0 1px 3px rgba(16, 24, 40, 0.05),
-    0 8px 24px rgba(16, 24, 40, 0.06);
-
-$shadow-hover:
-    0 4px 8px rgba(16, 24, 40, 0.06),
-    0 12px 28px rgba(16, 24, 40, 0.1);
-
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    background: $background;
-    color: $text;
+    background: rgb(245, 247, 250);
+    color: rgb(24, 34, 48);
 
     font-family:
         Inter,
@@ -55,7 +25,7 @@ h1 {
         48px auto
         20px;
 
-    color: $text;
+    color: rgb(24, 34, 48);
 
     font-size: 1.8rem;
     font-weight: 700;
@@ -63,6 +33,8 @@ h1 {
 }
 
 .formulario {
+    isolation: isolate;
+
     width: 100%;
 
     padding:
@@ -84,12 +56,14 @@ h1 {
         gap: 18px;
         padding: 32px;
 
-        background: $surface;
+        background: rgb(255, 255, 255);
 
-        border: 1px solid #e4e7ec;
+        border: 1px solid rgb(228, 231, 236);
         border-radius: 14px;
 
-        box-shadow: $shadow;
+        box-shadow:
+            0 1px 3px rgba(16, 24, 40, 0.05),
+            0 8px 24px rgba(16, 24, 40, 0.06);
 
         input,
         select {
@@ -98,13 +72,13 @@ h1 {
 
             padding: 0 14px;
 
-            border: 1px solid $border;
+            border: 1px solid rgb(208, 213, 221);
             border-radius: 8px;
 
             outline: none;
 
-            background: $surface;
-            color: $text;
+            background: rgb(255, 255, 255);
+            color: rgb(24, 34, 48);
 
             font-family: inherit;
             font-size: 0.95rem;
@@ -116,18 +90,18 @@ h1 {
                 background-color 0.2s ease;
 
             &:hover {
-                border-color: $border-hover;
+                border-color: rgb(152, 162, 179);
             }
 
             &:focus {
-                border-color: $primary;
+                border-color: rgb(37, 99, 235);
 
                 box-shadow:
-                    0 0 0 3px rgba($primary, 0.12);
+                    0 0 0 3px rgba(37, 99, 235, 0.12);
             }
 
             &::placeholder {
-                color: $text-muted;
+                color: rgb(152, 162, 179);
             }
         }
 
@@ -143,11 +117,11 @@ h1 {
                 linear-gradient(
                     45deg,
                     transparent 50%,
-                    $text-secondary 50%
+                    rgb(71, 84, 103) 50%
                 ),
                 linear-gradient(
                     135deg,
-                    $text-secondary 50%,
+                    rgb(71, 84, 103) 50%,
                     transparent 50%
                 );
 
@@ -162,12 +136,12 @@ h1 {
             background-repeat: no-repeat;
 
             &:invalid {
-                color: $text-muted;
+                color: rgb(152, 162, 179);
             }
 
             option {
-                color: $text;
-                background: $surface;
+                color: rgb(24, 34, 48);
+                background: rgb(255, 255, 255);
             }
         }
 
@@ -198,8 +172,8 @@ h1 {
             border: none;
             border-radius: 8px;
 
-            background: $primary;
-            color: #ffffff;
+            background: rgb(37, 99, 235);
+            color: rgb(255, 255, 255);
 
             font-size: 0.95rem;
             font-weight: 600;
@@ -215,10 +189,10 @@ h1 {
                 transform 0.1s ease;
 
             &:hover {
-                background: $primary-hover;
+                background: rgb(29, 78, 216);
 
                 box-shadow:
-                    0 5px 12px rgba($primary, 0.2);
+                    0 5px 12px rgba(37, 99, 235, 0.2);
             }
 
             &:active {
@@ -230,7 +204,7 @@ h1 {
 
             &:focus-visible {
                 box-shadow:
-                    0 0 0 4px rgba($primary, 0.18);
+                    0 0 0 4px rgba(37, 99, 235, 0.18);
             }
         }
     }
@@ -241,12 +215,12 @@ h1 {
         margin: 0;
         padding: 16px 20px;
 
-        background: $success-background;
+        background: rgb(240, 253, 244);
 
-        border: 1px solid $success-border;
+        border: 1px solid rgb(187, 247, 208);
         border-radius: 10px;
 
-        color: $success;
+        color: rgb(21, 128, 61);
 
         font-size: 0.95rem;
         font-weight: 600;
@@ -258,6 +232,8 @@ h1 {
 }
 
 .cards-oferta {
+    isolation: isolate;
+
     width: min(1100px, calc(100% - 40px));
 
     margin:
@@ -281,10 +257,10 @@ h1 {
 
         padding: 0 16px;
 
-        background: $surface;
-        color: $text;
+        background: rgb(255, 255, 255);
+        color: rgb(24, 34, 48);
 
-        border: 1px solid $border;
+        border: 1px solid rgb(208, 213, 221);
         border-radius: 10px;
 
         outline: none;
@@ -300,18 +276,18 @@ h1 {
             box-shadow 0.2s ease;
 
         &::placeholder {
-            color: $text-muted;
+            color: rgb(152, 162, 179);
         }
 
         &:hover {
-            border-color: $border-hover;
+            border-color: rgb(152, 162, 179);
         }
 
         &:focus {
-            border-color: $primary;
+            border-color: rgb(37, 99, 235);
 
             box-shadow:
-                0 0 0 3px rgba($primary, 0.12);
+                0 0 0 3px rgba(37, 99, 235, 0.12);
         }
     }
 
@@ -324,12 +300,14 @@ h1 {
         display: flex;
         flex-direction: column;
 
-        background: $surface;
+        background: rgb(255, 255, 255);
 
-        border: 1px solid #e4e7ec;
+        border: 1px solid rgb(228, 231, 236);
         border-radius: 16px;
 
-        box-shadow: $shadow;
+        box-shadow:
+            0 1px 3px rgba(16, 24, 40, 0.05),
+            0 8px 24px rgba(16, 24, 40, 0.06);
 
         transition:
             transform 0.25s ease,
@@ -339,9 +317,11 @@ h1 {
         &:hover {
             transform: translateY(-5px);
 
-            border-color: #d6dae1;
+            border-color: rgb(214, 218, 225);
 
-            box-shadow: $shadow-hover;
+            box-shadow:
+                0 4px 8px rgba(16, 24, 40, 0.06),
+                0 12px 28px rgba(16, 24, 40, 0.1);
 
             > img {
                 transform: scale(1.04);
@@ -359,16 +339,16 @@ h1 {
             object-fit: cover;
             object-position: center;
 
-            background: $primary-light;
+            background: rgb(239, 246, 255);
 
-            border-bottom: 1px solid #e4e7ec;
+            border-bottom: 1px solid rgb(228, 231, 236);
 
             transition:
                 transform 0.4s ease;
         }
 
-        a{
-            color: black;
+        a {
+            color: rgb(0, 0, 0);
         }
 
         h2 {
@@ -379,7 +359,7 @@ h1 {
             padding: 0;
             padding-right: 35px;
 
-            color: $text;
+            color: rgb(24, 34, 48);
 
             font-size: 1.18rem;
             font-weight: 700;
@@ -398,8 +378,8 @@ h1 {
 
             padding: 6px 10px;
 
-            background: $primary-light;
-            color: $primary;
+            background: rgb(239, 246, 255);
+            color: rgb(37, 99, 235);
 
             border-radius: 6px;
 
@@ -416,7 +396,7 @@ h1 {
 
             padding-left: 15px;
 
-            color: $text-secondary;
+            color: rgb(71, 84, 103);
 
             font-size: 0.88rem;
             font-weight: 500;
@@ -435,7 +415,7 @@ h1 {
                 width: 5px;
                 height: 5px;
 
-                background: $primary;
+                background: rgb(37, 99, 235);
 
                 border-radius: 50%;
             }
@@ -458,10 +438,10 @@ h1 {
             align-items: center;
             justify-content: center;
 
-            background: $danger-background;
-            color: $danger;
+            background: rgb(254, 242, 242);
+            color: rgb(220, 38, 38);
 
-            border: 1px solid rgba($danger, 0.12);
+            border: 1px solid rgba(220, 38, 38, 0.12);
             border-radius: 10px;
 
             cursor: pointer;
@@ -475,13 +455,13 @@ h1 {
                 box-shadow 0.2s ease;
 
             &:hover {
-                background: $danger;
-                color: #ffffff;
+                background: rgb(220, 38, 38);
+                color: rgb(255, 255, 255);
 
                 transform: translateY(-2px);
 
                 box-shadow:
-                    0 5px 12px rgba($danger, 0.2);
+                    0 5px 12px rgba(220, 38, 38, 0.2);
             }
 
             &:active {
@@ -496,6 +476,8 @@ h1 {
 }
 
 .fundo {
+    isolation: isolate;
+
     position: fixed;
     inset: 0;
 
@@ -519,9 +501,9 @@ h1 {
 
         padding: 32px;
 
-        background: $surface;
+        background: rgb(255, 255, 255);
 
-        border: 1px solid #e4e7ec;
+        border: 1px solid rgb(228, 231, 236);
         border-radius: 18px;
 
         box-shadow:
@@ -534,7 +516,7 @@ h1 {
             margin: 0 0 28px;
             padding: 0;
 
-            color: $text;
+            color: rgb(24, 34, 48);
 
             font-size: 1.2rem;
             font-weight: 700;
@@ -576,40 +558,40 @@ h1 {
             }
 
             .yep {
-                background: $primary;
-                color: #ffffff;
+                background: rgb(37, 99, 235);
+                color: rgb(255, 255, 255);
 
                 box-shadow:
-                    0 2px 5px rgba($primary, 0.15);
+                    0 2px 5px rgba(37, 99, 235, 0.15);
 
                 &:hover {
-                    background: $primary-hover;
+                    background: rgb(29, 78, 216);
 
                     transform: translateY(-2px);
 
                     box-shadow:
-                        0 6px 14px rgba($primary, 0.25);
+                        0 6px 14px rgba(37, 99, 235, 0.25);
                 }
 
                 &:focus-visible {
                     outline: none;
 
                     box-shadow:
-                        0 0 0 4px rgba($primary, 0.18);
+                        0 0 0 4px rgba(37, 99, 235, 0.18);
                 }
             }
 
             .not {
-                background: $surface;
-                color: $text-secondary;
+                background: rgb(255, 255, 255);
+                color: rgb(71, 84, 103);
 
-                border: 1px solid $border;
+                border: 1px solid rgb(208, 213, 221);
 
                 &:hover {
-                    background: $background;
-                    color: $text;
+                    background: rgb(245, 247, 250);
+                    color: rgb(24, 34, 48);
 
-                    border-color: $border-hover;
+                    border-color: rgb(152, 162, 179);
 
                     transform: translateY(-2px);
 
@@ -620,10 +602,10 @@ h1 {
                 &:focus-visible {
                     outline: none;
 
-                    border-color: $primary;
+                    border-color: rgb(37, 99, 235);
 
                     box-shadow:
-                        0 0 0 4px rgba($primary, 0.12);
+                        0 0 0 4px rgba(37, 99, 235, 0.12);
                 }
             }
         }
