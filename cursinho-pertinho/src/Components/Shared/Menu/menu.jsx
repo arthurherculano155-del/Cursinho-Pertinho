@@ -130,7 +130,6 @@ export default function Menu() {
         alert("Perfil atualizado com sucesso!");
     }
 
-
     useEffect(() => {
         const usuario = localStorage.getItem("usuario");
 
@@ -180,7 +179,8 @@ export default function Menu() {
                 <>
                     <ul className="links">
                         <li className="link">
-                            <NavLink to='/'
+                            <NavLink
+                                to='/'
                                 className={({ isActive }) =>
                                     isActive ? "Ativo" : ""
                                 }>
@@ -189,7 +189,8 @@ export default function Menu() {
                         </li>
 
                         <li className="link">
-                            <NavLink to='/cursos'
+                            <NavLink
+                                to='/cursos'
                                 className={({ isActive }) =>
                                     isActive ? "Ativo" : ""
                                 }>
@@ -198,7 +199,8 @@ export default function Menu() {
                         </li>
 
                         <li className="link">
-                            <NavLink to='/instituições'
+                            <NavLink
+                                to='/instituições'
                                 className={({ isActive }) =>
                                     isActive ? "Ativo" : ""
                                 }>
@@ -207,7 +209,8 @@ export default function Menu() {
                         </li>
 
                         <li className="link">
-                            <NavLink to='/sobre'
+                            <NavLink
+                                to='/sobre'
                                 className={({ isActive }) =>
                                     isActive ? "Ativo" : ""
                                 }>
@@ -221,61 +224,17 @@ export default function Menu() {
                             <i className="fa-solid fa-location-dot" />
                             <h3>São Paulo - SP</h3>
                         </div>
-
                     </div>
-
-                    {signUp && (
-                        <div className="fundo">
-                            <section className="cadastro">
-                                <button
-                                    className="fechar"
-                                    onClick={() => setSignUp(false)}
-                                >
-                                    <i className="fa-solid fa-xmark"></i>
-                                </button>
-
-                                <h1>Cadastre-se</h1>
-
-                                <div className="inputs">
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="Insira seu nome"
-                                        value={nome}
-                                        onChange={(e) => setNome(e.target.value)}
-                                    />
-
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="Insira seu email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
-
-                                    <input
-                                        type="password"
-                                        required
-                                        placeholder="Crie uma senha"
-                                        value={senha}
-                                        onChange={(e) => setSenha(e.target.value)}
-                                    />
-
-                                    <button onClick={cadastrarUsuario}>
-                                        Cadastre-se
-                                    </button>
-                                </div>
-                            </section>
-                        </div>
-                    )}
 
                     {usuarioLogado ? (
                         <section className="user">
-                            <img src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
+                            <img
+                                src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
                                 alt={usuarioLogado.primeiro_nome.charAt(0).toUpperCase()}
                                 className="avatar"
                                 onClick={() => setPersonalizacaoModal(true)}
                             />
+
                             <p>{usuarioLogado.primeiro_nome}</p>
 
                             <div
@@ -288,7 +247,7 @@ export default function Menu() {
                         <div className="bnts">
                             <button
                                 className="login"
-                                onClick={(e) => setLogin(true)}>
+                                onClick={() => setLogin(true)}>
                                 Entrar
                             </button>
 
@@ -298,102 +257,150 @@ export default function Menu() {
                                 Cadastrar-se
                             </button>
                         </div>
-
-                    )}
-
-                    {login && (
-                        <section className="logar">
-                            <div className="fundo">
-                                <div className="login-container">
-                                    <button
-                                        className="fechar"
-                                        onClick={() => setLogin(false)}
-                                    >
-                                        <i className="fa-solid fa-xmark"></i>
-                                    </button>
-
-                                    <h1>Logar</h1>
-
-                                    <div className="informacoes">
-                                        <input
-                                            type="text"
-                                            value={emailLogin}
-                                            placeholder="Insira seu email"
-                                            onChange={(e) => setEmailLogin(e.target.value)}
-                                        />
-
-                                        <input
-                                            type="password"
-                                            value={senhaLogin}
-                                            placeholder="Insira a senha"
-                                            onChange={(e) => setSenhaLogin(e.target.value)}
-                                        />
-
-                                        <button
-                                            className="log"
-                                            onClick={LogarUsuario}
-                                        >
-                                            Entrar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    )}
-
-                    {personalizacaoModal && (
-                        <div className="fundo">
-                            <section className="personalizar">
-                                <button
-                                    className="fechar"
-                                    onClick={() => setPersonalizacaoModal(false)}
-                                >
-                                    <i className="fa-solid fa-xmark"></i>
-                                </button>
-                                <h1>Personalizar</h1>
-                                <div className="informacoes">
-                                    <div className="userInformation">
-                                        <img src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
-                                            alt={usuarioLogado.primeiro_nome.charAt(0).toUpperCase()} />
-
-                                        <h3>{usuarioLogado.primeiro_nome}</h3>
-                                        <p>{usuarioLogado.nome}</p>
-                                        <p>{usuarioLogado.email}</p>
-                                    </div>
-
-                                    <div className="atualizar-informacoes">
-                                        <form onSubmit={atualizarUsuario}>
-                                            <input
-                                                type="text"
-                                                name=""
-                                                id=""
-                                                value={primeiroNome}
-                                                placeholder="Como deseja ser chamado?"
-                                                onChange={(e) => setPrimeiroNome(e.target.value)}
-                                                required
-                                            />
-
-                                            <input
-                                                type="text"
-                                                name=""
-                                                id=""
-                                                value={perfil}
-                                                placeholder="URL da imagem de perfil"
-                                                onChange={(e) => setPerfil(e.target.value)}
-                                                required
-                                            />
-
-                                            <input
-                                                type="submit"
-                                                value="Atualizar" />
-
-                                        </form>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
                     )}
                 </>
+            )}
+
+            {signUp && (
+                <div className="fundo">
+                    <section className="cadastro">
+                        <button
+                            className="fechar"
+                            onClick={() => setSignUp(false)}
+                        >
+                            <i className="fa-solid fa-xmark"></i>
+                        </button>
+
+                        <h1>Cadastre-se</h1>
+
+                        <div className="inputs">
+                            <input
+                                type="text"
+                                required
+                                placeholder="Insira seu nome"
+                                value={nome}
+                                onChange={(e) => setNome(e.target.value)}
+                            />
+
+                            <input
+                                type="text"
+                                required
+                                placeholder="Insira seu email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+
+                            <input
+                                type="password"
+                                required
+                                placeholder="Crie uma senha"
+                                value={senha}
+                                onChange={(e) => setSenha(e.target.value)}
+                            />
+
+                            <button onClick={cadastrarUsuario}>
+                                Cadastre-se
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            )}
+
+            {login && (
+                <section className="logar">
+                    <div className="fundo">
+                        <div className="login-container">
+                            <button
+                                className="fechar"
+                                onClick={() => setLogin(false)}
+                            >
+                                <i className="fa-solid fa-xmark"></i>
+                            </button>
+
+                            <h1>Logar</h1>
+
+                            <div className="informacoes">
+                                <input
+                                    type="text"
+                                    value={emailLogin}
+                                    placeholder="Insira seu email"
+                                    onChange={(e) => setEmailLogin(e.target.value)}
+                                />
+
+                                <input
+                                    type="password"
+                                    value={senhaLogin}
+                                    placeholder="Insira a senha"
+                                    onChange={(e) => setSenhaLogin(e.target.value)}
+                                />
+
+                                <button
+                                    className="log"
+                                    onClick={LogarUsuario}
+                                >
+                                    Entrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {personalizacaoModal && (
+                <div className="fundo">
+                    <section className="personalizar">
+                        <button
+                            className="fechar"
+                            onClick={() => setPersonalizacaoModal(false)}
+                        >
+                            <i className="fa-solid fa-xmark"></i>
+                        </button>
+
+                        <h1>Personalizar</h1>
+
+                        <div className="informacoes">
+                            <div className="userInformation">
+                                <img
+                                    src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
+                                    alt={usuarioLogado.primeiro_nome.charAt(0).toUpperCase()}
+                                />
+
+                                <h3>{usuarioLogado.primeiro_nome}</h3>
+                                <p>{usuarioLogado.nome}</p>
+                                <p>{usuarioLogado.email}</p>
+                            </div>
+
+                            <div className="atualizar-informacoes">
+                                <form onSubmit={atualizarUsuario}>
+                                    <input
+                                        type="text"
+                                        name=""
+                                        id=""
+                                        value={primeiroNome}
+                                        placeholder="Como deseja ser chamado?"
+                                        onChange={(e) => setPrimeiroNome(e.target.value)}
+                                        required
+                                    />
+
+                                    <input
+                                        type="text"
+                                        name=""
+                                        id=""
+                                        value={perfil}
+                                        placeholder="URL da imagem de perfil"
+                                        onChange={(e) => setPerfil(e.target.value)}
+                                        required
+                                    />
+
+                                    <input
+                                        type="submit"
+                                        value="Atualizar"
+                                    />
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             )}
         </>
     );
