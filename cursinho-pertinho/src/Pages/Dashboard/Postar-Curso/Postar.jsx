@@ -316,7 +316,7 @@ export default function PostarCursos() {
                         className="card-Oferta"
                         key={oferta.id}
                         value={oferta.id}>
-                        <img src={oferta.imagem} alt="Imagem Curso" />
+                        <img src={oferta.imagem} alt="Imagem Curso" className="instituicao"/>
                         <h2>{oferta.curso}</h2>
                         <p>Nível: {oferta.nivel}</p>
                         <h5>Modalidade: {oferta.modalidade}</h5>

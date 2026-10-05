@@ -33,8 +33,6 @@ h1 {
 }
 
 .formulario {
-    isolation: isolate;
-
     width: 100%;
 
     padding:
@@ -232,8 +230,6 @@ h1 {
 }
 
 .cards-oferta {
-    isolation: isolate;
-
     width: min(1100px, calc(100% - 40px));
 
     margin:
@@ -300,6 +296,8 @@ h1 {
         display: flex;
         flex-direction: column;
 
+        overflow: hidden;
+
         background: rgb(255, 255, 255);
 
         border: 1px solid rgb(228, 231, 236);
@@ -323,28 +321,37 @@ h1 {
                 0 4px 8px rgba(16, 24, 40, 0.06),
                 0 12px 28px rgba(16, 24, 40, 0.1);
 
-            > img {
+            .instituicao {
                 transform: scale(1.04);
             }
         }
 
-        > img {
+        .instituicao {
             width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+
             height: 190px;
+            min-height: 190px;
+            max-height: 190px;
 
             display: block;
 
-            flex-shrink: 0;
+            flex: 0 0 190px;
 
             object-fit: cover;
-            object-position: center;
+            object-position: center center;
+
+            margin: 0;
+            padding: 0;
 
             background: rgb(239, 246, 255);
 
+            border: 0;
             border-bottom: 1px solid rgb(228, 231, 236);
+            border-radius: 0;
 
-            transition:
-                transform 0.4s ease;
+            transition: transform 0.4s ease;
         }
 
         a {
@@ -476,12 +483,10 @@ h1 {
 }
 
 .fundo {
-    isolation: isolate;
-
     position: fixed;
     inset: 0;
 
-    z-index: 9999;
+    z-index: 1001;
 
     display: flex;
     align-items: center;
@@ -662,8 +667,19 @@ h1 {
         gap: 18px;
 
         .card-Oferta {
-            > img {
+            .instituicao {
+                width: 100%;
+                max-width: 100%;
+                min-width: 100%;
+
                 height: 200px;
+                min-height: 200px;
+                max-height: 200px;
+
+                flex: 0 0 200px;
+
+                object-fit: cover;
+                object-position: center center;
             }
         }
     }
@@ -749,8 +765,19 @@ h1 {
 
             border-radius: 14px;
 
-            > img {
+            .instituicao {
+                width: 100%;
+                max-width: 100%;
+                min-width: 100%;
+
                 height: 210px;
+                min-height: 210px;
+                max-height: 210px;
+
+                flex: 0 0 210px;
+
+                object-fit: cover;
+                object-position: center center;
             }
 
             h2 {
@@ -833,8 +860,19 @@ h1 {
         .card-Oferta {
             border-radius: 12px;
 
-            > img {
+            .instituicao {
+                width: 100%;
+                max-width: 100%;
+                min-width: 100%;
+
                 height: 185px;
+                min-height: 185px;
+                max-height: 185px;
+
+                flex: 0 0 185px;
+
+                object-fit: cover;
+                object-position: center center;
             }
 
             h2 {
