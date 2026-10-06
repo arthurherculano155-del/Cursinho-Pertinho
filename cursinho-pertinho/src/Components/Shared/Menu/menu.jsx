@@ -77,6 +77,8 @@ export default function Menu() {
             JSON.stringify(dados.usuario)
         );
 
+        localStorage.setItem("token", dados.token)
+
         setUsuarioLogado(dados.usuario);
 
         setEmailLogin("");
@@ -87,6 +89,7 @@ export default function Menu() {
 
     function sairUsuario() {
         localStorage.removeItem("usuario");
+        localStorage.removeItem("token");
         setUsuarioLogado(null);
     }
 

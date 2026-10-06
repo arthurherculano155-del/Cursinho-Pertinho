@@ -5,17 +5,20 @@ import { useState, useEffect } from "react";
 export default function Usuarios() {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-    const [usuarioCargo, setUsuarioCargo] = useState(null);
-
     const API_URL = `https://cursinhopertinho-api.onrender.com`;
 
     const [usuarios, setUsuarios] = useState([]);
     const [pesquisaUser, setPesquisaUser] = useState("");
 
     async function mudarCargo(email) {
+        const token = localStorage.getItem("token");
+
         const resposta = await fetch(`${API_URL}/usuario`, {
             method: "PUT",
-            headers: { "Content-type": "application/json" },
+            headers: { 
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
             body: JSON.stringify({
                 email: email
             })

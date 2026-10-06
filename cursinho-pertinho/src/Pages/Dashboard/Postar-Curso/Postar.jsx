@@ -37,10 +37,13 @@ export default function PostarCursos() {
     async function PostarCursinho(e) {
         e.preventDefault();
 
+        const token = localStorage.getItem("token");
+
         const resposta = await fetch(`${API_URL}/cursos`, {
             method: "POST",
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
                 id_curso: Number(curso),

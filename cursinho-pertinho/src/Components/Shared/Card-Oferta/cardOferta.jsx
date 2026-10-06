@@ -22,8 +22,13 @@ export default function CardOferta() {
     }, [pesquisa]);
 
     async function deleteOferta(id) {
+        const token = localStorage.getItem("token");
+
         await fetch(`${API_URL}/ofertas/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
         })
 
         alert(`Oferta com ID ${id} deletado!`)
