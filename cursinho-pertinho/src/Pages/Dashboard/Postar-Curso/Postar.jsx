@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import DashboardMenu from "../../../Components/Shared/MenuDashboard/menuDash.jsx";
+import CardOferta from "../../../Components/Shared/Card-Oferta/cardOferta.jsx";
 import "./Postar.scss";
 
 export default function PostarCursos() {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
 
     const API_URL = "https://cursinhopertinho-api.onrender.com";
-
-    const [modal, setModal] = useState(null)
 
     const [listaCursos, setListaCursos] = useState([]);
     const [listaUnidades, setListaUnidades] = useState([]);
@@ -23,9 +22,6 @@ export default function PostarCursos() {
     const [link, setLink] = useState("");
     const [imagem, setImagem] = useState("");
 
-    const [cardOferta, setCardOferta] = useState([]);
-    const [pesquisa, setPesquisa] = useState("");
-
     useEffect(() => {
         async function BuscarCursos() {
             const resposta = await fetch(`${API_URL}/cursos`);
@@ -37,36 +33,6 @@ export default function PostarCursos() {
 
         BuscarCursos();
     }, []);
-
-
-
-    useEffect(() => {
-        async function getOfertas() {
-            const resposta = await fetch(`${API_URL}/ofertas?regiao=${pesquisa}`);
-
-            const dados = await resposta.json();
-
-            setCardOferta(dados);
-        }
-
-        getOfertas()
-    }, [pesquisa]);
-
-    async function deleteOferta(id) {
-        await fetch(`${API_URL}/ofertas/${id}`, {
-            method: "DELETE"
-        })
-
-        alert(`Oferta com ID ${id} deletado!`)
-    }
-
-    async function BuscarUnidades(regiao) {
-        const resposta = await fetch(`${API_URL}/unidades/${regiao}`);
-
-        const dados = await resposta.json();
-
-        setListaUnidades(dados);
-    }
 
     async function PostarCursinho(e) {
         e.preventDefault();
@@ -111,6 +77,14 @@ export default function PostarCursos() {
         }, 1000)
     }
 
+    async function BuscarUnidades(regiao) {
+        const resposta = await fetch(`${API_URL}/unidades/${regiao}`);
+
+        const dados = await resposta.json();
+
+        setListaUnidades(dados);
+    }
+
     if (!usuario) {
         return <h1>Você precisa estar logado.</h1>;
     }
@@ -150,7 +124,6 @@ export default function PostarCursos() {
                         ))}
                     </select>
 
-
                     <select
                         required
                         value={regiao}
@@ -179,7 +152,6 @@ export default function PostarCursos() {
                         <option value="5">Centro</option>
                     </select>
 
-
                     <select
                         required
                         value={unidade}
@@ -198,7 +170,6 @@ export default function PostarCursos() {
                             </option>
                         ))}
                     </select>
-
 
                     <select
                         required
@@ -222,7 +193,6 @@ export default function PostarCursos() {
                         </option>
                     </select>
 
-
                     <input
                         type="number"
                         required
@@ -231,7 +201,6 @@ export default function PostarCursos() {
                         onChange={(e) => setPreco(e.target.value)}
                     />
 
-
                     <input
                         type="number"
                         required
@@ -239,7 +208,6 @@ export default function PostarCursos() {
                         value={carga}
                         onChange={(e) => setCarga(e.target.value)}
                     />
-
 
                     <select
                         required
@@ -295,83 +263,15 @@ export default function PostarCursos() {
                         }
                     />
 
-
                     <input
                         type="submit"
                         value="Postar Cursinho"
                     />
-
                 </form>
             </main>
 
             <section className="cards-oferta">
-                <input
-                    type="text"
-                    name=""
-                    id=""
-                    placeholder="Pesquisa por região"
-                    onChange={(e) => setPesquisa(e.target.value)} />
-                {cardOferta.map((oferta) => (
-                    <div
-                        className="card-Oferta"
-                        key={oferta.id}
-                        value={oferta.id}>
-                        <img src={oferta.imagem} alt="Imagem Curso" className="instituicao"/>
-                        <h2>{oferta.curso}</h2>
-                        <p>Nível: {oferta.nivel}</p>
-                        <h5>Modalidade: {oferta.modalidade}</h5>
-                        {oferta.modalidade === "Online" ? "" : (
-                            <h5>
-                                Endereço:{" "}
-                                <a
-                                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(oferta.endereco)},${encodeURIComponent(oferta.numero)}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    {oferta.endereco}, {oferta.numero}
-                                </a>
-                            </h5>
-                        )}
-                        <h5>Preço: R$ {oferta.preco.toFixed(2)}</h5>
-                        <h5>Carga horária: {oferta.carga_horaria} horas</h5>
-                        <h5>Link: <a
-                            href={oferta.link_inscricao}
-                            target="_blank"
-                            rel="noreferrer"
-                        >Inscrever-se</a></h5>
-                        <h5>Região: {oferta.regiao}</h5>
-
-                        <div
-                            className="lixeira"
-                            onClick={() => setModal(oferta.id)}
-                        >
-                            <i className="fa-solid fa-trash-can" />
-                        </div>
-
-                        {modal === oferta.id && (
-                            <div className="fundo">
-                                <section className="apagar">
-                                    <h2>
-                                        Tem certeza de que deseja apagar o curso {oferta.curso}?</h2>
-
-                                    <div className="buttons">
-                                        <button onClick={() => {
-                                            deleteOferta(oferta.id)
-                                            setTimeout(() => {
-                                                window.location.reload()
-                                            }, 2000)
-                                        }}
-                                            className="yep">Sim</button>
-                                        <button
-                                            onClick={() => setModal(false)}
-                                            className="not">Não</button>
-                                    </div>
-                                </section>
-                            </div>
-                        )}
-
-                    </div>
-                ))}
+                <CardOferta />
             </section>
         </>
     );

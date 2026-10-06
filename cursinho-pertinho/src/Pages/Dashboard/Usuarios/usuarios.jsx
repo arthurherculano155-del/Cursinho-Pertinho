@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 export default function Usuarios() {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
 
+    const [usuarioCargo, setUsuarioCargo] = useState(null);
+
     const API_URL = `https://cursinhopertinho-api.onrender.com`;
 
     const [usuarios, setUsuarios] = useState([]);
@@ -26,6 +28,15 @@ export default function Usuarios() {
             return;
         }
 
+        if(usuario.email === email){
+            const usuarioAtualizado = {
+                ...usuario,
+                cargo: dados.cargo
+            }
+
+            localStorage.setItem("usuario", JSON.stringify(usuarioAtualizado))
+        }
+
         alert(`Cargo de ${email} alterado com sucesso!`)
 
         setTimeout(() => {
@@ -45,11 +56,11 @@ export default function Usuarios() {
         getUsers();
     }, [pesquisaUser])
 
-    if(!usuario){
+    if (!usuario) {
         return <h1>Você precisa estar logado.</h1>
     }
 
-    if(usuario.cargo !== "admin"){
+    if (usuario.cargo !== "admin") {
         return <h1>Você não tem permissão para acessar essa página.</h1>
     }
 
@@ -72,9 +83,9 @@ export default function Usuarios() {
                     <div
                         className="usuario"
                         key={usuario.id_usuario}>
-                            <img src={usuario.imagem_url || "/Assets/Imgs/usuario-padrao.webp"} 
-                            alt={usuario.nome.charAt(0).toUpperCase()} 
-                            className="userImg" 
+                        <img src={usuario.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
+                            alt={usuario.nome.charAt(0).toUpperCase()}
+                            className="userImg"
                         />
                         <h3>Nome: {usuario.nome}</h3>
                         <h3>Email: {usuario.email}</h3>
@@ -86,9 +97,9 @@ export default function Usuarios() {
                                     "fa-solid fa-xmark" :
                                     "fa-solid fa-exchange-alt"}
 
-                            onClick={() =>
+                            onClick={() => {
                                 mudarCargo(usuario.email)
-                            }
+                            }}
                         />
                     </div>
                 ))}
