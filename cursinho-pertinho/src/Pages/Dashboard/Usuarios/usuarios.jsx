@@ -10,12 +10,32 @@ export default function Usuarios() {
     const [usuarios, setUsuarios] = useState([]);
     const [pesquisaUser, setPesquisaUser] = useState("");
 
+    async function apagarUsuario(id) {
+        const token = localStorage.getItem("token");
+
+        const resposta = await fetch(`${API_URL}/usuario/deletar/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            alert("Usuário inexistente ou inválido.")
+            return;
+        }
+
+        alert(`Usuários deletados: ${dados}`)
+    }
+
     async function mudarCargo(email) {
         const token = localStorage.getItem("token");
 
         const resposta = await fetch(`${API_URL}/usuario`, {
             method: "PUT",
-            headers: { 
+            headers: {
                 "Content-type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
@@ -31,7 +51,7 @@ export default function Usuarios() {
             return;
         }
 
-        if(usuario.email === email){
+        if (usuario.email === email) {
             const usuarioAtualizado = {
                 ...usuario,
                 cargo: dados.cargo
@@ -104,8 +124,18 @@ export default function Usuarios() {
                                 mudarCargo(usuario.email)
                             }}
                         />
+
+                        {usuario.cargo === "admin" ?
+                        ("") : <i
+                            className="fa-solid fa-trash-can"
+                            onClick={
+                                () => apagarUsuario(usuario.id_usuario)
+                            }
+                        />}
                     </div>
                 ))}
+
+                
             </section>
         </>
     )

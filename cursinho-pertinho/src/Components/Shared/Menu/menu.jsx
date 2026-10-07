@@ -235,7 +235,7 @@ export default function Menu() {
                         <section className="user">
                             <img
                                 src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
-                                alt={`Perfil de ${usuarioLogado.primeiro_nome}`}
+                                alt={`Foto de ${usuarioLogado.primeiro_nome}`}
                                 className="avatar"
                                 onClick={() => setPersonalizacaoModal(true)}
                             />
@@ -375,7 +375,7 @@ export default function Menu() {
                             <div className="userInformation">
                                 <img
                                     src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
-                                    alt={usuarioLogado.primeiro_nome.charAt(0).toUpperCase()}
+                                    alt={`Foto de ${usuarioLogado.primeiro_nome}`}
                                 />
 
                                 <h3>{usuarioLogado.primeiro_nome}</h3>

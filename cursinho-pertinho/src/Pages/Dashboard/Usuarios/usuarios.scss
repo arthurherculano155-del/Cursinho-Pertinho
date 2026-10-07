@@ -24,8 +24,7 @@
 
     transition:
         border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
+        box-shadow 0.2s ease;
 
     &::placeholder {
         color: rgb(152, 162, 179);
@@ -59,10 +58,17 @@
         width: 100%;
 
         display: grid;
-        grid-template-columns: 58px 1fr 1.5fr 0.7fr 45px;
+        grid-template-columns:
+            58px
+            minmax(0, 1fr)
+            minmax(0, 1.5fr)
+            minmax(100px, 0.7fr)
+            40px
+            40px;
+
         align-items: center;
 
-        gap: 20px;
+        gap: 16px;
 
         padding: 20px 24px;
 
@@ -110,14 +116,12 @@
 
             transition:
                 transform 0.2s ease,
-                border-color 0.2s ease,
-                box-shadow 0.2s ease;
+                border-color 0.2s ease;
         }
 
         &:hover {
             .userImg {
                 border-color: rgb(147, 197, 253);
-
                 transform: scale(1.03);
             }
         }
@@ -184,6 +188,10 @@
                 transform 0.2s ease,
                 box-shadow 0.2s ease;
 
+            &:active {
+                transform: scale(0.95);
+            }
+
             &.fa-exchange-alt {
                 background-color: rgb(239, 246, 255);
                 color: rgb(37, 99, 235);
@@ -214,9 +222,24 @@
                 }
             }
 
-            &:active {
-                transform: scale(0.95);
+            &.fa-trash-can {
+                background-color: rgb(255, 247, 237);
+                color: rgb(234, 12, 12);
+
+                &:hover {
+                    background-color: rgb(234, 12, 12);
+                    color: rgb(255, 255, 255);
+
+                    transform: scale(1.05);
+
+                    box-shadow:
+                        0 4px 10px rgba(234, 88, 12, 0.22);
+                }
             }
+        }
+
+        .fa-xmark:last-child {
+            grid-column: 6;
         }
     }
 }
@@ -224,9 +247,13 @@
 @media (max-width: 900px) {
     .usuarios {
         .usuario {
-            grid-template-columns: 52px 1fr auto;
+            grid-template-columns:
+                52px
+                minmax(0, 1fr)
+                40px
+                40px;
 
-            gap: 10px 16px;
+            gap: 10px 12px;
 
             .userImg {
                 grid-column: 1;
@@ -246,11 +273,22 @@
                 margin-top: 2px;
             }
 
-            i {
+            i:nth-of-type(1) {
                 grid-column: 3;
                 grid-row: 1 / 4;
 
                 align-self: center;
+            }
+
+            i:nth-of-type(2) {
+                grid-column: 4;
+                grid-row: 1 / 4;
+
+                align-self: center;
+            }
+
+            .fa-xmark:last-child {
+                grid-column: 4;
             }
         }
     }
@@ -259,7 +297,6 @@
 @media (max-width: 768px) {
     .pesquisa-usuarios {
         width: 92%;
-
         margin-top: 25px;
     }
 
@@ -287,9 +324,13 @@
         gap: 12px;
 
         .usuario {
-            grid-template-columns: 42px minmax(0, 1fr) 36px;
+            grid-template-columns:
+                42px
+                minmax(0, 1fr)
+                34px
+                34px;
 
-            gap: 8px 12px;
+            gap: 8px 9px;
 
             padding: 15px;
 
