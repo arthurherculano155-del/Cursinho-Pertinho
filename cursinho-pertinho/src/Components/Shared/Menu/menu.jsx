@@ -330,6 +330,10 @@ export default function Menu() {
                                     value={emailLogin}
                                     placeholder="Insira seu email"
                                     onChange={(e) => setEmailLogin(e.target.value)}
+                                    onKeyDown={(e) => {
+                                        if(e.key === "Enter")
+                                            LogarUsuario()
+                                    }}
                                 />
 
                                 <input
@@ -337,6 +341,10 @@ export default function Menu() {
                                     value={senhaLogin}
                                     placeholder="Insira a senha"
                                     onChange={(e) => setSenhaLogin(e.target.value)}
+                                    onKeyDown={(e) => {
+                                        if(e.key === "Enter")
+                                            LogarUsuario()
+                                    }}
                                 />
 
                                 <button
