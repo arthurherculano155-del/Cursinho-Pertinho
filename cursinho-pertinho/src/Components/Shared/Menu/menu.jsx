@@ -77,7 +77,9 @@ export default function Menu() {
             JSON.stringify(dados.usuario)
         );
 
-        localStorage.setItem("token", dados.token)
+        localStorage.setItem("token", 
+            dados.token
+        );
 
         setUsuarioLogado(dados.usuario);
 
@@ -233,7 +235,7 @@ export default function Menu() {
                         <section className="user">
                             <img
                                 src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
-                                alt={usuarioLogado.primeiro_nome.charAt(0).toUpperCase()}
+                                alt={`Perfil de ${usuarioLogado.primeiro_nome}`}
                                 className="avatar"
                                 onClick={() => setPersonalizacaoModal(true)}
                             />
