@@ -285,6 +285,10 @@ export default function Menu() {
                                 placeholder="Insira seu nome"
                                 value={nome}
                                 onChange={(e) => setNome(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if(e.key === "Enter")
+                                        cadastrarUsuario()
+                                }}
                             />
 
                             <input
@@ -293,6 +297,10 @@ export default function Menu() {
                                 placeholder="Insira seu email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if(e.key === "Enter")
+                                        cadastrarUsuario()
+                                }}
                             />
 
                             <input
