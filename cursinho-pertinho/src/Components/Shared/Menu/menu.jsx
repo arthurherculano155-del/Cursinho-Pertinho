@@ -199,17 +199,17 @@ export default function Menu() {
                                 className={({ isActive }) =>
                                     isActive ? "Ativo" : ""
                                 }>
-                                Cursos
+                                Explorar Cursos
                             </NavLink>
                         </li>
 
                         <li className="link">
                             <NavLink
-                                to='/instituições'
+                                to='/regioes'
                                 className={({ isActive }) =>
                                     isActive ? "Ativo" : ""
                                 }>
-                                Instituições
+                                Regiões
                             </NavLink>
                         </li>
 
@@ -219,7 +219,7 @@ export default function Menu() {
                                 className={({ isActive }) =>
                                     isActive ? "Ativo" : ""
                                 }>
-                                Sobre
+                                Sobre Nós
                             </NavLink>
                         </li>
                     </ul>
