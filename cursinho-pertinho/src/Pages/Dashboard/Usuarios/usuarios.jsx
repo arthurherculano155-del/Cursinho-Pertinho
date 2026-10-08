@@ -23,11 +23,15 @@ export default function Usuarios() {
         const dados = await resposta.json();
 
         if (!resposta.ok) {
-            alert("Usuário inexistente ou inválido.")
+            alert(dados.erro)
             return;
         }
 
-        alert(`Usuários deletados: ${dados}`)
+        alert(`Usuários deletados: ${dados}`);
+    
+        setTimeout(() => {
+            window.location.reload()
+        }, 1500);
     }
 
     async function mudarCargo(email) {
@@ -64,7 +68,7 @@ export default function Usuarios() {
 
         setTimeout(() => {
             window.location.reload()
-        }, 1500)
+        }, 1500);
     }
 
     useEffect(() => {
