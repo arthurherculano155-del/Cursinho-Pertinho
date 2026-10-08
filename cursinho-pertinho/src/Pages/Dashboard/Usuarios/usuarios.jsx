@@ -27,7 +27,7 @@ export default function Usuarios() {
             return;
         }
 
-        alert(`Usuários deletados: ${dados}`);
+        alert(`Usuários deletados: ${dados.Linhas_Alteradas}`);
     
         setTimeout(() => {
             window.location.reload()
