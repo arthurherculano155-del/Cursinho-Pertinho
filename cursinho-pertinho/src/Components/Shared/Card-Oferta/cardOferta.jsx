@@ -1,25 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export default function CardOferta() {
+export default function CardOferta({
+    lixeira,
+    nomeValor
+}) {
     const API_URL = "https://cursinhopertinho-api.onrender.com";
-    const lixeira = true;
-
-    const [cardOferta, setCardOferta] = useState([]);
-    const [pesquisa, setPesquisa] = useState("");
 
     const [modal, setModal] = useState(null);
-
-    useEffect(() => {
-        async function getOfertas() {
-            const resposta = await fetch(`${API_URL}/ofertas?regiao=${pesquisa}`);
-
-            const dados = await resposta.json();
-
-            setCardOferta(dados);
-        }
-
-        getOfertas()
-    }, [pesquisa]);
 
     async function deleteOferta(id) {
         const token = localStorage.getItem("token");
@@ -36,14 +23,7 @@ export default function CardOferta() {
 
     return (
         <>
-            <input
-                type="text"
-                name=""
-                id=""
-                placeholder="Pesquisa por região"
-                onChange={(e) => setPesquisa(e.target.value)} />
-
-            {cardOferta.map((oferta) => (
+            {nomeValor.map((oferta) => (
                 <div
                     className="card-Oferta"
                     key={oferta.id}

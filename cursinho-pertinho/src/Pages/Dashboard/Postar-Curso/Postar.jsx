@@ -22,6 +22,9 @@ export default function PostarCursos() {
     const [link, setLink] = useState("");
     const [imagem, setImagem] = useState("");
 
+    const [pesquisa, setPesquisa] = useState("");
+    const [cardOferta, setCardOferta] = useState([]);
+
     useEffect(() => {
         async function BuscarCursos() {
             const resposta = await fetch(`${API_URL}/cursos`);
@@ -87,6 +90,18 @@ export default function PostarCursos() {
 
         setListaUnidades(dados);
     }
+
+        useEffect(() => {
+        async function getOfertas() {
+            const resposta = await fetch(`${API_URL}/ofertas?regiao=${pesquisa}`);
+
+            const dados = await resposta.json();
+
+            setCardOferta(dados);
+        }
+
+        getOfertas()
+    }, [pesquisa]);
 
     if (!usuario) {
         return <h1>Você precisa estar logado.</h1>;
@@ -274,7 +289,16 @@ export default function PostarCursos() {
             </main>
 
             <section className="cards-oferta">
-                <CardOferta />
+                <input
+                type="text"
+                name=""
+                id=""
+                placeholder="Pesquisa por região"
+                onChange={(e) => setPesquisa(e.target.value)} />
+                <CardOferta 
+                    lixeira={true}
+                    nomeValor={cardOferta}
+                />
             </section>
         </>
     );
