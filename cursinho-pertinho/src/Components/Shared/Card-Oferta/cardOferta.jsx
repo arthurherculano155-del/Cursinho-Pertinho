@@ -1,3 +1,4 @@
+import './cardOferta.scss'
 import { useState } from "react";
 
 export default function CardOferta({

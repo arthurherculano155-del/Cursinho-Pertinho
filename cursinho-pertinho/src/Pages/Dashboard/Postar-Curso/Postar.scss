@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -6,27 +7,13 @@ body {
     margin: 0;
     background: rgb(245, 247, 250);
     color: rgb(24, 34, 48);
-
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 h1 {
     width: min(760px, calc(100% - 40px));
-
-    margin:
-        48px auto
-        20px;
-
+    margin: 48px auto 20px;
     color: rgb(24, 34, 48);
-
     font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: -0.035em;
@@ -34,58 +21,40 @@ h1 {
 
 .formulario {
     width: 100%;
-
-    padding:
-        0 20px
-        48px;
-
+    padding: 0 20px 48px;
     display: flex;
     flex-direction: column;
     align-items: center;
-
     gap: 20px;
 
     .postar {
         width: min(760px, 100%);
-
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-
         gap: 18px;
         padding: 32px;
-
         background: rgb(255, 255, 255);
-
         border: 1px solid rgb(228, 231, 236);
-        border-radius: 14px;
-
-        box-shadow:
-            0 1px 3px rgba(16, 24, 40, 0.05),
-            0 8px 24px rgba(16, 24, 40, 0.06);
+        border-radius: 16px;
+        box-shadow: 0 2px 5px rgba(16, 24, 40, 0.04),
+                    0 12px 32px rgba(16, 24, 40, 0.06);
 
         input,
         select {
             width: 100%;
+            min-width: 0;
             height: 50px;
-
             padding: 0 14px;
-
             border: 1px solid rgb(208, 213, 221);
-            border-radius: 8px;
-
+            border-radius: 9px;
             outline: none;
-
             background: rgb(255, 255, 255);
             color: rgb(24, 34, 48);
-
             font-family: inherit;
             font-size: 0.95rem;
-            font-weight: 400;
-
-            transition:
-                border-color 0.2s ease,
-                box-shadow 0.2s ease,
-                background-color 0.2s ease;
+            transition: border-color 0.2s ease,
+                        box-shadow 0.2s ease,
+                        background-color 0.2s ease;
 
             &:hover {
                 border-color: rgb(152, 162, 179);
@@ -93,9 +62,7 @@ h1 {
 
             &:focus {
                 border-color: rgb(37, 99, 235);
-
-                box-shadow:
-                    0 0 0 3px rgba(37, 99, 235, 0.12);
+                box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
             }
 
             &::placeholder {
@@ -105,37 +72,16 @@ h1 {
 
         select {
             cursor: pointer;
-
             appearance: none;
-            -webkit-appearance: none;
-
-            padding-right: 42px;
-
+            padding-right: 40px;
             background-image:
-                linear-gradient(
-                    45deg,
-                    transparent 50%,
-                    rgb(71, 84, 103) 50%
-                ),
-                linear-gradient(
-                    135deg,
-                    rgb(71, 84, 103) 50%,
-                    transparent 50%
-                );
-
+                linear-gradient(45deg, transparent 50%, rgb(71, 84, 103) 50%),
+                linear-gradient(135deg, rgb(71, 84, 103) 50%, transparent 50%);
             background-position:
                 calc(100% - 18px) 22px,
                 calc(100% - 13px) 22px;
-
-            background-size:
-                5px 5px,
-                5px 5px;
-
+            background-size: 5px 5px;
             background-repeat: no-repeat;
-
-            &:invalid {
-                color: rgb(152, 162, 179);
-            }
 
             option {
                 color: rgb(24, 34, 48);
@@ -161,119 +107,57 @@ h1 {
 
         input[type="submit"] {
             grid-column: 1 / -1;
-
             height: 52px;
-
             margin-top: 4px;
-            padding: 0 24px;
-
             border: none;
-            border-radius: 8px;
-
+            border-radius: 9px;
             background: rgb(37, 99, 235);
             color: rgb(255, 255, 255);
-
-            font-size: 0.95rem;
+            font-size: 0.96rem;
             font-weight: 600;
-
             cursor: pointer;
-
-            box-shadow:
-                0 1px 2px rgba(16, 24, 40, 0.08);
-
-            transition:
-                background-color 0.2s ease,
-                box-shadow 0.2s ease,
-                transform 0.1s ease;
+            box-shadow: 0 3px 8px rgba(37, 99, 235, 0.15);
+            transition: background-color 0.2s ease,
+                        transform 0.2s ease,
+                        box-shadow 0.2s ease;
 
             &:hover {
                 background: rgb(29, 78, 216);
-
-                box-shadow:
-                    0 5px 12px rgba(37, 99, 235, 0.2);
+                transform: translateY(-2px);
+                box-shadow: 0 7px 16px rgba(37, 99, 235, 0.23);
             }
 
             &:active {
-                transform: translateY(1px);
-
-                box-shadow:
-                    0 1px 2px rgba(16, 24, 40, 0.08);
-            }
-
-            &:focus-visible {
-                box-shadow:
-                    0 0 0 4px rgba(37, 99, 235, 0.18);
+                transform: translateY(0);
             }
         }
-    }
-
-    h2 {
-        width: min(760px, 100%);
-
-        margin: 0;
-        padding: 16px 20px;
-
-        background: rgb(240, 253, 244);
-
-        border: 1px solid rgb(187, 247, 208);
-        border-radius: 10px;
-
-        color: rgb(21, 128, 61);
-
-        font-size: 0.95rem;
-        font-weight: 600;
-        line-height: 1.5;
-
-        box-shadow:
-            0 1px 2px rgba(16, 24, 40, 0.03);
     }
 }
 
 .cards-oferta {
-    width: min(1100px, calc(100% - 40px));
-
-    margin:
-        0 auto
-        80px;
-
+    width: min(1150px, calc(100% - 40px));
+    margin: 0 auto 80px;
     display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 18px;
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 22px;
-
-    > input {
-        grid-column: 1 / -1;
-
+    > input,
+    > select {
         width: 100%;
+        min-width: 0;
         height: 52px;
-
-        margin-bottom: 8px;
-
         padding: 0 16px;
-
         background: rgb(255, 255, 255);
         color: rgb(24, 34, 48);
-
         border: 1px solid rgb(208, 213, 221);
         border-radius: 10px;
-
         outline: none;
-
         font-family: inherit;
-        font-size: 0.95rem;
-
-        box-shadow:
-            0 1px 2px rgba(16, 24, 40, 0.03);
-
-        transition:
-            border-color 0.2s ease,
-            box-shadow 0.2s ease;
-
-        &::placeholder {
-            color: rgb(152, 162, 179);
-        }
+        font-size: 0.94rem;
+        box-shadow: 0 1px 3px rgba(16, 24, 40, 0.04);
+        transition: border-color 0.2s ease,
+                    box-shadow 0.2s ease,
+                    transform 0.2s ease;
 
         &:hover {
             border-color: rgb(152, 162, 179);
@@ -281,203 +165,35 @@ h1 {
 
         &:focus {
             border-color: rgb(37, 99, 235);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
 
-            box-shadow:
-                0 0 0 3px rgba(37, 99, 235, 0.12);
+        &::placeholder {
+            color: rgb(152, 162, 179);
         }
     }
 
-    .card-Oferta {
-        position: relative;
+    > input {
+        grid-column: span 3;
+    }
 
-        min-width: 0;
-        min-height: 420px;
+    > select {
+        grid-column: span 2;
+        cursor: pointer;
+        appearance: none;
+        padding-right: 40px;
+        background-image:
+            linear-gradient(45deg, transparent 50%, rgb(71, 84, 103) 50%),
+            linear-gradient(135deg, rgb(71, 84, 103) 50%, transparent 50%);
+        background-position:
+            calc(100% - 18px) 23px,
+            calc(100% - 13px) 23px;
+        background-size: 5px 5px;
+        background-repeat: no-repeat;
 
-        display: flex;
-        flex-direction: column;
-
-        overflow: hidden;
-
-        background: rgb(255, 255, 255);
-
-        border: 1px solid rgb(228, 231, 236);
-        border-radius: 16px;
-
-        box-shadow:
-            0 1px 3px rgba(16, 24, 40, 0.05),
-            0 8px 24px rgba(16, 24, 40, 0.06);
-
-        transition:
-            transform 0.25s ease,
-            box-shadow 0.25s ease,
-            border-color 0.25s ease;
-
-        &:hover {
-            transform: translateY(-5px);
-
-            border-color: rgb(214, 218, 225);
-
-            box-shadow:
-                0 4px 8px rgba(16, 24, 40, 0.06),
-                0 12px 28px rgba(16, 24, 40, 0.1);
-
-            .instituicao {
-                transform: scale(1.04);
-            }
-        }
-
-        .instituicao {
-            width: 100%;
-            max-width: 100%;
-            min-width: 100%;
-
-            height: 190px;
-            min-height: 190px;
-            max-height: 190px;
-
-            display: block;
-
-            flex: 0 0 190px;
-
-            object-fit: cover;
-            object-position: center center;
-
-            margin: 0;
-            padding: 0;
-
-            background: rgb(239, 246, 255);
-
-            border: 0;
-            border-bottom: 1px solid rgb(228, 231, 236);
-            border-radius: 0;
-
-            transition: transform 0.4s ease;
-        }
-
-        a {
-            color: rgb(0, 0, 0);
-        }
-
-        h2 {
-            margin:
-                22px 22px
-                14px;
-
-            padding: 0;
-            padding-right: 35px;
-
+        option {
             color: rgb(24, 34, 48);
-
-            font-size: 1.18rem;
-            font-weight: 700;
-            line-height: 1.35;
-
-            letter-spacing: -0.02em;
-        }
-
-        p {
-            display: inline-flex;
-            align-self: flex-start;
-
-            margin:
-                0 22px
-                16px;
-
-            padding: 6px 10px;
-
-            background: rgb(239, 246, 255);
-            color: rgb(37, 99, 235);
-
-            border-radius: 6px;
-
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        h5 {
-            position: relative;
-
-            margin:
-                0 22px
-                10px;
-
-            padding-left: 15px;
-
-            color: rgb(71, 84, 103);
-
-            font-size: 0.88rem;
-            font-weight: 500;
-            line-height: 1.5;
-
-            overflow-wrap: anywhere;
-
-            &::before {
-                content: "";
-
-                position: absolute;
-
-                top: 8px;
-                left: 0;
-
-                width: 5px;
-                height: 5px;
-
-                background: rgb(37, 99, 235);
-
-                border-radius: 50%;
-            }
-        }
-
-        h5:last-of-type {
-            margin-bottom: 72px;
-        }
-
-        .lixeira {
-            position: absolute;
-
-            right: 18px;
-            bottom: 18px;
-
-            width: 42px;
-            height: 42px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background: rgb(254, 242, 242);
-            color: rgb(220, 38, 38);
-
-            border: 1px solid rgba(220, 38, 38, 0.12);
-            border-radius: 10px;
-
-            cursor: pointer;
-
-            font-size: 1rem;
-
-            transition:
-                background-color 0.2s ease,
-                color 0.2s ease,
-                transform 0.15s ease,
-                box-shadow 0.2s ease;
-
-            &:hover {
-                background: rgb(220, 38, 38);
-                color: rgb(255, 255, 255);
-
-                transform: translateY(-2px);
-
-                box-shadow:
-                    0 5px 12px rgba(220, 38, 38, 0.2);
-            }
-
-            &:active {
-                transform: translateY(0);
-            }
-
-            i {
-                pointer-events: none;
-            }
+            background: rgb(255, 255, 255);
         }
     }
 }
@@ -485,77 +201,55 @@ h1 {
 .fundo {
     position: fixed;
     inset: 0;
-
     z-index: 1001;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 20px;
-
     background: rgba(15, 23, 42, 0.55);
-
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-
     animation: aparecerFundo 0.2s ease;
 
     .apagar {
         width: min(440px, 100%);
-
         padding: 32px;
-
         background: rgb(255, 255, 255);
-
         border: 1px solid rgb(228, 231, 236);
         border-radius: 18px;
-
-        box-shadow:
-            0 24px 48px rgba(16, 24, 40, 0.18),
-            0 8px 20px rgba(16, 24, 40, 0.08);
-
+        box-shadow: 0 24px 48px rgba(16, 24, 40, 0.18),
+                    0 8px 20px rgba(16, 24, 40, 0.08);
         animation: aparecerModal 0.25s ease;
 
         h2 {
             margin: 0 0 28px;
             padding: 0;
-
             color: rgb(24, 34, 48);
-
             font-size: 1.2rem;
             font-weight: 700;
             line-height: 1.5;
             letter-spacing: -0.02em;
-
             text-align: center;
         }
 
         .buttons {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-
             gap: 12px;
 
             button {
                 width: 100%;
                 height: 48px;
-
                 border: none;
                 border-radius: 10px;
-
                 font-family: inherit;
                 font-size: 0.95rem;
                 font-weight: 600;
-
                 cursor: pointer;
-
-                transition:
-                    background-color 0.2s ease,
-                    color 0.2s ease,
-                    border-color 0.2s ease,
-                    transform 0.15s ease,
-                    box-shadow 0.2s ease;
+                transition: background-color 0.2s ease,
+                            color 0.2s ease,
+                            transform 0.15s ease,
+                            box-shadow 0.2s ease;
 
                 &:active {
                     transform: scale(0.97);
@@ -563,54 +257,26 @@ h1 {
             }
 
             .yep {
-                background: rgb(37, 99, 235);
+                background: rgb(220, 38, 38);
                 color: rgb(255, 255, 255);
 
-                box-shadow:
-                    0 2px 5px rgba(37, 99, 235, 0.15);
-
                 &:hover {
-                    background: rgb(29, 78, 216);
-
+                    background: rgb(185, 28, 28);
                     transform: translateY(-2px);
-
-                    box-shadow:
-                        0 6px 14px rgba(37, 99, 235, 0.25);
-                }
-
-                &:focus-visible {
-                    outline: none;
-
-                    box-shadow:
-                        0 0 0 4px rgba(37, 99, 235, 0.18);
+                    box-shadow: 0 6px 14px rgba(220, 38, 38, 0.22);
                 }
             }
 
             .not {
                 background: rgb(255, 255, 255);
                 color: rgb(71, 84, 103);
-
                 border: 1px solid rgb(208, 213, 221);
 
                 &:hover {
                     background: rgb(245, 247, 250);
                     color: rgb(24, 34, 48);
-
                     border-color: rgb(152, 162, 179);
-
                     transform: translateY(-2px);
-
-                    box-shadow:
-                        0 4px 10px rgba(16, 24, 40, 0.06);
-                }
-
-                &:focus-visible {
-                    outline: none;
-
-                    border-color: rgb(37, 99, 235);
-
-                    box-shadow:
-                        0 0 0 4px rgba(37, 99, 235, 0.12);
                 }
             }
         }
@@ -641,180 +307,84 @@ h1 {
 
 @media (max-width: 1000px) {
     .cards-oferta {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        > input,
+        > select {
+            grid-column: span 1;
+        }
+
+        > select:last-of-type {
+            grid-column: 1 / -1;
+        }
     }
 }
 
 @media (max-width: 768px) {
     h1 {
         margin-top: 36px;
-
         font-size: 1.6rem;
     }
 
     .formulario {
         .postar {
             padding: 26px;
-
             gap: 16px;
         }
     }
 
     .cards-oferta {
         width: calc(100% - 32px);
-
         gap: 18px;
-
-        .card-Oferta {
-            .instituicao {
-                width: 100%;
-                max-width: 100%;
-                min-width: 100%;
-
-                height: 200px;
-                min-height: 200px;
-                max-height: 200px;
-
-                flex: 0 0 200px;
-
-                object-fit: cover;
-                object-position: center center;
-            }
-        }
     }
 }
 
 @media (max-width: 600px) {
     h1 {
         width: calc(100% - 32px);
-
-        margin:
-            28px auto
-            16px;
-
+        margin: 28px auto 16px;
         font-size: 1.45rem;
     }
 
     .formulario {
-        padding:
-            0 16px
-            40px;
-
+        padding: 0 16px 40px;
         gap: 16px;
 
         .postar {
             grid-template-columns: 1fr;
-
             padding: 20px;
-
             gap: 14px;
-
             border-radius: 12px;
 
             input,
             select {
                 grid-column: 1;
-
                 height: 50px;
-
                 font-size: 1rem;
-            }
-
-            input[placeholder="URL da imagem"],
-            input[placeholder="Descrição do curso"],
-            input[placeholder="Link de Inscrição"],
-            input[type="submit"] {
-                grid-column: 1;
             }
 
             input[type="submit"] {
                 margin-top: 4px;
             }
         }
-
-        h2 {
-            padding:
-                14px 16px;
-
-            border-radius: 8px;
-
-            font-size: 0.9rem;
-        }
     }
 
     .cards-oferta {
         width: calc(100% - 32px);
-
         margin-bottom: 50px;
-
         grid-template-columns: 1fr;
-
         gap: 16px;
 
-        > input {
-            height: 50px;
-
-            margin-bottom: 2px;
-
-            font-size: 1rem;
+        > input,
+        > select,
+        > select:last-of-type {
+            grid-column: 1;
         }
 
-        .card-Oferta {
-            min-height: auto;
-
-            border-radius: 14px;
-
-            .instituicao {
-                width: 100%;
-                max-width: 100%;
-                min-width: 100%;
-
-                height: 210px;
-                min-height: 210px;
-                max-height: 210px;
-
-                flex: 0 0 210px;
-
-                object-fit: cover;
-                object-position: center center;
-            }
-
-            h2 {
-                margin:
-                    20px 20px
-                    14px;
-
-                padding-right: 32px;
-
-                font-size: 1.08rem;
-            }
-
-            p {
-                margin:
-                    0 20px
-                    14px;
-            }
-
-            h5 {
-                margin:
-                    0 20px
-                    10px;
-
-                font-size: 0.86rem;
-            }
-
-            h5:last-of-type {
-                margin-bottom: 70px;
-            }
-
-            .lixeira {
-                right: 16px;
-                bottom: 16px;
-
-                width: 40px;
-                height: 40px;
-            }
+        > input,
+        > select {
+            height: 50px;
+            font-size: 1rem;
         }
     }
 
@@ -823,12 +393,10 @@ h1 {
 
         .apagar {
             padding: 26px 20px;
-
             border-radius: 16px;
 
             h2 {
                 margin-bottom: 24px;
-
                 font-size: 1.08rem;
             }
 
@@ -856,54 +424,6 @@ h1 {
 
     .cards-oferta {
         width: calc(100% - 24px);
-
-        .card-Oferta {
-            border-radius: 12px;
-
-            .instituicao {
-                width: 100%;
-                max-width: 100%;
-                min-width: 100%;
-
-                height: 185px;
-                min-height: 185px;
-                max-height: 185px;
-
-                flex: 0 0 185px;
-
-                object-fit: cover;
-                object-position: center center;
-            }
-
-            h2 {
-                margin:
-                    18px 16px
-                    12px;
-
-                font-size: 1rem;
-            }
-
-            p {
-                margin:
-                    0 16px
-                    14px;
-            }
-
-            h5 {
-                margin:
-                    0 16px
-                    9px;
-            }
-
-            h5:last-of-type {
-                margin-bottom: 64px;
-            }
-
-            .lixeira {
-                right: 14px;
-                bottom: 14px;
-            }
-        }
     }
 
     .fundo {
