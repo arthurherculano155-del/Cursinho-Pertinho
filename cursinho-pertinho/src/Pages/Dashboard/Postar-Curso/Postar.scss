@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
 }
@@ -82,11 +81,6 @@ h1 {
                 calc(100% - 13px) 22px;
             background-size: 5px 5px;
             background-repeat: no-repeat;
-
-            option {
-                color: rgb(24, 34, 48);
-                background: rgb(255, 255, 255);
-            }
         }
 
         input[type="number"] {
@@ -142,7 +136,7 @@ h1 {
     gap: 18px;
 
     > input,
-    > select {
+    > .Pesquisa-Informacao {
         width: 100%;
         min-width: 0;
         height: 52px;
@@ -177,7 +171,7 @@ h1 {
         grid-column: span 3;
     }
 
-    > select {
+    > .Pesquisa-Informacao {
         grid-column: span 2;
         cursor: pointer;
         appearance: none;
@@ -190,11 +184,6 @@ h1 {
             calc(100% - 13px) 23px;
         background-size: 5px 5px;
         background-repeat: no-repeat;
-
-        option {
-            color: rgb(24, 34, 48);
-            background: rgb(255, 255, 255);
-        }
     }
 }
 
@@ -310,11 +299,11 @@ h1 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
 
         > input,
-        > select {
+        > .Pesquisa-Informacao {
             grid-column: span 1;
         }
 
-        > select:last-of-type {
+        > .Pesquisa-Informacao:last-of-type {
             grid-column: 1 / -1;
         }
     }
@@ -376,13 +365,13 @@ h1 {
         gap: 16px;
 
         > input,
-        > select,
-        > select:last-of-type {
+        > .Pesquisa-Informacao,
+        > .Pesquisa-Informacao:last-of-type {
             grid-column: 1;
         }
 
         > input,
-        > select {
+        > .Pesquisa-Informacao {
             height: 50px;
             font-size: 1rem;
         }
@@ -443,6 +432,21 @@ h1 {
                     order: 2;
                 }
             }
+        }
+    }
+}
+
+select {
+    &:has(option:first-child:checked) {
+        color: rgb(152, 162, 179);
+    }
+
+    option {
+        color: rgb(24, 34, 48);
+        background: rgb(255, 255, 255);
+
+        &:first-child {
+            color: rgb(152, 162, 179);
         }
     }
 }

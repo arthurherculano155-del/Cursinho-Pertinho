@@ -108,10 +108,10 @@ export default function PostarCursos() {
 
         getOfertas()
     }, [
-        regiaoPesquisa, 
-        cursoPesquisa, 
-        instituicaoPesquisa, 
-        nivelPesquisa, 
+        regiaoPesquisa,
+        cursoPesquisa,
+        instituicaoPesquisa,
+        nivelPesquisa,
         modalidadePesquisa
     ]);
 
@@ -319,8 +319,7 @@ export default function PostarCursos() {
                 />
 
                 <select
-                    name=""
-                    id=""
+                    className="Pesquisa-Informacao"
                     onChange={(e) => setRegiaoPesquisa(e.target.value)}
                 >
                     <option
@@ -355,6 +354,7 @@ export default function PostarCursos() {
                 </select>
 
                 <select
+                    className="Pesquisa-Informacao"
                     onChange={(e) => setNivelPesquisa(e.target.value)}
                 >
                     <option value="">
@@ -375,6 +375,7 @@ export default function PostarCursos() {
                 </select>
 
                 <select
+                    className="Pesquisa-Informacao"
                     onChange={(e) =>
                         setModalidadePesquisa(e.target.value)
                     }
