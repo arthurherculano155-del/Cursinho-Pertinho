@@ -68,6 +68,11 @@ export default function PostarCursos() {
 
         const dados = await resposta.json();
 
+        if(!resposta.ok){
+            alert(dados.erro);
+            return;
+        }
+
         alert(`Curso publicado com ID ${dados.id_oferta}`);
 
         setCurso("");
