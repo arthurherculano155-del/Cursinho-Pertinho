@@ -13,6 +13,10 @@ export default function Menu() {
     const [primeiroNome, setPrimeiroNome] = useState("");
     const [perfil, setPerfil] = useState("");
 
+    const [modalSenha, setModalSenha] = useState(false);
+
+    const [emailRecuperation, setEmailRecuperation] = useState("");
+
     const [menuMobile, setMenuMobile] = useState(false);
     const [menu, setMenu] = useState(true);
 
@@ -53,6 +57,27 @@ export default function Menu() {
         setSignUp(false)
     }
 
+    async function EnviarCodigo() {
+        const resposta = await fetch(`${API_URL}/usuario/enviar-codigo`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                email: emailRecuperation
+            })
+        })
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            alert(dados.erro);
+            return;
+        }
+
+        alert(dados.resultado);
+    }
+
     async function LogarUsuario() {
         const resposta = await fetch(`${API_URL}/usuario/entrar`, {
             method: "POST",
@@ -77,7 +102,7 @@ export default function Menu() {
             JSON.stringify(dados.usuario)
         );
 
-        localStorage.setItem("token", 
+        localStorage.setItem("token",
             dados.token
         );
 
@@ -88,6 +113,8 @@ export default function Menu() {
 
         setLogin(false);
     }
+
+
 
     function sairUsuario() {
         localStorage.removeItem("usuario");
@@ -286,7 +313,7 @@ export default function Menu() {
                                 value={nome}
                                 onChange={(e) => setNome(e.target.value)}
                                 onKeyDown={(e) => {
-                                    if(e.key === "Enter")
+                                    if (e.key === "Enter")
                                         cadastrarUsuario()
                                 }}
                             />
@@ -298,7 +325,7 @@ export default function Menu() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 onKeyDown={(e) => {
-                                    if(e.key === "Enter")
+                                    if (e.key === "Enter")
                                         cadastrarUsuario()
                                 }}
                             />
@@ -339,7 +366,7 @@ export default function Menu() {
                                     placeholder="Insira seu email"
                                     onChange={(e) => setEmailLogin(e.target.value)}
                                     onKeyDown={(e) => {
-                                        if(e.key === "Enter")
+                                        if (e.key === "Enter")
                                             LogarUsuario()
                                     }}
                                 />
@@ -350,10 +377,20 @@ export default function Menu() {
                                     placeholder="Insira a senha"
                                     onChange={(e) => setSenhaLogin(e.target.value)}
                                     onKeyDown={(e) => {
-                                        if(e.key === "Enter")
+                                        if (e.key === "Enter")
                                             LogarUsuario()
                                     }}
                                 />
+
+                                <button
+                                    className="esqueci-senha"
+                                    onClick={() => {
+                                        setModalSenha(true)
+                                        setLogin(false)
+                                    }}
+                                >
+                                    Esqueci minha senha
+                                </button>
 
                                 <button
                                     className="log"
@@ -422,6 +459,37 @@ export default function Menu() {
                         </div>
                     </section>
                 </div>
+            )}
+
+            {modalSenha && (
+                <section className="fundo">
+                    <div className="modal-de-senha">
+                        <button
+                            className="fechar"
+                            onClick={() => setModalSenha(false)}
+                        >
+                            <i className="fa-solid fa-xmark" />
+                        </button>
+
+                        <input
+                            type="text"
+                            name=""
+                            id=""
+                            placeholder="Insira seu email aqui (cadastro necessário)"
+                            onChange={(e) => setEmailRecuperation(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter")
+                                    EnviarCodigo()
+                            }}
+                        />
+
+                        <button
+                            onClick={() => EnviarCodigo()}
+                        >
+                            Enviar Código
+                        </button>
+                    </div>
+                </section>
             )}
         </>
     );
