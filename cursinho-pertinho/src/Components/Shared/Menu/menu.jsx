@@ -232,11 +232,11 @@ export default function Menu() {
 
                         <li className="link">
                             <NavLink
-                                to='/regioes'
+                                to='/possibilidades'
                                 className={({ isActive }) =>
                                     isActive ? "Ativo" : ""
                                 }>
-                                Regiões
+                                Possibilidades
                             </NavLink>
                         </li>
 
