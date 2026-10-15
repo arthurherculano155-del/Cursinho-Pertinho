@@ -1,0 +1,39 @@
+.nao-encontrado{
+    h1{
+        display: flex;
+        align-items: center;
+        font-size: 150px;
+        color: darkblue;
+        justify-content: center;
+        text-align: center;
+        img{
+            width: 150px;
+        }
+    }
+
+    .mensagem-nao-encontrado{
+        display: flex;
+        flex-direction: column;
+        width: 650px;
+        text-align: center;
+        margin: 0 auto;
+        gap: 10px;
+        
+
+        h2{
+            font-size: 40px;
+            color: rgb(38, 38, 151);
+        }
+
+        p{
+            color: rgba(15, 15, 66, 0.733);
+        }
+    }
+
+    a{
+        text-decoration: none;
+        color: white;
+        background-color: rgb(18, 64, 216);
+        width: 300px;
+    }
+}
