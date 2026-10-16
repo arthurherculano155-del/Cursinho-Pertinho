@@ -24,7 +24,7 @@
         object-fit: cover;
         object-position: 65% 35%;
         pointer-events: none;
-        background: linear-gradient(
+        -webkit-mask-image: linear-gradient(
             90deg,
             transparent 0%,
             rgba(0, 0, 0, 0.08) 8%,
@@ -47,7 +47,18 @@
         z-index: -1;
         inset: -20px;
         content: "";
+        background: linear-gradient(
+            90deg,
+            rgb(5, 25, 52) 0%,
+            rgb(5, 25, 52) 25%,
+            rgba(5, 25, 52, 0.96) 36%,
+            rgba(5, 25, 52, 0.76) 46%,
+            rgba(5, 25, 52, 0.35) 59%,
+            rgba(5, 25, 52, 0.08) 75%,
+            transparent 100%
+        );
         filter: blur(18px);
+        pointer-events: none;
     }
 
     .Hero-Msg {
@@ -69,7 +80,7 @@
             text-transform: none;
 
             span {
-                color: rgb(37, 99, 235)
+                color: rgb(80, 189, 213);
             }
         }
 

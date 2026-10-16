@@ -27,7 +27,7 @@ export default function Home() {
                     <p>
                         Cursos presenciais e online, de diversas áreas, com horários,
                         <br />
-                        preços e níveis para você se qualificar sem complicação
+                        preços e níveis para você se qualificar sem complicação.
                     </p>
                 </div>
 
@@ -83,7 +83,7 @@ export default function Home() {
 
                     <CardInicio
                         referencia="/explorar-cursos"
-                        grupo="fa-regular"
+                        grupo="fa-solid"
                         icone="fa-clock"
                         modalidade="Curta duração"
                     />
