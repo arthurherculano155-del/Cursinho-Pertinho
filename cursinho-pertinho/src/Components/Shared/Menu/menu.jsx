@@ -222,7 +222,7 @@ export default function Menu() {
 
                         <li className="link">
                             <NavLink
-                                to='/cursos'
+                                to='/explorar-cursos'
                                 className={({ isActive }) =>
                                     isActive ? "Ativo" : ""
                                 }>
