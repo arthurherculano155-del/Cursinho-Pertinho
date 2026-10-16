@@ -1,0 +1,216 @@
+.div-mulher {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.Mulher {
+    width: 100%;
+    height: 800px;
+    border: solid 3px black;
+}
+
+.Titulo {
+
+    position: absolute;
+    top: 14vh;
+    right: 110vh;
+    color: white;
+    font-size: 7vh;
+    font-family: "Montserrat", sans-serif;
+    font-size: 51px;
+    font-weight: 800;
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: -1.5px;
+    color: #FFFFFF;
+  
+}
+
+b {
+    color: #1d3da7;
+}
+
+p {
+    color: white;
+    position: absolute;
+    top: 36vh;
+    right: 120vh;
+    font-size: 24px;
+}
+
+input {
+    width: 700px;
+    height: 45px;
+    border-radius: 14px;
+    position: absolute;
+    top: 48vh;
+    right: 116vh;
+}
+
+.Lupa {
+    width: 30px;
+    position: absolute;
+    top: 49vh;
+    right: 185vh;
+
+}
+
+.buscar{
+background-color: #50BDD5;
+width: 15vh;
+height: 3vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-decoration: none;
+color: white;
+position: absolute;
+top: 49vh;
+right: 118vh;
+border-radius: 10px;
+font-size: 20px;
+}
+
+.buscar:hover{
+background-color: #0F60EA;
+color: black;
+}
+
+.cards{
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.card1{
+background-color: #FFFFFF;
+height: 30px;
+width: 170px;
+border: solid 2px black;
+gap: 20px;
+text-decoration: none;
+color: black;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+position: absolute;
+top: 54vh;
+right: 171vh;
+}
+
+.card2{
+background-color: #FFFFFF;
+width: 120px;
+height: 30px;
+border: solid 2px black;
+gap: 20px;
+text-decoration: none;
+color: black;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+position: absolute;
+top: 54vh;
+right: 158vh;
+}
+
+.card3{
+background-color: #FFFFFF;
+height: 30px;
+width: 120px;
+border: solid 2px black;
+gap: 20px;
+text-decoration: none;
+color: black;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+position: absolute;
+top: 54vh;
+right: 145vh;
+}
+
+.card4{
+background-color: #FFFFFF;
+height: 30px;
+width: 130px;
+border: solid 2px black;
+gap: 20px;
+text-decoration: none;
+color: black;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+position: absolute;
+top: 54vh;
+right: 131vh;
+}
+
+.card5{
+background-color: #FFFFFF;
+height: 30px;
+width: 120px;
+border: solid 2px black;
+gap: 20px;
+text-decoration: none;
+color: black;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+position: absolute;
+top: 54vh;
+right: 118vh;
+}
+
+.card6{
+background-color: #FFFFFF;
+height: 30px;
+width: 210px;
+border: solid 2px black;
+gap: 20px;
+text-decoration: none;
+color: black;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+position: absolute;
+top: 54vh;
+right: 95vh;
+}
+
+.card1:hover{
+background-color: gray;
+}
+
+.card2:hover{
+background-color: gray;
+}
+
+.card3:hover{
+background-color: gray;
+}
+
+.card4:hover{
+background-color: gray;
+}
+
+.card5:hover{
+background-color: gray;
+}
+
+.card6:hover{
+background-color: gray;
+}
+
+
+.imagem{
+width: 30px;
+}
