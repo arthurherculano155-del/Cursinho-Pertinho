@@ -37,7 +37,8 @@ export default function CardOferta({
                     key={oferta.id}
                     value={oferta.id}>
                     <img src={oferta.imagem} alt="Imagem Curso" className="instituicao" />
-                    <h2>{oferta.curso}</h2>
+                    <h2>{oferta.unidade}</h2>
+                    <h3>{oferta.curso}</h3>
                     <p>Nível: {oferta.nivel}</p>
                     <h5>Modalidade: {oferta.modalidade}</h5>
                     {oferta.modalidade === "Online" ? "" : (

@@ -27,6 +27,8 @@ export default function PostarCursos() {
     const [instituicaoPesquisa, setInstituicaoPesquisa] = useState("");
     const [nivelPesquisa, setNivelPesquisa] = useState("");
     const [modalidadePesquisa, setModalidadePesquisa] = useState("");
+    const [precoMinimo, setPrecoMinimo] = useState("");
+    const [precoMaximo, setPrecoMaximo] = useState("");
 
     const [cardOferta, setCardOferta] = useState([]);
 
@@ -103,7 +105,7 @@ export default function PostarCursos() {
 
     useEffect(() => {
         async function getOfertas() {
-            const resposta = await fetch(`${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(cursoPesquisa)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivelPesquisa)}&modalidade=${encodeURIComponent(modalidadePesquisa)}`
+            const resposta = await fetch(`${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(cursoPesquisa)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivelPesquisa)}&modalidade=${encodeURIComponent(modalidadePesquisa)}&precoMinimo=${encodeURIComponent(precoMinimo)}&precoMaximo=${encodeURIComponent(precoMaximo)}`
             );
 
             const dados = await resposta.json();
@@ -117,7 +119,9 @@ export default function PostarCursos() {
         cursoPesquisa,
         instituicaoPesquisa,
         nivelPesquisa,
-        modalidadePesquisa
+        modalidadePesquisa,
+        precoMinimo,
+        precoMaximo
     ]);
 
     if (!usuario) {
@@ -322,6 +326,32 @@ export default function PostarCursos() {
                     placeholder="Insira o nome da instituição"
                     onChange={(e) => setInstituicaoPesquisa(e.target.value)}
                 />
+
+                <input 
+                    type="number"
+                    name=""
+                    id=""
+                    placeholder="Preço mínimo"
+                    value={precoMinimo}
+                    onChange={(e) => setPrecoMinimo(
+                        e.target.value === "" ? 
+                        null : 
+                        e.target.value
+                    )}
+                 />
+
+                 <input 
+                    type="number"
+                    name=""
+                    id=""
+                    placeholder="Preço máximo"
+                    value={precoMaximo}
+                    onChange={(e) => setPrecoMaximo(
+                        e.target.value === "" ? 
+                        null : 
+                        e.target.value
+                    )}
+                 />
 
                 <select
                     className="Pesquisa-Informacao"
