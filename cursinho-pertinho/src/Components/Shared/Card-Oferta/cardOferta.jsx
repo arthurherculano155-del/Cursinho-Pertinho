@@ -2,12 +2,36 @@ import './cardOferta.scss'
 import { useState } from "react";
 
 export default function CardOferta({
-    lixeira,
+    lixeira = false,
+    addLista = true,
     nomeValor
 }) {
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
     const API_URL = "https://cursinhopertinho-api.onrender.com";
 
     const [modal, setModal] = useState(null);
+
+    async function InserirOferta(id_oferta) {
+        const resposta = await fetch(`${API_URL}/ofertas/cadastrar`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                usuario: usuario.id,
+                oferta: id_oferta
+            })
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            alert(dados.erro)
+            return;
+        }
+
+        alert(`Número de cadastro na lista: ${dados.ID}`)
+    }
 
     async function deleteOferta(id) {
         const token = localStorage.getItem("token");
@@ -21,7 +45,7 @@ export default function CardOferta({
 
         const dados = await resposta.json();
 
-        if(!resposta.ok){
+        if (!resposta.ok) {
             alert(dados.erro);
             return
         }
@@ -62,14 +86,25 @@ export default function CardOferta({
                     >Inscrever-se</a></h5>
                     <h5>Região: {oferta.regiao}</h5>
 
-                    {lixeira ? (
+                    {addLista && (
+                        <button
+                            type="button"
+                            className="adicionar-lista"
+                            onClick={() => InserirOferta(oferta.id)}
+                        >
+                            <i className="fa-solid fa-plus" />
+                            <span>Adicionar à lista</span>
+                        </button>
+                    )}
+
+                    {lixeira && (
                         <div
                             className="lixeira"
-                            onClick={() => setModal(oferta.id)}>
-
+                            onClick={() => setModal(oferta.id)}
+                        >
                             <i className="fa-solid fa-trash-can" />
                         </div>
-                    ) : ""}
+                    )}
 
                     {modal === oferta.id && (
                         <div className="fundo">

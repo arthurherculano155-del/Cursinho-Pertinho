@@ -308,9 +308,11 @@ export default function Menu() {
                                 required
                                 placeholder="Insira seu nome"
                                 value={nome}
-                                onChange={(e) => setNome(e.target.value)}
+                                onChange={(e) => setNome(e.target.value.replace(
+                                    /(^|\s)\p{L}/gu, letra => letra.toUpperCase()
+                                ))}
                                 onKeyDown={(e) => {
-                                    if (e.key === "Enter"){
+                                    if (e.key === "Enter") {
                                         cadastrarUsuario()
                                         LogarUsuario()
                                     }
@@ -324,9 +326,8 @@ export default function Menu() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 onKeyDown={(e) => {
-                                    if (e.key === "Enter"){
+                                    if (e.key === "Enter") {
                                         cadastrarUsuario()
-                                        LogarUsuario()
                                     }
                                 }}
                             />
@@ -340,8 +341,7 @@ export default function Menu() {
                             />
 
                             <button onClick={() => (
-                                cadastrarUsuario() &&
-                                LogarUsuario()
+                                cadastrarUsuario()
                             )}>
                                 Cadastre-se
                             </button>
@@ -440,7 +440,9 @@ export default function Menu() {
                                         id=""
                                         value={primeiroNome}
                                         placeholder="Como deseja ser chamado?"
-                                        onChange={(e) => setPrimeiroNome(e.target.value)}
+                                        onChange={(e) => setPrimeiroNome(e.target.value.replace(
+                                            /(^|\s)\p{L}/gu, letra => letra.toUpperCase()
+                                        ))}
                                         required
                                     />
 
