@@ -6,8 +6,9 @@ export default function CardOferta({
     addLista = true,
     nomeValor
 }) {
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
     const API_URL = "https://cursinhopertinho-api.onrender.com";
+
+    const token = localStorage.getItem("token")
 
     const [modal, setModal] = useState(null);
 
@@ -15,10 +16,10 @@ export default function CardOferta({
         const resposta = await fetch(`${API_URL}/ofertas/cadastrar`, {
             method: "POST",
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-                usuario: usuario.id,
                 oferta: id_oferta
             })
         });
