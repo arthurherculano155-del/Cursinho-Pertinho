@@ -5,6 +5,8 @@ export default function ExplorarCursos(){
     return(
         <>
         <Menu />
+
+        
         </>
     )
 }
