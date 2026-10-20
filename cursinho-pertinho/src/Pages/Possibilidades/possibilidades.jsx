@@ -12,8 +12,8 @@ export default function Possibilidades(){
             imagem="Horizonte.webp"
             titulo="Seu futuro tem "
             tituloSpan="muitas possibilidades"
-            mensagem="Descubra seus interesses, explore novos caminhos e encontre"
-            mensagemDeBaixo="oportunidades para aprender e crescer"
+            mensagem="Descubra seus interesses, explore novos caminhos de aprendizado e encontre"
+            mensagemDeBaixo="novas oportunidades para aprender, desenvolver habilidades e crescer pessoalmente e profissionalmente"
             botoes={true}
         />
         </>
