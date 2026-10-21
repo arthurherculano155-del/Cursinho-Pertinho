@@ -14,6 +14,19 @@ export default function Home() {
                 mensagemDeBaixo="você se qualificar sem complicação."
                 cardInicio={true}
             />
+
+            <section className="secao-cursos">
+                <header className="cabecalho-secao-cursos">
+                    <h2 className="titulo-secao-cursos">
+                        CURSOS <span>PERTO DE VOCÊ</span>
+                    </h2>
+
+                    <p className="descricao-secao-cursos">
+                        Veja algumas opções disponíveis na sua região
+                    </p>
+                </header>
+            </section>
+
         </>
     );
 }

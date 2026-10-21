@@ -11,7 +11,7 @@ body {
 
 h1 {
     width: min(760px, calc(100% - 40px));
-    margin: 48px auto 20px;
+    margin: 48px auto 24px;
     color: rgb(24, 34, 48);
     font-size: 1.8rem;
     font-weight: 700;
@@ -20,11 +20,11 @@ h1 {
 
 .formulario {
     width: 100%;
-    padding: 0 20px 48px;
+    padding: 0 20px 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
 
     .postar {
         width: min(760px, 100%);
@@ -32,11 +32,14 @@ h1 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 18px;
         padding: 32px;
+
         background: rgb(255, 255, 255);
         border: 1px solid rgb(228, 231, 236);
         border-radius: 16px;
-        box-shadow: 0 2px 5px rgba(16, 24, 40, 0.04),
-                    0 12px 32px rgba(16, 24, 40, 0.06);
+
+        box-shadow:
+            0 2px 5px rgba(16, 24, 40, 0.04),
+            0 12px 32px rgba(16, 24, 40, 0.06);
 
         input,
         select {
@@ -44,16 +47,21 @@ h1 {
             min-width: 0;
             height: 50px;
             padding: 0 14px;
+
             border: 1px solid rgb(208, 213, 221);
             border-radius: 9px;
             outline: none;
+
             background: rgb(255, 255, 255);
             color: rgb(24, 34, 48);
+
             font-family: inherit;
             font-size: 0.95rem;
-            transition: border-color 0.2s ease,
-                        box-shadow 0.2s ease,
-                        background-color 0.2s ease;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background-color 0.2s ease;
 
             &:hover {
                 border-color: rgb(152, 162, 179);
@@ -73,12 +81,15 @@ h1 {
             cursor: pointer;
             appearance: none;
             padding-right: 40px;
+
             background-image:
                 linear-gradient(45deg, transparent 50%, rgb(71, 84, 103) 50%),
                 linear-gradient(135deg, rgb(71, 84, 103) 50%, transparent 50%);
+
             background-position:
                 calc(100% - 18px) 22px,
                 calc(100% - 13px) 22px;
+
             background-size: 5px 5px;
             background-repeat: no-repeat;
         }
@@ -101,19 +112,27 @@ h1 {
 
         input[type="submit"] {
             grid-column: 1 / -1;
+
             height: 52px;
             margin-top: 4px;
+
             border: none;
             border-radius: 9px;
+
             background: rgb(37, 99, 235);
             color: rgb(255, 255, 255);
+
             font-size: 0.96rem;
             font-weight: 600;
+
             cursor: pointer;
+
             box-shadow: 0 3px 8px rgba(37, 99, 235, 0.15);
-            transition: background-color 0.2s ease,
-                        transform 0.2s ease,
-                        box-shadow 0.2s ease;
+
+            transition:
+                background-color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
 
             &:hover {
                 background: rgb(29, 78, 216);
@@ -124,190 +143,21 @@ h1 {
             &:active {
                 transform: translateY(0);
             }
+
+            &:focus-visible {
+                outline: 3px solid rgba(37, 99, 235, 0.3);
+                outline-offset: 3px;
+            }
         }
     }
 }
 
 .cards-oferta {
-    width: min(1150px, calc(100% - 40px));
-    margin: 0 auto 80px;
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 18px;
-
-    > input,
-    > .Pesquisa-Informacao {
-        width: 100%;
-        min-width: 0;
-        height: 52px;
-        padding: 0 16px;
-        background: rgb(255, 255, 255);
-        color: rgb(24, 34, 48);
-        border: 1px solid rgb(208, 213, 221);
-        border-radius: 10px;
-        outline: none;
-        font-family: inherit;
-        font-size: 0.94rem;
-        box-shadow: 0 1px 3px rgba(16, 24, 40, 0.04);
-        transition: border-color 0.2s ease,
-                    box-shadow 0.2s ease,
-                    transform 0.2s ease;
-
-        &:hover {
-            border-color: rgb(152, 162, 179);
-        }
-
-        &:focus {
-            border-color: rgb(37, 99, 235);
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-        }
-
-        &::placeholder {
-            color: rgb(152, 162, 179);
-        }
-    }
-
-    > input {
-        grid-column: span 3;
-    }
-
-    > .Pesquisa-Informacao {
-        grid-column: span 2;
-        cursor: pointer;
-        appearance: none;
-        padding-right: 40px;
-        background-image:
-            linear-gradient(45deg, transparent 50%, rgb(71, 84, 103) 50%),
-            linear-gradient(135deg, rgb(71, 84, 103) 50%, transparent 50%);
-        background-position:
-            calc(100% - 18px) 23px,
-            calc(100% - 13px) 23px;
-        background-size: 5px 5px;
-        background-repeat: no-repeat;
-    }
+    width: 100%;
+    padding: 0 20px 48px;
+    margin: 0 auto;
 }
 
-.fundo {
-    position: fixed;
-    inset: 0;
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(15, 23, 42, 0.55);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    animation: aparecerFundo 0.2s ease;
-
-    .apagar {
-        width: min(440px, 100%);
-        padding: 32px;
-        background: rgb(255, 255, 255);
-        border: 1px solid rgb(228, 231, 236);
-        border-radius: 18px;
-        box-shadow: 0 24px 48px rgba(16, 24, 40, 0.18),
-                    0 8px 20px rgba(16, 24, 40, 0.08);
-        animation: aparecerModal 0.25s ease;
-
-        h2 {
-            margin: 0 0 28px;
-            padding: 0;
-            color: rgb(24, 34, 48);
-            font-size: 1.2rem;
-            font-weight: 700;
-            line-height: 1.5;
-            letter-spacing: -0.02em;
-            text-align: center;
-        }
-
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-
-            button {
-                width: 100%;
-                height: 48px;
-                border: none;
-                border-radius: 10px;
-                font-family: inherit;
-                font-size: 0.95rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: background-color 0.2s ease,
-                            color 0.2s ease,
-                            transform 0.15s ease,
-                            box-shadow 0.2s ease;
-
-                &:active {
-                    transform: scale(0.97);
-                }
-            }
-
-            .yep {
-                background: rgb(220, 38, 38);
-                color: rgb(255, 255, 255);
-
-                &:hover {
-                    background: rgb(185, 28, 28);
-                    transform: translateY(-2px);
-                    box-shadow: 0 6px 14px rgba(220, 38, 38, 0.22);
-                }
-            }
-
-            .not {
-                background: rgb(255, 255, 255);
-                color: rgb(71, 84, 103);
-                border: 1px solid rgb(208, 213, 221);
-
-                &:hover {
-                    background: rgb(245, 247, 250);
-                    color: rgb(24, 34, 48);
-                    border-color: rgb(152, 162, 179);
-                    transform: translateY(-2px);
-                }
-            }
-        }
-    }
-}
-
-@keyframes aparecerFundo {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes aparecerModal {
-    from {
-        opacity: 0;
-        transform: translateY(12px) scale(0.97);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@media (max-width: 1000px) {
-    .cards-oferta {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-
-        > input,
-        > .Pesquisa-Informacao {
-            grid-column: span 1;
-        }
-
-        > .Pesquisa-Informacao:last-of-type {
-            grid-column: 1 / -1;
-        }
-    }
-}
 
 @media (max-width: 768px) {
     h1 {
@@ -323,20 +173,21 @@ h1 {
     }
 
     .cards-oferta {
-        width: calc(100% - 32px);
-        gap: 18px;
+        padding-right: 16px;
+        padding-left: 16px;
     }
 }
+
 
 @media (max-width: 600px) {
     h1 {
         width: calc(100% - 32px);
-        margin: 28px auto 16px;
+        margin: 28px auto 20px;
         font-size: 1.45rem;
     }
 
     .formulario {
-        padding: 0 16px 40px;
+        padding: 0 16px 32px;
         gap: 16px;
 
         .postar {
@@ -359,46 +210,10 @@ h1 {
     }
 
     .cards-oferta {
-        width: calc(100% - 32px);
-        margin-bottom: 50px;
-        grid-template-columns: 1fr;
-        gap: 16px;
-
-        > input,
-        > .Pesquisa-Informacao,
-        > .Pesquisa-Informacao:last-of-type {
-            grid-column: 1;
-        }
-
-        > input,
-        > .Pesquisa-Informacao {
-            height: 50px;
-            font-size: 1rem;
-        }
-    }
-
-    .fundo {
-        padding: 16px;
-
-        .apagar {
-            padding: 26px 20px;
-            border-radius: 16px;
-
-            h2 {
-                margin-bottom: 24px;
-                font-size: 1.08rem;
-            }
-
-            .buttons {
-                gap: 10px;
-
-                button {
-                    height: 46px;
-                }
-            }
-        }
+        padding: 0 12px 32px;
     }
 }
+
 
 @media (max-width: 380px) {
     h1 {
@@ -406,47 +221,17 @@ h1 {
     }
 
     .formulario {
+        padding-right: 12px;
+        padding-left: 12px;
+
         .postar {
             padding: 16px;
+            gap: 12px;
         }
     }
 
     .cards-oferta {
-        width: calc(100% - 24px);
-    }
-
-    .fundo {
-        padding: 12px;
-
-        .apagar {
-            padding: 22px 16px;
-
-            .buttons {
-                grid-template-columns: 1fr;
-
-                .not {
-                    order: 1;
-                }
-
-                .yep {
-                    order: 2;
-                }
-            }
-        }
-    }
-}
-
-select {
-    &:has(option:first-child:checked) {
-        color: rgb(152, 162, 179);
-    }
-
-    option {
-        color: rgb(24, 34, 48);
-        background: rgb(255, 255, 255);
-
-        &:first-child {
-            color: rgb(152, 162, 179);
-        }
+        padding-right: 8px;
+        padding-left: 8px;
     }
 }
