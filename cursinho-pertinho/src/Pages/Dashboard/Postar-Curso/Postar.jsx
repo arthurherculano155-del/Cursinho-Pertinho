@@ -434,6 +434,7 @@ export default function PostarCursos() {
 
                 <CardOferta
                     lixeira={true}
+                    addLista={false}
                     nomeValor={cardOferta}
                 />
             </section>
