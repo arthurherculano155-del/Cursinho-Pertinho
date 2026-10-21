@@ -9,7 +9,8 @@ export default function HeroSection({
     mensagem,
     mensagemDeBaixo,
     cardInicio = false,
-    botoes = false
+    botoes = false,
+    conhecerProjeto = false
 }) {
     return (
         <main className="Hero-Section">
@@ -108,6 +109,13 @@ export default function HeroSection({
                         </button>
                     </section>
                 </>
+            )}
+
+            {conhecerProjeto && (
+                <button 
+                    className="conhecerProjeto">
+                    Conheça o projeto
+                </button>
             )}
         </main>
     )

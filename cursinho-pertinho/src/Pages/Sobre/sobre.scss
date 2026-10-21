@@ -1,0 +1,78 @@
+.conhecerProjeto{
+    border-radius: 15px;
+    position: relative;
+    top: 20px;
+    width: 175px;
+    height: 50px;
+   font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: #ffffff;
+  background: none;
+  border: 1px solid white;
+}
+
+.conhecerProjeto:hover{
+    background-color: rgba(255, 255, 255, 0.171);
+    color:  #ffffff;
+    box-shadow: 0 0 15px rgba(4, 155, 255, 0.5);
+}
+
+.quem{
+     margin-left: 25px;
+     margin-top: 20px;
+     color: #1d568f;
+     font-size: 5vh;
+}
+
+.frase{
+    padding-left: 15px;
+    color: #000000;
+    font-size: 15px;
+    align-items: center;
+}
+
+.cards{
+    margin-top: 50px;
+}
+
+.card1{
+    margin-left: 40px;
+    font-size: 15px;
+    color: #1d568f;
+    position: relative;
+    top: 15px;
+}
+
+.fa-crosshairs{
+    margin-left: 15px;
+    position: relative;
+    top: 20px;
+    font-size: 20px;
+    
+}
+
+.cardp{
+    margin-left: 35px;
+    font-size: 13px;
+    color: #000000;
+    position: relative;  
+}
+
+.mapa{
+    width: 80vh;
+    
+}
+
+.quemsomos{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+
