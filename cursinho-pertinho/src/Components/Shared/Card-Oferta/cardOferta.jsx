@@ -69,7 +69,7 @@ export default function CardOferta({
                 return;
             }
 
-            alert(`Número de cadastro na lista: ${dados.ID}`);
+            alert(`Número de cadastro na lista: ${dados.length}`);
         } catch (erro) {
             console.error("Erro ao adicionar oferta:", erro);
             alert("Não foi possível adicionar a oferta.");
