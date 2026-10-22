@@ -1,12 +1,37 @@
-.div_Mulher{
-    margin-top: 86px;
-    background-color: black;
+    .div-mulher{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    }
+
+    .Mulher{
     width: 100%;
-    height: 300px;
+    height: 500px;
+    }
 
-}
+    .oi{
 
-h1{
+    position: absolute;
+    top: 10vh;
+    right: 50vh;
     color: white;
-    font-size: 50px;
-}
+    }
+
+
+    b{
+        color: #1d3da7;
+    }
+
+    .oii{
+    
+    margin-left: 20px;
+    }
+
+
+    input{
+        width: 500px;
+        height: 30px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }  
+    

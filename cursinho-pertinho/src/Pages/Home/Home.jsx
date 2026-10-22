@@ -9,12 +9,23 @@ export default function Home() {
 <div className="home">
 
 
-<div className="div_Mulher">
+<div className="div-mulher">
 
-<h1>Encontre o curso ideal <b>perto de você</b></h1>
 
+<div>
+  <h1 className='oi'>Encontre o curso ideal  <br /><b>perto de você</b></h1>
+
+  <p className='oii'>Cursos presenciais e online, de diversas áreas, com horários, <br/> preços e níveis para você  se qualificar sem complicação.</p>
+  
 
 </div>
+
+
+
+<img className='Mulher' src="/Assets/imgs/Mulher.png" alt="Mulher" />
+
+</div>
+
 
 
 
