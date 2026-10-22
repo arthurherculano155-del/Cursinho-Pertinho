@@ -1,5 +1,6 @@
 import Menu from '../../Components/Shared/Menu/menu';
 import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
+import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
 
 export default function Home() {
     return (
@@ -27,6 +28,7 @@ export default function Home() {
                 </header>
             </section>
 
+            <Rodape />
         </>
     );
 }
