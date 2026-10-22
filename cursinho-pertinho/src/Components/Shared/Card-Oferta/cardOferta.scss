@@ -106,7 +106,7 @@
         min-height: 100%;
         overflow: hidden;
         background: rgb(255, 255, 255);
-        border: 1px solid rgb(228, 231, 236);
+        border: 1px solid rgb(193, 194, 196);
         border-radius: 16px;
         box-shadow:
             0 1px 3px rgba(16, 24, 40, 0.05),
@@ -226,7 +226,7 @@
             gap: 9px;
             min-height: 42px;
             padding: 10px 14px;
-            background: rgba(37, 99, 235, 0.94);
+            background: rgba(37, 99, 235, 0.7);
             color: rgb(255, 255, 255);
             border: none;
             border-radius: 9px;
@@ -376,11 +376,11 @@
                 }
 
                 .yep {
-                    background: rgb(220, 38, 38);
+                    background: rgb(38, 56, 220);
                     color: rgb(255, 255, 255);
 
                     &:hover {
-                        background: rgb(185, 28, 28);
+                        background: rgb(38, 81, 220);
                         transform: translateY(-2px);
                         box-shadow: 0 6px 14px rgba(220, 38, 38, 0.22);
                     }

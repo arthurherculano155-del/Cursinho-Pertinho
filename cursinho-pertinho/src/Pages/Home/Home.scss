@@ -149,6 +149,13 @@
     }
 }
 
+
+.fa-location-dot {
+    font-size: 200px;
+    color: #007bff;
+}
+
+
 @media (max-width: 1200px) {
     .secao-cursos {
         .lista-cursos {
@@ -157,6 +164,7 @@
         }
     }
 }
+
 
 @media (max-width: 900px) {
     .secao-cursos {
@@ -173,6 +181,7 @@
         }
     }
 }
+
 
 @media (max-width: 600px) {
     .secao-cursos {
@@ -219,6 +228,7 @@
     }
 }
 
+
 @media (max-width: 360px) {
     .secao-cursos {
         padding: 24px 4%;
@@ -258,5 +268,103 @@
         .botao-ver-curso:active {
             transform: none;
         }
+    }
+}
+
+.selo-futuro {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 18px;
+    border: 1px solid #D5E7FF;
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #FFFFFF 0%,
+        #EAF3FF 100%
+    );
+
+    box-shadow: 0 4px 12px rgba(36, 117, 245, 0.08);
+
+    font-family: "Poppins", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1761D1;
+
+    .fa-location-dot {
+        font-size: 20px;
+        color: #2475F5;
+        transition: transform 0.2s ease;
+    }
+
+    &:hover {
+        box-shadow: 0 6px 18px rgba(36, 117, 245, 0.15);
+
+        .fa-location-dot {
+            transform: translateY(-2px);
+        }
+    }
+}
+
+
+.titulo-proximidade {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+
+    margin: 0 0 14px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -1px;
+
+    color: #14243B;
+
+    span {
+        position: relative;
+        color: #2475F5;
+        font-weight: 800;
+
+        &::after {
+            content: "";
+            display: block;
+
+            width: 55px;
+            height: 4px;
+            margin-top: 8px;
+
+            border-radius: 10px;
+            background: linear-gradient(
+                90deg,
+                #2475F5,
+                #75CFFF
+            );
+        }
+    }
+}
+
+.descricao-proximidade {
+    max-width: 520px;
+    margin: 0;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #607087;
+}
+
+@media (max-width: 600px) {
+    .titulo-proximidade {
+        font-size: 28px;
+        letter-spacing: -0.5px;
+    }
+
+    .descricao-proximidade {
+        font-size: 14px;
     }
 }

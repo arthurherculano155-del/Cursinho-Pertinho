@@ -1,6 +1,8 @@
-import Menu from '../../Components/Shared/Menu/menu';
-import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
 
+import Menu from '../../Components/Shared/Menu/menu';
+import './Home.scss';
+import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
+import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
 
 export default function Home() {
     return (
@@ -16,18 +18,24 @@ export default function Home() {
                 cardInicio={true}
             />
 
-            <section className="secao-cursos">
-                <header className="cabecalho-secao-cursos">
-                    <h2 className="titulo-secao-cursos">
-                        CURSOS <span>PERTO DE VOCÊ</span>
-                    </h2>
+            <section className="Vista">
+                <section className="selo-futuro">
+                    <i className="fa-solid fa-location-dot" />
+                    <h2>Mais perto do seu futuro</h2>
+                </section>
 
-                    <p className="descricao-secao-cursos">
-                        Veja algumas opções disponíveis na sua região
-                    </p>
-                </header>
+                <h2 className="titulo-proximidade">
+                    Estudar perto
+                    <span>faz diferença.</span>
+                </h2>
+
+                <p className="descricao-proximidade">
+                    Encontre oportunidades de ensino perto de você
+                    e descubra caminhos mais simples para chegar até elas.
+                </p>
             </section>
 
+            <Rodape />
         </>
     );
 }
