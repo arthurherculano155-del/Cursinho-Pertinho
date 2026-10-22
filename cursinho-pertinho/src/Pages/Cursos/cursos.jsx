@@ -2,6 +2,7 @@ import './cursos.scss';
 import Menu from '../../Components/Shared/Menu/menu.jsx';
 import CardOferta from '../../Components/Shared/Card-Oferta/cardOferta.jsx';
 import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
+import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
 
 export default function ExplorarCursos() {
     return (
@@ -16,9 +17,9 @@ export default function ExplorarCursos() {
                 mensagemDeBaixo="mercado de trabalho, realizar seus sonhos e abrir portas para novas oportunidades"
             />
 
-            <CardOferta
+            <CardOferta />
 
-            />
+            <Rodape />
         </>
     )
 }

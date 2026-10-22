@@ -51,7 +51,7 @@ export default function Rodape() {
                 <h2>Contato</h2>
 
                 <div className="contato-cursinho">
-                    <i className='fa-solid fa-location-dot' />
+                    <i className='fa-solid fa-location-dot localizacao' />
                     <p>São Paulo - SP</p>
                 </div>
 
