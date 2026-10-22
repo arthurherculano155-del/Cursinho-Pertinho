@@ -1,20 +1,20 @@
 import './possibilidades.scss';
 import Menu from '../../Components/Shared/Menu/menu.jsx';
+import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
+
 
 export default function Possibilidades(){
-    return(    
+    return(
         <>
         <Menu />
-        
-        <div className='partedecima'>
-
-            <h1 className='FUTURO'>SEU FUTURO TEM MAIS<br></br> <b>POSSIBILIDADES</b> DO QUE <br/>VOCÊ IMAGINA</h1>
-           <img src="/Assets/Imgs/horizonte.png" alt="possibilidades" className='horizonte'/>
-           
-        </div>
-
-    
-        
+        <HeroSection 
+            imagem="Horizonte.webp"
+            titulo="Seu futuro tem "
+            tituloSpan="muitas possibilidades"
+            mensagem="Descubra seus interesses, explore novos caminhos de aprendizado e encontre"
+            mensagemDeBaixo="novas oportunidades para aprender, desenvolver habilidades e crescer pessoalmente e profissionalmente"
+            botoes={true}
+        />
         </>
     )
 }

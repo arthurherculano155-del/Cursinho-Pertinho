@@ -22,14 +22,6 @@ export default function PostarCursos() {
     const [link, setLink] = useState("");
     const [imagem, setImagem] = useState("");
 
-    const [regiaoPesquisa, setRegiaoPesquisa] = useState("");
-    const [cursoPesquisa, setCursoPesquisa] = useState("");
-    const [instituicaoPesquisa, setInstituicaoPesquisa] = useState("");
-    const [nivelPesquisa, setNivelPesquisa] = useState("");
-    const [modalidadePesquisa, setModalidadePesquisa] = useState("");
-
-    const [cardOferta, setCardOferta] = useState([]);
-
     useEffect(() => {
         async function BuscarCursos() {
             const resposta = await fetch(`${API_URL}/cursos`);
@@ -100,25 +92,6 @@ export default function PostarCursos() {
 
         setListaUnidades(dados);
     }
-
-    useEffect(() => {
-        async function getOfertas() {
-            const resposta = await fetch(`${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(cursoPesquisa)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivelPesquisa)}&modalidade=${encodeURIComponent(modalidadePesquisa)}`
-            );
-
-            const dados = await resposta.json();
-
-            setCardOferta(dados);
-        }
-
-        getOfertas()
-    }, [
-        regiaoPesquisa,
-        cursoPesquisa,
-        instituicaoPesquisa,
-        nivelPesquisa,
-        modalidadePesquisa
-    ]);
 
     if (!usuario) {
         return <h1>Você precisa estar logado.</h1>;
@@ -306,105 +279,9 @@ export default function PostarCursos() {
             </main>
 
             <section className="cards-oferta">
-
-                <input
-                    type="text"
-                    name=""
-                    id=""
-                    placeholder="Insira o nome do curso"
-                    onChange={(e) => setCursoPesquisa(e.target.value)}
-                />
-
-                <input
-                    type="text"
-                    name=""
-                    id=""
-                    placeholder="Insira o nome da instituição"
-                    onChange={(e) => setInstituicaoPesquisa(e.target.value)}
-                />
-
-                <select
-                    className="Pesquisa-Informacao"
-                    onChange={(e) => setRegiaoPesquisa(e.target.value)}
-                >
-                    <option
-                        value="">
-                        Escolha uma região
-                    </option>
-
-                    <option
-                        value="Zona Norte">
-                        Zona Norte
-                    </option>
-
-                    <option
-                        value="Zona Sul">
-                        Zona Sul
-                    </option>
-
-                    <option
-                        value="Zona Leste">
-                        Zona Leste
-                    </option>
-
-                    <option
-                        value="Zona Oeste">
-                        Zona Oeste
-                    </option>
-
-                    <option
-                        value="Centro">
-                        Centro
-                    </option>
-                </select>
-
-                <select
-                    className="Pesquisa-Informacao"
-                    onChange={(e) => setNivelPesquisa(e.target.value)}
-                >
-                    <option value="">
-                        Escolha um nível
-                    </option>
-
-                    <option value="Iniciante">
-                        Iniciante
-                    </option>
-
-                    <option value="Intermediário">
-                        Intermediário
-                    </option>
-
-                    <option value="Avançado">
-                        Avançado
-                    </option>
-                </select>
-
-                <select
-                    className="Pesquisa-Informacao"
-                    onChange={(e) =>
-                        setModalidadePesquisa(e.target.value)
-                    }
-                >
-                    <option value="">
-                        Escolha uma Modalidade
-                    </option>
-
-                    <option value="Presencial">
-                        Presencial
-                    </option>
-
-                    <option value="Online">
-                        Online
-                    </option>
-
-                    <option value="Híbrido">
-                        Híbrido
-                    </option>
-                </select>
-
                 <CardOferta
                     lixeira={true}
-                    nomeValor={cardOferta}
+                    addLista={false}
                 />
             </section>
         </>

@@ -1,39 +1,185 @@
-.nao-encontrado{
-    h1{
+.nao-encontrado {
+    width: 50%;
+    max-width: 850px;
+    min-width: 320px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    margin: 12vh auto 40px;
+    background: linear-gradient(145deg, rgb(255, 255, 255), rgb(232, 239, 255));
+    border: 2px solid rgb(37, 99, 235);
+    border-radius: 24px;
+    box-shadow: 0 12px 35px rgba(15, 42, 100, 0.15);
+    animation: aparecer 0.6s ease both;
+
+    h1 {
         display: flex;
         align-items: center;
-        font-size: 150px;
-        color: darkblue;
         justify-content: center;
+        gap: 12px;
+        margin: 0 0 20px;
+        font-size: 150px;
+        line-height: 1;
+        font-weight: 900;
+        color: rgb(16, 46, 117);
         text-align: center;
-        img{
-            width: 150px;
+
+        img {
+            width: 140px;
+            height: auto;
         }
     }
 
-    .mensagem-nao-encontrado{
+    .mensagem-nao-encontrado {
         display: flex;
         flex-direction: column;
-        width: 650px;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
         text-align: center;
-        margin: 0 auto;
-        gap: 10px;
-        
 
-        h2{
+        h2 {
+            margin: 0;
+            color: rgb(38, 63, 145);
             font-size: 40px;
-            color: rgb(38, 38, 151);
+            font-weight: 800;
+            line-height: 1.2;
         }
 
-        p{
-            color: rgba(15, 15, 66, 0.733);
+        p {
+            max-width: 500px;
+            margin: 0;
+            color: rgb(69, 79, 112);
+            font-size: 18px;
+            line-height: 1.7;
         }
     }
 
-    a{
+    a {
         text-decoration: none;
-        color: white;
+        color: rgb(255, 255, 255);
         background-color: rgb(18, 64, 216);
         width: 300px;
+        margin-left: 50%;
+        transform: translate(-50%);
+        padding: 15px 10px;
+        font-size: 15px;
+        font-weight: 800;
+        border-radius: 30px;
+        margin-top: 20px;
+        transition: background-color 0.25s ease;
+
+        &:hover {
+            background-color: rgb(12, 45, 165);
+            box-shadow: 0 6px 16px rgba(18, 64, 216, 0.3);
+        }
+
+        &:active {
+            background-color: rgb(8, 32, 120);
+            box-shadow: none;
+        }
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1024px) {
+    .nao-encontrado {
+        width: 75%;
+        padding: 32px;
+        margin-top: 10vh;
+
+        h1 {
+            font-size: 120px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .nao-encontrado {
+        width: calc(100% - 32px);
+        min-width: 0;
+        padding: 28px 20px;
+        margin: 8vh auto 28px;
+        border-radius: 20px;
+
+        h1 {
+            gap: 6px;
+            font-size: 100px;
+            margin-bottom: 24px;
+
+            img {
+                width: 85px;
+            }
+        }
+
+        .mensagem-nao-encontrado {
+            gap: 10px;
+
+            h2 {
+                font-size: 30px;
+            }
+
+            p {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+        }
+
+        a {
+            width: 100%;
+            box-sizing: border-box;
+            margin-left: 0;
+            transform: none;
+            margin-top: 24px;
+            padding: 13px 18px;
+            font-size: 15px;
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .nao-encontrado {
+        width: calc(100% - 24px);
+        padding: 24px 14px;
+
+        h1 {
+            font-size: 60px;
+
+            img {
+                width: 48px;
+            }
+        }
+
+        .mensagem-nao-encontrado h2 {
+            font-size: 22px;
+        }
+
+        a {
+            font-size: 14px;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nao-encontrado {
+        animation: none;
+    }
+
+    .nao-encontrado a {
+        transition: none;
     }
 }

@@ -26,9 +26,6 @@ export default function Menu() {
 
     const [usuarioLogado, setUsuarioLogado] = useState(null);
 
-    const [emailLogin, setEmailLogin] = useState("");
-    const [senhaLogin, setSenhaLogin] = useState("");
-
     async function cadastrarUsuario() {
         const resposta = await fetch(`${API_URL}/usuario/cadastrar`, {
             method: "POST",
@@ -83,8 +80,8 @@ export default function Menu() {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({
-                email: emailLogin,
-                senha: senhaLogin
+                email: email,
+                senha: senha
             })
         });
 
@@ -108,8 +105,8 @@ export default function Menu() {
 
         setUsuarioLogado(dados.usuario);
 
-        setEmailLogin("");
-        setSenhaLogin("");
+        setEmail("");
+        setSenha("");
 
         setLogin(false);
     }
@@ -311,10 +308,14 @@ export default function Menu() {
                                 required
                                 placeholder="Insira seu nome"
                                 value={nome}
-                                onChange={(e) => setNome(e.target.value)}
+                                onChange={(e) => setNome(e.target.value.replace(
+                                    /(^|\s)\p{L}/gu, letra => letra.toUpperCase()
+                                ))}
                                 onKeyDown={(e) => {
-                                    if (e.key === "Enter")
+                                    if (e.key === "Enter") {
                                         cadastrarUsuario()
+                                        LogarUsuario()
+                                    }
                                 }}
                             />
 
@@ -325,8 +326,9 @@ export default function Menu() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 onKeyDown={(e) => {
-                                    if (e.key === "Enter")
+                                    if (e.key === "Enter") {
                                         cadastrarUsuario()
+                                    }
                                 }}
                             />
 
@@ -338,7 +340,9 @@ export default function Menu() {
                                 onChange={(e) => setSenha(e.target.value)}
                             />
 
-                            <button onClick={cadastrarUsuario}>
+                            <button onClick={() => (
+                                cadastrarUsuario()
+                            )}>
                                 Cadastre-se
                             </button>
                         </div>
@@ -362,9 +366,9 @@ export default function Menu() {
                             <div className="informacoes">
                                 <input
                                     type="text"
-                                    value={emailLogin}
+                                    value={email}
                                     placeholder="Insira seu email"
-                                    onChange={(e) => setEmailLogin(e.target.value)}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     onKeyDown={(e) => {
                                         if (e.key === "Enter")
                                             LogarUsuario()
@@ -373,9 +377,9 @@ export default function Menu() {
 
                                 <input
                                     type="password"
-                                    value={senhaLogin}
+                                    value={senha}
                                     placeholder="Insira a senha"
-                                    onChange={(e) => setSenhaLogin(e.target.value)}
+                                    onChange={(e) => setSenha(e.target.value)}
                                     onKeyDown={(e) => {
                                         if (e.key === "Enter")
                                             LogarUsuario()
@@ -436,7 +440,9 @@ export default function Menu() {
                                         id=""
                                         value={primeiroNome}
                                         placeholder="Como deseja ser chamado?"
-                                        onChange={(e) => setPrimeiroNome(e.target.value)}
+                                        onChange={(e) => setPrimeiroNome(e.target.value.replace(
+                                            /(^|\s)\p{L}/gu, letra => letra.toUpperCase()
+                                        ))}
                                         required
                                     />
 
