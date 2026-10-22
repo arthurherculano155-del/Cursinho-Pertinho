@@ -26,13 +26,34 @@ export default function Sobre() {
                 </div>
             </div>
 
+            <div className='container-cards'>
+                <div className='cards'>
+                    <h3 className='card1'>Aproximar Oportunidades</h3>
+                    <i className='fa-solid fa-crosshairs' />
+                    <p className='cardp'>Conectamos você a cursos e instituições <br />que fazem sentido para o seu momento e <br /> para os seus objetivos.</p>
 
-            <div className='cards'>
-                <h3 className='card1'>Aproximar Oportunidades</h3>
-                <i className='fa-solid fa-crosshairs' />
-                <p className='cardp'>Conectamos você a cursos e instituições <br />que fazem sentido para o seu momento e <br /> para os seus objetivos.</p>
+                </div>
+                <div className='cards'>
+                    <h4 className='card2'>Informação Acessível</h4>
+                    <i class="fa-regular fa-file-lines" />
+                    <p className='cardp2'>Reunimos em um só lugar dados claros e atualizados para você comparar e escolher com mais segurança.</p>
+                </div>
+
+                <div className='cards'>
+                    <h5 className='card3'>Apoiar escolhas</h5>
+                    <i className="fa-solid fa-user" />
+                    <p className='cardp3'>Acreditamos no seu potencial e <br /> trabalhamos para que você encontre <br />o curso ideal para o seu futuro.</p>
+
+                </div>
+            </div>
+
+            <div className='missao'>
+                <i className="fa-light fa-paper-plane" />
+                <h6 className='Nossa-Missão'>Nossa missão</h6>
+                <p className='frase1'>Tornar a busca por formação mais simples, clara e próxima da realidade de cada pessoa.</p>
 
             </div>
+
 
         </>
 
