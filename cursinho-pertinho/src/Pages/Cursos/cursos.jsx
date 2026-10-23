@@ -11,7 +11,7 @@ export default function ExplorarCursos() {
 
     const location = useLocation();
 
-    const cursosGratuitos = location.state?.cursosGratuitos ?? null;
+    const cursosGratuitos = location.state?.cursosGratuitos ?? false;
 
     return (
         <>

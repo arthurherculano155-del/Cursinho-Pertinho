@@ -1,7 +1,6 @@
 import './hero.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import CardInicio from '../../HomeComponents/CardInicio/cardInicio.jsx';
-import { useState } from 'react';
 
 export default function HeroSection({
     imagem,
@@ -14,11 +13,15 @@ export default function HeroSection({
     conhecerProjeto = false
 }) {
 
-    const [cursosGratuitos, setCursosGratuitos] = useState(0);
+    const cursosGratuitos = true;
 
-    navigate('/explorar-cursos', {
-        state: {cursosGratuitos}
-    })
+    const navigate = useNavigate();
+
+    function BuscarCursosGratuitos() {
+        navigate('/explorar-cursos', {
+            state: { cursosGratuitos }
+        })
+    }
 
     return (
         <main className="Hero-Section">
@@ -44,64 +47,65 @@ export default function HeroSection({
 
             {cardInicio && (
                 <>
-                <div className="Pesquisa-Home">
-                <i className="fa-solid fa-magnifying-glass" />
+                    <div className="Pesquisa-Home">
+                        <i className="fa-solid fa-magnifying-glass" />
 
-                <input
-                    type="text"
-                    placeholder="Qual curso você quer encontrar?"
-                    aria-label="Qual curso você quer encontrar?"
-                />
+                        <input
+                            type="text"
+                            placeholder="Qual curso você quer encontrar?"
+                            aria-label="Qual curso você quer encontrar?"
+                        />
 
-                <Link className="buscar" to="/explorar-cursos">
-                    Buscar cursos
-                </Link>
-            </div>
+                        <Link className="buscar" to="/explorar-cursos">
+                            Buscar cursos
+                        </Link>
+                    </div>
 
-                <section className="Card-Home-Section">
-                    <CardInicio
-                        referencia="/explorar-cursos"
-                        grupo="fa-solid"
-                        icone="fa-laptop"
-                        modalidade="Presencial"
-                    />
+                    <section className="Card-Home-Section">
+                        <CardInicio
+                            referencia="/explorar-cursos"
+                            grupo="fa-solid"
+                            icone="fa-laptop"
+                            modalidade="Presencial"
+                        />
 
-                    <CardInicio
-                        referencia="/explorar-cursos"
-                        grupo="fa-solid"
-                        icone="fa-wifi"
-                        modalidade="Online"
-                    />
+                        <CardInicio
+                            referencia="/explorar-cursos"
+                            grupo="fa-solid"
+                            icone="fa-wifi"
+                            modalidade="Online"
+                        />
 
-                    <CardInicio
-                        referencia="/explorar-cursos"
-                        value={cursosGratuitos}
-                        grupo="fa-solid"
-                        icone="fa-tag"
-                        modalidade="Gratuito"
-                    />
+                        <CardInicio
+                            referencia="/explorar-cursos"
+                            value={cursosGratuitos}
+                            onClick={BuscarCursosGratuitos}
+                            grupo="fa-solid"
+                            icone="fa-tag"
+                            modalidade="Gratuito"
+                        />
 
-                    <CardInicio
-                        referencia="/explorar-cursos"
-                        grupo="fa-solid"
-                        icone="fa-money-bill"
-                        modalidade="Até R$ 100"
-                    />
+                        <CardInicio
+                            referencia="/explorar-cursos"
+                            grupo="fa-solid"
+                            icone="fa-money-bill"
+                            modalidade="Até R$ 100"
+                        />
 
-                    <CardInicio
-                        referencia="/explorar-cursos"
-                        grupo="fa-solid"
-                        icone="fa-seedling"
-                        modalidade="Nível Iniciante"
-                    />
+                        <CardInicio
+                            referencia="/explorar-cursos"
+                            grupo="fa-solid"
+                            icone="fa-seedling"
+                            modalidade="Nível Iniciante"
+                        />
 
-                    <CardInicio
-                        referencia="/explorar-cursos"
-                        grupo="fa-solid"
-                        icone="fa-clock"
-                        modalidade="Curta duração"
-                    />
-                </section>
+                        <CardInicio
+                            referencia="/explorar-cursos"
+                            grupo="fa-solid"
+                            icone="fa-clock"
+                            modalidade="Curta duração"
+                        />
+                    </section>
                 </>
             )}
 
@@ -121,7 +125,7 @@ export default function HeroSection({
             )}
 
             {conhecerProjeto && (
-                <button 
+                <button
                     className="conhecerProjeto">
                     Conheça o projeto
                 </button>
