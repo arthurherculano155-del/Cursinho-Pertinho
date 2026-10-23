@@ -48,7 +48,7 @@ export default function Sobre() {
             </div>
 
             <div className='missao'>
-                <i className="fa-light fa-paper-plane" />
+                <i class="fa-solid fa-paper-plane" />
                 <h6 className='Nossa-Missão'>Nossa missão</h6>
                 <p className='frase1'>Tornar a busca por formação mais simples, clara e próxima da realidade de cada pessoa.</p>
 
