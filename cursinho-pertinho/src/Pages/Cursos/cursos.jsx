@@ -8,10 +8,10 @@ import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
 import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
 
 export default function ExplorarCursos() {
-
     const location = useLocation();
 
     const cursosGratuitos = location.state?.cursosGratuitos ?? false;
+    const cursosPesquisa = location.state?.cursosPesquisa ?? "";
 
     return (
         <>
@@ -25,8 +25,10 @@ export default function ExplorarCursos() {
                 mensagemDeBaixo="mercado de trabalho, realizar seus sonhos e abrir portas para novas oportunidades"
             />
 
-            <CardOferta 
+            <CardOferta
+                key={cursosPesquisa}
                 cursoGratuito={cursosGratuitos}
+                cursosPesquisa={cursosPesquisa}
             />
 
             <Rodape />

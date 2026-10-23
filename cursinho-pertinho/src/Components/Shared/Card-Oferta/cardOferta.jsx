@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 export default function CardOferta({
     lixeira = false,
     cursoGratuito,
+    cursosPesquisa,
     addLista = true
 }) {
     const API_URL = "https://cursinhopertinho-api.onrender.com";
@@ -14,13 +15,14 @@ export default function CardOferta({
     const [modal, setModal] = useState(null);
 
     const [regiaoPesquisa, setRegiaoPesquisa] = useState("");
-    const [cursoPesquisa, setCursoPesquisa] = useState("");
+    const [cursoPesquisa, setCursoPesquisa] = useState(cursosPesquisa || "");
     const [instituicaoPesquisa, setInstituicaoPesquisa] = useState("");
     const [nivelPesquisa, setNivelPesquisa] = useState("");
     const [modalidadePesquisa, setModalidadePesquisa] = useState("");
     const [precoMinimo, setPrecoMinimo] = useState("");
     const [precoMaximo, setPrecoMaximo] = useState("");
 
+    const pesquisaCurso = cursoPesquisa;
     const minimo = cursoGratuito ? "" : precoMinimo;
     const maximo = cursoGratuito ? 0 : precoMaximo;
 
@@ -28,7 +30,7 @@ export default function CardOferta({
         async function getOfertas() {
             try {
                 const resposta = await fetch(
-                    `${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(cursoPesquisa)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivelPesquisa)}&modalidade=${encodeURIComponent(modalidadePesquisa)}&precoMinimo=${encodeURIComponent(minimo)}&precoMaximo=${encodeURIComponent(maximo)}`
+                    `${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(pesquisaCurso)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivelPesquisa)}&modalidade=${encodeURIComponent(modalidadePesquisa)}&precoMinimo=${encodeURIComponent(minimo)}&precoMaximo=${encodeURIComponent(maximo)}`
                 );
 
                 if (!resposta.ok) {
@@ -45,7 +47,7 @@ export default function CardOferta({
         getOfertas();
     }, [
         regiaoPesquisa,
-        cursoPesquisa,
+        pesquisaCurso,
         instituicaoPesquisa,
         nivelPesquisa,
         modalidadePesquisa,
@@ -74,7 +76,7 @@ export default function CardOferta({
                 return;
             }
 
-            alert(`Número de cadastro na lista: ${dados.length}`);
+            alert(`Número de cadastro na lista: ${dados.ID}`);
         } catch (erro) {
             console.error("Erro ao adicionar oferta:", erro);
             alert("Não foi possível adicionar a oferta.");
@@ -115,7 +117,7 @@ export default function CardOferta({
                     type="text"
                     className="input-pesquisa"
                     placeholder="Insira o nome do curso"
-                    value={cursoPesquisa}
+                    value={pesquisaCurso}
                     onChange={(e) => setCursoPesquisa(e.target.value)}
                 />
 

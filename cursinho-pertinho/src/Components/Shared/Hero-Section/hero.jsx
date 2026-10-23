@@ -1,6 +1,7 @@
 import './hero.scss';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CardInicio from '../../HomeComponents/CardInicio/cardInicio.jsx';
+import { useState } from 'react';
 
 export default function HeroSection({
     imagem,
@@ -13,6 +14,8 @@ export default function HeroSection({
     conhecerProjeto = false
 }) {
 
+    const [cursosPesquisa, setCursosPesquisa] = useState("");
+
     const cursosGratuitos = true;
 
     const navigate = useNavigate();
@@ -20,6 +23,12 @@ export default function HeroSection({
     function BuscarCursosGratuitos() {
         navigate('/explorar-cursos', {
             state: { cursosGratuitos }
+        })
+    }
+
+    function BuscarNomeCurso() {
+        navigate('/explorar-cursos', {
+            state: { cursosPesquisa }
         })
     }
 
@@ -52,13 +61,20 @@ export default function HeroSection({
 
                         <input
                             type="text"
+                            value={cursosPesquisa}
                             placeholder="Qual curso você quer encontrar?"
-                            aria-label="Qual curso você quer encontrar?"
+                            onChange={(e) => setCursosPesquisa(e.target.value)}
+                            onKeyDown={(e) => {
+                                if(e.key === "Enter"){
+                                    BuscarNomeCurso()
+                                }
+                            }}
                         />
 
-                        <Link className="buscar" to="/explorar-cursos">
-                            Buscar cursos
-                        </Link>
+                        <button className="buscar"
+                            onClick={BuscarNomeCurso}>
+                            Buscar curso
+                        </button>
                     </div>
 
                     <section className="Card-Home-Section">
@@ -78,7 +94,6 @@ export default function HeroSection({
 
                         <CardInicio
                             referencia="/explorar-cursos"
-                            value={cursosGratuitos}
                             onClick={BuscarCursosGratuitos}
                             grupo="fa-solid"
                             icone="fa-tag"
