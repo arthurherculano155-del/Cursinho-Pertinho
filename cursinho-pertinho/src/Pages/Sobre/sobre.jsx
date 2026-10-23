@@ -1,6 +1,7 @@
 import './sobre.scss';
 import Menu from '../../Components/Shared/Menu/menu.jsx';
 import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
+import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
 
 export default function Sobre() {
     return (
@@ -53,6 +54,8 @@ export default function Sobre() {
                 <p className='frase1'>Tornar a busca por formação mais simples, clara e próxima da realidade de cada pessoa.</p>
 
             </div>
+
+            <Rodape />
 
 
         </>

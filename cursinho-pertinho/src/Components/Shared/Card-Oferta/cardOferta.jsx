@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 export default function CardOferta({
     lixeira = false,
+    cursoGratuito,
     addLista = true
 }) {
     const API_URL = "https://cursinhopertinho-api.onrender.com";
@@ -20,11 +21,14 @@ export default function CardOferta({
     const [precoMinimo, setPrecoMinimo] = useState("");
     const [precoMaximo, setPrecoMaximo] = useState("");
 
+    const minimo = cursoGratuito ? "" : precoMinimo;
+    const maximo = cursoGratuito ? 0 : precoMaximo;
+
     useEffect(() => {
         async function getOfertas() {
             try {
                 const resposta = await fetch(
-                    `${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(cursoPesquisa)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivelPesquisa)}&modalidade=${encodeURIComponent(modalidadePesquisa)}&precoMinimo=${encodeURIComponent(precoMinimo)}&precoMaximo=${encodeURIComponent(precoMaximo)}`
+                    `${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(cursoPesquisa)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivelPesquisa)}&modalidade=${encodeURIComponent(modalidadePesquisa)}&precoMinimo=${encodeURIComponent(minimo)}&precoMaximo=${encodeURIComponent(maximo)}`
                 );
 
                 if (!resposta.ok) {
@@ -45,8 +49,9 @@ export default function CardOferta({
         instituicaoPesquisa,
         nivelPesquisa,
         modalidadePesquisa,
-        precoMinimo,
-        precoMaximo
+        minimo,
+        maximo,
+        cursoGratuito
     ]);
 
     async function InserirOferta(id_oferta) {
@@ -134,7 +139,7 @@ export default function CardOferta({
                     type="number"
                     className="input-pesquisa"
                     placeholder="Preço máximo"
-                    value={precoMaximo}
+                    value={cursoGratuito ? 0 : precoMaximo}
                     onChange={(e) => setPrecoMaximo(e.target.value)}
                 />
 
