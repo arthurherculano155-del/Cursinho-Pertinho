@@ -1,6 +1,7 @@
 import './hero.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CardInicio from '../../HomeComponents/CardInicio/cardInicio.jsx';
+import { useState } from 'react';
 
 export default function HeroSection({
     imagem,
@@ -12,6 +13,13 @@ export default function HeroSection({
     botoes = false,
     conhecerProjeto = false
 }) {
+
+    const [cursosGratuitos, setCursosGratuitos] = useState(0);
+
+    navigate('/explorar-cursos', {
+        state: {cursosGratuitos}
+    })
+
     return (
         <main className="Hero-Section">
             <img
@@ -67,6 +75,7 @@ export default function HeroSection({
 
                     <CardInicio
                         referencia="/explorar-cursos"
+                        value={cursosGratuitos}
                         grupo="fa-solid"
                         icone="fa-tag"
                         modalidade="Gratuito"

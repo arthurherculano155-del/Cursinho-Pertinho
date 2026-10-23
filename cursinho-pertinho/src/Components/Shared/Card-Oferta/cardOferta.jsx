@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 export default function CardOferta({
     lixeira = false,
+    cursoGratuito,
     addLista = true
 }) {
     const API_URL = "https://cursinhopertinho-api.onrender.com";
@@ -134,7 +135,12 @@ export default function CardOferta({
                     type="number"
                     className="input-pesquisa"
                     placeholder="Preço máximo"
-                    value={precoMaximo}
+                    value={
+                        cursoGratuito == null ? 
+                            precoMaximo :
+                            cursoGratuito
+                        
+                    }
                     onChange={(e) => setPrecoMaximo(e.target.value)}
                 />
 

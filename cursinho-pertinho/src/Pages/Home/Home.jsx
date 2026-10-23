@@ -1,6 +1,6 @@
+import './Home.scss';
 
 import Menu from '../../Components/Shared/Menu/menu';
-import './Home.scss';
 import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
 import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
 
