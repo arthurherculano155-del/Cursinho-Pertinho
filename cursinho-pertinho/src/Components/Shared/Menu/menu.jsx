@@ -108,6 +108,10 @@ export default function Menu() {
         setEmail("");
         setSenha("");
 
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
+
         setLogin(false);
     }
 
@@ -117,6 +121,10 @@ export default function Menu() {
         localStorage.removeItem("usuario");
         localStorage.removeItem("token");
         setUsuarioLogado(null);
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
     }
 
     async function atualizarUsuario(e) {

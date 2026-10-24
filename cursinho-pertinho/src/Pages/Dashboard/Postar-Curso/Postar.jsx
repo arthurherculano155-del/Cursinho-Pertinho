@@ -79,10 +79,6 @@ export default function PostarCursos() {
         setLink("");
 
         setListaUnidades([]);
-
-        setTimeout(() => {
-            window.location.reload();
-        }, 1000)
     }
 
     async function BuscarUnidades(regiao) {

@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import './cardOferta.scss'
 import { useState, useEffect } from "react";
 
@@ -67,7 +68,8 @@ export default function CardOferta({
         maximo,
         carga,
         cursoGratuito,
-        token
+        token,
+        cardOferta
     ]);
 
     async function InserirOferta(id_oferta) {
@@ -283,14 +285,13 @@ export default function CardOferta({
                         <button
                             type="button"
                             className="lixeira"
-                            aria-label={`Excluir oferta ${oferta.curso}`}
                             onClick={() => setModal(oferta.id)}
                         >
                             <i className="fa-solid fa-trash-can" />
                         </button>
                     )}
 
-                    {modal === oferta.id && (
+                    {modal === oferta.id && createPortal(
                         <div className="fundo">
                             <section
                                 className="apagar"
@@ -329,7 +330,8 @@ export default function CardOferta({
                                     </button>
                                 </div>
                             </section>
-                        </div>
+                        </div>,
+                        document.body
                     )}
                 </div>
             ))}
