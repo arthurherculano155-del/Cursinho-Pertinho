@@ -89,7 +89,7 @@ export default function CardOferta({
                 return;
             }
 
-            alert(`Oferta cadastrada em sua lista!`);
+            alert(`A oferta foi cadastrada em sua lista!`);
         } catch (erro) {
             console.error("Erro ao adicionar oferta:", erro);
             alert("Não foi possível adicionar a oferta.");
