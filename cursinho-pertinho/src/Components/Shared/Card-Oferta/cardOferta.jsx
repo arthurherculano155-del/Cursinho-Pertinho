@@ -65,7 +65,8 @@ export default function CardOferta({
         minimo,
         maximo,
         carga,
-        cursoGratuito
+        cursoGratuito,
+        token
     ]);
 
     async function InserirOferta(id_oferta) {
@@ -88,7 +89,7 @@ export default function CardOferta({
                 return;
             }
 
-            alert(`Número de cadastro na lista: ${dados.ID}`);
+            alert(`Oferta cadastrada em sua lista!`);
         } catch (erro) {
             console.error("Erro ao adicionar oferta:", erro);
             alert("Não foi possível adicionar a oferta.");

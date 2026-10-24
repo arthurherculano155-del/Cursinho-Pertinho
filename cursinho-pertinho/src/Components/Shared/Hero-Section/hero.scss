@@ -22,22 +22,8 @@
         object-fit: cover;
         object-position: 65% 35%;
         pointer-events: none;
-        -webkit-mask-image: linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(0, 0, 0, 0.08) 10%,
-            rgba(0, 0, 0, 0.35) 15%,
-            rgba(0, 0, 0, 0.8) 30%,
-            rgb(0, 0, 0) 48%
-        );
-        mask-image: linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(0, 0, 0, 0.08) 8%,
-            rgba(0, 0, 0, 0.35) 19%,
-            rgba(0, 0, 0, 0.8) 34%,
-            rgb(0, 0, 0) 48%
-        );
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.08) 8%, rgba(0, 0, 0, 0.35) 19%, rgba(0, 0, 0, 0.8) 34%, #000 48%);
+        mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.08) 8%, rgba(0, 0, 0, 0.35) 19%, rgba(0, 0, 0, 0.8) 34%, #000 48%);
     }
 
     &::before {
@@ -45,16 +31,7 @@
         z-index: -1;
         inset: -20px;
         content: "";
-        background: linear-gradient(
-            90deg,
-            rgb(5, 25, 52) 0%,
-            rgb(5, 25, 52) 25%,
-            rgba(5, 25, 52, 0.96) 36%,
-            rgba(5, 25, 52, 0.76) 46%,
-            rgba(5, 25, 52, 0.35) 59%,
-            rgba(5, 25, 52, 0.08) 75%,
-            transparent 100%
-        );
+        background: linear-gradient(90deg, rgb(5, 25, 52) 0%, rgb(5, 25, 52) 25%, rgba(5, 25, 52, 0.96) 36%, rgba(5, 25, 52, 0.76) 46%, rgba(5, 25, 52, 0.35) 59%, rgba(5, 25, 52, 0.08) 75%, transparent 100%);
         filter: blur(18px);
         pointer-events: none;
     }
@@ -70,12 +47,11 @@
 
         .Titulo {
             margin: 0;
-            color: rgb(255, 255, 255);
+            color: #fff;
             font-size: clamp(32px, 3.5vw, 48px);
             font-weight: 800;
             line-height: 1.12;
             letter-spacing: -1.2px;
-            text-transform: none;
 
             span {
                 color: rgb(80, 189, 213);
@@ -103,20 +79,20 @@
         border: 1px solid rgb(37, 99, 235);
         border-radius: 14px;
         background: rgb(37, 99, 235);
-        color: rgb(255, 255, 255);
+        color: #fff;
         font-family: "Montserrat", sans-serif;
         font-size: 14px;
         font-weight: 700;
         cursor: pointer;
         transition:
             background-color 0.2s ease,
-            border-color 0.2s ease,
-            color 0.2s ease,
-            transform 0.2s ease;
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
 
         &:hover {
             background: rgb(30, 65, 210);
-            border-color: rgb(30, 65, 210);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+            transform: translateY(-2px);
         }
 
         &:active {
@@ -124,7 +100,7 @@
         }
 
         &:focus-visible {
-            outline: 3px solid rgb(80, 189, 213);
+            outline: 3px solid rgb(147, 197, 253);
             outline-offset: 3px;
         }
     }
@@ -140,8 +116,10 @@
         box-sizing: border-box;
         border: 1px solid rgb(220, 228, 240);
         border-radius: 11px;
-        background: rgb(255, 255, 255);
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        background: #fff;
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
 
         &:focus-within {
             border-color: rgb(55, 93, 255);
@@ -152,7 +130,6 @@
             flex: 0 0 auto;
             margin-left: 14px;
             color: rgb(95, 115, 145);
-            font-size: 15px;
         }
 
         > input {
@@ -169,10 +146,6 @@
             color: rgb(35, 48, 70);
             font-family: "Montserrat", sans-serif;
             font-size: 12px;
-
-            &::placeholder {
-                color: rgb(115, 129, 150);
-            }
         }
 
         .buscar {
@@ -180,22 +153,21 @@
             min-height: 36px;
             margin: 4px;
             padding: 0 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
             border: 1px solid rgb(55, 65, 255);
             border-radius: 9px;
             background: rgb(37, 99, 235);
-            color: rgb(255, 255, 255);
+            color: #fff;
             font-size: 12px;
             font-weight: 700;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            cursor: pointer;
+            transition:
+                background-color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
 
             &:hover {
                 background: rgb(30, 65, 210);
+                box-shadow: 0 3px 10px rgba(37, 99, 235, 0.2);
             }
 
             &:active {
@@ -203,7 +175,7 @@
             }
 
             &:focus-visible {
-                outline: 3px solid rgb(80, 189, 213);
+                outline: 3px solid rgb(147, 197, 253);
                 outline-offset: 2px;
             }
         }
@@ -226,17 +198,12 @@
         z-index: 2;
         margin-top: 32px;
         display: flex;
-        align-items: center;
         flex-wrap: wrap;
         gap: 15px;
 
         button {
             min-height: 50px;
             padding: 0 28px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
             border: 1px solid transparent;
             border-radius: 14px;
             font-family: "Montserrat", sans-serif;
@@ -246,38 +213,41 @@
             transition:
                 background-color 0.2s ease,
                 border-color 0.2s ease,
-                color 0.2s ease,
-                transform 0.2s ease;
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+            }
 
             &:active {
                 transform: scale(0.97);
             }
 
             &:focus-visible {
-                outline: 3px solid rgb(80, 189, 213);
+                outline: 3px solid rgb(147, 197, 253);
                 outline-offset: 3px;
             }
         }
 
         .buscarCursos {
             background: rgb(37, 99, 235);
-            border-color: rgb(37, 99, 235);
-            color: rgb(255, 255, 255);
+            color: #fff;
 
             &:hover {
                 background: rgb(30, 65, 210);
-                border-color: rgb(30, 65, 210);
+                box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
             }
         }
 
         .explorarAreas {
-            background: rgba(255, 255, 255, 0.06);
             border-color: rgb(150, 180, 215);
-            color: rgb(255, 255, 255);
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
 
             &:hover {
-                background: rgba(255, 255, 255, 0.14);
                 border-color: rgb(80, 189, 213);
+                background: rgba(255, 255, 255, 0.12);
             }
         }
     }
@@ -297,25 +267,7 @@
     }
 
     @media (max-width: 1000px) {
-        min-height: 390px;
         padding: 38px 5% 30px;
-
-        > .Imagem-Hero {
-            width: 58%;
-            object-position: 62% center;
-        }
-
-        &::before {
-            background: linear-gradient(
-                90deg,
-                rgb(5, 25, 52) 0%,
-                rgba(5, 25, 52, 0.96) 28%,
-                rgba(5, 25, 52, 0.82) 43%,
-                rgba(5, 25, 52, 0.4) 65%,
-                rgba(5, 25, 52, 0.08) 100%
-            );
-            filter: blur(16px);
-        }
 
         .Hero-Msg {
             width: 68%;
@@ -351,27 +303,12 @@
             width: 100%;
             height: 100%;
             object-position: 65% center;
-            -webkit-mask-image: linear-gradient(
-                90deg,
-                rgba(0, 0, 0, 0.2) 0%,
-                rgba(0, 0, 0, 0.75) 40%,
-                rgb(0, 0, 0) 75%
-            );
-            mask-image: linear-gradient(
-                90deg,
-                rgba(0, 0, 0, 0.2) 0%,
-                rgba(0, 0, 0, 0.75) 40%,
-                rgb(0, 0, 0) 75%
-            );
+            -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.75) 40%, #000 75%);
+            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.75) 40%, #000 75%);
         }
 
         &::before {
-            background: linear-gradient(
-                90deg,
-                rgba(5, 25, 52, 0.96) 0%,
-                rgba(5, 25, 52, 0.82) 48%,
-                rgba(5, 25, 52, 0.4) 100%
-            );
+            background: linear-gradient(90deg, rgba(5, 25, 52, 0.96), rgba(5, 25, 52, 0.82) 48%, rgba(5, 25, 52, 0.4));
             filter: blur(14px);
         }
 
@@ -390,35 +327,16 @@
             }
         }
 
-        .Pesquisa-Home {
-            width: 100%;
-            max-width: 560px;
-        }
-
+        .Pesquisa-Home,
         .Card-Home-Section {
             width: 100%;
             max-width: 560px;
-            gap: 8px;
         }
     }
 
     @media (max-width: 480px) {
         margin-top: 70px;
         padding: 30px 18px 24px;
-
-        > .Imagem-Hero {
-            object-position: 65% center;
-        }
-
-        &::before {
-            background: linear-gradient(
-                90deg,
-                rgba(5, 25, 52, 0.95) 0%,
-                rgba(5, 25, 52, 0.82) 65%,
-                rgba(5, 25, 52, 0.55) 100%
-            );
-            filter: blur(12px);
-        }
 
         .Hero-Msg {
             .Titulo {
@@ -473,224 +391,29 @@
             margin-top: 12px;
             gap: 7px;
         }
-
-        .botoesHero {
-            width: 100%;
-            margin-top: 24px;
-            gap: 10px;
-
-            button {
-                min-height: 46px;
-                padding: 0 18px;
-                border-radius: 13px;
-                font-size: 12px;
-            }
-        }
     }
 }
 
 .fundo {
     position: fixed;
     inset: 0;
-    z-index: 1000;
+    z-index: 20000;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 35px 25px;
+    padding: 65px 24px 24px;
     box-sizing: border-box;
-    overflow-y: auto;
-    background: rgba(5, 25, 52, 0.55);
-    backdrop-filter: blur(4px);
+    background: rgba(5, 25, 52, 0.68);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     font-family: "Montserrat", sans-serif;
-}
-
-.fundo > h2,
-.fundo > h3,
-.fundo > p,
-.fundo > .Cards-De-Oferta {
-    width: 100%;
-    max-width: 1000px;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 1;
-}
-
-.fundo > h2:first-of-type {
-    margin-top: 0;
-}
-
-.fundo > h2 {
-    margin: 0;
-    padding: 35px 35px 10px;
-    border: 1px solid rgb(220, 228, 240);
-    border-bottom: none;
-    border-radius: 18px 18px 0 0;
-    background: rgb(255, 255, 255);
-    color: rgb(5, 25, 52);
-    font-size: 28px;
-    font-weight: 800;
-    text-align: center;
-}
-
-.fundo > h2::after {
-    display: block;
-    width: 55px;
-    height: 4px;
-    margin: 14px auto 0;
-    border-radius: 5px;
-    background: rgb(37, 99, 235);
-    content: "";
-}
-
-.fundo > p {
-    margin: 0;
-    padding: 25px 35px 35px;
-    border: 1px solid rgb(220, 228, 240);
-    border-top: none;
-    border-radius: 0 0 18px 18px;
-    background: rgb(255, 255, 255);
-    color: rgb(75, 91, 113);
-    font-size: 15px;
-    line-height: 1.7;
-    text-align: center;
-}
-
-.fundo .Cards-De-Oferta {
-    max-width: 1000px;
-    padding: 10px 35px 35px;
-    border: 1px solid rgb(220, 228, 240);
-    border-top: none;
-    border-radius: 0 0 18px 18px;
-    background: rgb(255, 255, 255);
-    box-shadow: 0 20px 60px rgba(5, 25, 52, 0.2);
-}
-
-.fundo .Cards-De-Oferta > h3 {
-    margin: 0 0 25px;
-    color: rgb(5, 25, 52);
-    font-size: 19px;
-    font-weight: 600;
-    line-height: 1.5;
-    text-align: center;
-}
-
-.fundo .listaOfertas {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
-    align-items: stretch;
-    gap: 20px;
-}
-
-.fundo .listaOfertas .card-Oferta {
-    min-width: 0;
-    padding: 22px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    overflow-wrap: anywhere;
-    border: 1px solid rgb(220, 228, 240);
-    border-radius: 14px;
-    background: rgb(255, 255, 255);
-    box-shadow: 0 4px 14px rgba(5, 25, 52, 0.06);
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.fundo .listaOfertas .card-Oferta:hover {
-    transform: translateY(-3px);
-    border-color: rgb(80, 189, 213);
-    box-shadow: 0 8px 22px rgba(5, 25, 52, 0.1);
-}
-
-.fundo .listaOfertas .card-Oferta .instituicao {
-    width: 100%;
-    height: 155px;
-    margin-bottom: 8px;
-    display: block;
-    border: 1px solid rgb(230, 236, 245);
-    border-radius: 10px;
-    background: rgb(245, 248, 252);
-    object-fit: cover;
-    object-position: center;
-}
-
-.fundo .listaOfertas .card-Oferta h2 {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    background: transparent;
-    color: rgb(5, 25, 52);
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.4;
-    text-align: left;
-    overflow-wrap: anywhere;
-}
-
-.fundo .listaOfertas .card-Oferta h2::after {
-    display: none;
-}
-
-.fundo .listaOfertas .card-Oferta h3 {
-    width: 100%;
-    margin: 0;
-    color: rgb(37, 99, 235);
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 1.5;
-    text-align: left;
-}
-
-.fundo .listaOfertas .card-Oferta p {
-    margin: 0;
-    padding: 0;
-    border: none;
-    background: transparent;
-    color: rgb(75, 91, 113);
-    font-size: 14px;
-    line-height: 1.7;
-    text-align: left;
-}
-
-.fundo .listaOfertas .card-Oferta h5 {
-    margin: 0;
-    color: rgb(75, 91, 113);
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.8;
-}
-
-.fundo .listaOfertas .card-Oferta a {
-    color: rgb(37, 99, 235);
-    font-weight: 700;
-    text-decoration: none;
-    overflow-wrap: anywhere;
-    transition: color 0.2s ease;
-}
-
-.fundo .listaOfertas .card-Oferta a:hover {
-    color: rgb(80, 189, 213);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.fundo .listaOfertas .card-Oferta a:focus-visible {
-    outline: 2px solid rgb(37, 99, 235);
-    outline-offset: 3px;
 }
 
 .fundo .fechar {
     position: fixed;
-    top: 18px;
-    right: 22px;
-    z-index: 1002;
+    top: 16px;
+    right: 20px;
+    z-index: 20001;
     width: 42px;
     height: 42px;
     display: flex;
@@ -698,91 +421,381 @@
     align-items: center;
     border: 1px solid rgb(220, 228, 240);
     border-radius: 12px;
-    background: rgb(255, 255, 255);
+    background: #fff;
     color: rgb(5, 25, 52);
     font-size: 21px;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(5, 25, 52, 0.12);
     transition:
         background-color 0.2s ease,
         color 0.2s ease,
-        border-color 0.2s ease;
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .fundo .fechar:hover {
-    border-color: rgb(37, 99, 235);
     background: rgb(37, 99, 235);
-    color: rgb(255, 255, 255);
+    border-color: rgb(37, 99, 235);
+    color: #fff;
+    transform: rotate(90deg);
+    box-shadow: 0 4px 12px rgba(5, 25, 52, 0.2);
 }
 
-.fundo .fechar:focus-visible {
-    outline: 3px solid rgb(80, 189, 213);
-    outline-offset: 3px;
+.fundo .fechar:active {
+    transform: scale(0.94) rotate(90deg);
 }
 
-@media (max-width: 768px) {
+.janelaLista {
+    width: min(1100px, 100%);
+    max-height: calc(100vh - 105px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    border: 1px solid rgb(220, 228, 240);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background: #fff;
+    box-shadow: 0 20px 60px rgba(5, 25, 52, 0.25);
+    animation: entradaLista 0.25s ease-out;
+}
+
+@keyframes entradaLista {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.99);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.janelaLista > .tituloLista {
+    margin: 0;
+    padding: 26px 30px 18px;
+    color: rgb(5, 25, 52);
+    font-size: 27px;
+    font-weight: 800;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.janelaLista > .tituloLista::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 4px;
+    margin: 14px auto 0;
+    border-radius: 5px;
+    background: rgb(37, 99, 235);
+}
+
+.janelaLista .Cards-De-Oferta {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 10px 28px 28px;
+    box-sizing: border-box;
+}
+
+.janelaLista .subtituloLista {
+    margin: 0 0 22px;
+    color: rgb(75, 91, 113);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.janelaLista .listaOfertas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.janelaLista .listaOfertas > .card-Oferta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 9px;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    margin: 0;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    border: 1px solid rgb(220, 228, 240);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(5, 25, 52, 0.07);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.janelaLista .listaOfertas > .card-Oferta:hover {
+    transform: translateY(-5px);
+    border-color: rgb(80, 189, 213);
+    box-shadow: 0 12px 28px rgba(5, 25, 52, 0.14);
+    background: rgb(252, 254, 255);
+}
+
+.janelaLista .listaOfertas > .card-Oferta:active {
+    transform: translateY(-2px);
+}
+
+.janelaLista .listaOfertas > .card-Oferta > .instituicao {
+    display: block;
+    flex: 0 0 165px;
+    width: 100%;
+    height: 165px;
+    min-height: 165px;
+    max-height: 165px;
+    margin: 0 0 5px;
+    padding: 0;
+    box-sizing: border-box;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid rgb(230, 236, 245);
+    border-radius: 9px;
+    background: rgb(245, 248, 252);
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+.janelaLista .listaOfertas > .card-Oferta:hover > .instituicao {
+    transform: scale(1.025);
+    filter: saturate(1.08);
+}
+
+.janelaLista .listaOfertas > .card-Oferta h2 {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: rgb(5, 25, 52);
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.4;
+    text-align: left;
+    overflow-wrap: anywhere;
+    transition: color 0.2s ease;
+}
+
+.janelaLista .listaOfertas > .card-Oferta:hover h2 {
+    color: rgb(37, 99, 235);
+}
+
+.janelaLista .listaOfertas > .card-Oferta h2::after {
+    content: none;
+    display: none;
+}
+
+.janelaLista .listaOfertas > .card-Oferta h3 {
+    display: block;
+    width: 100%;
+    margin: 0;
+    color: rgb(37, 99, 235);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: left;
+    overflow-wrap: anywhere;
+    transition: color 0.2s ease;
+}
+
+.janelaLista .listaOfertas > .card-Oferta p {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: rgb(75, 91, 113);
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: left;
+    transition: color 0.2s ease;
+}
+
+.janelaLista .listaOfertas > .card-Oferta h5 {
+    position: static;
+    margin: 0;
+    padding: 0;
+    color: rgb(75, 91, 113);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+    transition: color 0.2s ease;
+}
+
+.janelaLista .listaOfertas > .card-Oferta h5::before {
+    content: none;
+    display: none;
+}
+
+.janelaLista .listaOfertas > .card-Oferta a {
+    color: rgb(37, 99, 235);
+    font-weight: 700;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+
+    &:hover {
+        color: rgb(14, 116, 144);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    &:focus-visible {
+        outline: 2px solid rgb(37, 99, 235);
+        outline-offset: 3px;
+        border-radius: 2px;
+    }
+}
+
+.janelaLista .listaVazia,
+.janelaLista .mensagemLogin {
+    margin: 0;
+    padding: 20px 28px 30px;
+    color: rgb(75, 91, 113);
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    .janelaLista .listaOfertas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+}
+
+@media (max-width: 900px) {
     .fundo {
-        padding: 70px 20px 25px;
+        padding: 65px 18px 20px;
     }
 
-    .fundo > h2 {
-        padding: 28px 22px 10px;
-        font-size: 24px;
+    .janelaLista .Cards-De-Oferta {
+        padding: 10px 20px 22px;
     }
 
-    .fundo .Cards-De-Oferta {
-        padding: 10px 22px 25px;
-    }
-
-    .fundo .Cards-De-Oferta > h3 {
-        font-size: 17px;
-    }
-
-    .fundo .listaOfertas {
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-        gap: 15px;
-    }
-
-    .fundo .listaOfertas .card-Oferta {
-        padding: 18px;
+    .janelaLista .listaOfertas > .card-Oferta > .instituicao {
+        flex-basis: 150px;
+        height: 150px;
+        min-height: 150px;
+        max-height: 150px;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 560px) {
     .fundo {
-        padding: 65px 12px 20px;
+        align-items: flex-start;
+        padding: 60px 12px 14px;
+    }
+
+    .janelaLista {
+        max-height: calc(100vh - 76px);
+        border-radius: 14px;
+    }
+
+    .janelaLista > .tituloLista {
+        padding: 22px 14px 14px;
+        font-size: 22px;
+    }
+
+    .janelaLista .Cards-De-Oferta {
+        padding: 8px 14px 18px;
+    }
+
+    .janelaLista .subtituloLista {
+        margin-bottom: 16px;
+        font-size: 14px;
+    }
+
+    .janelaLista .listaOfertas {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .janelaLista .listaOfertas > .card-Oferta {
+        padding: 14px;
+    }
+
+    .janelaLista .listaOfertas > .card-Oferta > .instituicao {
+        flex-basis: 180px;
+        height: 180px;
+        min-height: 180px;
+        max-height: 180px;
     }
 
     .fundo .fechar {
-        top: 12px;
+        top: 10px;
         right: 12px;
         width: 38px;
         height: 38px;
     }
+}
 
-    .fundo > h2 {
-        padding: 25px 15px 10px;
-        font-size: 22px;
+.Deletar-Da-Lista {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 42px;
+    padding: 10px 14px;
+    background: rgba(220, 38, 38, 0.8);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 9px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+    font-family: inherit;
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    i {
+        font-size: 0.95rem;
+        pointer-events: none;
     }
 
-    .fundo .Cards-De-Oferta {
-        padding: 10px 15px 20px;
+    &:hover {
+        background: rgb(185, 28, 28);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(127, 29, 29, 0.3);
     }
 
-    .fundo .Cards-De-Oferta > h3 {
-        margin-bottom: 18px;
-        font-size: 16px;
+    &:active {
+        transform: scale(0.97);
     }
 
-    .fundo .listaOfertas {
-        grid-template-columns: 1fr;
-    }
-
-    .fundo .listaOfertas .card-Oferta .instituicao {
-        height: 145px;
-    }
-
-    .fundo .listaOfertas .card-Oferta h2 {
-        font-size: 18px;
+    &:focus-visible {
+        outline: 3px solid rgb(252, 165, 165);
+        outline-offset: 3px;
     }
 }
