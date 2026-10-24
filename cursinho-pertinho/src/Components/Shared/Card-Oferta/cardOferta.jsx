@@ -30,8 +30,8 @@ export default function CardOferta({
 
     const nivel = iniciante ? "Iniciante" : nivelPesquisa
     const pesquisaCurso = cursoPesquisa;
-    const minimo = (cursoGratuito ? 0 : precoMinimo) || (ate100 ? 0 : precoMinimo);
-    const maximo = (cursoGratuito ? 0 : precoMaximo) || (ate100 ? 100 : precoMaximo);
+    const minimo = cursoGratuito ? 0 : precoMinimo;
+    const maximo = cursoGratuito ? 0 : ate100 ? 100 : precoMaximo;
     const modalidade =
         (presencial ? "Presencial" : modalidadePesquisa) ||
         (online ? "Online" : modalidadePesquisa);
@@ -146,8 +146,7 @@ export default function CardOferta({
                     className="input-pesquisa"
                     placeholder="Preço mínimo"
                     value={
-                        (cursoGratuito ? 0 : precoMinimo) ||
-                        (ate100 ? 0 : precoMinimo)
+                        cursoGratuito ? 0 : ate100 ? 0 : precoMinimo
                     }
                     onChange={(e) => setPrecoMinimo(e.target.value)}
                 />
@@ -157,8 +156,7 @@ export default function CardOferta({
                     className="input-pesquisa"
                     placeholder="Preço máximo"
                     value={
-                        (cursoGratuito ? 0 : precoMaximo) ||
-                        (ate100 ? 100 : precoMaximo)
+                        cursoGratuito ? 0 : ate100 ? 100 : precoMaximo
                     }
                     onChange={(e) => setPrecoMaximo(e.target.value)}
                 />

@@ -12,7 +12,7 @@ export default function Sobre() {
                 imagem="Estudantes.png"
                 titulo="Conectamos pessoas a "
                 tituloSpan="novas oportunidades"
-                mensagem="O Cursinho Pertinho facilita o acesso à informação sobre cursos e caminhos de formação"
+                mensagem="O Cursinho Pertinho facilita o acesso à informação sobre cursos e caminhos de formação "
                 mensagemDeBaixo="para que cada pessoa possa construir seu futuro. O Cursinho Pertinho facilita a busca por cursos de diferentes áreas, reunindo informações sobre instituições, modalidades, níveis de ensino, preços e localização em um só lugar"
                 conhecerProjeto={true}
             />

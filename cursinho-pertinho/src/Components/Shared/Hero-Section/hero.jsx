@@ -1,7 +1,9 @@
 import './hero.scss';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom'
 import CardInicio from '../../HomeComponents/CardInicio/cardInicio.jsx';
-import { useState } from 'react';
+import '../Card-Oferta/cardOferta.scss'
 
 export default function HeroSection({
     imagem,
@@ -14,7 +16,10 @@ export default function HeroSection({
     botoes = false,
     conhecerProjeto = false
 }) {
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
 
+    const [listaOfertas, setListaOfertas] = useState(false);
+    const [cardsLista, setCardsLista] = useState([]);
 
     const [cursosPesquisa, setCursosPesquisa] = useState("");
     const ate100 = true;
@@ -26,19 +31,40 @@ export default function HeroSection({
 
     const navigate = useNavigate();
 
-    function BuscarPoucaDuracao(){
+    useEffect(() => {
+        async function BuscarListaOfertas() {
+            if(!usuario.id_usuario)
+                return;
+
+            const resposta = await fetch(`https://cursinhopertinho-api.onrender.com/ofertas/lista/${usuario.id_usuario}`)
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+                alert(dados.erro)
+                return
+            }
+
+            setCardsLista(dados)
+        }
+
+        BuscarListaOfertas()
+    }, [
+        usuario?.id_usuario
+    ])
+
+    function BuscarPoucaDuracao() {
         navigate('/explorar-cursos', {
-            state: {curtaDuracao}
+            state: { curtaDuracao }
         })
     }
 
-    function BuscarCursoIniciante(){
+    function BuscarCursoIniciante() {
         navigate('/explorar-cursos', {
             state: { iniciante }
         })
     }
 
-    function BuscarCursosOnline(){
+    function BuscarCursosOnline() {
         navigate('/explorar-cursos', {
             state: { online }
         })
@@ -52,8 +78,8 @@ export default function HeroSection({
 
     function BuscarCursosPresenciais() {
         navigate('/explorar-cursos', {
-                state: { presencial }
-            })
+            state: { presencial }
+        })
     }
 
     function BuscarAte100() {
@@ -91,10 +117,90 @@ export default function HeroSection({
             </div>
 
             {listaUser && (
-                <button className="listaCursos">
+                <button
+                    className="listaCursos"
+                    onClick={() => setListaOfertas(true)}
+                >
                     Ver minha lista
                 </button>
             )}
+
+
+            {listaOfertas && createPortal(
+                <section className="fundo">
+                    <button
+                        className="fechar"
+                        onClick={() => setListaOfertas(false)}
+                    >
+                        <i className='fa-solid fa-xmark' />
+                    </button>
+
+                    <h2 className="tituloLista">
+                        Olá, {usuario ? usuario.primeiro_nome : "Você"}!
+                    </h2>
+
+                    {usuario ? (
+                        <section className="Cards-De-Oferta">
+                            <h3 className="subtituloLista">Veja a sua lista de cursos:</h3>
+
+                            <div className="listaOfertas">
+                                {cardsLista.map((oferta) => (
+                                    <div
+                                        className="card-Oferta"
+                                        key={oferta.id}
+                                    >
+                                        <img
+                                            src={oferta.imagem}
+                                            alt={`Imagem do curso ${oferta.curso}`}
+                                            className="instituicao"
+                                        />
+
+                                        <h2>{oferta.curso}</h2>
+                                        <h3>{oferta.unidade}</h3>
+                                        <p>Nível: {oferta.nivel}</p>
+                                        <h5>Modalidade: {oferta.modalidade}</h5>
+
+                                        {oferta.modalidade !== "Online" && (
+                                            <h5>
+                                                Endereço:{" "}
+                                                <a
+                                                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${oferta.endereco}, ${oferta.numero}`)}`}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    {oferta.endereco}, {oferta.numero}
+                                                </a>
+                                            </h5>
+                                        )}
+
+                                        <h5>Preço: R$ {Number(oferta.preco).toFixed(2)}</h5>
+                                        <h5>Carga horária: {oferta.carga_horaria} horas</h5>
+
+                                        <h5>
+                                            Link:{" "}
+                                            <a
+                                                href={oferta.link_inscricao}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Inscrever-se
+                                            </a>
+                                        </h5>
+
+                                        <h5>Região: {oferta.regiao}</h5>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    ) : (
+                        <p className="mensagemLogin">
+                            Você precisa estar logado para ter uma lista!
+                        </p>
+                    )}
+                </section>,
+                document.body
+            )}
+
 
             {cardInicio && (
                 <>

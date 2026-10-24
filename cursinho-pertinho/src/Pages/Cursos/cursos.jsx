@@ -26,8 +26,8 @@ export default function ExplorarCursos() {
                 imagem="Menina-Estudo.png"
                 titulo="Os melhores cursos estão"
                 tituloSpan="pertinho de você"
-                mensagem="Encontre cursos de qualidade na sua região e conquiste novas habilidades para se destacar"
-                mensagemDeBaixo="no mercado de trabalho, realizar seus sonhos e abrir portas para novas oportunidades"
+                mensagem="Encontre cursos de qualidade na sua região e conquiste novas habilidades para se destacar "
+                mensagemDeBaixo="no mercado de trabalho, realizar seus sonhos, desenvolver novas habilidades e abrir portas para oportunidades de crescimento pessoal e profissional"
                 listaUser={true}
             />
 
