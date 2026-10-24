@@ -1,0 +1,251 @@
+.Destaques-Cursos {
+    width: 88%;
+    max-width: 1250px;
+    margin: 45px auto 50px;
+    font-family: "Montserrat", sans-serif;
+
+    .Destaques-Cabecalho {
+        max-width: 700px;
+        margin-bottom: 30px;
+
+        h2 {
+            margin: 0;
+            color: rgb(14, 35, 65);
+            font-size: clamp(26px, 3vw, 36px);
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.8px;
+
+            span {
+                color: rgb(37, 99, 235);
+            }
+        }
+
+        p {
+            margin: 13px 0 0;
+            color: rgb(91, 105, 125);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+    }
+
+    .Destaques-Cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+
+        .Destaque-Card {
+            min-width: 0;
+            padding: 25px 22px;
+            box-sizing: border-box;
+            border: 1px solid rgb(225, 232, 242);
+            border-radius: 16px;
+            background: rgb(255, 255, 255);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+
+            &:hover {
+                transform: translateY(-4px);
+                border-color: rgb(190, 211, 245);
+                box-shadow: 0 10px 25px rgba(20, 48, 85, 0.08);
+            }
+
+            .Destaque-Icone {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 13px;
+                font-size: 20px;
+            }
+
+            .Icone-Azul {
+                background: rgb(232, 240, 255);
+                color: rgb(37, 99, 235);
+            }
+
+            .Icone-Ciano {
+                background: rgb(225, 248, 251);
+                color: rgb(20, 153, 177);
+            }
+
+            .Icone-Verde {
+                background: rgb(229, 247, 237);
+                color: rgb(32, 145, 87);
+            }
+
+            h3 {
+                margin: 0 0 10px;
+                color: rgb(14, 35, 65);
+                font-size: 16px;
+                font-weight: 800;
+                line-height: 1.5;
+            }
+
+            p {
+                margin: 0;
+                color: rgb(91, 105, 125);
+                font-size: 12px;
+                line-height: 1.9;
+            }
+        }
+    }
+
+    .Destaques-Informacao {
+        margin-top: 22px;
+        padding: 20px 22px;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        box-sizing: border-box;
+        border: 1px solid rgb(214, 233, 245);
+        border-radius: 13px;
+        background: rgb(244, 250, 255);
+
+        > i {
+            flex: 0 0 auto;
+            margin-top: 3px;
+            color: rgb(37, 99, 235);
+            font-size: 20px;
+        }
+
+        h3 {
+            margin: 0 0 7px;
+            color: rgb(14, 48, 76);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        p {
+            margin: 0;
+            color: rgb(91, 105, 125);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+    }
+}
+
+.pesquisaCursinho {
+    width: 88%;
+    max-width: 1250px;
+    margin: 0 auto 30px;
+    color: rgb(14, 35, 65);
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(24px, 2.8vw, 32px);
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: -0.6px;
+
+    span {
+        color: rgb(37, 99, 235);
+    }
+}
+
+@media (min-width: 1400px) {
+    .Destaques-Cursos,
+    .pesquisaCursinho {
+        width: 86%;
+    }
+}
+
+@media (max-width: 900px) {
+    .Destaques-Cursos {
+        width: 90%;
+        margin: 38px auto 42px;
+
+        .Destaques-Cards {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+
+            .Destaque-Card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+    }
+
+    .pesquisaCursinho {
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .Destaques-Cursos {
+        width: calc(100% - 36px);
+        margin: 30px auto 35px;
+
+        .Destaques-Cabecalho {
+            margin-bottom: 22px;
+
+            h2 {
+                font-size: 25px;
+                letter-spacing: -0.5px;
+            }
+
+            p {
+                margin-top: 10px;
+                font-size: 12px;
+                line-height: 1.8;
+            }
+        }
+
+        .Destaques-Cards {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 12px;
+
+            .Destaque-Card,
+            .Destaque-Card:last-child {
+                grid-column: auto;
+                padding: 20px;
+                border-radius: 13px;
+
+                .Destaque-Icone {
+                    width: 43px;
+                    height: 43px;
+                    margin-bottom: 15px;
+                    font-size: 18px;
+                }
+
+                h3 {
+                    margin-bottom: 7px;
+                    font-size: 14px;
+                }
+
+                p {
+                    font-size: 11px;
+                    line-height: 1.8;
+                }
+            }
+        }
+
+        .Destaques-Informacao {
+            margin-top: 16px;
+            padding: 16px;
+            gap: 11px;
+
+            > i {
+                font-size: 17px;
+            }
+
+            h3 {
+                font-size: 12px;
+                line-height: 1.6;
+            }
+
+            p {
+                font-size: 11px;
+                line-height: 1.8;
+            }
+        }
+    }
+
+    .pesquisaCursinho {
+        width: calc(100% - 36px);
+        margin: 0 auto 22px;
+        font-size: 22px;
+        letter-spacing: -0.4px;
+    }
+}

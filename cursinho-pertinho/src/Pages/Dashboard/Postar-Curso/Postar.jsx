@@ -116,6 +116,7 @@ export default function PostarCursos() {
                         id="selectCurso"
                         required
                         value={curso}
+                        className={`Pesquisa-Informacao ${curso === "" ? "placeholder-select" : ""}`}
                         onChange={(e) => setCurso(e.target.value)}
                     >
                         <option value="">
@@ -135,6 +136,7 @@ export default function PostarCursos() {
                     <select
                         required
                         value={regiao}
+                        className={`Pesquisa-Informacao ${regiao === "" ? "placeholder-select" : ""}`}
                         onChange={(e) => {
                             const novaRegiao = e.target.value;
 
@@ -164,6 +166,7 @@ export default function PostarCursos() {
                         required
                         value={unidade}
                         onChange={(e) => setUnidade(e.target.value)}
+                        className={`Pesquisa-Informacao ${unidade === "" ? "placeholder-select" : ""}`}
                     >
                         <option value="">
                             Escolha uma unidade
@@ -183,6 +186,7 @@ export default function PostarCursos() {
                         required
                         value={nivel}
                         onChange={(e) => setNivel(e.target.value)}
+                        className={`Pesquisa-Informacao ${nivel === "" ? "placeholder-select" : ""}`}
                     >
                         <option value="">
                             Escolha um nível
@@ -220,6 +224,7 @@ export default function PostarCursos() {
                     <select
                         required
                         value={modalidade}
+                        className={`Pesquisa-Informacao ${modalidade === "" ? "placeholder-select" : ""}`}
                         onChange={(e) =>
                             setModalidade(e.target.value)
                         }

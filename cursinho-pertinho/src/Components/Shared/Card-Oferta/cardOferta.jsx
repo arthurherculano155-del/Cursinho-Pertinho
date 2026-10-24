@@ -3,8 +3,13 @@ import { useState, useEffect } from "react";
 
 export default function CardOferta({
     lixeira = false,
+    ate100,
+    presencial,
+    online,
+    iniciante,
     cursoGratuito,
     cursosPesquisa,
+    curtaDuracao,
     addLista = true
 }) {
     const API_URL = "https://cursinhopertinho-api.onrender.com";
@@ -21,16 +26,22 @@ export default function CardOferta({
     const [modalidadePesquisa, setModalidadePesquisa] = useState("");
     const [precoMinimo, setPrecoMinimo] = useState("");
     const [precoMaximo, setPrecoMaximo] = useState("");
+    const [cargaHoraria, setCargaHoraria] = useState("");
 
+    const nivel = iniciante ? "Iniciante" : nivelPesquisa
     const pesquisaCurso = cursoPesquisa;
-    const minimo = cursoGratuito ? "" : precoMinimo;
-    const maximo = cursoGratuito ? 0 : precoMaximo;
+    const minimo = (cursoGratuito ? 0 : precoMinimo) || (ate100 ? 0 : precoMinimo);
+    const maximo = (cursoGratuito ? 0 : precoMaximo) || (ate100 ? 100 : precoMaximo);
+    const modalidade =
+        (presencial ? "Presencial" : modalidadePesquisa) ||
+        (online ? "Online" : modalidadePesquisa);
+    const carga = curtaDuracao ? 40 : cargaHoraria;
 
     useEffect(() => {
         async function getOfertas() {
             try {
                 const resposta = await fetch(
-                    `${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(pesquisaCurso)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivelPesquisa)}&modalidade=${encodeURIComponent(modalidadePesquisa)}&precoMinimo=${encodeURIComponent(minimo)}&precoMaximo=${encodeURIComponent(maximo)}`
+                    `${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(pesquisaCurso)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivel)}&modalidade=${encodeURIComponent(modalidade)}&precoMinimo=${encodeURIComponent(minimo)}&precoMaximo=${encodeURIComponent(maximo)}&carga=${carga}`
                 );
 
                 if (!resposta.ok) {
@@ -49,10 +60,11 @@ export default function CardOferta({
         regiaoPesquisa,
         pesquisaCurso,
         instituicaoPesquisa,
-        nivelPesquisa,
-        modalidadePesquisa,
+        nivel,
+        modalidade,
         minimo,
         maximo,
+        carga,
         cursoGratuito
     ]);
 
@@ -133,7 +145,10 @@ export default function CardOferta({
                     type="number"
                     className="input-pesquisa"
                     placeholder="Preço mínimo"
-                    value={precoMinimo}
+                    value={
+                        (cursoGratuito ? 0 : precoMinimo) ||
+                        (ate100 ? 0 : precoMinimo)
+                    }
                     onChange={(e) => setPrecoMinimo(e.target.value)}
                 />
 
@@ -141,8 +156,21 @@ export default function CardOferta({
                     type="number"
                     className="input-pesquisa"
                     placeholder="Preço máximo"
-                    value={cursoGratuito ? 0 : precoMaximo}
+                    value={
+                        (cursoGratuito ? 0 : precoMaximo) ||
+                        (ate100 ? 100 : precoMaximo)
+                    }
                     onChange={(e) => setPrecoMaximo(e.target.value)}
+                />
+
+                <input
+                    type="number"
+                    className='input-pesquisa'
+                    placeholder='Carga horária'
+                    name=""
+                    id=""
+                    value={carga}
+                    onChange={(e) => setCargaHoraria(e.target.value)}
                 />
 
                 <select
@@ -162,8 +190,8 @@ export default function CardOferta({
                 </select>
 
                 <select
-                    className={`Pesquisa-Informacao ${nivelPesquisa === "" ? "placeholder-select" : ""}`}
-                    value={nivelPesquisa}
+                    className={`Pesquisa-Informacao ${nivel === "" ? "placeholder-select" : ""}`}
+                    value={nivel}
                     onChange={(e) => setNivelPesquisa(e.target.value)}
                 >
                     <option value="" disabled>
@@ -176,8 +204,8 @@ export default function CardOferta({
                 </select>
 
                 <select
-                    className={`Pesquisa-Informacao ${modalidadePesquisa === "" ? "placeholder-select" : ""}`}
-                    value={modalidadePesquisa}
+                    className={`Pesquisa-Informacao ${modalidade === "" ? "placeholder-select" : ""}`}
+                    value={modalidade}
                     onChange={(e) => setModalidadePesquisa(e.target.value)}
                 >
                     <option value="" disabled>

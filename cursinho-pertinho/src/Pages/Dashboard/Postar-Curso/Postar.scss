@@ -77,22 +77,33 @@ h1 {
             }
         }
 
-        select {
-            cursor: pointer;
+                .Pesquisa-Informacao {
             appearance: none;
-            padding-right: 40px;
-
+            padding-right: 38px;
+            cursor: pointer;
             background-image:
                 linear-gradient(45deg, transparent 50%, rgb(71, 84, 103) 50%),
                 linear-gradient(135deg, rgb(71, 84, 103) 50%, transparent 50%);
-
             background-position:
                 calc(100% - 18px) 22px,
                 calc(100% - 13px) 22px;
-
             background-size: 5px 5px;
             background-repeat: no-repeat;
+
+            &.placeholder-select {
+                color: rgb(152, 162, 179);
+            }
+
+            option {
+                background-color: rgb(255, 255, 255);
+                color: rgb(24, 34, 48);
+
+                &:disabled {
+                    color: rgb(152, 162, 179);
+                }
+            }
         }
+    
 
         input[type="number"] {
             appearance: textfield;

@@ -8,21 +8,57 @@ export default function HeroSection({
     titulo,
     tituloSpan,
     mensagem,
+    listaUser,
     mensagemDeBaixo,
     cardInicio = false,
     botoes = false,
     conhecerProjeto = false
 }) {
 
-    const [cursosPesquisa, setCursosPesquisa] = useState("");
 
+    const [cursosPesquisa, setCursosPesquisa] = useState("");
+    const ate100 = true;
     const cursosGratuitos = true;
+    const presencial = true;
+    const online = true;
+    const iniciante = true;
+    const curtaDuracao = true;
 
     const navigate = useNavigate();
+
+    function BuscarPoucaDuracao(){
+        navigate('/explorar-cursos', {
+            state: {curtaDuracao}
+        })
+    }
+
+    function BuscarCursoIniciante(){
+        navigate('/explorar-cursos', {
+            state: { iniciante }
+        })
+    }
+
+    function BuscarCursosOnline(){
+        navigate('/explorar-cursos', {
+            state: { online }
+        })
+    }
 
     function BuscarCursosGratuitos() {
         navigate('/explorar-cursos', {
             state: { cursosGratuitos }
+        })
+    }
+
+    function BuscarCursosPresenciais() {
+        navigate('/explorar-cursos', {
+                state: { presencial }
+            })
+    }
+
+    function BuscarAte100() {
+        navigate('/explorar-cursos', {
+            state: { ate100 }
         })
     }
 
@@ -54,6 +90,12 @@ export default function HeroSection({
                 </p>
             </div>
 
+            {listaUser && (
+                <button className="listaCursos">
+                    Ver minha lista
+                </button>
+            )}
+
             {cardInicio && (
                 <>
                     <div className="Pesquisa-Home">
@@ -65,7 +107,7 @@ export default function HeroSection({
                             placeholder="Qual curso você quer encontrar?"
                             onChange={(e) => setCursosPesquisa(e.target.value)}
                             onKeyDown={(e) => {
-                                if(e.key === "Enter"){
+                                if (e.key === "Enter") {
                                     BuscarNomeCurso()
                                 }
                             }}
@@ -82,6 +124,7 @@ export default function HeroSection({
                             referencia="/explorar-cursos"
                             grupo="fa-solid"
                             icone="fa-laptop"
+                            onClick={BuscarCursosPresenciais}
                             modalidade="Presencial"
                         />
 
@@ -89,6 +132,7 @@ export default function HeroSection({
                             referencia="/explorar-cursos"
                             grupo="fa-solid"
                             icone="fa-wifi"
+                            onClick={BuscarCursosOnline}
                             modalidade="Online"
                         />
 
@@ -104,6 +148,7 @@ export default function HeroSection({
                             referencia="/explorar-cursos"
                             grupo="fa-solid"
                             icone="fa-money-bill"
+                            onClick={BuscarAte100}
                             modalidade="Até R$ 100"
                         />
 
@@ -111,6 +156,7 @@ export default function HeroSection({
                             referencia="/explorar-cursos"
                             grupo="fa-solid"
                             icone="fa-seedling"
+                            onClick={BuscarCursoIniciante}
                             modalidade="Nível Iniciante"
                         />
 
@@ -118,6 +164,7 @@ export default function HeroSection({
                             referencia="/explorar-cursos"
                             grupo="fa-solid"
                             icone="fa-clock"
+                            onClick={BuscarPoucaDuracao}
                             modalidade="Curta duração"
                         />
                     </section>
