@@ -85,7 +85,7 @@ export default function CardOferta({
             const dados = await resposta.json();
 
             if (!resposta.ok) {
-                alert(dados.erro);
+                alert("Você precisa estar logado para adicionar uma oferta.");
                 return;
             }
 
