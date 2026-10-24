@@ -15,6 +15,7 @@ export default function CardOferta({
     const API_URL = "https://cursinhopertinho-api.onrender.com";
 
     const token = localStorage.getItem("token");
+    const usuario = localStorage.getItem("usuario");
 
     const [cardOferta, setCardOferta] = useState([]);
     const [modal, setModal] = useState(null);
@@ -84,8 +85,13 @@ export default function CardOferta({
 
             const dados = await resposta.json();
 
-            if (!resposta.ok) {
+            if(!usuario){
                 alert("Você precisa estar logado para adicionar uma oferta.");
+                return
+            }
+
+            if (!resposta.ok) {
+                alert(dados.erro);
                 return;
             }
 
