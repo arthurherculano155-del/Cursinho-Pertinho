@@ -184,7 +184,7 @@ export default function HeroSection({
 
                     <div className="janelaLista">
                         <h2 className="tituloLista">
-                            Olá, {usuario ? usuario.primeiro_nome : "Você"}!
+                            Olá, {usuario ? usuario.primeiro_nome : "aluno"}!
                         </h2>
 
                         {usuario ? (
