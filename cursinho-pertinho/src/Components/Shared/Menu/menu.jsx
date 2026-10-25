@@ -638,14 +638,9 @@ export default function Menu() {
                 <div className="fundo">
                     <section
                         className="personalizar"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby="titulo-personalizar"
                     >
                         <button
                             className="fechar"
-                            type="button"
-                            aria-label="Fechar personalização"
                             disabled={enviandoFoto}
                             onClick={fecharPersonalizacao}
                         >
@@ -673,6 +668,8 @@ export default function Menu() {
                                         usuarioLogado.primeiro_nome ||
                                         "Seu perfil"}
                                 </h3>
+
+                                <p>{usuarioLogado.nome}</p>
 
                                 <p>{usuarioLogado.email}</p>
                             </div>
