@@ -13,9 +13,6 @@ export default function Menu() {
     const [foto, setFoto] = useState(null);
     const [enviandoFoto, setEnviandoFoto] = useState(false);
 
-    const [modalSenha, setModalSenha] = useState(false);
-    const [emailRecuperation, setEmailRecuperation] = useState("");
-
     const [menuMobile, setMenuMobile] = useState(false);
     const [menu, setMenu] = useState(true);
 
@@ -26,7 +23,7 @@ export default function Menu() {
     const [usuarioLogado, setUsuarioLogado] = useState(null);
 
     async function cadastrarUsuario(e) {
-        e?.preventDefault();
+        e.preventDefault();
 
         try {
             const resposta = await fetch(`${API_URL}/usuario/cadastrar`, {
@@ -61,34 +58,8 @@ export default function Menu() {
         }
     }
 
-    async function EnviarCodigo() {
-        try {
-            const resposta = await fetch(`${API_URL}/usuario/enviar-codigo`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email: emailRecuperation
-                })
-            });
-
-            const dados = await resposta.json();
-
-            if (!resposta.ok) {
-                alert(dados.erro);
-                return;
-            }
-
-            alert(dados.resultado);
-        } catch (erro) {
-            alert("Não foi possível enviar o código. Tente novamente.");
-            console.error(erro);
-        }
-    }
-
     async function LogarUsuario(e) {
-        e?.preventDefault();
+        e.preventDefault();
 
         try {
             const resposta = await fetch(`${API_URL}/usuario/entrar`, {
@@ -129,14 +100,12 @@ export default function Menu() {
     function sairUsuario() {
         localStorage.removeItem("usuario");
         localStorage.removeItem("token");
-
         setUsuarioLogado(null);
-
         window.location.reload();
     }
 
     function abrirPersonalizacao() {
-        setPrimeiroNome(usuarioLogado?.primeiro_nome || "");
+        setPrimeiroNome(usuarioLogado.primeiro_nome || "");
         setFoto(null);
         setPersonalizacaoModal(true);
     }
@@ -154,11 +123,9 @@ export default function Menu() {
         if (!usuarioLogado || enviandoFoto) return;
 
         const nomeAtualizado = primeiroNome.trim();
-        const nomeMudou =
-            nomeAtualizado !== (usuarioLogado.primeiro_nome || "");
-        const fotoSelecionada = Boolean(foto);
+        const nomeMudou = nomeAtualizado !== (usuarioLogado.primeiro_nome || "");
 
-        if (!nomeMudou && !fotoSelecionada) {
+        if (!nomeMudou && !foto) {
             setPersonalizacaoModal(false);
             return;
         }
@@ -167,20 +134,17 @@ export default function Menu() {
 
         try {
             let imagemUrl = usuarioLogado.imagem_url || "";
+            const token = localStorage.getItem("token");
 
-            if (fotoSelecionada) {
-                const token = localStorage.getItem("token");
-
+            if (foto) {
                 if (!token) {
-                    throw new Error(
-                        "Sua sessão expirou. Entre novamente na sua conta."
-                    );
+                    throw new Error("Sua sessão expirou. Entre novamente na sua conta.");
                 }
 
                 const formData = new FormData();
                 formData.append("foto", foto);
 
-                const respostaFoto = await fetch(`${API_URL}/usuario/foto`, {
+                const resposta = await fetch(`${API_URL}/usuario/foto`, {
                     method: "PUT",
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -188,63 +152,44 @@ export default function Menu() {
                     body: formData
                 });
 
-                const dadosFoto = await respostaFoto.json();
+                const dados = await resposta.json();
 
-                if (!respostaFoto.ok) {
-                    throw new Error(
-                        dadosFoto.erro ||
-                        "Não foi possível atualizar a foto."
-                    );
+                if (!resposta.ok) {
+                    throw new Error(dados.erro || "Não foi possível atualizar a foto.");
                 }
 
-                imagemUrl = dadosFoto.imagem_url;
+                imagemUrl = dados.imagem_url;
             }
 
             if (nomeMudou) {
-                const token = localStorage.getItem("token");
+                const resposta = await fetch(`${API_URL}/usuario/personalizar`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        email: usuarioLogado.email,
+                        primeiro_nome: nomeAtualizado,
+                        imagem_url: imagemUrl
+                    })
+                });
 
-                const respostaNome = await fetch(
-                    `${API_URL}/usuario/personalizar`,
-                    {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type": "application/json",
-                            ...(token
-                                ? { Authorization: `Bearer ${token}` }
-                                : {})
-                        },
-                        body: JSON.stringify({
-                            email: usuarioLogado.email,
-                            primeiro_nome: nomeAtualizado,
-                            imagem_url: imagemUrl
-                        })
-                    }
-                );
+                const dados = await resposta.json();
 
-                const dadosNome = await respostaNome.json();
-
-                if (!respostaNome.ok) {
-                    throw new Error(
-                        dadosNome.erro ||
-                        "Não foi possível atualizar o nome."
-                    );
+                if (!resposta.ok) {
+                    throw new Error(dados.erro || "Não foi possível atualizar o nome.");
                 }
             }
 
             const usuarioAtualizado = {
                 ...usuarioLogado,
-                primeiro_nome: nomeMudou
-                    ? nomeAtualizado
-                    : usuarioLogado.primeiro_nome,
+                primeiro_nome: nomeMudou ? nomeAtualizado : usuarioLogado.primeiro_nome,
                 imagem_url: imagemUrl
             };
 
             setUsuarioLogado(usuarioAtualizado);
-
-            localStorage.setItem(
-                "usuario",
-                JSON.stringify(usuarioAtualizado)
-            );
+            localStorage.setItem("usuario", JSON.stringify(usuarioAtualizado));
 
             setFoto(null);
             setPersonalizacaoModal(false);
@@ -259,20 +204,14 @@ export default function Menu() {
     }
 
     function selecionarFoto(e) {
-        const arquivo = e.target.files?.[0] || null;
+        const arquivo = e.target.files[0];
 
         if (!arquivo) {
             setFoto(null);
             return;
         }
 
-        const formatosPermitidos = [
-            "image/jpeg",
-            "image/png",
-            "image/webp"
-        ];
-
-        if (!formatosPermitidos.includes(arquivo.type)) {
+        if (!["image/jpeg", "image/png", "image/webp"].includes(arquivo.type)) {
             alert("Escolha uma imagem JPEG, PNG ou WebP.");
             e.target.value = "";
             setFoto(null);
@@ -296,7 +235,7 @@ export default function Menu() {
             try {
                 setUsuarioLogado(JSON.parse(usuario));
             } catch (erro) {
-                console.error("Não foi possível carregar o usuário:", erro);
+                console.error(erro);
                 localStorage.removeItem("usuario");
             }
         }
@@ -305,53 +244,31 @@ export default function Menu() {
     useEffect(() => {
         const media = window.matchMedia("(max-width: 800px)");
 
-        function verificarTela(evento) {
-            const mobile = evento.matches;
-
-            setMenuMobile(mobile);
-            setMenu(!mobile);
+        function verificarTela() {
+            setMenuMobile(media.matches);
+            setMenu(!media.matches);
         }
 
-        verificarTela(media);
+        verificarTela();
         media.addEventListener("change", verificarTela);
 
-        return () => {
-            media.removeEventListener("change", verificarTela);
-        };
+        return () => media.removeEventListener("change", verificarTela);
     }, []);
 
     useEffect(() => {
-        const modalAberto =
-            signUp ||
-            login ||
-            personalizacaoModal ||
-            modalSenha;
-
-        if (!modalAberto) return;
-
         function fecharComEscape(e) {
-            if (e.key !== "Escape") return;
-            if (enviandoFoto) return;
-
-            setSignUp(false);
-            setLogin(false);
-            setPersonalizacaoModal(false);
-            setModalSenha(false);
-            setFoto(null);
+            if (e.key === "Escape" && !enviandoFoto) {
+                setSignUp(false);
+                setLogin(false);
+                setPersonalizacaoModal(false);
+                setFoto(null);
+            }
         }
 
         window.addEventListener("keydown", fecharComEscape);
 
-        return () => {
-            window.removeEventListener("keydown", fecharComEscape);
-        };
-    }, [
-        signUp,
-        login,
-        personalizacaoModal,
-        modalSenha,
-        enviandoFoto
-    ]);
+        return () => window.removeEventListener("keydown", fecharComEscape);
+    }, [enviandoFoto]);
 
     return (
         <>
@@ -375,13 +292,7 @@ export default function Menu() {
                         aria-expanded={menu}
                         onClick={() => setMenu(!menu)}
                     >
-                        <i
-                            className={
-                                menu
-                                    ? "fa-solid fa-xmark"
-                                    : "fa-solid fa-bars"
-                            }
-                        />
+                        <i className={menu ? "fa-solid fa-xmark" : "fa-solid fa-bars"} />
                     </button>
                 )}
             </header>
@@ -390,58 +301,29 @@ export default function Menu() {
                 <>
                     <ul className="links">
                         <li className="link">
-                            <NavLink
-                                to="/"
-                                end
-                                onClick={() => {
-                                    if (menuMobile) setMenu(false);
-                                }}
-                                className={({ isActive }) =>
-                                    isActive ? "Ativo" : ""
-                                }
-                            >
+                            <NavLink to="/" end onClick={() => menuMobile && setMenu(false)}
+                                className={({ isActive }) => isActive ? "Ativo" : ""}>
                                 Início
                             </NavLink>
                         </li>
 
                         <li className="link">
-                            <NavLink
-                                to="/explorar-cursos"
-                                onClick={() => {
-                                    if (menuMobile) setMenu(false);
-                                }}
-                                className={({ isActive }) =>
-                                    isActive ? "Ativo" : ""
-                                }
-                            >
+                            <NavLink to="/explorar-cursos" onClick={() => menuMobile && setMenu(false)}
+                                className={({ isActive }) => isActive ? "Ativo" : ""}>
                                 Explorar Cursos
                             </NavLink>
                         </li>
 
                         <li className="link">
-                            <NavLink
-                                to="/possibilidades"
-                                onClick={() => {
-                                    if (menuMobile) setMenu(false);
-                                }}
-                                className={({ isActive }) =>
-                                    isActive ? "Ativo" : ""
-                                }
-                            >
+                            <NavLink to="/possibilidades" onClick={() => menuMobile && setMenu(false)}
+                                className={({ isActive }) => isActive ? "Ativo" : ""}>
                                 Possibilidades
                             </NavLink>
                         </li>
 
                         <li className="link">
-                            <NavLink
-                                to="/sobre"
-                                onClick={() => {
-                                    if (menuMobile) setMenu(false);
-                                }}
-                                className={({ isActive }) =>
-                                    isActive ? "Ativo" : ""
-                                }
-                            >
+                            <NavLink to="/sobre" onClick={() => menuMobile && setMenu(false)}
+                                className={({ isActive }) => isActive ? "Ativo" : ""}>
                                 Sobre Nós
                             </NavLink>
                         </li>
@@ -464,44 +346,25 @@ export default function Menu() {
                                 onClick={abrirPersonalizacao}
                             >
                                 <img
-                                    src={
-                                        usuarioLogado.imagem_url ||
-                                        "/Assets/Imgs/usuario-padrao.webp"
-                                    }
+                                    src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
                                     alt=""
                                     className="avatar"
                                 />
                             </button>
 
-                            <p>
-                                {usuarioLogado.primeiro_nome ||
-                                    "Minha conta"}
-                            </p>
+                            <p>{usuarioLogado.primeiro_nome || "Minha conta"}</p>
 
-                            <button
-                                type="button"
-                                className="sair"
-                                aria-label="Sair da conta"
-                                onClick={sairUsuario}
-                            >
+                            <button type="button" className="sair" aria-label="Sair da conta" onClick={sairUsuario}>
                                 <i className="fa-solid fa-arrow-right-from-bracket" />
                             </button>
                         </section>
                     ) : (
                         <div className="bnts">
-                            <button
-                                type="button"
-                                className="login"
-                                onClick={() => setLogin(true)}
-                            >
+                            <button type="button" className="login" onClick={() => setLogin(true)}>
                                 Entrar
                             </button>
 
-                            <button
-                                type="button"
-                                className="sign-up"
-                                onClick={() => setSignUp(true)}
-                            >
+                            <button type="button" className="sign-up" onClick={() => setSignUp(true)}>
                                 Cadastrar-se
                             </button>
                         </div>
@@ -511,18 +374,8 @@ export default function Menu() {
 
             {signUp && (
                 <div className="fundo">
-                    <section
-                        className="cadastro"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby="titulo-cadastro"
-                    >
-                        <button
-                            className="fechar"
-                            type="button"
-                            aria-label="Fechar cadastro"
-                            onClick={() => setSignUp(false)}
-                        >
+                    <section className="cadastro" role="dialog" aria-modal="true" aria-labelledby="titulo-cadastro">
+                        <button className="fechar" type="button" aria-label="Fechar cadastro" onClick={() => setSignUp(false)}>
                             <i className="fa-solid fa-xmark" />
                         </button>
 
@@ -535,14 +388,7 @@ export default function Menu() {
                                 autoComplete="name"
                                 placeholder="Insira seu nome"
                                 value={nome}
-                                onChange={(e) =>
-                                    setNome(
-                                        e.target.value.replace(
-                                            /(^|\s)\p{L}/gu,
-                                            letra => letra.toUpperCase()
-                                        )
-                                    )
-                                }
+                                onChange={(e) => setNome(e.target.value.replace(/(^|\s)\p{L}/gu, letra => letra.toUpperCase()))}
                             />
 
                             <input
@@ -563,9 +409,7 @@ export default function Menu() {
                                 onChange={(e) => setSenha(e.target.value)}
                             />
 
-                            <button type="submit">
-                                Cadastrar-se
-                            </button>
+                            <button type="submit">Cadastrar-se</button>
                         </form>
                     </section>
                 </div>
@@ -574,27 +418,14 @@ export default function Menu() {
             {login && (
                 <section className="logar">
                     <div className="fundo">
-                        <div
-                            className="login-container"
-                            role="dialog"
-                            aria-modal="true"
-                            aria-labelledby="titulo-login"
-                        >
-                            <button
-                                className="fechar"
-                                type="button"
-                                aria-label="Fechar login"
-                                onClick={() => setLogin(false)}
-                            >
+                        <div className="login-container" role="dialog" aria-modal="true" aria-labelledby="titulo-login">
+                            <button className="fechar" type="button" aria-label="Fechar login" onClick={() => setLogin(false)}>
                                 <i className="fa-solid fa-xmark" />
                             </button>
 
                             <h1 id="titulo-login">Entrar</h1>
 
-                            <form
-                                className="informacoes"
-                                onSubmit={LogarUsuario}
-                            >
+                            <form className="informacoes" onSubmit={LogarUsuario}>
                                 <input
                                     type="email"
                                     required
@@ -613,21 +444,7 @@ export default function Menu() {
                                     onChange={(e) => setSenha(e.target.value)}
                                 />
 
-                                <button
-                                    type="button"
-                                    className="esqueci-senha"
-                                    onClick={() => {
-                                        setEmailRecuperation(email);
-                                        setModalSenha(true);
-                                        setLogin(false);
-                                    }}
-                                >
-                                    Esqueci minha senha
-                                </button>
-
-                                <button type="submit" className="log">
-                                    Entrar
-                                </button>
+                                <button type="submit" className="log">Entrar</button>
                             </form>
                         </div>
                     </div>
@@ -636,14 +453,8 @@ export default function Menu() {
 
             {personalizacaoModal && usuarioLogado && (
                 <div className="fundo">
-                    <section
-                        className="personalizar"
-                    >
-                        <button
-                            className="fechar"
-                            disabled={enviandoFoto}
-                            onClick={fecharPersonalizacao}
-                        >
+                    <section className="personalizar">
+                        <button className="fechar" type="button" disabled={enviandoFoto} onClick={fecharPersonalizacao}>
                             <i className="fa-solid fa-xmark" />
                         </button>
 
@@ -652,34 +463,18 @@ export default function Menu() {
                         <div className="informacoes">
                             <div className="userInformation">
                                 <img
-                                    src={
-                                        foto
-                                            ? URL.createObjectURL(foto)
-                                            : usuarioLogado.imagem_url ||
-                                              "/Assets/Imgs/usuario-padrao.webp"
-                                    }
-                                    alt={`Foto de ${
-                                        usuarioLogado.primeiro_nome || "usuário"
-                                    }`}
+                                    src={foto ? URL.createObjectURL(foto) : usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
+                                    alt={`Foto de ${usuarioLogado.primeiro_nome || "usuário"}`}
                                 />
 
-                                <h3>
-                                    {primeiroNome.trim() ||
-                                        usuarioLogado.primeiro_nome ||
-                                        "Seu perfil"}
-                                </h3>
-
+                                <h3>{primeiroNome.trim() || usuarioLogado.primeiro_nome || "Seu perfil"}</h3>
                                 <p>{usuarioLogado.nome}</p>
-
                                 <p>{usuarioLogado.email}</p>
                             </div>
 
                             <div className="atualizar-informacoes">
                                 <form onSubmit={atualizarUsuario}>
-
-                                    <label>
-                                            Como deseja ser chamado?
-                                    </label>
+                                    <label htmlFor="primeiro-nome">Como deseja ser chamado?</label>
 
                                     <input
                                         id="primeiro-nome"
@@ -687,20 +482,11 @@ export default function Menu() {
                                         autoComplete="given-name"
                                         value={primeiroNome}
                                         placeholder="Como deseja ser chamado?"
-                                        onChange={(e) =>
-                                            setPrimeiroNome(
-                                                e.target.value.replace(
-                                                    /(^|\s)\p{L}/gu,
-                                                    letra => letra.toUpperCase()
-                                                )
-                                            )
-                                        }
+                                        onChange={(e) => setPrimeiroNome(e.target.value.replace(/(^|\s)\p{L}/gu, letra => letra.toUpperCase()))}
                                     />
 
                                     <div className="campo-foto">
-                                        <label htmlFor="foto-perfil">
-                                            Foto de perfil
-                                        </label>
+                                        <label htmlFor="foto-perfil">Foto de perfil</label>
 
                                         <input
                                             type="file"
@@ -718,15 +504,7 @@ export default function Menu() {
                                                     aria-label="Remover foto selecionada"
                                                     onClick={() => {
                                                         setFoto(null);
-
-                                                        const campo =
-                                                            document.getElementById(
-                                                                "foto-perfil"
-                                                            );
-
-                                                        if (campo) {
-                                                            campo.value = "";
-                                                        }
+                                                        document.getElementById("foto-perfil").value = "";
                                                     }}
                                                 >
                                                     <i className="fa-solid fa-xmark" />
@@ -735,63 +513,14 @@ export default function Menu() {
                                         )}
                                     </div>
 
-                                    <button
-                                        type="submit"
-                                        disabled={enviandoFoto}
-                                    >
-                                        {enviandoFoto
-                                            ? "Salvando..."
-                                            : "Salvar alterações"}
+                                    <button type="submit" disabled={enviandoFoto}>
+                                        {enviandoFoto ? "Salvando..." : "Salvar alterações"}
                                     </button>
                                 </form>
                             </div>
                         </div>
                     </section>
                 </div>
-            )}
-
-            {modalSenha && (
-                <section className="fundo">
-                    <div
-                        className="modal-de-senha"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby="titulo-recuperacao"
-                    >
-                        <button
-                            className="fechar"
-                            type="button"
-                            aria-label="Fechar recuperação de senha"
-                            onClick={() => setModalSenha(false)}
-                        >
-                            <i className="fa-solid fa-xmark" />
-                        </button>
-
-                        <h1 id="titulo-recuperacao">Recuperar senha</h1>
-
-                        <form
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                EnviarCodigo();
-                            }}
-                        >
-                            <input
-                                type="email"
-                                required
-                                autoComplete="email"
-                                placeholder="Insira seu e-mail"
-                                value={emailRecuperation}
-                                onChange={(e) =>
-                                    setEmailRecuperation(e.target.value)
-                                }
-                            />
-
-                            <button type="submit">
-                                Enviar código
-                            </button>
-                        </form>
-                    </div>
-                </section>
             )}
         </>
     );
