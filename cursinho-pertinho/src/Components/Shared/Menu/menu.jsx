@@ -110,7 +110,7 @@ export default function Menu() {
 
         setTimeout(() => {
             window.location.reload();
-        }, 2000);
+        });
 
         setLogin(false);
     }
@@ -124,7 +124,7 @@ export default function Menu() {
 
         setTimeout(() => {
             window.location.reload();
-        }, 2000);
+        });
     }
 
     async function atualizarUsuario(e) {
