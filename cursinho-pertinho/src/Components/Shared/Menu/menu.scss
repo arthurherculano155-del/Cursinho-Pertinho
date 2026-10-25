@@ -1,3 +1,18 @@
+$azul: #2563eb;
+$azul-escuro: #1d4ed8;
+$azul-claro: #eff6ff;
+$texto: #182230;
+$texto-secundario: #667085;
+$borda: #e5e7eb;
+$fundo: #f5f7fa;
+$branco: #ffffff;
+$sombra: 0 12px 32px rgba(16, 24, 40, 0.10);
+$transicao: 0.2s ease;
+
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,13 +20,9 @@
     font-family: sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    background: #f5f7fa;
-    color: #182230;
+    background: $fundo;
+    color: $texto;
 }
 
 button,
@@ -36,7 +47,7 @@ button {
     z-index: 100;
     background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid $borda;
     box-shadow: 0 4px 16px rgba(16, 24, 40, 0.04);
 
     .Start {
@@ -52,13 +63,13 @@ button {
         }
 
         h2 {
-            color: #182230;
+            color: $texto;
             font-size: 20px;
             font-weight: 800;
             white-space: nowrap;
 
             span {
-                color: #2563eb;
+                color: $azul;
             }
         }
     }
@@ -69,21 +80,21 @@ button {
         display: none;
         align-items: center;
         justify-content: center;
-        border: none;
         border-radius: 10px;
-        background: transparent;
-        transition: 0.2s ease;
+        transition: $transicao;
+        cursor: pointer;
 
         i {
-            color: #182230;
+            color: $texto;
             font-size: 23px;
+            transition: $transicao;
         }
 
         &:hover {
-            background: #eff6ff;
+            background: $azul-claro;
 
             i {
-                color: #2563eb;
+                color: $azul;
             }
         }
     }
@@ -104,7 +115,7 @@ button {
 
     .link {
         border-radius: 9px;
-        transition: 0.2s ease;
+        transition: $transicao;
 
         a {
             display: block;
@@ -115,11 +126,11 @@ button {
             font-weight: 650;
             text-decoration: none;
             white-space: nowrap;
-            transition: 0.2s ease;
+            transition: $transicao;
 
             &.Ativo {
-                color: #1d4ed8;
-                background: rgba(169, 193, 224, 0.5);
+                color: $azul-escuro;
+                background: $azul-claro;
             }
         }
 
@@ -127,8 +138,8 @@ button {
             transform: translateY(-1px);
 
             a {
-                color: #1d4ed8;
-                background: rgba(169, 193, 224, 0.5);
+                color: $azul-escuro;
+                background: $azul-claro;
             }
         }
 
@@ -151,10 +162,10 @@ button {
         display: flex;
         align-items: center;
         gap: 7px;
-        color: #667085;
+        color: $texto-secundario;
 
         i {
-            color: #2563eb;
+            color: $azul;
             font-size: 15px;
         }
 
@@ -178,17 +189,17 @@ button {
 
     button {
         padding: 11px 17px;
-        border: 1px solid #2563eb;
+        border: 1px solid $azul;
         border-radius: 9px;
-        background: #2563eb;
-        color: #ffffff;
+        background: $azul;
+        color: $branco;
         font-size: 13px;
         font-weight: 700;
-        transition: 0.2s ease;
+        transition: $transicao;
 
         &:hover {
-            background: #1d4ed8;
-            border-color: #1d4ed8;
+            background: $azul-escuro;
+            border-color: $azul-escuro;
             transform: translateY(-1px);
             box-shadow: 0 5px 12px rgba(37, 99, 235, 0.18);
         }
@@ -199,12 +210,12 @@ button {
     }
 
     .login {
-        background: #ffffff;
-        color: #2563eb;
+        background: $branco;
+        color: $azul;
 
         &:hover {
-            background: #eff6ff;
-            color: #1d4ed8;
+            background: $azul-claro;
+            color: $azul-escuro;
         }
     }
 }
@@ -219,21 +230,47 @@ button {
     right: 30px;
     z-index: 101;
 
-    .avatar {
-        width: 44px;
-        height: 44px;
+    .avatar-button {
+        width: 48px;
+        height: 48px;
+        padding: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex-shrink: 0;
-        border: 2px solid #dbeafe;
+        border: none;
         border-radius: 50%;
-        background: #f8fafc;
-        object-fit: cover;
-        box-shadow: 0 0 0 3px #ffffff, 0 0 0 4px #e5e7eb;
+        background: transparent;
+        box-shadow: none;
+        outline: none;
         cursor: pointer;
-        transition: 0.2s ease;
+        overflow: hidden;
 
-        &:hover {
-            border-color: #93c5fd;
-            transform: translateY(-1px);
+        .avatar {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #111827;
+            border-radius: 50%;
+            box-sizing: border-box;
+            background: #f8fafc;
+            object-fit: cover;
+            box-shadow: 0 0 0 1px #ffffff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        &:hover .avatar {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px #dbeafe;
+        }
+
+        &:focus-visible {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        &:active .avatar {
+            transform: scale(0.96);
         }
     }
 
@@ -254,12 +291,12 @@ button {
         align-items: center;
         justify-content: center;
         margin-left: 5px;
-        border: 1px solid #e5e7eb;
+        border: 1px solid $borda;
         border-radius: 10px;
-        background: #ffffff;
-        color: #667085;
+        background: $branco;
+        color: $texto-secundario;
         position: relative;
-        transition: 0.2s ease;
+        transition: $transicao;
 
         &::before {
             content: "";
@@ -267,12 +304,12 @@ button {
             height: 24px;
             position: absolute;
             left: -10px;
-            background: #e5e7eb;
+            background: $borda;
         }
 
         i {
             font-size: 15px;
-            transition: 0.2s ease;
+            transition: $transicao;
         }
 
         &:hover {
@@ -303,7 +340,7 @@ button {
     overflow-y: auto;
     background: rgba(15, 23, 42, 0.58);
     backdrop-filter: blur(6px);
-    z-index: 20000;
+    z-index: 1000;
     animation: aparecerFundo 0.2s ease;
 
     .cadastro,
@@ -312,11 +349,22 @@ button {
     .login-container {
         width: 100%;
         position: relative;
-        background: #ffffff;
+        background: $branco;
         border: 1px solid #eaecf0;
         box-shadow: 0 24px 48px rgba(16, 24, 40, 0.18);
         animation: abrirModal 0.25s ease-out;
+    }
 
+    .cadastro {
+        max-width: 420px;
+        padding: 36px;
+        border-radius: 18px;
+    }
+
+    .cadastro,
+    .personalizar,
+    .modal-de-senha,
+    .login-container {
         .fechar {
             width: 36px;
             height: 36px;
@@ -329,20 +377,20 @@ button {
             border: none;
             border-radius: 50%;
             background: #f2f4f7;
-            color: #667085;
+            color: $texto-secundario;
             font-size: 17px;
-            transition: 0.2s ease;
+            transition: $transicao;
 
             &:hover {
                 background: #e4e7ec;
-                color: #182230;
+                color: $texto;
                 transform: rotate(90deg);
             }
         }
 
         h1 {
             margin-bottom: 28px;
-            color: #182230;
+            color: $texto;
             text-align: center;
             font-size: 27px;
             font-weight: 800;
@@ -354,16 +402,9 @@ button {
                 display: block;
                 margin: 10px auto 0;
                 border-radius: 20px;
-                background: #2563eb;
+                background: $azul;
             }
         }
-    }
-
-    .cadastro,
-    .login-container {
-        max-width: 420px;
-        padding: 36px;
-        border-radius: 18px;
     }
 
     .inputs,
@@ -379,10 +420,10 @@ button {
             border: 1px solid #d0d5dd;
             border-radius: 9px;
             outline: none;
-            background: #ffffff;
-            color: #182230;
+            background: $branco;
+            color: $texto;
             font-size: 14px;
-            transition: 0.2s ease;
+            transition: $transicao;
 
             &::placeholder {
                 color: #98a2b3;
@@ -393,7 +434,7 @@ button {
             }
 
             &:focus {
-                border-color: #2563eb;
+                border-color: $azul;
                 box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
             }
         }
@@ -401,17 +442,17 @@ button {
         button:not(.esqueci-senha) {
             width: 100%;
             padding: 14px;
-            border: 1px solid #2563eb;
+            border: 1px solid $azul;
             border-radius: 9px;
-            background: #2563eb;
-            color: #ffffff;
+            background: $azul;
+            color: $branco;
             font-size: 14px;
             font-weight: 750;
-            transition: 0.2s ease;
+            transition: $transicao;
 
             &:hover {
-                background: #1d4ed8;
-                border-color: #1d4ed8;
+                background: $azul-escuro;
+                border-color: $azul-escuro;
                 transform: translateY(-1px);
                 box-shadow: 0 6px 14px rgba(37, 99, 235, 0.2);
             }
@@ -439,7 +480,7 @@ button {
                 flex-direction: column;
                 align-items: center;
                 padding: 25px 20px;
-                border: 1px solid #e5e7eb;
+                border: 1px solid $borda;
                 border-radius: 16px;
                 background: #f8fafc;
                 text-align: center;
@@ -448,18 +489,17 @@ button {
                     width: 105px;
                     height: 105px;
                     margin-bottom: 17px;
-                    border: 4px solid #ffffff;
+                    border: 4px solid $branco;
                     border-radius: 50%;
-                    background: #eff6ff;
+                    background: $azul-claro;
                     object-fit: cover;
-                    box-shadow: 0 0 0 2px #dbeafe,
-                        0 6px 18px rgba(16, 24, 40, 0.1);
+                    box-shadow: 0 0 0 2px #dbeafe, 0 6px 18px rgba(16, 24, 40, 0.1);
                 }
 
                 h3 {
                     width: 100%;
                     margin-bottom: 6px;
-                    color: #182230;
+                    color: $texto;
                     font-size: 20px;
                     font-weight: 750;
                     overflow: hidden;
@@ -470,7 +510,7 @@ button {
                 p {
                     width: 100%;
                     margin-top: 5px;
-                    color: #667085;
+                    color: $texto-secundario;
                     font-size: 12px;
                     overflow-wrap: anywhere;
 
@@ -500,32 +540,32 @@ button {
                         border: 1px solid #d0d5dd;
                         border-radius: 9px;
                         outline: none;
-                        background: #ffffff;
-                        color: #182230;
+                        background: $branco;
+                        color: $texto;
                         font-size: 14px;
-                        transition: 0.2s ease;
+                        transition: $transicao;
 
                         &::placeholder {
                             color: #98a2b3;
                         }
 
                         &:focus {
-                            border-color: #2563eb;
+                            border-color: $azul;
                             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
                         }
                     }
 
                     input[type="submit"] {
                         margin-top: 5px;
-                        border-color: #2563eb;
-                        background: #2563eb;
-                        color: #ffffff;
+                        border-color: $azul;
+                        background: $azul;
+                        color: $branco;
                         font-weight: 750;
                         cursor: pointer;
 
                         &:hover {
-                            border-color: #1d4ed8;
-                            background: #1d4ed8;
+                            border-color: $azul-escuro;
+                            background: $azul-escuro;
                             transform: translateY(-1px);
                         }
                     }
@@ -543,20 +583,24 @@ button {
         z-index: 1000;
 
         .login-container {
+            max-width: 420px;
+            padding: 36px;
+            border-radius: 18px;
+
             .informacoes {
                 .esqueci-senha {
                     align-self: flex-end;
                     padding: 0;
                     border: none;
                     background: transparent;
-                    color: #2563eb;
+                    color: $azul;
                     font-size: 13px;
                     font-weight: 650;
                     text-align: right;
-                    transition: 0.2s ease;
+                    transition: $transicao;
 
                     &:hover {
-                        color: #1d4ed8;
+                        color: $azul-escuro;
                         text-decoration: underline;
                     }
                 }
@@ -564,17 +608,17 @@ button {
                 .log {
                     width: 100%;
                     padding: 14px;
-                    border: 1px solid #2563eb;
+                    border: 1px solid $azul;
                     border-radius: 9px;
-                    background: #2563eb;
-                    color: #ffffff;
+                    background: $azul;
+                    color: $branco;
                     font-size: 14px;
                     font-weight: 750;
-                    transition: 0.2s ease;
+                    transition: $transicao;
 
                     &:hover {
-                        border-color: #1d4ed8;
-                        background: #1d4ed8;
+                        border-color: $azul-escuro;
+                        background: $azul-escuro;
                         transform: translateY(-1px);
                         box-shadow: 0 6px 14px rgba(37, 99, 235, 0.2);
                     }
@@ -595,17 +639,17 @@ button {
         border: 1px solid #d0d5dd;
         border-radius: 9px;
         outline: none;
-        background: #ffffff;
-        color: #182230;
+        background: $branco;
+        color: $texto;
         font-size: 14px;
-        transition: 0.2s ease;
+        transition: $transicao;
 
         &::placeholder {
             color: #98a2b3;
         }
 
         &:focus {
-            border-color: #2563eb;
+            border-color: $azul;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
         }
     }
@@ -614,16 +658,16 @@ button {
         width: 100%;
         margin-top: 14px;
         padding: 14px;
-        border: 1px solid #2563eb;
+        border: 1px solid $azul;
         border-radius: 9px;
-        background: #2563eb;
-        color: #ffffff;
+        background: $azul;
+        color: $branco;
         font-weight: 750;
-        transition: 0.2s ease;
+        transition: $transicao;
 
         &:hover {
-            border-color: #1d4ed8;
-            background: #1d4ed8;
+            border-color: $azul-escuro;
+            background: $azul-escuro;
             transform: translateY(-1px);
         }
     }
@@ -729,9 +773,9 @@ button {
         left: auto;
         transform: none;
         overflow-y: auto;
-        background: #ffffff;
-        border-left: 1px solid #e5e7eb;
-        box-shadow: -8px 12px 24px rgba(16, 24, 40, 0.1);
+        background: $branco;
+        border-left: 1px solid $borda;
+        box-shadow: -8px 12px 24px rgba(16, 24, 40, 0.10);
         z-index: 99;
 
         .link {
@@ -759,7 +803,7 @@ button {
         position: fixed;
         right: 0;
         left: auto;
-        background: #ffffff;
+        background: $branco;
         z-index: 100;
     }
 
@@ -786,10 +830,9 @@ button {
         top: 340px;
         gap: 10px;
 
-        .avatar {
-            width: 40px;
-            height: 40px;
-            box-shadow: none;
+        .avatar-button {
+            width: 44px;
+            height: 44px;
         }
 
         p {
@@ -907,9 +950,9 @@ button {
     .user {
         top: 315px;
 
-        .avatar {
-            width: 36px;
-            height: 36px;
+        .avatar-button {
+            width: 40px;
+            height: 40px;
         }
 
         p {
@@ -924,6 +967,11 @@ button {
 
     .fundo {
         padding: 12px;
+
+        .cadastro {
+            padding: 32px 20px;
+            border-radius: 15px;
+        }
 
         .cadastro,
         .personalizar,
