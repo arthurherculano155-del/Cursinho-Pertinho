@@ -114,32 +114,41 @@ export default function Home() {
 
                 <div className="transporte-lista">
                     <div className="transporte-item">
+                        
                         <div className="transporte-icone">
                             <i className="fa-solid fa-bus-simple"></i>
                         </div>
+
                         <div className="transporte-info">
-                            <strong>Ônibus</strong>
+                            <p>Ônibus</p>
                         </div>
+
                         <i className="fa-solid fa-chevron-right transporte-seta"></i>
                     </div>
 
                     <div className="transporte-item">
+
                         <div className="transporte-icone">
                             <i className="fa-solid fa-train-subway"></i>
                         </div>
+
                         <div className="transporte-info">
-                            <strong>Metrô</strong>
+                            <p>Metrô</p>
                         </div>
+                        
                         <i className="fa-solid fa-chevron-right transporte-seta"></i>
                     </div>
 
                     <div className="transporte-item">
+
                         <div className="transporte-icone">
                             <i className="fa-solid fa-person-walking"></i>
                         </div>
+
                         <div className="transporte-info">
-                            <strong>A pé</strong>
+                            <p>A pé</p>
                         </div>
+
                         <i className="fa-solid fa-chevron-right transporte-seta"></i>
                     </div>
                 </div>
