@@ -68,8 +68,7 @@ export default function CardOferta({
         maximo,
         carga,
         cursoGratuito,
-        token,
-        cardOferta
+        token
     ]);
 
     async function InserirOferta(id_oferta) {
