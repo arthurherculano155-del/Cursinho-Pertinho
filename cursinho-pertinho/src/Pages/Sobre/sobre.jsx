@@ -23,7 +23,7 @@ export default function Sobre() {
                     <p className='frase'>Somos uma plataforma que ajuda você a descobrir <br /> cursos, oportunidadese caminhos
                         de formação de <br /> acordo com a região, modalidade, nível, instituição <br /> e preço. Tudo em um só lugar, de forma simples <br /> e segura.
                     </p>
-                    <img className='mapa' src="/Assets/imgs/mapa.webp" alt="mapa" />
+                    <img className='mapa' src="/Assets/Imgs/mapa.webp" alt="mapa" />
                 </div>
             </div>
 
@@ -52,6 +52,46 @@ export default function Sobre() {
                 <i class="fa-solid fa-paper-plane" />
                 <h6 className='Nossa-Missão'>Nossa missão</h6>
                 <p className='frase1'>Tornar a busca por formação mais simples, clara e próxima da realidade de cada pessoa.</p>
+
+            </div>
+
+            <div className='valorizamos'>
+                <h6 className='valor'>O que valorizamos</h6>
+
+                <div className='ateo'>
+                    <i class="fa-brands fa-accessible-icon"></i>
+                   <div className='texto'>
+                    <h1 className='acess'>Acessibilidade</h1>
+                    <p className='text1'>Educação de qualidade <br /> para todos</p>
+                    </div>
+                </div>
+
+                <div className='ateo'>
+                    <i class="fa-solid fa-shield"></i>
+                    <div className='texto'>
+                    <h2 className='shield'>Transparência</h2>
+                    <p className='text2'>Informações confiáveis <br /> e atualizados</p>
+                    </div>
+                </div>
+                    
+                    <div className='ateo'>
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <div className='texto'>
+                    <h3 className='edu'>Educação</h3>
+                    <p className='text3'>Mais do que cursos, <br />formamos futuros</p>
+                    </div>
+                    </div>
+
+                    <div className='ateo'>
+                    <i class="fa-solid fa-star" ></i>
+
+                    <div className='texto'>
+                    <h4 className='op'>Oportunidade</h4>
+                    <p className='text4'>Porque todo mundo <br />merece uma chance</p>
+                    </div>
+                </div>
+
+
 
             </div>
 
