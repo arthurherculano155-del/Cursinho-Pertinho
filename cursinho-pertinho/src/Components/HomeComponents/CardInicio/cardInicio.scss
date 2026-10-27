@@ -1,0 +1,103 @@
+
+.Card-Home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+    max-width: 100%;
+
+    .Link-Card-Home {
+        min-height: 38px;
+        padding: 9px 16px;
+        box-sizing: border-box;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 25px;
+        background-color: rgba(255, 255, 255, 0.08);
+        color: rgb(255, 255, 255);
+        font-family: "Montserrat", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.2;
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+
+        i {
+            color: rgb(255, 255, 255);
+            font-size: 13px;
+            transition: color 0.2s ease;
+        }
+
+        &:hover {
+            background-color: rgb(80, 189, 213);
+            border-color: rgb(80, 189, 213);
+            color: rgb(5, 25, 52);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+            i {
+                color: rgb(5, 25, 52);
+            }
+        }
+
+        &:active {
+            transform: scale(0.96);
+            box-shadow: none;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .Card-Home {
+        flex: 0 1 auto;
+
+        .Link-Card-Home {
+            min-height: 36px;
+            padding: 8px 13px;
+            gap: 7px;
+            font-size: 12px;
+
+            i {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .Card-Home {
+        max-width: 100%;
+
+        .Link-Card-Home {
+            min-height: 35px;
+            padding: 8px 11px;
+            gap: 6px;
+            font-size: 11px;
+
+            i {
+                font-size: 11px;
+            }
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .Card-Home {
+        .Link-Card-Home {
+            transition: none;
+
+            i {
+                transition: none;
+            }
+        }
+    }
+}

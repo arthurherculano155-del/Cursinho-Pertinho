@@ -1,37 +1,262 @@
-    .div-mulher{
-    position: relative;
-    display: flex;
-    flex-direction: column;
+.secao-cursos {
+    background: #EAF3FF;
+    padding: 40px 5%;
+
+    .cabecalho-secao-cursos {
+        margin-bottom: 28px;
     }
 
-    .Mulher{
-    width: 100%;
-    height: 500px;
+    .titulo-secao-cursos {
+        margin: 0 0 8px;
+        font-family: "Poppins", sans-serif;
+        font-size: 32px;
+        font-weight: 800;
+        color: #14243B;
+        line-height: 1.3;
+
+        span {
+            color: #2475F5;
+        }
     }
 
-    .oi{
-
-    position: absolute;
-    top: 10vh;
-    right: 50vh;
-    color: white;
+    .descricao-secao-cursos {
+        margin: 0;
+        color: #607087;
+        font-size: 16px;
+        line-height: 1.6;
     }
 
-
-    b{
-        color: #1d3da7;
+    .lista-cursos {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        align-items: stretch;
     }
 
-    .oii{
-    
-    margin-left: 20px;
+    .cartao-curso {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+        background: #FFFFFF;
+        border: 1px solid #DCE7F5;
+        border-radius: 14px;
+        box-shadow: 0 4px 16px rgba(20, 36, 59, 0.08);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 24px rgba(20, 36, 59, 0.13);
+        }
+
+        .detalhes-curso {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+            min-width: 0;
+            padding: 20px;
+        }
+
+        .nome-curso {
+            margin: 0 0 14px;
+            color: #14243B;
+            font-size: 17px;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .nivel-curso {
+            display: inline-block;
+            margin-bottom: 16px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            background: #DCEBFF;
+            color: #1761D1;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .lista-informacoes-curso {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            margin: 0 0 22px;
+            padding: 0;
+            list-style: none;
+
+            .informacao-curso {
+                position: relative;
+                padding-left: 16px;
+                color: #52647B;
+                font-size: 13px;
+                line-height: 1.6;
+                overflow-wrap: anywhere;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 7px;
+                    left: 0;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    background: #2475F5;
+                }
+
+                strong {
+                    color: #263B56;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .botao-ver-curso {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: auto;
+            padding: 12px 16px;
+            border: 2px solid #2475F5;
+            border-radius: 8px;
+            background: #2475F5;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+
+            &:hover {
+                background: #1558CF;
+                border-color: #1558CF;
+            }
+
+            &:active {
+                transform: scale(0.98);
+            }
+
+            &:focus-visible {
+                outline: 3px solid #8CB8FF;
+                outline-offset: 3px;
+            }
+        }
     }
+}
 
+@media (max-width: 1200px) {
+    .secao-cursos {
+        .lista-cursos {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+    }
+}
 
-    input{
-        width: 500px;
-        height: 30px;
-        border-radius: 5px;
-        margin-top: 20px;
-    }  
-    
+@media (max-width: 900px) {
+    .secao-cursos {
+        padding: 35px 4%;
+
+        .titulo-secao-cursos {
+            font-size: 28px;
+        }
+
+        .cartao-curso {
+            .detalhes-curso {
+                padding: 18px;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .secao-cursos {
+        padding: 30px 5%;
+
+        .cabecalho-secao-cursos {
+            margin-bottom: 22px;
+        }
+
+        .titulo-secao-cursos {
+            font-size: 25px;
+        }
+
+        .descricao-secao-cursos {
+            font-size: 14px;
+        }
+
+        .lista-cursos {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 20px;
+        }
+
+        .cartao-curso {
+            .detalhes-curso {
+                padding: 16px;
+            }
+
+            .nome-curso {
+                font-size: 16px;
+            }
+
+            .lista-informacoes-curso {
+                gap: 10px;
+
+                .informacao-curso {
+                    font-size: 13px;
+                }
+            }
+
+            .botao-ver-curso {
+                padding: 12px;
+            }
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .secao-cursos {
+        padding: 24px 4%;
+
+        .titulo-secao-cursos {
+            font-size: 22px;
+        }
+
+        .cartao-curso {
+            .detalhes-curso {
+                padding: 14px;
+            }
+
+            .nome-curso {
+                font-size: 15px;
+            }
+
+            .nivel-curso {
+                font-size: 11px;
+            }
+
+            .botao-ver-curso {
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .secao-cursos {
+        .cartao-curso,
+        .botao-ver-curso {
+            transition: none;
+        }
+
+        .cartao-curso:hover,
+        .botao-ver-curso:active {
+            transform: none;
+        }
+    }
+}

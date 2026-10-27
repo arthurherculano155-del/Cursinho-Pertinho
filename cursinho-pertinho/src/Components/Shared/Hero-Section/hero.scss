@@ -1,0 +1,443 @@
+.Hero-Section {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    min-height: 390px;
+    margin-top: 86px;
+    padding: 40px 5.7% 35px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    background: rgb(5, 25, 52);
+    font-family: "Montserrat", sans-serif;
+
+    > .Imagem-Hero {
+        position: absolute;
+        z-index: -2;
+        inset: 0 0 0 auto;
+        width: 58%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 65% 35%;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.08) 10%,
+            rgba(0, 0, 0, 0.35) 15%,
+            rgba(0, 0, 0, 0.8) 30%,
+            rgb(0, 0, 0) 48%
+        );
+        mask-image: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.08) 8%,
+            rgba(0, 0, 0, 0.35) 19%,
+            rgba(0, 0, 0, 0.8) 34%,
+            rgb(0, 0, 0) 48%
+        );
+    }
+
+    &::before {
+        position: absolute;
+        z-index: -1;
+        inset: -20px;
+        content: "";
+        background: linear-gradient(
+            90deg,
+            rgb(5, 25, 52) 0%,
+            rgb(5, 25, 52) 25%,
+            rgba(5, 25, 52, 0.96) 36%,
+            rgba(5, 25, 52, 0.76) 46%,
+            rgba(5, 25, 52, 0.35) 59%,
+            rgba(5, 25, 52, 0.08) 75%,
+            transparent 100%
+        );
+        filter: blur(18px);
+        pointer-events: none;
+    }
+
+    .Hero-Msg {
+        position: relative;
+        z-index: 1;
+        width: 62%;
+        max-width: 680px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .Titulo {
+            margin: 0;
+            color: rgb(255, 255, 255);
+            font-size: clamp(32px, 3.5vw, 48px);
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -1.2px;
+            text-transform: none;
+
+            span {
+                color: rgb(80, 189, 213);
+            }
+        }
+
+        p {
+            margin: 14px 0 0;
+            color: rgb(239, 244, 252);
+            font-size: clamp(13px, 1.15vw, 16px);
+            line-height: 1.5;
+        }
+    }
+
+    .Pesquisa-Home {
+        position: relative;
+        z-index: 2;
+        width: min(700px, 72%);
+        min-height: 46px;
+        margin-top: 18px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        border: 1px solid rgb(220, 228, 240);
+        border-radius: 11px;
+        background: rgb(255, 255, 255);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus-within {
+            border-color: rgb(55, 93, 255);
+            box-shadow: 0 0 0 3px rgba(55, 93, 255, 0.2);
+        }
+
+        > .fa-magnifying-glass {
+            flex: 0 0 auto;
+            margin-left: 14px;
+            color: rgb(95, 115, 145);
+            font-size: 15px;
+        }
+
+        > input {
+            flex: 1;
+            width: 0;
+            min-width: 0;
+            height: 44px;
+            margin: 0;
+            padding: 0 12px;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: rgb(35, 48, 70);
+            font-family: "Montserrat", sans-serif;
+            font-size: 12px;
+
+            &::placeholder {
+                color: rgb(115, 129, 150);
+            }
+        }
+
+        .buscar {
+            flex: 0 0 auto;
+            min-height: 36px;
+            margin: 4px;
+            padding: 0 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            border: 1px solid rgb(55, 65, 255);
+            border-radius: 9px;
+            background: rgb(37, 99, 235);
+            color: rgb(255, 255, 255);
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+
+            &:hover {
+                background: rgb(30, 65, 210);
+            }
+
+            &:active {
+                transform: scale(0.97);
+            }
+
+            &:focus-visible {
+                outline: 3px solid rgb(80, 189, 213);
+                outline-offset: 2px;
+            }
+        }
+    }
+
+    .Card-Home-Section {
+        position: relative;
+        z-index: 2;
+        width: min(700px, 80%);
+        margin-top: 12px;
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .botoesHero {
+        position: relative;
+        z-index: 2;
+        margin-top: 32px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+
+        button {
+            min-height: 50px;
+            padding: 0 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            border: 1px solid transparent;
+            border-radius: 14px;
+            font-family: "Montserrat", sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition:
+                background-color 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+
+            &:active {
+                transform: scale(0.97);
+            }
+
+            &:focus-visible {
+                outline: 3px solid rgb(80, 189, 213);
+                outline-offset: 3px;
+            }
+        }
+
+        .buscarCursos {
+            background: rgb(37, 99, 235);
+            border-color: rgb(37, 99, 235);
+            color: rgb(255, 255, 255);
+
+            &:hover {
+                background: rgb(30, 65, 210);
+                border-color: rgb(30, 65, 210);
+            }
+        }
+
+        .explorarAreas {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgb(150, 180, 215);
+            color: rgb(255, 255, 255);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.14);
+                border-color: rgb(80, 189, 213);
+            }
+        }
+    }
+
+    @media (min-width: 1400px) {
+        padding-right: 7%;
+        padding-left: 7%;
+
+        .Hero-Msg {
+            width: 58%;
+        }
+
+        .Pesquisa-Home,
+        .Card-Home-Section {
+            width: min(740px, 75%);
+        }
+    }
+
+    @media (max-width: 1000px) {
+        min-height: 390px;
+        padding: 38px 5% 30px;
+
+        > .Imagem-Hero {
+            width: 58%;
+            object-position: 62% center;
+        }
+
+        &::before {
+            background: linear-gradient(
+                90deg,
+                rgb(5, 25, 52) 0%,
+                rgba(5, 25, 52, 0.96) 28%,
+                rgba(5, 25, 52, 0.82) 43%,
+                rgba(5, 25, 52, 0.4) 65%,
+                rgba(5, 25, 52, 0.08) 100%
+            );
+            filter: blur(16px);
+        }
+
+        .Hero-Msg {
+            width: 68%;
+
+            .Titulo {
+                font-size: clamp(30px, 4.2vw, 42px);
+            }
+
+            p {
+                font-size: 13px;
+
+                br {
+                    display: none;
+                }
+            }
+        }
+
+        .Pesquisa-Home {
+            width: 75%;
+        }
+
+        .Card-Home-Section {
+            width: 85%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        min-height: 0;
+        margin-top: 74px;
+        padding: 35px 6% 28px;
+
+        > .Imagem-Hero {
+            width: 100%;
+            height: 100%;
+            object-position: 65% center;
+            -webkit-mask-image: linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0.75) 40%,
+                rgb(0, 0, 0) 75%
+            );
+            mask-image: linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0.75) 40%,
+                rgb(0, 0, 0) 75%
+            );
+        }
+
+        &::before {
+            background: linear-gradient(
+                90deg,
+                rgba(5, 25, 52, 0.96) 0%,
+                rgba(5, 25, 52, 0.82) 48%,
+                rgba(5, 25, 52, 0.4) 100%
+            );
+            filter: blur(14px);
+        }
+
+        .Hero-Msg {
+            width: 100%;
+            max-width: 540px;
+
+            .Titulo {
+                font-size: clamp(30px, 5.5vw, 42px);
+                letter-spacing: -0.7px;
+            }
+
+            p {
+                max-width: 480px;
+                font-size: 14px;
+            }
+        }
+
+        .Pesquisa-Home {
+            width: 100%;
+            max-width: 560px;
+            margin-top: 22px;
+        }
+
+        .Card-Home-Section {
+            width: 100%;
+            max-width: 560px;
+            gap: 8px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        margin-top: 70px;
+        padding: 30px 18px 24px;
+
+        > .Imagem-Hero {
+            object-position: 65% center;
+        }
+
+        &::before {
+            background: linear-gradient(
+                90deg,
+                rgba(5, 25, 52, 0.95) 0%,
+                rgba(5, 25, 52, 0.82) 65%,
+                rgba(5, 25, 52, 0.55) 100%
+            );
+            filter: blur(12px);
+        }
+
+        .Hero-Msg {
+            .Titulo {
+                font-size: clamp(27px, 7vw, 34px);
+                line-height: 1.16;
+            }
+
+            p {
+                margin-top: 12px;
+                font-size: 12px;
+                line-height: 1.6;
+
+                br {
+                    display: none;
+                }
+            }
+        }
+
+        .Pesquisa-Home {
+            min-height: 44px;
+            margin-top: 20px;
+
+            > .fa-magnifying-glass {
+                margin-left: 10px;
+                font-size: 13px;
+            }
+
+            > input {
+                height: 42px;
+                padding: 0 7px;
+                font-size: 10px;
+            }
+
+            .buscar {
+                min-height: 34px;
+                margin: 4px;
+                padding: 0 9px;
+                font-size: 10px;
+            }
+        }
+
+        .Card-Home-Section {
+            margin-top: 12px;
+            gap: 7px;
+        }
+
+        .botoesHero {
+            width: 100%;
+            margin-top: 24px;
+            gap: 10px;
+
+            button {
+                min-height: 46px;
+                padding: 0 18px;
+                border-radius: 13px;
+                font-size: 12px;
+            }
+        }
+    }
+}

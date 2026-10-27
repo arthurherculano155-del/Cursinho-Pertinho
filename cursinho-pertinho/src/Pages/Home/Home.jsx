@@ -1,37 +1,32 @@
 import Menu from '../../Components/Shared/Menu/menu';
-import './Home.scss';
-
+import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
 
 export default function Home() {
-  return (
-    <>
-      <Menu />
-<div className="home">
+    return (
+        <>
+            <Menu />
 
+            <HeroSection
+                imagem="Mulher-Cursinho.png"
+                titulo="Encontre o melhor curso"
+                tituloSpan="pertinho de você"
+                mensagem="Cursos presenciais e online, de diversas áreas, com horários, preços e níveis para "
+                mensagemDeBaixo="você se qualificar sem complicação."
+                cardInicio={true}
+            />
+            
+            <section className="secao-cursos">
+                <header className="cabecalho-secao-cursos">
+                    <h2 className="titulo-secao-cursos">
+                        CURSOS <span>PERTO DE VOCÊ</span>
+                    </h2>
 
-<div className="div-mulher">
+                    <p className="descricao-secao-cursos">
+                        Veja algumas opções disponíveis na sua região
+                    </p>
+                </header>
+            </section>
 
-
-<div>
-  <h1 className='oi'>Encontre o curso ideal  <br /><b>perto de você</b></h1>
-
-  <p className='oii'>Cursos presenciais e online, de diversas áreas, com horários, <br/> preços e níveis para você  se qualificar sem complicação.</p>
-  
-
-</div>
-
-
-
-<img className='Mulher' src="/Assets/imgs/Mulher.png" alt="Mulher" />
-
-</div>
-
-
-
-
-
-</div>
-
-    </>
-  );
+        </>
+    );
 }
