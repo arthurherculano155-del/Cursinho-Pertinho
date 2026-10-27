@@ -17,6 +17,7 @@ export default function Possibilidades() {
                 mensagemDeBaixo="novas oportunidades para aprender, desenvolver habilidades e crescer pessoalmente e profissionalmente"
                 botoes={true}
             />
+            
             <div className='painho'>
                 <div>
                     <h1 className='CONHEÇA'>CONHEÇA NOSSAS ÁREAS</h1>
@@ -37,11 +38,6 @@ export default function Possibilidades() {
                 titulo="Computador"
                 mensagem="Exemplo"
             />
-
-
-            <Rodape />
-=======
-
 
         <Rodape />
         </>
