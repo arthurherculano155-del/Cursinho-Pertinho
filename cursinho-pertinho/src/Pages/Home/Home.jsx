@@ -31,11 +31,7 @@ export default function Home() {
                 </h2>
 
                 <p className="proximidade-descricao">
-                    A distância e o transporte influenciam diretamente
-                    na sua rotina. Por isso, o Cursinho Pertinho te ajuda
-                    a encontrar cursos mais próximos e com as melhores
-                    opções de transporte, para você chegar mais fácil
-                    e focar no que realmente importa: o seu futuro.
+               O Cursinho Pertinho ajuda você a encontrar cursos próximos da sua região e descobrir as melhores formas de chegar até eles. Clique nos botões de ônibus, metrô/trem ou a pé para visualizar os cursos disponíveis. Para consultar a melhor rota até o local escolhido, clique no link do endereço do curso. Assim, você economiza tempo e encontra o caminho mais adequado para sua rotina!
                 </p>
 
                 <div className="proximidade-beneficios">

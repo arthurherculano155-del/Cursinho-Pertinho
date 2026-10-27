@@ -18,7 +18,6 @@ export default function Possibilidades() {
                 botoes={true}
             />
             <div className='painho'>
-
                 <div>
                     <h1 className='CONHEÇA'>CONHEÇA NOSSAS ÁREAS</h1>
                     <h2 className='construção'>DIVERSAS ÁREAS PARA <br></br>VOCÊ EXPLORAR E CONSTRUIR <br></br><b>O SEU FUTURO</b></h2>
@@ -27,7 +26,7 @@ export default function Possibilidades() {
 
                 <div >
 
-                    <img src='/Assets/Imgs/estudantebigode.png' className='bigode' />
+                    <img src='/Assets/Imgs/estudantebigode.png' className='bigode' alt='Imagem-Estudante' />
 
                 </div>
 
@@ -41,6 +40,10 @@ export default function Possibilidades() {
 
 
             <Rodape />
+=======
+
+
+        <Rodape />
         </>
     )
 }
