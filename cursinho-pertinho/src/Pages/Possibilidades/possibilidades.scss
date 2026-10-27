@@ -1,29 +1,52 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.CONHEÇA{
+font-size: 18px;
+color:#007BFF;
+margin-left: 35px;
 }
 
-.partedecima{
-position:absolute;
-bottom: 360px;
+.construção{
+color:#003366;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-size: 35px;
+position: relative;
+bottom :15px;
+left: 35px;
 }
-
-.horizonte{
-    width: 100%;
-    height: 450px;
-}
-
-.FUTURO{
-    color: white;
-    font-size: 30px;
-    margin-top: 100px;
-   position: relative;
-   top: 300px;
-   right: 180px
-}
-
 
 b{
-    color: #208fcf;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+color: #008CFF;
+
+}
+
+.suubtitulo{
+color: 	#4A78A8;
+position:relative;
+bottom: 5px;
+left: 35px;
+}
+
+
+.painho{
+display: flex;
+width: 100%;
+height: 320px;
+}
+
+.bigode{
+
+width: 500px;
+height: 380px;
+border-radius: 20px;
+position: relative;
+left: 200px;
+bottom: 38px;
+}
+
+.fa-computer{
+    padding: 15px;
+    background-color: aqua;
+    width: 50PX;
+    height: 50px;
+    border-radius: 30px;
 }
