@@ -1,5 +1,8 @@
+import './Home.scss';
+
 import Menu from '../../Components/Shared/Menu/menu';
 import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
+import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
 
 export default function Home() {
     return (
@@ -14,19 +17,145 @@ export default function Home() {
                 mensagemDeBaixo="você se qualificar sem complicação."
                 cardInicio={true}
             />
-            
-            <section className="secao-cursos">
-                <header className="cabecalho-secao-cursos">
-                    <h2 className="titulo-secao-cursos">
-                        CURSOS <span>PERTO DE VOCÊ</span>
-                    </h2>
 
-                    <p className="descricao-secao-cursos">
-                        Veja algumas opções disponíveis na sua região
-                    </p>
-                </header>
-            </section>
 
+                <h2>
+                    Estudar perto
+                    <span>faz diferença.</span>
+                </h2>
+
+                <p className="proximidade-descricao">
+                    A distância e o transporte influenciam diretamente
+                    na sua rotina. Por isso, o Cursinho Pertinho te ajuda
+                    a encontrar cursos mais próximos e com as melhores
+                    opções de transporte, para você chegar mais fácil
+                    e focar no que realmente importa: o seu futuro.
+                </p>
+
+                <div className="proximidade-beneficios">
+                    <div className="beneficio">
+                        <div className="beneficio-icone">
+                            <i className="fa-solid fa-location-dot"></i>
+                        </div>
+                        <p>
+                            Cursos próximos
+                            <br />
+                            da sua região
+                        </p>
+                    </div>
+
+                    <div className="beneficio">
+                        <div className="beneficio-icone">
+                            <i className="fa-solid fa-bus"></i>
+                        </div>
+                        <p>
+                            Melhores opções
+                            <br />
+                            de transporte
+                        </p>
+                    </div>
+
+                    <div className="beneficio">
+                        <div className="beneficio-icone">
+                            <i className="fa-regular fa-clock"></i>
+                        </div>
+                        <p>
+                            Mais tempo
+                            <br />
+                            para você
+                        </p>
+                    </div>
+                </div>
+
+
+            <div className="proximidade-visual">
+                <div className="mapa-ilustracao">
+                    <div className="mapa-ruas"></div>
+
+                    <div className="mapa-parque parque-um"></div>
+                    <div className="mapa-parque parque-dois"></div>
+
+                    <div className="mapa-marcador marcador-casa">
+                        <i className="fa-solid fa-house"></i>
+                    </div>
+
+                    <svg
+                        className="mapa-rota"
+                        viewBox="0 0 440 350"
+                        preserveAspectRatio="none"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M 60 75 C 75 130, 110 95, 145 135 S 210 145, 235 205 S 300 235, 355 260"
+                            fill="none"
+                            stroke="#2585ff"
+                            strokeWidth="7"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <circle cx="60" cy="75" r="8" fill="#2585ff" />
+                        <circle cx="145" cy="135" r="8" fill="#2585ff" />
+                        <circle cx="235" cy="205" r="8" fill="#2585ff" />
+                        <circle cx="355" cy="260" r="8" fill="#2585ff" />
+                    </svg>
+
+                    <div className="mapa-marcador marcador-curso">
+                        <i className="fa-solid fa-graduation-cap"></i>
+                    </div>
+                </div>
+
+             
+
+                <div className="transporte-lista">
+                    <div className="transporte-item">
+                        
+                        <div className="transporte-icone">
+                            <i className="fa-solid fa-bus-simple"></i>
+                        </div>
+
+                        <div className="transporte-info">
+                            <p>Ônibus</p>
+                        </div>
+
+                        <i className="fa-solid fa-chevron-right transporte-seta"></i>
+                    </div>
+
+                    <div className="transporte-item">
+
+                        <div className="transporte-icone">
+                            <i className="fa-solid fa-train-subway"></i>
+                        </div>
+
+                        <div className="transporte-info">
+                            <p>Metrô</p>
+                        </div>
+                        
+                        <i className="fa-solid fa-chevron-right transporte-seta"></i>
+                    </div>
+
+                    <div className="transporte-item">
+
+                    <div className="transporte-icone">
+                            <i className="fa-solid fa-person-walking"></i>
+                        </div>
+
+                        <div className="transporte-info">
+                            <p>A pé</p>
+                        </div>
+
+                        <i className="fa-solid fa-chevron-right transporte-seta"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div className="proximidade-forma forma-superior"></div>
+            <div className="proximidade-forma forma-inferior"></div>
+
+    
+
+            <Rodape />
         </>
+
     );
+
 }

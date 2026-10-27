@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,13 +9,9 @@
     font-family: sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    background: #f5f7fa;
-    color: #182230;
+    background: rgb(245, 247, 250);
+    color: rgb(24, 34, 48);
 }
 
 button,
@@ -36,7 +36,7 @@ button {
     z-index: 100;
     background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid rgb(229, 231, 235);
     box-shadow: 0 4px 16px rgba(16, 24, 40, 0.04);
 
     .Start {
@@ -52,13 +52,13 @@ button {
         }
 
         h2 {
-            color: #182230;
+            color: rgb(24, 34, 48);
             font-size: 20px;
             font-weight: 800;
             white-space: nowrap;
 
             span {
-                color: #2563eb;
+                color: rgb(37, 99, 235);
             }
         }
     }
@@ -69,22 +69,31 @@ button {
         display: none;
         align-items: center;
         justify-content: center;
+        padding: 0;
         border: none;
         border-radius: 10px;
         background: transparent;
+        box-shadow: none;
         transition: 0.2s ease;
+        cursor: pointer;
 
         i {
-            color: #182230;
+            color: rgb(24, 34, 48);
             font-size: 23px;
+            transition: 0.2s ease;
         }
 
         &:hover {
-            background: #eff6ff;
+            background: rgb(239, 246, 255);
 
             i {
-                color: #2563eb;
+                color: rgb(37, 99, 235);
             }
+        }
+
+        &:focus-visible {
+            outline: 2px solid rgb(59, 130, 246);
+            outline-offset: 2px;
         }
     }
 }
@@ -110,7 +119,7 @@ button {
             display: block;
             padding: 10px 12px;
             border-radius: 9px;
-            color: #344054;
+            color: rgb(52, 64, 84);
             font-size: 14px;
             font-weight: 650;
             text-decoration: none;
@@ -118,8 +127,8 @@ button {
             transition: 0.2s ease;
 
             &.Ativo {
-                color: #1d4ed8;
-                background: rgba(169, 193, 224, 0.5);
+                color: rgb(29, 78, 216);
+                background: rgb(239, 246, 255);
             }
         }
 
@@ -127,8 +136,8 @@ button {
             transform: translateY(-1px);
 
             a {
-                color: #1d4ed8;
-                background: rgba(169, 193, 224, 0.5);
+                color: rgb(29, 78, 216);
+                background: rgb(239, 246, 255);
             }
         }
 
@@ -151,10 +160,10 @@ button {
         display: flex;
         align-items: center;
         gap: 7px;
-        color: #667085;
+        color: rgb(102, 112, 133);
 
         i {
-            color: #2563eb;
+            color: rgb(37, 99, 235);
             font-size: 15px;
         }
 
@@ -178,17 +187,17 @@ button {
 
     button {
         padding: 11px 17px;
-        border: 1px solid #2563eb;
+        border: 1px solid rgb(37, 99, 235);
         border-radius: 9px;
-        background: #2563eb;
-        color: #ffffff;
+        background: rgb(37, 99, 235);
+        color: rgb(255, 255, 255);
         font-size: 13px;
         font-weight: 700;
         transition: 0.2s ease;
 
         &:hover {
-            background: #1d4ed8;
-            border-color: #1d4ed8;
+            background: rgb(29, 78, 216);
+            border-color: rgb(29, 78, 216);
             transform: translateY(-1px);
             box-shadow: 0 5px 12px rgba(37, 99, 235, 0.18);
         }
@@ -199,12 +208,12 @@ button {
     }
 
     .login {
-        background: #ffffff;
-        color: #2563eb;
+        background: rgb(255, 255, 255);
+        color: rgb(37, 99, 235);
 
         &:hover {
-            background: #eff6ff;
-            color: #1d4ed8;
+            background: rgb(239, 246, 255);
+            color: rgb(29, 78, 216);
         }
     }
 }
@@ -219,27 +228,53 @@ button {
     right: 30px;
     z-index: 101;
 
-    .avatar {
-        width: 44px;
-        height: 44px;
+    .avatar-button {
+        width: 48px;
+        height: 48px;
+        padding: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex-shrink: 0;
-        border: 2px solid #dbeafe;
+        border: none;
         border-radius: 50%;
-        background: #f8fafc;
-        object-fit: cover;
-        box-shadow: 0 0 0 3px #ffffff, 0 0 0 4px #e5e7eb;
+        background: transparent;
+        box-shadow: none;
+        outline: none;
         cursor: pointer;
-        transition: 0.2s ease;
+        overflow: hidden;
 
-        &:hover {
-            border-color: #93c5fd;
-            transform: translateY(-1px);
+        .avatar {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgb(17, 24, 39);
+            border-radius: 50%;
+            box-sizing: border-box;
+            background: rgb(248, 250, 252);
+            object-fit: cover;
+            box-shadow: 0 0 0 1px rgb(255, 255, 255);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        &:hover .avatar {
+            border-color: rgb(37, 99, 235);
+            box-shadow: 0 0 0 2px rgb(219, 234, 254);
+        }
+
+        &:focus-visible {
+            outline: 2px solid rgb(59, 130, 246);
+            outline-offset: 2px;
+        }
+
+        &:active .avatar {
+            transform: scale(0.96);
         }
     }
 
     p {
         max-width: 120px;
-        color: #344054;
+        color: rgb(52, 64, 84);
         font-size: 14px;
         font-weight: 650;
         overflow: hidden;
@@ -254,10 +289,10 @@ button {
         align-items: center;
         justify-content: center;
         margin-left: 5px;
-        border: 1px solid #e5e7eb;
+        border: 1px solid rgb(229, 231, 235);
         border-radius: 10px;
-        background: #ffffff;
-        color: #667085;
+        background: rgb(255, 255, 255);
+        color: rgb(102, 112, 133);
         position: relative;
         transition: 0.2s ease;
 
@@ -267,7 +302,7 @@ button {
             height: 24px;
             position: absolute;
             left: -10px;
-            background: #e5e7eb;
+            background: rgb(229, 231, 235);
         }
 
         i {
@@ -276,9 +311,9 @@ button {
         }
 
         &:hover {
-            border-color: #fecaca;
-            background: #fef2f2;
-            color: #dc2626;
+            border-color: rgb(254, 202, 202);
+            background: rgb(254, 242, 242);
+            color: rgb(220, 38, 38);
 
             i {
                 transform: translateX(2px);
@@ -312,11 +347,22 @@ button {
     .login-container {
         width: 100%;
         position: relative;
-        background: #ffffff;
-        border: 1px solid #eaecf0;
+        background: rgb(255, 255, 255);
+        border: 1px solid rgb(234, 236, 240);
         box-shadow: 0 24px 48px rgba(16, 24, 40, 0.18);
         animation: abrirModal 0.25s ease-out;
+    }
 
+    .cadastro {
+        max-width: 420px;
+        padding: 36px;
+        border-radius: 18px;
+    }
+
+    .cadastro,
+    .personalizar,
+    .modal-de-senha,
+    .login-container {
         .fechar {
             width: 36px;
             height: 36px;
@@ -328,21 +374,21 @@ button {
             right: 14px;
             border: none;
             border-radius: 50%;
-            background: #f2f4f7;
-            color: #667085;
+            background: rgb(242, 244, 247);
+            color: rgb(102, 112, 133);
             font-size: 17px;
             transition: 0.2s ease;
 
             &:hover {
-                background: #e4e7ec;
-                color: #182230;
+                background: rgb(228, 231, 236);
+                color: rgb(24, 34, 48);
                 transform: rotate(90deg);
             }
         }
 
         h1 {
             margin-bottom: 28px;
-            color: #182230;
+            color: rgb(24, 34, 48);
             text-align: center;
             font-size: 27px;
             font-weight: 800;
@@ -354,16 +400,9 @@ button {
                 display: block;
                 margin: 10px auto 0;
                 border-radius: 20px;
-                background: #2563eb;
+                background: rgb(37, 99, 235);
             }
         }
-    }
-
-    .cadastro,
-    .login-container {
-        max-width: 420px;
-        padding: 36px;
-        border-radius: 18px;
     }
 
     .inputs,
@@ -376,24 +415,24 @@ button {
             width: 100%;
             min-width: 0;
             padding: 14px 15px;
-            border: 1px solid #d0d5dd;
+            border: 1px solid rgb(208, 213, 221);
             border-radius: 9px;
             outline: none;
-            background: #ffffff;
-            color: #182230;
+            background: rgb(255, 255, 255);
+            color: rgb(24, 34, 48);
             font-size: 14px;
             transition: 0.2s ease;
 
             &::placeholder {
-                color: #98a2b3;
+                color: rgb(152, 162, 179);
             }
 
             &:hover {
-                border-color: #98a2b3;
+                border-color: rgb(152, 162, 179);
             }
 
             &:focus {
-                border-color: #2563eb;
+                border-color: rgb(37, 99, 235);
                 box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
             }
         }
@@ -401,17 +440,17 @@ button {
         button:not(.esqueci-senha) {
             width: 100%;
             padding: 14px;
-            border: 1px solid #2563eb;
+            border: 1px solid rgb(37, 99, 235);
             border-radius: 9px;
-            background: #2563eb;
-            color: #ffffff;
+            background: rgb(37, 99, 235);
+            color: rgb(255, 255, 255);
             font-size: 14px;
             font-weight: 750;
             transition: 0.2s ease;
 
             &:hover {
-                background: #1d4ed8;
-                border-color: #1d4ed8;
+                background: rgb(29, 78, 216);
+                border-color: rgb(29, 78, 216);
                 transform: translateY(-1px);
                 box-shadow: 0 6px 14px rgba(37, 99, 235, 0.2);
             }
@@ -439,27 +478,26 @@ button {
                 flex-direction: column;
                 align-items: center;
                 padding: 25px 20px;
-                border: 1px solid #e5e7eb;
+                border: 1px solid rgb(229, 231, 235);
                 border-radius: 16px;
-                background: #f8fafc;
+                background: rgb(248, 250, 252);
                 text-align: center;
 
                 img {
                     width: 105px;
                     height: 105px;
                     margin-bottom: 17px;
-                    border: 4px solid #ffffff;
+                    border: 4px solid rgb(255, 255, 255);
                     border-radius: 50%;
-                    background: #eff6ff;
+                    background: rgb(239, 246, 255);
                     object-fit: cover;
-                    box-shadow: 0 0 0 2px #dbeafe,
-                        0 6px 18px rgba(16, 24, 40, 0.1);
+                    box-shadow: 0 0 0 2px rgb(219, 234, 254), 0 6px 18px rgba(16, 24, 40, 0.1);
                 }
 
                 h3 {
                     width: 100%;
                     margin-bottom: 6px;
-                    color: #182230;
+                    color: rgb(24, 34, 48);
                     font-size: 20px;
                     font-weight: 750;
                     overflow: hidden;
@@ -470,12 +508,12 @@ button {
                 p {
                     width: 100%;
                     margin-top: 5px;
-                    color: #667085;
+                    color: rgb(102, 112, 133);
                     font-size: 12px;
                     overflow-wrap: anywhere;
 
                     &:first-of-type {
-                        color: #475467;
+                        color: rgb(71, 84, 103);
                         font-size: 13px;
                         font-weight: 600;
                     }
@@ -497,35 +535,35 @@ button {
                         width: 100%;
                         min-width: 0;
                         padding: 14px 15px;
-                        border: 1px solid #d0d5dd;
+                        border: 1px solid rgb(208, 213, 221);
                         border-radius: 9px;
                         outline: none;
-                        background: #ffffff;
-                        color: #182230;
+                        background: rgb(255, 255, 255);
+                        color: rgb(24, 34, 48);
                         font-size: 14px;
                         transition: 0.2s ease;
 
                         &::placeholder {
-                            color: #98a2b3;
+                            color: rgb(152, 162, 179);
                         }
 
                         &:focus {
-                            border-color: #2563eb;
+                            border-color: rgb(37, 99, 235);
                             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
                         }
                     }
 
                     input[type="submit"] {
                         margin-top: 5px;
-                        border-color: #2563eb;
-                        background: #2563eb;
-                        color: #ffffff;
+                        border-color: rgb(37, 99, 235);
+                        background: rgb(37, 99, 235);
+                        color: rgb(255, 255, 255);
                         font-weight: 750;
                         cursor: pointer;
 
                         &:hover {
-                            border-color: #1d4ed8;
-                            background: #1d4ed8;
+                            border-color: rgb(29, 78, 216);
+                            background: rgb(29, 78, 216);
                             transform: translateY(-1px);
                         }
                     }
@@ -543,20 +581,24 @@ button {
         z-index: 1000;
 
         .login-container {
+            max-width: 420px;
+            padding: 36px;
+            border-radius: 18px;
+
             .informacoes {
                 .esqueci-senha {
                     align-self: flex-end;
                     padding: 0;
                     border: none;
                     background: transparent;
-                    color: #2563eb;
+                    color: rgb(37, 99, 235);
                     font-size: 13px;
                     font-weight: 650;
                     text-align: right;
                     transition: 0.2s ease;
 
                     &:hover {
-                        color: #1d4ed8;
+                        color: rgb(29, 78, 216);
                         text-decoration: underline;
                     }
                 }
@@ -564,17 +606,17 @@ button {
                 .log {
                     width: 100%;
                     padding: 14px;
-                    border: 1px solid #2563eb;
+                    border: 1px solid rgb(37, 99, 235);
                     border-radius: 9px;
-                    background: #2563eb;
-                    color: #ffffff;
+                    background: rgb(37, 99, 235);
+                    color: rgb(255, 255, 255);
                     font-size: 14px;
                     font-weight: 750;
                     transition: 0.2s ease;
 
                     &:hover {
-                        border-color: #1d4ed8;
-                        background: #1d4ed8;
+                        border-color: rgb(29, 78, 216);
+                        background: rgb(29, 78, 216);
                         transform: translateY(-1px);
                         box-shadow: 0 6px 14px rgba(37, 99, 235, 0.2);
                     }
@@ -592,20 +634,20 @@ button {
     input {
         width: 100%;
         padding: 14px 15px;
-        border: 1px solid #d0d5dd;
+        border: 1px solid rgb(208, 213, 221);
         border-radius: 9px;
         outline: none;
-        background: #ffffff;
-        color: #182230;
+        background: rgb(255, 255, 255);
+        color: rgb(24, 34, 48);
         font-size: 14px;
         transition: 0.2s ease;
 
         &::placeholder {
-            color: #98a2b3;
+            color: rgb(152, 162, 179);
         }
 
         &:focus {
-            border-color: #2563eb;
+            border-color: rgb(37, 99, 235);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
         }
     }
@@ -614,16 +656,16 @@ button {
         width: 100%;
         margin-top: 14px;
         padding: 14px;
-        border: 1px solid #2563eb;
+        border: 1px solid rgb(37, 99, 235);
         border-radius: 9px;
-        background: #2563eb;
-        color: #ffffff;
+        background: rgb(37, 99, 235);
+        color: rgb(255, 255, 255);
         font-weight: 750;
         transition: 0.2s ease;
 
         &:hover {
-            border-color: #1d4ed8;
-            background: #1d4ed8;
+            border-color: rgb(29, 78, 216);
+            background: rgb(29, 78, 216);
             transform: translateY(-1px);
         }
     }
@@ -729,8 +771,8 @@ button {
         left: auto;
         transform: none;
         overflow-y: auto;
-        background: #ffffff;
-        border-left: 1px solid #e5e7eb;
+        background: rgb(255, 255, 255);
+        border-left: 1px solid rgb(229, 231, 235);
         box-shadow: -8px 12px 24px rgba(16, 24, 40, 0.1);
         z-index: 99;
 
@@ -759,7 +801,7 @@ button {
         position: fixed;
         right: 0;
         left: auto;
-        background: #ffffff;
+        background: rgb(255, 255, 255);
         z-index: 100;
     }
 
@@ -786,10 +828,9 @@ button {
         top: 340px;
         gap: 10px;
 
-        .avatar {
-            width: 40px;
-            height: 40px;
-            box-shadow: none;
+        .avatar-button {
+            width: 44px;
+            height: 44px;
         }
 
         p {
@@ -907,9 +948,9 @@ button {
     .user {
         top: 315px;
 
-        .avatar {
-            width: 36px;
-            height: 36px;
+        .avatar-button {
+            width: 40px;
+            height: 40px;
         }
 
         p {
@@ -924,6 +965,11 @@ button {
 
     .fundo {
         padding: 12px;
+
+        .cadastro {
+            padding: 32px 20px;
+            border-radius: 15px;
+        }
 
         .cadastro,
         .personalizar,

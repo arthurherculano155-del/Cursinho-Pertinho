@@ -7,15 +7,11 @@ export default function Menu() {
 
     const [signUp, setSignUp] = useState(false);
     const [login, setLogin] = useState(false);
-
     const [personalizacaoModal, setPersonalizacaoModal] = useState(false);
 
     const [primeiroNome, setPrimeiroNome] = useState("");
-    const [perfil, setPerfil] = useState("");
-
-    const [modalSenha, setModalSenha] = useState(false);
-
-    const [emailRecuperation, setEmailRecuperation] = useState("");
+    const [foto, setFoto] = useState(null);
+    const [enviandoFoto, setEnviandoFoto] = useState(false);
 
     const [menuMobile, setMenuMobile] = useState(false);
     const [menu, setMenu] = useState(true);
@@ -26,181 +22,277 @@ export default function Menu() {
 
     const [usuarioLogado, setUsuarioLogado] = useState(null);
 
-    async function cadastrarUsuario() {
-        const resposta = await fetch(`${API_URL}/usuario/cadastrar`, {
-            method: "POST",
-            headers:
-                { "Content-type": "application/json" },
-            body: JSON.stringify({
-                nome: nome,
-                email: email,
-                senha: senha,
-                cargo: "usuario"
-            })
-        })
+    async function cadastrarUsuario(e) {
+        e.preventDefault();
 
-        const dados = await resposta.json();
+        try {
+            const resposta = await fetch(`${API_URL}/usuario/cadastrar`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nome,
+                    email,
+                    senha,
+                    cargo: "usuario"
+                })
+            });
 
-        if (!resposta.ok) {
-            alert(dados.erro)
-            return;
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+                alert(dados.erro);
+                return;
+            }
+
+            alert(`Cadastro realizado com sucesso, ${nome}!`);
+
+            setNome("");
+            setEmail("");
+            setSenha("");
+            setSignUp(false);
+        } catch (erro) {
+            alert("Não foi possível realizar o cadastro. Tente novamente.");
+            console.error(erro);
         }
-
-        setNome("");
-        setEmail("");
-        setSenha("");
-
-        alert(`Cadastro realizado com sucesso, ${nome}!`);
-        setSignUp(false)
     }
 
-    async function EnviarCodigo() {
-        const resposta = await fetch(`${API_URL}/usuario/enviar-codigo`, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify({
-                email: emailRecuperation
-            })
-        })
+    async function LogarUsuario(e) {
+        e.preventDefault();
 
-        const dados = await resposta.json();
+        try {
+            const resposta = await fetch(`${API_URL}/usuario/entrar`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    senha
+                })
+            });
 
-        if (!resposta.ok) {
-            alert(dados.erro);
-            return;
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+                alert(dados.erro);
+                return;
+            }
+
+            alert(dados.resultado);
+
+            localStorage.setItem("usuario", JSON.stringify(dados.usuario));
+            localStorage.setItem("token", dados.token);
+
+            setUsuarioLogado(dados.usuario);
+            setEmail("");
+            setSenha("");
+            setLogin(false);
+
+            window.location.reload();
+        } catch (erro) {
+            alert("Não foi possível entrar. Tente novamente.");
+            console.error(erro);
         }
-
-        alert(dados.resultado);
     }
-
-    async function LogarUsuario() {
-        const resposta = await fetch(`${API_URL}/usuario/entrar`, {
-            method: "POST",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify({
-                email: email,
-                senha: senha
-            })
-        });
-
-        const dados = await resposta.json();
-
-        if (!resposta.ok) {
-            alert(dados.erro);
-            return;
-        }
-
-        alert(dados.resultado);
-
-        localStorage.setItem(
-            "usuario",
-            JSON.stringify(dados.usuario)
-        );
-
-        localStorage.setItem("token",
-            dados.token
-        );
-
-        setUsuarioLogado(dados.usuario);
-
-        setEmail("");
-        setSenha("");
-
-        setLogin(false);
-    }
-
-
 
     function sairUsuario() {
         localStorage.removeItem("usuario");
         localStorage.removeItem("token");
         setUsuarioLogado(null);
+        window.location.reload();
+    }
+
+    function abrirPersonalizacao() {
+        setPrimeiroNome(usuarioLogado.primeiro_nome || "");
+        setFoto(null);
+        setPersonalizacaoModal(true);
+    }
+
+    function fecharPersonalizacao() {
+        if (enviandoFoto) return;
+
+        setPersonalizacaoModal(false);
+        setFoto(null);
     }
 
     async function atualizarUsuario(e) {
         e.preventDefault();
 
-        const resposta = await fetch(`${API_URL}/usuario/personalizar`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: usuarioLogado.email,
-                primeiro_nome: primeiroNome,
-                imagem_url: perfil
-            })
-        });
+        if (!usuarioLogado || enviandoFoto) return;
 
-        const dados = await resposta.json();
+        const nomeAtualizado = primeiroNome.trim();
+        const nomeMudou = nomeAtualizado !== (usuarioLogado.primeiro_nome || "");
 
-        if (!resposta.ok) {
-            alert(dados.erro);
+        if (!nomeMudou && !foto) {
+            setPersonalizacaoModal(false);
             return;
         }
 
-        const usuarioAtualizado = {
-            ...usuarioLogado,
-            primeiro_nome: primeiroNome,
-            imagem_url: perfil
-        };
+        setEnviandoFoto(true);
 
-        setUsuarioLogado(usuarioAtualizado);
+        try {
+            let imagemUrl = usuarioLogado.imagem_url || "";
+            const token = localStorage.getItem("token");
 
-        localStorage.setItem(
-            "usuario",
-            JSON.stringify(usuarioAtualizado)
-        );
+            if (foto) {
+                if (!token) {
+                    throw new Error("Sua sessão expirou. Entre novamente na sua conta.");
+                }
 
-        setPersonalizacaoModal(false);
+                const formData = new FormData();
+                formData.append("foto", foto);
 
-        alert("Perfil atualizado com sucesso!");
+                const resposta = await fetch(`${API_URL}/usuario/foto`, {
+                    method: "PUT",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: formData
+                });
+
+                const dados = await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(dados.erro || "Não foi possível atualizar a foto.");
+                }
+
+                imagemUrl = dados.imagem_url;
+            }
+
+            if (nomeMudou) {
+                const resposta = await fetch(`${API_URL}/usuario/personalizar`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        primeiro_nome: nomeAtualizado,
+                        imagem_url: imagemUrl
+                    })
+                });
+
+                const dados = await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(dados.erro || "Não foi possível atualizar o nome.");
+                }
+            }
+
+            const usuarioAtualizado = {
+                ...usuarioLogado,
+                primeiro_nome: nomeMudou ? nomeAtualizado : usuarioLogado.primeiro_nome,
+                imagem_url: imagemUrl
+            };
+
+            setUsuarioLogado(usuarioAtualizado);
+            localStorage.setItem("usuario", JSON.stringify(usuarioAtualizado));
+
+            setFoto(null);
+            setPersonalizacaoModal(false);
+
+            alert("Alterações salvas com sucesso!");
+        } catch (erro) {
+            alert(erro.message || "Não foi possível salvar as alterações.");
+            console.error(erro);
+        } finally {
+            setEnviandoFoto(false);
+        }
+    }
+
+    function selecionarFoto(e) {
+        const arquivo = e.target.files[0];
+
+        if (!arquivo) {
+            setFoto(null);
+            return;
+        }
+
+        if (!["image/jpeg", "image/png", "image/webp"].includes(arquivo.type)) {
+            alert("Escolha uma imagem JPEG, PNG ou WebP.");
+            e.target.value = "";
+            setFoto(null);
+            return;
+        }
+
+        if (arquivo.size > 5 * 1024 * 1024) {
+            alert("A imagem deve ter no máximo 5 MB.");
+            e.target.value = "";
+            setFoto(null);
+            return;
+        }
+
+        setFoto(arquivo);
     }
 
     useEffect(() => {
         const usuario = localStorage.getItem("usuario");
 
         if (usuario) {
-            setUsuarioLogado(JSON.parse(usuario));
+            try {
+                setUsuarioLogado(JSON.parse(usuario));
+            } catch (erro) {
+                console.error(erro);
+                localStorage.removeItem("usuario");
+            }
         }
     }, []);
 
     useEffect(() => {
         const media = window.matchMedia("(max-width: 800px)");
 
-        function verificarTela(evento) {
-            const mobile = evento.matches;
-
-            setMenuMobile(mobile);
-            setMenu(!mobile);
+        function verificarTela() {
+            setMenuMobile(media.matches);
+            setMenu(!media.matches);
         }
 
-        verificarTela(media);
-
+        verificarTela();
         media.addEventListener("change", verificarTela);
 
-        return () => {
-            media.removeEventListener("change", verificarTela);
-        };
+        return () => media.removeEventListener("change", verificarTela);
     }, []);
+
+    useEffect(() => {
+        function fecharComEscape(e) {
+            if (e.key === "Escape" && !enviandoFoto) {
+                setSignUp(false);
+                setLogin(false);
+                setPersonalizacaoModal(false);
+                setFoto(null);
+            }
+        }
+
+        window.addEventListener("keydown", fecharComEscape);
+
+        return () => window.removeEventListener("keydown", fecharComEscape);
+    }, [enviandoFoto]);
 
     return (
         <>
             <header className="menu">
                 <div className="Start">
-                    <img src="../../../Assets/Imgs/LogoCursinho.png" alt="Logo-Menu" />
-                    <h2>Cursinho <span>Pertinho</span></h2>
+                    <img
+                        src="/Assets/Imgs/LogoCursinho.png"
+                        alt="Logo do Cursinho Pertinho"
+                    />
+
+                    <h2>
+                        Cursinho <span>Pertinho</span>
+                    </h2>
                 </div>
 
                 {menuMobile && (
-                    <div className="abrir-menu">
-                        <i
-                            className={menu ? "fa-solid fa-xmark" : "fa-solid fa-bars"}
-                            onClick={() => setMenu(!menu)}
-                        />
-                    </div>
+                    <button
+                        type="button"
+                        className="abrir-menu"
+                        aria-label={menu ? "Fechar menu" : "Abrir menu"}
+                        aria-expanded={menu}
+                        onClick={() => setMenu(!menu)}
+                    >
+                        <i className={menu ? "fa-solid fa-xmark" : "fa-solid fa-bars"} />
+                    </button>
                 )}
             </header>
 
@@ -208,41 +300,29 @@ export default function Menu() {
                 <>
                     <ul className="links">
                         <li className="link">
-                            <NavLink
-                                to='/'
-                                className={({ isActive }) =>
-                                    isActive ? "Ativo" : ""
-                                }>
+                            <NavLink to="/" end onClick={() => menuMobile && setMenu(false)}
+                                className={({ isActive }) => isActive ? "Ativo" : ""}>
                                 Início
                             </NavLink>
                         </li>
 
                         <li className="link">
-                            <NavLink
-                                to='/explorar-cursos'
-                                className={({ isActive }) =>
-                                    isActive ? "Ativo" : ""
-                                }>
+                            <NavLink to="/explorar-cursos" onClick={() => menuMobile && setMenu(false)}
+                                className={({ isActive }) => isActive ? "Ativo" : ""}>
                                 Explorar Cursos
                             </NavLink>
                         </li>
 
                         <li className="link">
-                            <NavLink
-                                to='/possibilidades'
-                                className={({ isActive }) =>
-                                    isActive ? "Ativo" : ""
-                                }>
+                            <NavLink to="/possibilidades" onClick={() => menuMobile && setMenu(false)}
+                                className={({ isActive }) => isActive ? "Ativo" : ""}>
                                 Possibilidades
                             </NavLink>
                         </li>
 
                         <li className="link">
-                            <NavLink
-                                to='/sobre'
-                                className={({ isActive }) =>
-                                    isActive ? "Ativo" : ""
-                                }>
+                            <NavLink to="/sobre" onClick={() => menuMobile && setMenu(false)}
+                                className={({ isActive }) => isActive ? "Ativo" : ""}>
                                 Sobre Nós
                             </NavLink>
                         </li>
@@ -257,32 +337,33 @@ export default function Menu() {
 
                     {usuarioLogado ? (
                         <section className="user">
-                            <img
-                                src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
-                                alt={`Foto de ${usuarioLogado.primeiro_nome}`}
-                                className="avatar"
-                                onClick={() => setPersonalizacaoModal(true)}
-                            />
+                            <button
+                                type="button"
+                                className="avatar-button"
+                                aria-label="Personalizar perfil"
+                                title="Personalizar perfil"
+                                onClick={abrirPersonalizacao}
+                            >
+                                <img
+                                    src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
+                                    alt=""
+                                    className="avatar"
+                                />
+                            </button>
 
-                            <p>{usuarioLogado.primeiro_nome}</p>
+                            <p>{usuarioLogado.primeiro_nome || "Minha conta"}</p>
 
-                            <div
-                                className="sair"
-                                onClick={() => sairUsuario()}>
+                            <button type="button" className="sair" aria-label="Sair da conta" onClick={sairUsuario}>
                                 <i className="fa-solid fa-arrow-right-from-bracket" />
-                            </div>
+                            </button>
                         </section>
                     ) : (
                         <div className="bnts">
-                            <button
-                                className="login"
-                                onClick={() => setLogin(true)}>
+                            <button type="button" className="login" onClick={() => setLogin(true)}>
                                 Entrar
                             </button>
 
-                            <button
-                                className="sign-up"
-                                onClick={() => setSignUp(true)}>
+                            <button type="button" className="sign-up" onClick={() => setSignUp(true)}>
                                 Cadastrar-se
                             </button>
                         </div>
@@ -292,60 +373,43 @@ export default function Menu() {
 
             {signUp && (
                 <div className="fundo">
-                    <section className="cadastro">
-                        <button
-                            className="fechar"
-                            onClick={() => setSignUp(false)}
-                        >
-                            <i className="fa-solid fa-xmark"></i>
+                    <section className="cadastro" role="dialog" aria-modal="true" aria-labelledby="titulo-cadastro">
+                        <button className="fechar" type="button" aria-label="Fechar cadastro" onClick={() => setSignUp(false)}>
+                            <i className="fa-solid fa-xmark" />
                         </button>
 
-                        <h1>Cadastre-se</h1>
+                        <h1 id="titulo-cadastro">Cadastre-se</h1>
 
-                        <div className="inputs">
+                        <form className="inputs" onSubmit={cadastrarUsuario}>
                             <input
                                 type="text"
                                 required
+                                autoComplete="name"
                                 placeholder="Insira seu nome"
                                 value={nome}
-                                onChange={(e) => setNome(e.target.value.replace(
-                                    /(^|\s)\p{L}/gu, letra => letra.toUpperCase()
-                                ))}
-                                onKeyDown={(e) => {
-                                    if (e.key === "Enter") {
-                                        cadastrarUsuario()
-                                        LogarUsuario()
-                                    }
-                                }}
+                                onChange={(e) => setNome(e.target.value.replace(/(^|\s)\p{L}/gu, letra => letra.toUpperCase()))}
                             />
 
                             <input
-                                type="text"
+                                type="email"
                                 required
-                                placeholder="Insira seu email"
+                                autoComplete="email"
+                                placeholder="Insira seu e-mail"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                onKeyDown={(e) => {
-                                    if (e.key === "Enter") {
-                                        cadastrarUsuario()
-                                    }
-                                }}
                             />
 
                             <input
                                 type="password"
                                 required
+                                autoComplete="new-password"
                                 placeholder="Crie uma senha"
                                 value={senha}
                                 onChange={(e) => setSenha(e.target.value)}
                             />
 
-                            <button onClick={() => (
-                                cadastrarUsuario()
-                            )}>
-                                Cadastre-se
-                            </button>
-                        </div>
+                            <button type="submit">Cadastrar-se</button>
+                        </form>
                     </section>
                 </div>
             )}
@@ -353,149 +417,109 @@ export default function Menu() {
             {login && (
                 <section className="logar">
                     <div className="fundo">
-                        <div className="login-container">
-                            <button
-                                className="fechar"
-                                onClick={() => setLogin(false)}
-                            >
-                                <i className="fa-solid fa-xmark"></i>
+                        <div className="login-container" role="dialog" aria-modal="true" aria-labelledby="titulo-login">
+                            <button className="fechar" type="button" aria-label="Fechar login" onClick={() => setLogin(false)}>
+                                <i className="fa-solid fa-xmark" />
                             </button>
 
-                            <h1>Logar</h1>
+                            <h1 id="titulo-login">Entrar</h1>
 
-                            <div className="informacoes">
+                            <form className="informacoes" onSubmit={LogarUsuario}>
                                 <input
-                                    type="text"
+                                    type="email"
+                                    required
+                                    autoComplete="email"
                                     value={email}
-                                    placeholder="Insira seu email"
+                                    placeholder="Insira seu e-mail"
                                     onChange={(e) => setEmail(e.target.value)}
-                                    onKeyDown={(e) => {
-                                        if (e.key === "Enter")
-                                            LogarUsuario()
-                                    }}
                                 />
 
                                 <input
                                     type="password"
+                                    required
+                                    autoComplete="current-password"
                                     value={senha}
-                                    placeholder="Insira a senha"
+                                    placeholder="Insira sua senha"
                                     onChange={(e) => setSenha(e.target.value)}
-                                    onKeyDown={(e) => {
-                                        if (e.key === "Enter")
-                                            LogarUsuario()
-                                    }}
                                 />
 
-                                <button
-                                    className="esqueci-senha"
-                                    onClick={() => {
-                                        setModalSenha(true)
-                                        setLogin(false)
-                                    }}
-                                >
-                                    Esqueci minha senha
-                                </button>
-
-                                <button
-                                    className="log"
-                                    onClick={LogarUsuario}
-                                >
-                                    Entrar
-                                </button>
-                            </div>
+                                <button type="submit" className="log">Entrar</button>
+                            </form>
                         </div>
                     </div>
                 </section>
             )}
 
-            {personalizacaoModal && (
+            {personalizacaoModal && usuarioLogado && (
                 <div className="fundo">
                     <section className="personalizar">
-                        <button
-                            className="fechar"
-                            onClick={() => setPersonalizacaoModal(false)}
-                        >
-                            <i className="fa-solid fa-xmark"></i>
+                        <button className="fechar" type="button" disabled={enviandoFoto} onClick={fecharPersonalizacao}>
+                            <i className="fa-solid fa-xmark" />
                         </button>
 
-                        <h1>Personalizar</h1>
+                        <h1 id="titulo-personalizar">Personalizar perfil</h1>
 
                         <div className="informacoes">
                             <div className="userInformation">
                                 <img
-                                    src={usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
-                                    alt={`Foto de ${usuarioLogado.primeiro_nome}`}
+                                    src={foto ? URL.createObjectURL(foto) : usuarioLogado.imagem_url || "/Assets/Imgs/usuario-padrao.webp"}
+                                    alt={`Foto de ${usuarioLogado.primeiro_nome || "usuário"}`}
                                 />
 
-                                <h3>{usuarioLogado.primeiro_nome}</h3>
+                                <h3>{primeiroNome.trim() || usuarioLogado.primeiro_nome || "Seu perfil"}</h3>
                                 <p>{usuarioLogado.nome}</p>
                                 <p>{usuarioLogado.email}</p>
                             </div>
 
                             <div className="atualizar-informacoes">
                                 <form onSubmit={atualizarUsuario}>
+                                    <label htmlFor="primeiro-nome">Como deseja ser chamado?</label>
+
                                     <input
+                                        id="primeiro-nome"
                                         type="text"
-                                        name=""
-                                        id=""
+                                        autoComplete="given-name"
                                         value={primeiroNome}
                                         placeholder="Como deseja ser chamado?"
-                                        onChange={(e) => setPrimeiroNome(e.target.value.replace(
-                                            /(^|\s)\p{L}/gu, letra => letra.toUpperCase()
-                                        ))}
-                                        required
+                                        onChange={(e) => setPrimeiroNome(e.target.value.replace(/(^|\s)\p{L}/gu, letra => letra.toUpperCase()))}
                                     />
 
-                                    <input
-                                        type="text"
-                                        name=""
-                                        id=""
-                                        value={perfil}
-                                        placeholder="URL da imagem de perfil"
-                                        onChange={(e) => setPerfil(e.target.value)}
-                                        required
-                                    />
+                                    <div className="campo-foto">
+                                        <label htmlFor="foto-perfil">Foto de perfil</label>
 
-                                    <input
-                                        type="submit"
-                                        value="Atualizar"
-                                    />
+                                        <input
+                                            type="file"
+                                            id="foto-perfil"
+                                            accept="image/jpeg,image/png,image/webp"
+                                            onChange={selecionarFoto}
+                                        />
+
+                                        {foto && (
+                                            <p className="nome-arquivo">
+                                                <span>{foto.name}</span>
+
+                                                <button
+                                                    type="button"
+                                                    aria-label="Remover foto selecionada"
+                                                    onClick={() => {
+                                                        setFoto(null);
+                                                        document.getElementById("foto-perfil").value = "";
+                                                    }}
+                                                >
+                                                    <i className="fa-solid fa-xmark" />
+                                                </button>
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    <button type="submit" disabled={enviandoFoto}>
+                                        {enviandoFoto ? "Salvando..." : "Salvar alterações"}
+                                    </button>
                                 </form>
                             </div>
                         </div>
                     </section>
                 </div>
-            )}
-
-            {modalSenha && (
-                <section className="fundo">
-                    <div className="modal-de-senha">
-                        <button
-                            className="fechar"
-                            onClick={() => setModalSenha(false)}
-                        >
-                            <i className="fa-solid fa-xmark" />
-                        </button>
-
-                        <input
-                            type="text"
-                            name=""
-                            id=""
-                            placeholder="Insira seu email aqui (cadastro necessário)"
-                            onChange={(e) => setEmailRecuperation(e.target.value)}
-                            onKeyDown={(e) => {
-                                if (e.key === "Enter")
-                                    EnviarCodigo()
-                            }}
-                        />
-
-                        <button
-                            onClick={() => EnviarCodigo()}
-                        >
-                            Enviar Código
-                        </button>
-                    </div>
-                </section>
             )}
         </>
     );

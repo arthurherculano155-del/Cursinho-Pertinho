@@ -28,10 +28,6 @@ export default function Usuarios() {
         }
 
         alert(`Usuários deletados: ${dados.Linhas_Alteradas}`);
-    
-        setTimeout(() => {
-            window.location.reload()
-        }, 1500);
     }
 
     async function mudarCargo(email) {
@@ -65,10 +61,6 @@ export default function Usuarios() {
         }
 
         alert(`Cargo de ${email} alterado com sucesso!`)
-
-        setTimeout(() => {
-            window.location.reload()
-        }, 1500);
     }
 
     useEffect(() => {
@@ -81,7 +73,10 @@ export default function Usuarios() {
         }
 
         getUsers();
-    }, [pesquisaUser])
+    }, [
+        pesquisaUser,
+        usuario
+    ])
 
     if (!usuario) {
         return <h1>Você precisa estar logado.</h1>

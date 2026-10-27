@@ -149,6 +149,13 @@
     }
 }
 
+
+.fa-location-dot {
+    font-size: 200px;
+    color: #007bff;
+}
+
+
 @media (max-width: 1200px) {
     .secao-cursos {
         .lista-cursos {
@@ -157,6 +164,7 @@
         }
     }
 }
+
 
 @media (max-width: 900px) {
     .secao-cursos {
@@ -173,6 +181,7 @@
         }
     }
 }
+
 
 @media (max-width: 600px) {
     .secao-cursos {
@@ -219,6 +228,7 @@
     }
 }
 
+
 @media (max-width: 360px) {
     .secao-cursos {
         padding: 24px 4%;
@@ -260,3 +270,620 @@
         }
     }
 }
+
+.selo-futuro {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 18px;
+    border: 1px solid #D5E7FF;
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #FFFFFF 0%,
+        #EAF3FF 100%
+    );
+
+    box-shadow: 0 4px 12px rgba(36, 117, 245, 0.08);
+
+    font-family: "Poppins", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1761D1;
+
+    .fa-location-dot {
+        font-size: 20px;
+        color: #2475F5;
+        transition: transform 0.2s ease;
+    }
+
+    &:hover {
+        box-shadow: 0 6px 18px rgba(36, 117, 245, 0.15);
+
+        .fa-location-dot {
+            transform: translateY(-2px);
+        }
+    }
+}
+
+
+.titulo-proximidade {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+
+    margin: 0 0 14px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -1px;
+
+    color: #14243B;
+
+    span {
+        position: relative;
+        color: #2475F5;
+        font-weight: 800;
+
+        &::after {
+            content: "";
+            display: block;
+
+            width: 55px;
+            height: 4px;
+            margin-top: 8px;
+
+            border-radius: 10px;
+            background: linear-gradient(
+                90deg,
+                #2475F5,
+                #75CFFF
+            );
+        }
+    }
+}
+
+.descricao-proximidade {
+    max-width: 520px;
+    margin: 0;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #607087;
+}
+
+@media (max-width: 600px) {
+    .titulo-proximidade {
+        font-size: 28px;
+        letter-spacing: -0.5px;
+    }
+
+    .descricao-proximidade {
+        font-size: 14px;
+    }
+}
+
+
+
+.proximidade {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    align-items: center;
+    gap: 30px;
+
+    min-height: 790px;
+    padding: 85px 6%;
+    overflow: hidden;
+
+    background:
+        radial-gradient(ellipse at 78% 40%, #e1f3ff 0%, transparent 36%),
+        linear-gradient(135deg, #ffffff 0%, #f5fbff 100%);
+
+    font-family: 'Poppins', sans-serif;
+    color: #102347;
+
+    .proximidade-conteudo {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+    }
+
+    .proximidade-etiqueta {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 20px;
+
+        i {
+            color: #147cff;
+            font-size: 38px;
+        }
+
+        span {
+            padding: 12px 21px;
+            border-radius: 30px;
+            background: #e0f2ff;
+            color: #0873f9;
+            font-size: 17px;
+            font-weight: 600;
+        }
+    }
+
+    h2 {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+
+        color: #102347;
+        font-size: clamp(42px, 4.8vw, 76px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -2.5px;
+
+        span {
+            color: #147cff;
+        }
+    }
+
+    .proximidade-descricao {
+        max-width: 590px;
+        margin: 28px 0 38px;
+
+        color: #485b79;
+        font-size: 17px;
+        line-height: 1.65;
+    }
+
+    .proximidade-beneficios {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start;
+        margin-top: 25px;
+    }
+
+    .beneficio {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 0 10px;
+        text-align: center;
+
+        & + .beneficio {
+            border-left: 1px solid #c8e5ff;
+        }
+
+        p {
+            margin: 0;
+            color: #102347;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+    }
+
+    .beneficio-icone {
+        display: grid;
+        place-items: center;
+        width: 68px;
+        height: 68px;
+
+        border-radius: 50%;
+        background: #e0f2ff;
+        color: #147cff;
+
+        i {
+            font-size: 29px;
+        }
+    }
+
+    .proximidade-visual {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+        min-height: 500px;
+    }
+
+    .mapa-ilustracao {
+        position: absolute;
+        top: 6%;
+        left: 0;
+
+        width: 78%;
+        height: 76%;
+        overflow: hidden;
+
+        border: 10px solid rgba(255, 255, 255, 0.65);
+        border-radius: 55px;
+        background: #eaf3fc;
+        box-shadow: 0 20px 65px rgba(48, 132, 220, 0.12);
+
+        transform: rotate(-5deg);
+    }
+
+    .mapa-ruas {
+        position: absolute;
+        inset: -30%;
+
+        background-color: #edf4fc;
+        background-image:
+            repeating-linear-gradient(
+                48deg,
+                transparent 0 28px,
+                #ffffff 29px 35px
+            ),
+            repeating-linear-gradient(
+                135deg,
+                transparent 0 42px,
+                #ffffff 43px 49px
+            ),
+            repeating-linear-gradient(
+                90deg,
+                transparent 0 70px,
+                #e0eaf6 71px 76px
+            );
+
+        transform: rotate(8deg);
+    }
+
+    .mapa-parque {
+        position: absolute;
+        z-index: 1;
+        width: 90px;
+        height: 65px;
+        border-radius: 18px;
+        background: #c9f2df;
+        opacity: 0.9;
+        transform: rotate(20deg);
+    }
+
+    .parque-um {
+        top: 8%;
+        right: 5%;
+    }
+
+    .parque-dois {
+        bottom: 12%;
+        left: 2%;
+        width: 65px;
+        height: 85px;
+    }
+
+    .mapa-rota {
+        position: absolute;
+        z-index: 2;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mapa-marcador {
+        position: absolute;
+        z-index: 3;
+        display: grid;
+        place-items: center;
+
+        width: 66px;
+        height: 75px;
+        border-radius: 50% 50% 50% 8px;
+
+        background: #147cff;
+        color: #ffffff;
+        box-shadow: 0 8px 22px rgba(20, 124, 255, 0.25);
+
+        i {
+            font-size: 30px;
+        }
+    }
+
+    .marcador-casa {
+        top: 5%;
+        left: 7%;
+        transform: rotate(-45deg);
+
+        i {
+            transform: rotate(45deg);
+        }
+    }
+
+    .marcador-curso {
+        right: 7%;
+        bottom: 19%;
+        transform: rotate(-45deg);
+
+        i {
+            transform: rotate(45deg);
+        }
+    }
+
+    .estudante-ilustracao {
+        position: absolute;
+        z-index: 4;
+        bottom: -3%;
+        left: 0;
+
+        width: 63%;
+        height: 68%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        pointer-events: none;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: bottom center;
+            filter: drop-shadow(0 10px 18px rgba(15, 49, 88, 0.08));
+        }
+    }
+
+    .transporte-lista {
+        position: absolute;
+        z-index: 5;
+        top: 24%;
+        right: -2%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 47%;
+    }
+
+    .transporte-item {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        cursor: pointer;
+
+        min-height: 88px;
+        padding: 15px 16px;
+
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 23px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 10px 30px rgba(49, 129, 211, 0.09);
+
+
+        transition: .3s ease-out;
+
+        &:hover {
+            transform: translateX(5px);
+            box-shadow: 0 14px 32px rgba(49, 129, 211, 0.17);
+            color: #147cff;
+        }
+    }
+
+    .transporte-icone {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        width: 38px;
+
+        color: #147cff;
+
+        i {
+            font-size: 28px;
+        }
+    }
+
+    .transporte-info {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        min-width: 0;
+
+        p {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        span {
+            color: #7284a0;
+            font-size: 13px;
+        }
+    }
+
+    .transporte-seta {
+        margin-left: auto;
+        color: #147cff;
+        font-size: 14px;
+    }
+
+    .proximidade-forma {
+        position: absolute;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .forma-superior {
+        top: -200px;
+        right: -140px;
+        width: 400px;
+        height: 340px;
+
+        border-radius: 0 0 0 100%;
+        background: linear-gradient(135deg, #55c4ff, #1685f9);
+        transform: rotate(8deg);
+    }
+
+    .forma-inferior {
+        bottom: -210px;
+        left: -90px;
+        width: 650px;
+        height: 300px;
+
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e5f6ff, #c7eaff);
+        transform: rotate(15deg);
+    }
+}
+
+
+@media (max-width: 1050px) {
+    .proximidade {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 70px 7%;
+
+        .proximidade-conteudo {
+            max-width: 700px;
+        }
+
+        .proximidade-visual {
+            width: 100%;
+            max-width: 700px;
+            min-height: 520px;
+            margin: 0 auto;
+        }
+
+        .mapa-ilustracao {
+            width: 76%;
+        }
+
+        .transporte-lista {
+            right: 0;
+            width: 42%;
+        }
+
+        .estudante-ilustracao {
+            width: 55%;
+        }
+    }
+}
+
+
+@media (max-width: 600px) {
+    .proximidade {
+        padding: 55px 20px 45px;
+        gap: 10px;
+
+        .proximidade-etiqueta {
+            gap: 9px;
+            margin-bottom: 18px;
+
+            i {
+                font-size: 28px;
+            }
+
+            span {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+        }
+
+        h2 {
+            font-size: clamp(38px, 10vw, 54px);
+            letter-spacing: -1.5px;
+        }
+
+        .proximidade-descricao {
+            margin: 22px 0 30px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .proximidade-beneficios {
+            gap: 0;
+        }
+
+        .beneficio {
+            gap: 9px;
+            padding: 0 5px;
+
+            p {
+                font-size: 11px;
+            }
+        }
+
+        .beneficio-icone {
+            width: 50px;
+            height: 50px;
+
+            i {
+                font-size: 22px;
+            }
+        }
+
+        .proximidade-visual {
+            min-height: 360px;
+            margin-top: 15px;
+        }
+
+        .mapa-ilustracao {
+            top: 7%;
+            left: 0;
+            width: 85%;
+            height: 70%;
+            border-width: 6px;
+            border-radius: 30px;
+        }
+
+        .mapa-marcador {
+            width: 43px;
+            height: 49px;
+
+            i {
+                font-size: 20px;
+            }
+        }
+
+        .estudante-ilustracao {
+            left: -2%;
+            bottom: -2%;
+            width: 62%;
+            height: 62%;
+        }
+
+        .transporte-lista {
+            top: 24%;
+            right: -2%;
+            gap: 9px;
+            width: 48%;
+        }
+
+        .transporte-item {
+            min-height: 65px;
+            gap: 7px;
+            padding: 9px 8px;
+            border-radius: 15px;
+        }
+
+        .transporte-icone {
+            width: 25px;
+
+            i {
+                font-size: 19px;
+            }
+        }
+
+        .transporte-info {
+            gap: 4px;
+
+            strong {
+                font-size: 11px;
+            }
+
+            span {
+                font-size: 10px;
+            }
+        }
+
+        .transporte-seta {
+            font-size: 10px;
+        }
+
+        .forma-superior {
+            right: -230px;
+        }
+    }
+}
+

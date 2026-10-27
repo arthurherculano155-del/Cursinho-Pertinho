@@ -3,21 +3,24 @@
 }
 
 .Cards-De-Oferta {
-    width: min(1250px, calc(100% - 40px));
-    margin: 0 auto 80px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
     gap: 24px 20px;
+
+    width: min(1250px, calc(100% - 40px));
+    margin: 0 auto 80px;
     color: rgb(24, 34, 48);
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 
     .Pesquisa-inputs {
         grid-column: 1 / -1;
+
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 14px;
         width: 100%;
+        margin-bottom: 0;
         padding: 24px;
         background: rgb(255, 255, 255);
         border: 1px solid rgb(228, 231, 236);
@@ -103,10 +106,10 @@
         display: flex;
         flex-direction: column;
         min-width: 0;
-        min-height: 100%;
+        height: 100%;
         overflow: hidden;
         background: rgb(255, 255, 255);
-        border: 1px solid rgb(228, 231, 236);
+        border: 1px solid rgb(193, 194, 196);
         border-radius: 16px;
         box-shadow:
             0 1px 3px rgba(16, 24, 40, 0.05),
@@ -226,7 +229,7 @@
             gap: 9px;
             min-height: 42px;
             padding: 10px 14px;
-            background: rgba(37, 99, 235, 0.94);
+            background: rgba(37, 99, 235, 0.7);
             color: rgb(255, 255, 255);
             border: none;
             border-radius: 9px;
@@ -303,120 +306,92 @@
             }
         }
     }
+}
 
-    .fundo {
-        position: fixed;
-        inset: 0;
-        z-index: 2000;
+/* Modal de confirmação da lixeira */
+.apagar {
+    position: relative;
+    width: min(450px, calc(100% - 32px));
+    padding: 32px;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(228, 231, 236);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+    color: rgb(24, 34, 48);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    animation: aparecer-modal 0.2s ease-out;
+
+    h2 {
+        margin: 0 0 28px;
+        color: rgb(24, 34, 48);
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 1.5;
+        text-align: center;
+        overflow-wrap: anywhere;
+    }
+
+    .buttons {
         display: flex;
-        align-items: center;
         justify-content: center;
-        width: 100%;
-        min-height: 100vh;
-        padding: 20px;
-        background: rgba(15, 23, 42, 0.58);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        animation: aparecerFundo 0.2s ease;
+        gap: 12px;
 
-        .apagar {
-            width: min(440px, 100%);
-            padding: 32px;
-            background: rgb(255, 255, 255);
-            border: 1px solid rgb(228, 231, 236);
-            border-radius: 18px;
-            box-shadow:
-                0 24px 48px rgba(16, 24, 40, 0.18),
-                0 8px 20px rgba(16, 24, 40, 0.08);
-            animation: aparecerModal 0.25s ease;
+        button {
+            flex: 1;
+            min-height: 46px;
+            padding: 11px 20px;
+            border-radius: 9px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition:
+                background-color 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
 
-            h2 {
-                margin: 0 0 28px;
-                padding: 0;
-                color: rgb(24, 34, 48);
-                font-size: 1.2rem;
-                font-weight: 700;
-                line-height: 1.5;
-                letter-spacing: -0.02em;
-                text-align: center;
-                overflow-wrap: anywhere;
+            &:active {
+                transform: scale(0.97);
             }
 
-            .buttons {
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 12px;
+            &:focus-visible {
+                outline: 3px solid rgb(147, 197, 253);
+                outline-offset: 3px;
+            }
+        }
 
-                button {
-                    width: 100%;
-                    min-width: 0;
-                    min-height: 48px;
-                    padding: 12px 16px;
-                    border: 1px solid transparent;
-                    border-radius: 10px;
-                    font-family: inherit;
-                    font-size: 0.95rem;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition:
-                        background-color 0.2s ease,
-                        color 0.2s ease,
-                        border-color 0.2s ease,
-                        transform 0.15s ease,
-                        box-shadow 0.2s ease;
+        .yep {
+            background: rgb(37, 99, 235);
+            color: rgb(255, 255, 255);
+            border: 1px solid rgb(37, 99, 235);
 
-                    &:active {
-                        transform: scale(0.97);
-                    }
+            &:hover {
+                background: rgb(29, 78, 216);
+                border-color: rgb(29, 78, 216);
+                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+            }
+        }
 
-                    &:focus-visible {
-                        outline: 3px solid rgb(147, 197, 253);
-                        outline-offset: 3px;
-                    }
-                }
+        .not {
+            background: transparent;
+            color: rgb(71, 84, 103);
+            border: 1px solid rgb(208, 213, 221);
 
-                .yep {
-                    background: rgb(220, 38, 38);
-                    color: rgb(255, 255, 255);
-
-                    &:hover {
-                        background: rgb(185, 28, 28);
-                        transform: translateY(-2px);
-                        box-shadow: 0 6px 14px rgba(220, 38, 38, 0.22);
-                    }
-                }
-
-                .not {
-                    background: rgb(255, 255, 255);
-                    color: rgb(71, 84, 103);
-                    border-color: rgb(208, 213, 221);
-
-                    &:hover {
-                        background: rgb(245, 247, 250);
-                        color: rgb(24, 34, 48);
-                        border-color: rgb(152, 162, 179);
-                        transform: translateY(-2px);
-                    }
-                }
+            &:hover {
+                background: rgb(248, 250, 252);
+                border-color: rgb(152, 162, 179);
+                color: rgb(24, 34, 48);
             }
         }
     }
 }
 
-@keyframes aparecerFundo {
+@keyframes aparecer-modal {
     from {
         opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes aparecerModal {
-    from {
-        opacity: 0;
-        transform: translateY(12px) scale(0.97);
+        transform: translateY(8px) scale(0.98);
     }
 
     to {
@@ -448,13 +423,12 @@
 
 @media (max-width: 600px) {
     .Cards-De-Oferta {
-        width: calc(100% - 32px);
-        margin-bottom: 48px;
         grid-template-columns: minmax(0, 1fr);
         gap: 18px;
+        width: calc(100% - 32px);
+        margin-bottom: 48px;
 
         .Pesquisa-inputs {
-            grid-column: 1;
             grid-template-columns: minmax(0, 1fr);
             gap: 12px;
             padding: 18px;
@@ -468,7 +442,6 @@
         }
 
         .card-Oferta {
-            grid-column: 1;
             min-height: 0;
             border-radius: 14px;
 
@@ -518,30 +491,23 @@
                 height: 40px;
             }
         }
+    }
 
-        .fundo {
-            padding: 16px;
+    .apagar {
+        padding: 24px 20px;
+        border-radius: 14px;
 
-            .apagar {
-                width: 100%;
-                max-width: 440px;
-                padding: 26px 20px;
-                border-radius: 16px;
+        h2 {
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
 
-                h2 {
-                    margin-bottom: 24px;
-                    font-size: 1.08rem;
-                }
+        .buttons {
+            gap: 10px;
 
-                .buttons {
-                    gap: 10px;
-
-                    button {
-                        min-height: 46px;
-                        padding: 11px 12px;
-                        font-size: 0.9rem;
-                    }
-                }
+            button {
+                padding: 10px 14px;
+                font-size: 0.9rem;
             }
         }
     }
@@ -550,7 +516,6 @@
 @media (max-width: 380px) {
     .Cards-De-Oferta {
         width: calc(100% - 24px);
-        gap: 14px;
 
         .Pesquisa-inputs {
             padding: 14px;
@@ -607,24 +572,19 @@
             }
         }
 
-        .fundo {
-            padding: 12px;
+        .apagar {
+            padding: 22px 16px;
 
-            .apagar {
-                padding: 24px 16px;
+            h2 {
+                font-size: 1rem;
+            }
 
-                h2 {
-                    margin-bottom: 22px;
-                    font-size: 1rem;
-                }
+            .buttons {
+                gap: 8px;
 
-                .buttons {
-                    gap: 8px;
-
-                    button {
-                        padding: 11px 10px;
-                        font-size: 0.85rem;
-                    }
+                button {
+                    padding: 10px;
+                    font-size: 0.85rem;
                 }
             }
         }

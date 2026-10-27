@@ -1,30 +1,49 @@
+import { createPortal } from 'react-dom';
 import './cardOferta.scss'
 import { useState, useEffect } from "react";
 
 export default function CardOferta({
     lixeira = false,
+    ate100,
+    presencial,
+    online,
+    iniciante,
+    cursoGratuito,
+    cursosPesquisa,
+    curtaDuracao,
     addLista = true
 }) {
     const API_URL = "https://cursinhopertinho-api.onrender.com";
 
     const token = localStorage.getItem("token");
+    const usuario = localStorage.getItem("usuario");
 
     const [cardOferta, setCardOferta] = useState([]);
     const [modal, setModal] = useState(null);
 
     const [regiaoPesquisa, setRegiaoPesquisa] = useState("");
-    const [cursoPesquisa, setCursoPesquisa] = useState("");
+    const [cursoPesquisa, setCursoPesquisa] = useState(cursosPesquisa || "");
     const [instituicaoPesquisa, setInstituicaoPesquisa] = useState("");
     const [nivelPesquisa, setNivelPesquisa] = useState("");
     const [modalidadePesquisa, setModalidadePesquisa] = useState("");
     const [precoMinimo, setPrecoMinimo] = useState("");
     const [precoMaximo, setPrecoMaximo] = useState("");
+    const [cargaHoraria, setCargaHoraria] = useState("");
+
+    const nivel = iniciante ? "Iniciante" : nivelPesquisa
+    const pesquisaCurso = cursoPesquisa;
+    const minimo = cursoGratuito ? 0 : precoMinimo;
+    const maximo = cursoGratuito ? 0 : ate100 ? 100 : precoMaximo;
+    const modalidade =
+        (presencial ? "Presencial" : modalidadePesquisa) ||
+        (online ? "Online" : modalidadePesquisa);
+    const carga = curtaDuracao ? 40 : cargaHoraria;
 
     useEffect(() => {
         async function getOfertas() {
             try {
                 const resposta = await fetch(
-                    `${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(cursoPesquisa)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivelPesquisa)}&modalidade=${encodeURIComponent(modalidadePesquisa)}&precoMinimo=${encodeURIComponent(precoMinimo)}&precoMaximo=${encodeURIComponent(precoMaximo)}`
+                    `${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&curso=${encodeURIComponent(pesquisaCurso)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivel)}&modalidade=${encodeURIComponent(modalidade)}&precoMinimo=${encodeURIComponent(minimo)}&precoMaximo=${encodeURIComponent(maximo)}&carga=${carga}`
                 );
 
                 if (!resposta.ok) {
@@ -41,12 +60,15 @@ export default function CardOferta({
         getOfertas();
     }, [
         regiaoPesquisa,
-        cursoPesquisa,
+        pesquisaCurso,
         instituicaoPesquisa,
-        nivelPesquisa,
-        modalidadePesquisa,
-        precoMinimo,
-        precoMaximo
+        nivel,
+        modalidade,
+        minimo,
+        maximo,
+        carga,
+        cursoGratuito,
+        token
     ]);
 
     async function InserirOferta(id_oferta) {
@@ -64,12 +86,17 @@ export default function CardOferta({
 
             const dados = await resposta.json();
 
+            if(!usuario){
+                alert("Você precisa estar logado para adicionar uma oferta.");
+                return
+            }
+
             if (!resposta.ok) {
                 alert(dados.erro);
                 return;
             }
 
-            alert(`Número de cadastro na lista: ${dados.length}`);
+            alert(`A oferta foi cadastrada em sua lista!`);
         } catch (erro) {
             console.error("Erro ao adicionar oferta:", erro);
             alert("Não foi possível adicionar a oferta.");
@@ -110,7 +137,7 @@ export default function CardOferta({
                     type="text"
                     className="input-pesquisa"
                     placeholder="Insira o nome do curso"
-                    value={cursoPesquisa}
+                    value={pesquisaCurso}
                     onChange={(e) => setCursoPesquisa(e.target.value)}
                 />
 
@@ -126,7 +153,9 @@ export default function CardOferta({
                     type="number"
                     className="input-pesquisa"
                     placeholder="Preço mínimo"
-                    value={precoMinimo}
+                    value={
+                        cursoGratuito ? 0 : ate100 ? 0 : precoMinimo
+                    }
                     onChange={(e) => setPrecoMinimo(e.target.value)}
                 />
 
@@ -134,8 +163,20 @@ export default function CardOferta({
                     type="number"
                     className="input-pesquisa"
                     placeholder="Preço máximo"
-                    value={precoMaximo}
+                    value={
+                        cursoGratuito ? 0 : ate100 ? 100 : precoMaximo
+                    }
                     onChange={(e) => setPrecoMaximo(e.target.value)}
+                />
+
+                <input
+                    type="number"
+                    className='input-pesquisa'
+                    placeholder='Carga horária'
+                    name=""
+                    id=""
+                    value={carga}
+                    onChange={(e) => setCargaHoraria(e.target.value)}
                 />
 
                 <select
@@ -155,8 +196,8 @@ export default function CardOferta({
                 </select>
 
                 <select
-                    className={`Pesquisa-Informacao ${nivelPesquisa === "" ? "placeholder-select" : ""}`}
-                    value={nivelPesquisa}
+                    className={`Pesquisa-Informacao ${nivel === "" ? "placeholder-select" : ""}`}
+                    value={nivel}
                     onChange={(e) => setNivelPesquisa(e.target.value)}
                 >
                     <option value="" disabled>
@@ -169,8 +210,8 @@ export default function CardOferta({
                 </select>
 
                 <select
-                    className={`Pesquisa-Informacao ${modalidadePesquisa === "" ? "placeholder-select" : ""}`}
-                    value={modalidadePesquisa}
+                    className={`Pesquisa-Informacao ${modalidade === "" ? "placeholder-select" : ""}`}
+                    value={modalidade}
                     onChange={(e) => setModalidadePesquisa(e.target.value)}
                 >
                     <option value="" disabled>
@@ -243,14 +284,13 @@ export default function CardOferta({
                         <button
                             type="button"
                             className="lixeira"
-                            aria-label={`Excluir oferta ${oferta.curso}`}
                             onClick={() => setModal(oferta.id)}
                         >
                             <i className="fa-solid fa-trash-can" />
                         </button>
                     )}
 
-                    {modal === oferta.id && (
+                    {modal === oferta.id && createPortal(
                         <div className="fundo">
                             <section
                                 className="apagar"
@@ -289,7 +329,8 @@ export default function CardOferta({
                                     </button>
                                 </div>
                             </section>
-                        </div>
+                        </div>,
+                        document.body
                     )}
                 </div>
             ))}

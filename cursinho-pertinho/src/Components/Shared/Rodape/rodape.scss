@@ -1,0 +1,126 @@
+.Rodape {
+    padding: 30px 15px;
+    background: rgb(14, 48, 76);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-top: 1px solid rgba(35, 121, 190, 0.8);
+
+    h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        line-height: 30px;
+        transition: .2s ease-out;
+
+        &:hover {
+            color: rgb(0, 140, 255);
+            text-decoration: underline;
+        }
+    }
+
+    .Comeco-Rodape {
+        width: 30%;
+
+        .logo-informacoes {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            span {
+                color: #2563eb;
+            }
+
+            margin-bottom: 15px;
+        }
+
+        img {
+            width: 75px;
+        }
+    }
+
+    .Rodape-Contato {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+
+        .contato-cursinho {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .localizacao{
+                color: white;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .Rodape {
+        flex-wrap: wrap;
+        gap: 30px;
+
+        .Comeco-Rodape {
+            width: 100%;
+        }
+
+        .Rodape-Contato {
+            flex: 1;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .Rodape {
+        flex-direction: column;
+        padding: 25px 20px;
+        gap: 25px;
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .Comeco-Rodape {
+            width: 100%;
+
+            img {
+                width: 65px;
+            }
+        }
+
+        .Rodape-Contato {
+            width: 100%;
+
+            .contato-cursinho {
+                flex-wrap: wrap;
+                overflow-wrap: anywhere;
+            }
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .Rodape {
+        padding: 20px 15px;
+
+        h2 {
+            font-size: 17px;
+        }
+
+        a {
+            font-size: 14px;
+        }
+
+        .Comeco-Rodape img {
+            width: 55px;
+        }
+    }
+}
