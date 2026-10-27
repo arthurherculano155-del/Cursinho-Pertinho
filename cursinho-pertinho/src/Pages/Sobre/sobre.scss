@@ -1,224 +1,465 @@
+
 .conhecerProjeto{
-    border-radius: 15px;
-    position: relative;
-    top: 20px;
-    width: 175px;
-    height: 50px;
-   font-family: 'Montserrat', sans-serif;
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -1px;
-  color: #ffffff;
-  background: none;
-  border: 1px solid white;
-}
-
-.conhecerProjeto:hover{
-    background-color: rgba(255, 255, 255, 0.171);
-    color:  #ffffff;
-    box-shadow: 0 0 15px rgba(4, 155, 255, 0.5);
-}
-
-.quem{
-     margin-left: 25px;
-     margin-top: 20px;
-     color: #1d568f;
-     font-size: 5vh;
-    padding: 5px;
-}
-
-.frase{
-
-    color: #000000;
-    font-size: 15px;
-    margin-right: 800px;
-    position: absolute;
-
-}
-.container-cards{
-display: flex;
-
-}
-
-.cards{
-    margin-top: 20px;
-    border: 1px solid #006a9b;
-    border-radius: 10px;
-    padding: 15px;
-    width: 350px;
-    height: 120px;
-    margin-left: 40px;
-}
-
-.card1{
-    margin-left: 50px;
-    font-size: 15px;
-    color: #1d568f;
-    position: relative;
-    top: 15px;
-    
-}
-
-.fa-crosshairs{
-    margin-left: 20px;
-    position: relative;
-    top: -2px;
-    font-size: 20px;
-    
-}
-
-.cardp{
-    margin-left : 45px;
-    font-size: 13px;
-    color: #000000;
-    position: relative;  
-}
-
-.mapa{
-    width: 80vh;
-    margin-left: 500px;
-    position: relative;
-    bottom: 40px;
-
-    
-}
-
-.quemsomos{
-    display: flex;
-    justify-content: center;
-}
-
-.card2{
-    margin-left: 50px;
-    font-size: 15px;
-    color: #1d568f;
-    position: relative;
-    top: 15px;
-}
-
-
-
-.fa-file-lines{
-     margin-left: 20px;
-    position: relative;
-    bottom: 2px;
-    font-size: 20px;
-
-}
-
-.cardp2{
-  margin-left : 45px;
-    font-size: 13px;
-    color: #000000;
-    position: relative;  
-}
-
-.card3{
-      margin-left: 50px;
-    font-size: 15px;
-    color: #1d568f;
-    position: relative;
-    top: 15px;
-}
-
-.fa-user{
-     margin-left: 20px;
-    position: relative;
-    bottom: 2px;
-    font-size: 20px;
-
-}
-
-.cardp3{
-     margin-left : 45px;
-    font-size: 13px;
-    color: #000000;
-    position: relative;
-}
-
-.fa-paper-plane{
-    font-size: 30px; 
-    position: relative;
-    top: 23px;
-}
-
-.Nossa-Missão{
-    font-size: 18px;
-    position: relative;
-    margin-left: 45px;
-    bottom: 10px;
-}
-
-.frase1{
-    font-size: 17px;
-    margin-left: 45px;
-    bottom: 10px;
-    position: relative;
-   
-}
-
-.missao{
-display: flex;
-flex-direction: column;
-margin-left: 30px;
-
-}
-
-.valor{
-    font-size: 25px;
-    margin-left: 70px;
-}
-
-.ateo{
-    display: flex;
-    flex-direction: row;
+   display: inline-flex;
     align-items: center;
-    gap: 15px;
+    justify-content: center;
+    min-width: 158px;
+    min-height: 50px;
+    padding: 0 26px;
+    margin-top: 20px;
+
+    background-color: rgba(49, 88, 173, 0.342);
+    color: rgb(255, 255, 255);
+
+    border: 1px solid rgb(17, 163, 248);
+    border-radius: 15px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+
+    box-shadow: 0 0 16px rgba(0, 174, 255, 0.25);
+    cursor: pointer;
+
+    transition: background-color 0.3s ease,
+                box-shadow 0.3s ease,
+                transform 0.3s ease;
+
+    &:hover {
+        background-color: rgb(29, 78, 216);
+        box-shadow: 0 0 22px rgba(0, 174, 255, 0.45);
+        transform: translateY(-2px);
+}
 }
 
-.valorizamos{
-    display: flex;
-    flex-direction: row;
-   box-sizing: border-box;
-   flex-wrap: wrap;
-   justify-content: space-between;
-      
+
+
+.pagina-sobre {
+    width: 100%;
+    min-width: 0;
+    color: rgb(20, 44, 64);
+    overflow-wrap: break-word;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+    .sobre-introducao {
+        width: 90%;
+        max-width: 1200px;
+        margin: 25px auto 30px;
+    }
+
+    .sobre-titulo {
+        position: relative;
+        margin-bottom: 15px;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.3;
+        color: rgb(20, 76, 135);
+
+        &::before {
+            display: block;
+            width: 38px;
+            height: 5px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            background-color: rgb(0, 199, 235);
+            content: '';
+        }
+    }
+
+    .sobre-conteudo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    .sobre-descricao {
+        flex: 1;
+        min-width: 0;
+        font-size: 16px;
+        line-height: 1.7;
+        color: rgb(35, 91, 153);
+    }
+
+    .sobre-imagem {
+        flex: 0 1 50%;
+        width: 50%;
+        max-width: 580px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .sobre-beneficios {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        width: 90%;
+        max-width: 1200px;
+        margin: 25px auto 30px;
+    }
+
+    .beneficio-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        min-width: 0;
+        min-height: 125px;
+        padding: 22px;
+        border: 1px solid rgb(0, 133, 230);
+        border-radius: 12px;
+        background-color: rgb(248, 251, 255);
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            background-color: rgb(235, 246, 255);
+            box-shadow: 0 4px 14px rgba(0, 113, 221, 0.12);
+        }
+
+        > i {
+            flex-shrink: 0;
+            margin-top: 3px;
+            font-size: 23px;
+            color: rgb(0, 105, 210);
+        }
+    }
+
+    .beneficio-conteudo {
+        flex: 1;
+        min-width: 0;
+
+        h3 {
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: rgb(20, 76, 135);
+        }
+
+        p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgb(30, 48, 67);
+        }
+    }
+
+    .sobre-missao {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        width: 90%;
+        max-width: 1200px;
+        margin: 25px auto 35px;
+        padding: 18px 22px;
+        border-radius: 12px;
+        background: linear-gradient(
+            100deg,
+            rgb(225, 243, 255),
+            rgb(240, 248, 255)
+        );
+
+        > i {
+            flex-shrink: 0;
+            font-size: 28px;
+            color: rgb(0, 115, 225);
+        }
+    }
+
+    .missao-conteudo {
+        min-width: 0;
+
+        h2 {
+            margin-bottom: 5px;
+            font-size: 21px;
+            font-weight: 700;
+            color: rgb(20, 76, 135);
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgb(28, 48, 70);
+        }
+    }
+
+    .sobre-valores {
+        width: 90%;
+        max-width: 1200px;
+        margin: 35px auto 45px;
+    }
+
+    .valores-titulo {
+        margin-bottom: 25px;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.3;
+        color: rgb(20, 76, 135);
+
+        &::before {
+            display: block;
+            width: 38px;
+            height: 5px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            background-color: rgb(0, 199, 235);
+            content: '';
+        }
+    }
+
+    .valores-lista {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .valor-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        min-width: 0;
+        padding: 12px 8px;
+
+        > i {
+            flex-shrink: 0;
+            width: 45px;
+            font-size: 34px;
+            text-align: center;
+            color: rgb(0, 119, 255);
+        }
+    }
+
+    .valor-conteudo {
+        flex: 1;
+        min-width: 0;
+
+        h3 {
+            margin-bottom: 7px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: rgb(20, 76, 135);
+        }
+
+        p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgb(42, 74, 108);
+        }
+    }
 }
 
-.fa-accessible-icon{
-    font-size: 20px;
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .pagina-sobre {
+        .sobre-introducao,
+        .sobre-beneficios,
+        .sobre-missao,
+        .sobre-valores {
+            width: 92%;
+        }
+
+        .sobre-conteudo {
+            gap: 25px;
+        }
+
+        .sobre-descricao {
+            font-size: 15px;
+        }
+
+        .sobre-imagem {
+            flex-basis: 48%;
+            width: 48%;
+        }
+
+        .sobre-beneficios {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .beneficio-card {
+            padding: 20px;
+        }
+
+        .beneficio-card:last-child {
+            grid-column: 1 / -1;
+        }
+
+        .valores-lista {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+    }
 }
 
-.fa-shield{
-    font-size: 20px;
+@media screen and (max-width: 600px) {
+    .pagina-sobre {
+        .sobre-introducao {
+            width: auto;
+            margin: 25px 20px;
+        }
+
+        .sobre-titulo {
+            margin-bottom: 12px;
+            font-size: 28px;
+        }
+
+        .sobre-conteudo {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 20px;
+        }
+
+        .sobre-descricao {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .sobre-imagem {
+            flex: none;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .sobre-beneficios {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 15px;
+            width: auto;
+            margin: 25px 20px;
+        }
+
+        .beneficio-card {
+            min-height: 0;
+            padding: 20px;
+            gap: 15px;
+        }
+
+        .beneficio-card > i {
+            font-size: 22px;
+        }
+
+        .beneficio-conteudo {
+            h3 {
+                font-size: 16px;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        }
+
+        .sobre-missao {
+            align-items: flex-start;
+            gap: 13px;
+            width: auto;
+            margin: 25px 20px;
+            padding: 18px;
+        }
+
+        .sobre-missao > i {
+            margin-top: 3px;
+            font-size: 23px;
+        }
+
+        .missao-conteudo {
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+        }
+
+        .sobre-valores {
+            width: auto;
+            margin: 35px 20px;
+        }
+
+        .valores-titulo {
+            margin-bottom: 15px;
+            font-size: 27px;
+        }
+
+        .valores-lista {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 8px;
+        }
+
+        .valor-item {
+            gap: 18px;
+            padding: 15px 5px;
+            border-bottom: 1px solid rgb(216, 233, 248);
+        }
+
+        .valor-item > i {
+            width: 45px;
+            font-size: 30px;
+        }
+
+        .valor-conteudo {
+            h3 {
+                margin-bottom: 5px;
+                font-size: 16px;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        }
+    }
 }
 
-.fa-graduation-cap{
-    font-size: 20px;
-}
+@media screen and (max-width: 380px) {
+    .pagina-sobre {
+        .sobre-introducao,
+        .sobre-valores {
+            margin-right: 15px;
+            margin-left: 15px;
+        }
 
-.fa-star{
-    font-size: 20px;
-}
+        .sobre-titulo {
+            font-size: 25px;
+        }
 
-.texto{
-    display: flex;
-    flex-direction: column;
-}
+        .sobre-beneficios {
+            margin-right: 15px;
+            margin-left: 15px;
+        }
 
-.text1{
-    margin: 4px 0 0;
-}
+        .beneficio-card {
+            padding: 16px;
+            gap: 12px;
+        }
 
-.text2{
-    margin: 4px 0 0;
-}
+        .sobre-missao {
+            margin-right: 15px;
+            margin-left: 15px;
+            padding: 15px;
+        }
 
-.text3{
-    margin: 4px 0 0;
-}
+        .missao-conteudo {
+            h2 {
+                font-size: 18px;
+            }
 
-.text4{
-    margin: 4px 0 0;
+            p {
+                font-size: 14px;
+            }
+        }
+
+        .valores-titulo {
+            font-size: 24px;
+        }
+    }
 }
