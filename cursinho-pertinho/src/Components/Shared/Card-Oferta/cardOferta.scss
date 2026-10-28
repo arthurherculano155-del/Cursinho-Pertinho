@@ -7,7 +7,6 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
     gap: 24px 20px;
-
     width: min(1250px, calc(100% - 40px));
     margin: 0 auto 80px;
     color: rgb(24, 34, 48);
@@ -15,7 +14,6 @@
 
     .Pesquisa-inputs {
         grid-column: 1 / -1;
-
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 14px;
@@ -212,6 +210,33 @@
                     border-radius: 2px;
                 }
             }
+
+            span {
+                display: inline-flex;
+                align-items: center;
+                max-width: 100%;
+                margin: 3px 5px 3px 0;
+                padding: 3px 8px;
+                background: rgb(239, 246, 255);
+                color: rgb(37, 99, 235);
+                border: 1px solid rgb(219, 234, 254);
+                border-radius: 5px;
+                font-size: 0.76rem;
+                font-weight: 500;
+                line-height: 1.4;
+                vertical-align: middle;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+                cursor: default;
+                transition:
+                    background-color 0.2s ease,
+                    border-color 0.2s ease;
+
+                &:hover {
+                    background: rgb(239, 246, 255);
+                    border-color: rgb(191, 219, 254);
+                }
+            }
         }
 
         h5:last-of-type {
@@ -308,7 +333,6 @@
     }
 }
 
-/* Modal de confirmação da lixeira */
 .apagar {
     position: relative;
     width: min(450px, calc(100% - 32px));
@@ -375,7 +399,7 @@
         }
 
         .not {
-            background: transparent;
+            background: rgba(255, 255, 255, 0);
             color: rgb(71, 84, 103);
             border: 1px solid rgb(208, 213, 221);
 
@@ -478,6 +502,12 @@
             h5 {
                 margin: 0 20px 10px;
                 font-size: 0.86rem;
+
+                span {
+                    margin: 3px 4px 3px 0;
+                    padding: 3px 7px;
+                    font-size: 0.74rem;
+                }
             }
 
             h5:last-of-type {
@@ -560,6 +590,11 @@
             h5 {
                 margin: 0 16px 9px;
                 font-size: 0.83rem;
+
+                span {
+                    padding: 3px 6px;
+                    font-size: 0.71rem;
+                }
             }
 
             h5:last-of-type {
