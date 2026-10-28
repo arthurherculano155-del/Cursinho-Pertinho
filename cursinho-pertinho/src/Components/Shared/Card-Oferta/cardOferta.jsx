@@ -213,7 +213,9 @@ export default function CardOferta({
 
                     <h5>
                         Tags: {oferta.tags.split(",").map((tag) => (
-                            <span>{tag}</span>
+                            <span
+                                key={tag}
+                            >{tag}</span>
                         ))}
                     </h5>
 
