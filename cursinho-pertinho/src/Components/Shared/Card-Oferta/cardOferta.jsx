@@ -85,7 +85,7 @@ export default function CardOferta({
                 {name: "descricao",  weight: 0.15},
                 {name: "unidade",  weight: 0.05}
             ],
-            threshold: 0.3,
+            threshold: 0.4,
             ignoreLocation: true
         })
 
