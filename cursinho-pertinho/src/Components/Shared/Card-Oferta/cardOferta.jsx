@@ -167,7 +167,7 @@ export default function CardOferta({
                     value={regiaoPesquisa}
                     onChange={(e) => setRegiaoPesquisa(e.target.value)}
                 >
-                    <option value="" disabled>
+                    <option value="">
                         Escolha uma região
                     </option>
 
