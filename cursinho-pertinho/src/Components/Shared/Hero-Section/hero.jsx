@@ -87,7 +87,7 @@ export default function HeroSection({
     }, [
         usuario,
         cardsLista,
-        usuario?.id
+        usuario?.id    
     ])
 
     function BuscarPoucaDuracao() {
