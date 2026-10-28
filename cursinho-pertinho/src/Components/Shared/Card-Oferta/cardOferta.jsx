@@ -1,6 +1,8 @@
 import { createPortal } from 'react-dom';
+import { useState, useEffect, useMemo } from "react";
+import Fuse from 'fuse.js';
+
 import './cardOferta.scss'
-import { useState, useEffect } from "react";
 
 export default function CardOferta({
     lixeira = false,
@@ -43,7 +45,7 @@ export default function CardOferta({
         async function getOfertas() {
             try {
                 const resposta = await fetch(
-                    `${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&tags=${encodeURIComponent(pesquisaCurso)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivel)}&modalidade=${encodeURIComponent(modalidade)}&precoMinimo=${encodeURIComponent(minimo)}&precoMaximo=${encodeURIComponent(maximo)}&carga=${carga}`
+                    `${API_URL}/ofertas?regiao=${encodeURIComponent(regiaoPesquisa)}&instituicao=${encodeURIComponent(instituicaoPesquisa)}&nivel=${encodeURIComponent(nivel)}&modalidade=${encodeURIComponent(modalidade)}&precoMinimo=${encodeURIComponent(minimo)}&precoMaximo=${encodeURIComponent(maximo)}&carga=${carga}`
                 );
 
                 if (!resposta.ok) {
@@ -60,7 +62,6 @@ export default function CardOferta({
         getOfertas();
     }, [
         regiaoPesquisa,
-        pesquisaCurso,
         instituicaoPesquisa,
         nivel,
         modalidade,
@@ -70,6 +71,26 @@ export default function CardOferta({
         cursoGratuito,
         token
     ]);
+
+    const ofertasFiltradas = useMemo(() => {
+        const termo = cursoPesquisa.trim();
+
+        if(!termo)
+            return cardOferta;
+
+        const fuse = new Fuse(cardOferta, {
+            keys: [
+                {name: "curso",  weight: 0.5},
+                {name: "tags",  weight: 0.3},
+                {name: "descricao",  weight: 0.15},
+                {name: "unidade",  weight: 0.05}
+            ],
+            threshold: 0.4,
+            ignoreLocation: true
+        })
+
+        return fuse.search(termo).map((resultado) => resultado.item)
+    }, [cardOferta, cursoPesquisa])
 
     async function InserirOferta(id_oferta) {
         try {
@@ -158,7 +179,7 @@ export default function CardOferta({
                 </select>
             </section>
 
-            {cardOferta.map((oferta) => (
+            {ofertasFiltradas.map((oferta) => (
                 <div
                     className="card-Oferta"
                     key={oferta.id}
