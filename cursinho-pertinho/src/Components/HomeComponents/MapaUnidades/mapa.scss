@@ -1,259 +1,518 @@
 .secao-mapa {
-    position: relative;
-    isolation: isolate;
-    padding: 80px 6%;
-    overflow: hidden;
-    background:
-        radial-gradient(ellipse at 85% 15%, #e1f3ff 0%, transparent 35%),
-        linear-gradient(135deg, #ffffff 0%, #f5fbff 100%);
+    padding: 50px 5%;
+    background: rgb(234, 243, 255);
+    color: rgb(20, 36, 59);
     font-family: "Poppins", sans-serif;
-    color: #14243B;
-
-    &::before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        top: -120px;
-        right: -100px;
-        width: 320px;
-        height: 280px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #e0f2ff, #c7eaff);
-        opacity: 0.7;
-        pointer-events: none;
-    }
 
     .cabecalho-mapa {
-        position: relative;
-        max-width: 760px;
-        margin: 0 auto 35px;
-        text-align: center;
-    }
+        margin-bottom: 24px;
 
-    .cabecalho-mapa h2 {
-        margin: 0 0 14px;
-        color: #14243B;
-        font-size: clamp(30px, 4vw, 46px);
-        font-weight: 800;
-        line-height: 1.2;
-        letter-spacing: -1.2px;
+        .etiqueta-mapa {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: rgb(36, 117, 245);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
 
-        &::after {
-            content: "";
-            display: block;
-            width: 65px;
-            height: 4px;
-            margin: 16px auto 0;
-            border-radius: 10px;
-            background: linear-gradient(90deg, #2475F5, #75CFFF);
+            i {
+                font-size: 15px;
+            }
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            color: rgb(20, 36, 59);
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            line-height: 1.25;
+
+            span {
+                color: rgb(36, 117, 245);
+            }
+        }
+
+        p {
+            max-width: 720px;
+            margin: 0;
+            color: rgb(91, 107, 130);
+            font-size: 15px;
+            line-height: 1.7;
         }
     }
 
-    .cabecalho-mapa p {
-        max-width: 620px;
-        margin: 0 auto;
-        color: #607087;
-        font-size: 16px;
-        line-height: 1.8;
+    .acoes-mapa {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        .botao-minha-localizacao {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 46px;
+            padding: 12px 20px;
+            color: rgb(255, 255, 255);
+            background: linear-gradient(135deg, rgb(36, 117, 245), rgb(20, 86, 217));
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(36, 117, 245, 0.2);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+            &:hover {
+                background: linear-gradient(135deg, rgb(20, 86, 217), rgb(14, 67, 180));
+                box-shadow: 0 9px 22px rgba(36, 117, 245, 0.28);
+                transform: translateY(-2px);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+
+            &:focus-visible {
+                outline: 3px solid rgba(36, 117, 245, 0.3);
+                outline-offset: 3px;
+            }
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+                transform: none;
+            }
+
+            i {
+                font-size: 15px;
+            }
+        }
+    }
+
+    .erro-localizacao {
+        margin: 0;
+        padding: 12px 15px;
+        color: rgb(180, 35, 24);
+        background: rgb(255, 241, 240);
+        border: 1px solid rgb(255, 215, 210);
+        border-radius: 12px;
+        font-size: 13px;
+        line-height: 1.6;
     }
 
     .mapa-unidades {
         position: relative;
         z-index: 1;
         width: 100%;
-        height: 500px;
+        height: 560px;
         overflow: hidden;
-        border: 8px solid rgba(255, 255, 255, 0.9);
-        border-radius: 28px;
-        background: #EAF3FF;
-        box-shadow:
-            0 20px 55px rgba(20, 36, 59, 0.10),
-            0 5px 16px rgba(36, 117, 245, 0.08);
+        background: rgb(220, 235, 250);
+        border: 1px solid rgba(36, 117, 245, 0.12);
+        border-radius: 22px;
+        box-shadow: 0 12px 35px rgba(20, 36, 59, 0.1);
+
+        .leaflet-container {
+            width: 100%;
+            height: 100%;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .leaflet-control-zoom {
+            overflow: hidden;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 14px rgba(20, 36, 59, 0.16);
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 36px;
+                height: 36px;
+                color: rgb(20, 36, 59);
+                background: rgb(255, 255, 255);
+                border: none;
+                transition: color 0.2s ease, background 0.2s ease;
+
+                &:hover {
+                    color: rgb(255, 255, 255);
+                    background: rgb(36, 117, 245);
+                }
+            }
+        }
+
+        .leaflet-control-attribution {
+            padding: 3px 7px;
+            color: rgb(91, 107, 130);
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 10px;
+
+            a {
+                color: rgb(36, 117, 245);
+            }
+        }
     }
 
-    .leaflet-control-zoom {
-        overflow: hidden;
-        border: 1px solid #DCE7F5 !important;
-        border-radius: 10px !important;
-        box-shadow: 0 4px 14px rgba(20, 36, 59, 0.12) !important;
+    .popup-unidade {
+        min-width: 210px;
+        color: rgb(20, 36, 59);
+        font-family: "Poppins", sans-serif;
 
-        a {
-            width: 34px !important;
-            height: 34px !important;
-            border-bottom: 1px solid #DCE7F5 !important;
-            background: #FFFFFF !important;
-            color: #2475F5 !important;
-            line-height: 34px !important;
-            transition: background 0.2s ease, color 0.2s ease;
+        h3 {
+            margin: 0 0 12px;
+            padding-right: 15px;
+            color: rgb(20, 36, 59);
+            font-size: 15px;
+            font-weight: 800;
+            line-height: 1.5;
+        }
+
+        p {
+            margin: 0 0 9px;
+            color: rgb(91, 107, 130);
+            font-size: 12px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+
+            strong {
+                color: rgb(20, 36, 59);
+                font-weight: 700;
+            }
+        }
+
+        .botao-tracar-rota {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            min-height: 40px;
+            margin-top: 8px;
+            padding: 10px 12px;
+            color: rgb(255, 255, 255);
+            background: linear-gradient(135deg, rgb(36, 117, 245), rgb(20, 86, 217));
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
 
             &:hover {
-                background: #EAF3FF !important;
-                color: #1558CF !important;
+                box-shadow: 0 5px 14px rgba(36, 117, 245, 0.25);
+                transform: translateY(-1px);
+            }
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: wait;
+                transform: none;
             }
         }
     }
 
     .leaflet-popup-content-wrapper {
-        border: 1px solid #DCE7F5;
-        border-radius: 14px;
-        background: #FFFFFF;
-        box-shadow: 0 8px 28px rgba(20, 36, 59, 0.14);
+        padding: 4px;
+        background: rgb(255, 255, 255);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(20, 36, 59, 0.18);
     }
 
     .leaflet-popup-content {
-        margin: 17px;
+        margin: 14px;
         font-family: "Poppins", sans-serif;
-        color: #52647B;
-        line-height: 1.6;
-
-        .popup-unidade {
-            min-width: 190px;
-
-            h3 {
-                margin: 0 0 12px;
-                color: #14243B;
-                font-size: 16px;
-                font-weight: 800;
-                line-height: 1.4;
-            }
-
-            p {
-                margin: 7px 0;
-                font-size: 12px;
-                overflow-wrap: anywhere;
-            }
-
-            strong {
-                color: #263B56;
-                font-weight: 700;
-            }
-        }
     }
 
     .leaflet-popup-tip {
-        background: #FFFFFF;
+        background: rgb(255, 255, 255);
     }
 
     .leaflet-container a.leaflet-popup-close-button {
-        color: #607087;
-        transition: color 0.2s ease;
+        top: 7px;
+        right: 7px;
+        color: rgb(107, 124, 147);
+        font-size: 20px;
 
         &:hover {
-            color: #2475F5;
+            color: rgb(36, 117, 245);
+        }
+    }
+
+    .leaflet-marker-icon {
+        transition: filter 0.2s ease;
+
+        &:hover {
+            filter: drop-shadow(0 4px 5px rgba(20, 36, 59, 0.3));
+        }
+    }
+
+    .resumo-rota {
+        margin-top: 24px;
+        padding: 26px;
+        background: rgb(255, 255, 255);
+        border: 1px solid rgba(36, 117, 245, 0.12);
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(20, 36, 59, 0.07);
+
+        h3 {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 0 0 18px;
+            color: rgb(20, 36, 59);
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+
+            i {
+                flex-shrink: 0;
+                margin-top: 5px;
+                color: rgb(36, 117, 245);
+            }
+        }
+
+        > p {
+            margin: 18px 0 14px;
+            color: rgb(91, 107, 130);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .dados-rota {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            p {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin: 0;
+                padding: 13px 16px;
+                color: rgb(36, 89, 166);
+                background: rgb(237, 245, 255);
+                border: 1px solid rgb(213, 230, 255);
+                border-radius: 12px;
+                font-size: 13px;
+                line-height: 1.6;
+
+                i {
+                    color: rgb(36, 117, 245);
+                }
+
+                strong {
+                    color: rgb(20, 36, 59);
+                }
+            }
+        }
+
+        .opcoes-transporte {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+
+            .botao-tracar-rota {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 9px;
+                min-width: 0;
+                min-height: 48px;
+                padding: 12px 15px;
+                color: rgb(255, 255, 255);
+                background: linear-gradient(135deg, rgb(36, 117, 245), rgb(20, 86, 217));
+                border: none;
+                border-radius: 12px;
+                box-shadow: 0 5px 14px rgba(36, 117, 245, 0.16);
+                font-family: inherit;
+                font-size: 12px;
+                font-weight: 700;
+                text-align: center;
+                text-decoration: none;
+                line-height: 1.5;
+                overflow-wrap: anywhere;
+                transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+                &:hover {
+                    color: rgb(255, 255, 255);
+                    background: linear-gradient(135deg, rgb(20, 86, 217), rgb(14, 67, 180));
+                    box-shadow: 0 8px 18px rgba(36, 117, 245, 0.25);
+                    transform: translateY(-2px);
+                }
+
+                &:focus-visible {
+                    outline: 3px solid rgba(36, 117, 245, 0.3);
+                    outline-offset: 3px;
+                }
+
+                i {
+                    flex-shrink: 0;
+                }
+            }
+        }
+
+        .botao-limpar-rota {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 42px;
+            margin-top: 18px;
+            padding: 10px 16px;
+            color: rgb(180, 35, 24);
+            background: rgb(255, 241, 240);
+            border: 1px solid rgb(255, 215, 210);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease;
+
+            &:hover {
+                background: rgb(255, 225, 222);
+                border-color: rgb(255, 180, 172);
+            }
+
+            &:focus-visible {
+                outline: 3px solid rgba(180, 35, 24, 0.2);
+                outline-offset: 3px;
+            }
         }
     }
 
     .quantidade-unidades {
-        display: table;
-        margin: 22px auto 0;
-        padding: 10px 18px;
-        border: 1px solid #D5E7FF;
-        border-radius: 50px;
-        background: linear-gradient(135deg, #FFFFFF 0%, #EAF3FF 100%);
-        box-shadow: 0 4px 12px rgba(36, 117, 245, 0.08);
-        color: #1761D1;
-        font-size: 13px;
-        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 18px 0 0;
+        color: rgb(91, 107, 130);
+        font-size: 12px;
+        line-height: 1.6;
         text-align: center;
-    }
-}
 
-.mapa-status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 250px;
-    margin: 40px 6%;
-    padding: 30px;
-    border: 1px solid #DCE7F5;
-    border-radius: 20px;
-    background: #EAF3FF;
-    color: #52647B;
-    font-family: "Poppins", sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    text-align: center;
-}
-
-.mapa-erro {
-    border-color: #F2CACA;
-    background: #FFF5F5;
-    color: #B42318;
-}
-
-@media (max-width: 900px) {
-    .secao-mapa {
-        padding: 65px 5%;
-
-        .mapa-unidades {
-            height: 430px;
-            border-width: 6px;
-            border-radius: 22px;
-        }
-    }
-}
-
-@media (max-width: 600px) {
-    .secao-mapa {
-        padding: 50px 5%;
-
-        .cabecalho-mapa {
-            margin-bottom: 25px;
-        }
-
-        .cabecalho-mapa h2 {
-            font-size: 28px;
-            letter-spacing: -0.5px;
-        }
-
-        .cabecalho-mapa p {
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        .mapa-unidades {
-            height: 360px;
-            border-width: 4px;
-            border-radius: 17px;
-        }
-
-        .leaflet-popup-content {
-            margin: 13px;
-
-            .popup-unidade h3 {
-                font-size: 14px;
-            }
-
-            .popup-unidade p {
-                font-size: 11px;
-            }
-        }
-
-        .quantidade-unidades {
-            max-width: 100%;
-            padding: 10px 14px;
-            font-size: 12px;
+        i {
+            color: rgb(36, 117, 245);
         }
     }
 
     .mapa-status {
-        min-height: 200px;
-        margin: 25px 5%;
-        padding: 22px;
-        font-size: 14px;
+        padding: 16px 18px;
+        color: rgb(36, 89, 166);
+        background: rgb(237, 245, 255);
+        border: 1px solid rgb(213, 230, 255);
+        border-radius: 12px;
+        font-size: 13px;
+        line-height: 1.6;
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 1000px) {
     .secao-mapa {
         padding: 40px 4%;
 
-        .cabecalho-mapa h2 {
-            font-size: 24px;
+        .mapa-unidades {
+            height: 500px;
+        }
+
+        .resumo-rota {
+            .opcoes-transporte {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .secao-mapa {
+        padding: 32px 4%;
+
+        .cabecalho-mapa {
+            margin-bottom: 20px;
+
+            h2 {
+                font-size: 30px;
+            }
+
+            p {
+                font-size: 13px;
+            }
+
+            .etiqueta-mapa {
+                font-size: 11px;
+                line-height: 1.6;
+            }
         }
 
         .mapa-unidades {
-            height: 320px;
+            height: 430px;
+            border-radius: 17px;
+        }
+
+        .resumo-rota {
+            padding: 20px;
+            border-radius: 16px;
+
+            h3 {
+                font-size: 17px;
+            }
+
+            .opcoes-transporte {
+                grid-template-columns: 1fr;
+
+                .botao-tracar-rota {
+                    min-height: 46px;
+                }
+            }
+        }
+
+        .acoes-mapa {
+            .botao-minha-localizacao {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .secao-mapa {
+        padding: 24px 12px;
+
+        .cabecalho-mapa {
+            h2 {
+                font-size: 26px;
+            }
+        }
+
+        .mapa-unidades {
+            height: 350px;
+        }
+
+        .resumo-rota {
+            padding: 16px;
+
+            .dados-rota {
+                flex-direction: column;
+
+                p {
+                    align-items: flex-start;
+                }
+            }
+        }
+
+        .popup-unidade {
+            min-width: 190px;
         }
     }
 }
