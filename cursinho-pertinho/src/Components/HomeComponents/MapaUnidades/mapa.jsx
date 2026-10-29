@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import {
     MapContainer,
     TileLayer,
@@ -94,6 +95,8 @@ export default function MapaUnidades() {
     const [unidades, setUnidades] = useState([]);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState('');
+
+    const [mapaAtivo, setMapaAtivo] = useState(false);
 
     const [localizacao, setLocalizacao] = useState(null);
     const [carregandoLocalizacao, setCarregandoLocalizacao] = useState(false);
@@ -239,6 +242,7 @@ export default function MapaUnidades() {
             });
         } catch (err) {
             console.error('Erro ao calcular rota:', err);
+
             setErroRota(
                 err.message || 'Ocorreu um erro ao calcular a rota.'
             );
@@ -350,210 +354,235 @@ export default function MapaUnidades() {
                 </p>
             </div>
 
-            <div className="acoes-mapa">
-                <button
-                    type="button"
-                    className="botao-minha-localizacao"
-                    onClick={mostrarMinhaLocalizacao}
-                    disabled={carregandoLocalizacao}
-                >
-                    <i className="fa-solid fa-location-crosshairs"></i>
+            {!mapaAtivo ? (
+                <div className="mapa-bloqueado">
+                    <div className="conteudo-mapa-bloqueado">
+                        <i className="fa-solid fa-map-location-dot"></i>
 
-                    {carregandoLocalizacao
-                        ? 'Obtendo localização...'
-                        : 'Mostrar minha localização'}
-                </button>
+                        <h3>Explore as unidades no mapa</h3>
 
-                {erroLocalizacao && (
-                    <p className="erro-localizacao" role="alert">
-                        {erroLocalizacao}
-                    </p>
-                )}
-            </div>
+                        <p>
+                            Visualize a localização das instituições
+                            e descubra quais ficam mais próximas de você.
+                        </p>
 
-            <MapContainer
-                center={[-23.5505, -46.6333]}
-                zoom={10}
-                scrollWheelZoom={true}
-                className="mapa-unidades"
-            >
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
+                        <button
+                            type="button"
+                            onClick={() => setMapaAtivo(true)}
+                        >
+                            <i className="fa-solid fa-map"></i>
+                            Visualizar mapa
+                        </button>
+                    </div>
+                </div>
+            ) : (
+                <>
+                    <div className="acoes-mapa">
+                        <button
+                            type="button"
+                            className="botao-minha-localizacao"
+                            onClick={mostrarMinhaLocalizacao}
+                            disabled={carregandoLocalizacao}
+                        >
+                            <i className="fa-solid fa-location-crosshairs"></i>
 
-                <CentralizarMapa localizacao={localizacao} />
+                            {carregandoLocalizacao
+                                ? 'Obtendo localização...'
+                                : 'Mostrar minha localização'}
+                        </button>
 
-                {rota && (
-                    <>
-                        <EnquadrarRota rota={rota} />
+                        {erroLocalizacao && (
+                            <p className="erro-localizacao" role="alert">
+                                {erroLocalizacao}
+                            </p>
+                        )}
+                    </div>
 
-                        <Polyline
-                            positions={rota.coordenadas}
-                            pathOptions={{
-                                color: '#2475F5',
-                                weight: 6,
-                                opacity: 0.85,
-                                lineCap: 'round',
-                                lineJoin: 'round'
-                            }}
+                    <MapContainer
+                        center={[-23.5505, -46.6333]}
+                        zoom={10}
+                        scrollWheelZoom={true}
+                        className="mapa-unidades"
+                    >
+                        <TileLayer
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                    </>
-                )}
 
-                {localizacao && (
-                    <CircleMarker
-                        center={[
-                            localizacao.latitude,
-                            localizacao.longitude
-                        ]}
-                        radius={10}
-                        pathOptions={{
-                            color: '#FFFFFF',
-                            weight: 3,
-                            fillColor: '#2475F5',
-                            fillOpacity: 1
-                        }}
-                    >
-                        <Popup>
-                            <div className="popup-unidade">
-                                <h3>Você está aqui!</h3>
-                                <p>Sua localização atual.</p>
+                        <CentralizarMapa localizacao={localizacao} />
+
+                        {rota && (
+                            <>
+                                <EnquadrarRota rota={rota} />
+
+                                <Polyline
+                                    positions={rota.coordenadas}
+                                    pathOptions={{
+                                        color: '#2475F5',
+                                        weight: 6,
+                                        opacity: 0.85,
+                                        lineCap: 'round',
+                                        lineJoin: 'round'
+                                    }}
+                                />
+                            </>
+                        )}
+
+                        {localizacao && (
+                            <CircleMarker
+                                center={[
+                                    localizacao.latitude,
+                                    localizacao.longitude
+                                ]}
+                                radius={10}
+                                pathOptions={{
+                                    color: '#FFFFFF',
+                                    weight: 3,
+                                    fillColor: '#2475F5',
+                                    fillOpacity: 1
+                                }}
+                            >
+                                <Popup>
+                                    <div className="popup-unidade">
+                                        <h3>Você está aqui!</h3>
+                                        <p>Sua localização atual.</p>
+                                    </div>
+                                </Popup>
+                            </CircleMarker>
+                        )}
+
+                        {unidadesValidas.map((unidade) => (
+                            <Marker
+                                key={unidade.id_unidade}
+                                position={[
+                                    Number(unidade.latitude),
+                                    Number(unidade.longitude)
+                                ]}
+                            >
+                                <Popup>
+                                    <div className="popup-unidade">
+                                        <h3>{unidade.unidade}</h3>
+
+                                        <p>
+                                            <strong>Instituição:</strong>{' '}
+                                            {unidade.instituicao}
+                                        </p>
+
+                                        <p>
+                                            <strong>Endereço:</strong>{' '}
+                                            {[
+                                                unidade.endereco,
+                                                unidade.numero,
+                                                unidade.bairro,
+                                                unidade.cep
+                                            ]
+                                                .filter(Boolean)
+                                                .join(', ')}
+                                        </p>
+
+                                        <p>
+                                            <strong>Região:</strong>{' '}
+                                            {unidade.regiao}
+                                        </p>
+
+                                        <button
+                                            type="button"
+                                            className="botao-tracar-rota"
+                                            onClick={() => calcularRota(unidade)}
+                                            disabled={carregandoRota}
+                                        >
+                                            <i className="fa-solid fa-route"></i>
+
+                                            {carregandoRota &&
+                                            unidadeSelecionada?.id_unidade === unidade.id_unidade
+                                                ? 'Calculando rota...'
+                                                : 'Traçar rota de carro'}
+                                        </button>
+                                    </div>
+                                </Popup>
+                            </Marker>
+                        ))}
+                    </MapContainer>
+
+                    {erroRota && (
+                        <p className="erro-localizacao" role="alert">
+                            {erroRota}
+                        </p>
+                    )}
+
+                    {rota && unidadeSelecionada && (
+                        <div className="resumo-rota">
+                            <h3>
+                                <i className="fa-solid fa-route"></i>
+                                Como chegar até {unidadeSelecionada.unidade}
+                            </h3>
+
+                            <div className="dados-rota">
+                                <p>
+                                    <i className="fa-solid fa-car"></i>
+                                    <strong>Carro:</strong>{' '}
+                                    {formatarDistancia(rota.distancia)} ·{' '}
+                                    {formatarDuracao(rota.duracao)}
+                                </p>
                             </div>
-                        </Popup>
-                    </CircleMarker>
-                )}
 
-                {unidadesValidas.map((unidade) => (
-                    <Marker
-                        key={unidade.id_unidade}
-                        position={[
-                            Number(unidade.latitude),
-                            Number(unidade.longitude)
-                        ]}
-                    >
-                        <Popup>
-                            <div className="popup-unidade">
-                                <h3>{unidade.unidade}</h3>
+                            <p>
+                                Consulte abaixo os trajetos de transporte público
+                                e os horários estimados disponíveis.
+                            </p>
 
-                                <p>
-                                    <strong>Instituição:</strong>{' '}
-                                    {unidade.instituicao}
-                                </p>
-
-                                <p>
-                                    <strong>Endereço:</strong>{' '}
-                                    {[
-                                        unidade.endereco,
-                                        unidade.numero,
-                                        unidade.bairro,
-                                        unidade.cep
-                                    ]
-                                        .filter(Boolean)
-                                        .join(', ')}
-                                </p>
-
-                                <p>
-                                    <strong>Região:</strong>{' '}
-                                    {unidade.regiao}
-                                </p>
-
-                                <button
-                                    type="button"
+                            <div className="opcoes-transporte">
+                                <a
                                     className="botao-tracar-rota"
-                                    onClick={() => calcularRota(unidade)}
-                                    disabled={carregandoRota}
+                                    href={linkOnibus}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <i className="fa-solid fa-bus"></i>
+                                    Ver rota de ônibus
+                                </a>
+
+                                <a
+                                    className="botao-tracar-rota"
+                                    href={linkMetro}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <i className="fa-solid fa-train-subway"></i>
+                                    Ver rota de metrô
+                                </a>
+
+                                <a
+                                    className="botao-tracar-rota"
+                                    href={linkTransportePublico}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     <i className="fa-solid fa-route"></i>
-
-                                    {carregandoRota &&
-                                    unidadeSelecionada?.id_unidade === unidade.id_unidade
-                                        ? 'Calculando rota...'
-                                        : 'Traçar rota de carro'}
-                                </button>
+                                    Comparar transporte público
+                                </a>
                             </div>
-                        </Popup>
-                    </Marker>
-                ))}
-            </MapContainer>
 
-            {erroRota && (
-                <p className="erro-localizacao" role="alert">
-                    {erroRota}
-                </p>
-            )}
+                            <button
+                                type="button"
+                                className="botao-limpar-rota"
+                                onClick={limparRota}
+                            >
+                                <i className="fa-solid fa-xmark"></i>
+                                Limpar rota
+                            </button>
+                        </div>
+                    )}
 
-            {rota && unidadeSelecionada && (
-                <div className="resumo-rota">
-                    <h3>
-                        <i className="fa-solid fa-route"></i>
-                        Como chegar até {unidadeSelecionada.unidade}
-                    </h3>
-
-                    <div className="dados-rota">
-                        <p>
-                            <i className="fa-solid fa-car"></i>
-                            <strong>Carro:</strong>{' '}
-                            {formatarDistancia(rota.distancia)} ·{' '}
-                            {formatarDuracao(rota.duracao)}
-                        </p>
-                    </div>
-
-                    <p>
-                        Consulte abaixo os trajetos de transporte público
-                        e os horários estimados disponíveis.
+                    <p className="quantidade-unidades">
+                        <i className="fa-solid fa-map-location-dot"></i>
+                        {unidadesValidas.length}{' '}
+                        {unidadesValidas.length === 1
+                            ? 'unidade exibida'
+                            : 'unidades exibidas'} no mapa
                     </p>
-
-                    <div className="opcoes-transporte">
-                        <a
-                            className="botao-tracar-rota"
-                            href={linkOnibus}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <i className="fa-solid fa-bus"></i>
-                            Ver rota de ônibus
-                        </a>
-
-                        <a
-                            className="botao-tracar-rota"
-                            href={linkMetro}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <i className="fa-solid fa-train-subway"></i>
-                            Ver rota de metrô
-                        </a>
-
-                        <a
-                            className="botao-tracar-rota"
-                            href={linkTransportePublico}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <i className="fa-solid fa-route"></i>
-                            Comparar transporte público
-                        </a>
-                    </div>
-
-                    <button
-                        type="button"
-                        className="botao-limpar-rota"
-                        onClick={limparRota}
-                    >
-                        <i className="fa-solid fa-xmark"></i>
-                        Limpar rota
-                    </button>
-                </div>
+                </>
             )}
-
-            <p className="quantidade-unidades">
-                <i className="fa-solid fa-map-location-dot"></i>
-                {unidadesValidas.length}{' '}
-                {unidadesValidas.length === 1
-                    ? 'unidade exibida'
-                    : 'unidades exibidas'} no mapa
-            </p>
         </section>
     );
 }
