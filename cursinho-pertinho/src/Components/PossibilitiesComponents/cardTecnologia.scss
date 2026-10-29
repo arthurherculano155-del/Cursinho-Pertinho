@@ -1,0 +1,208 @@
+.Tecnologia {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 42%;
+    align-items: center;
+    gap: 12px;
+
+    min-width: 0;
+    min-height: 145px;
+    padding: 12px;
+
+    overflow: hidden;
+    border: 1px solid rgb(221, 237, 255);
+    border-radius: 12px;
+    background: rgb(239, 247, 255);
+
+    font-family: "Poppins", sans-serif;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+
+    &:hover {
+        transform: translateY(-3px);
+        border-color: rgb(174, 207, 255);
+        box-shadow: 0 8px 20px rgba(36, 117, 245, 0.12);
+
+        .Tecnologia-Imagem {
+            transform: scale(1.04);
+        }
+
+        .Tecnologia-Icone {
+            background: rgb(36, 117, 245);
+            color: rgb(255, 255, 255);
+        }
+    }
+
+    .Tecnologia-Icone {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: start;
+
+        width: 42px;
+        height: 42px;
+
+        border: 1px solid rgb(207, 229, 255);
+        border-radius: 50%;
+        background: rgb(216, 235, 255);
+        color: rgb(36, 117, 245);
+
+        transition:
+            background 0.25s ease,
+            color 0.25s ease;
+
+        i {
+            font-size: 19px;
+        }
+    }
+
+    .Tecnologia-Conteudo {
+        min-width: 0;
+        align-self: center;
+    }
+
+    .Tecnologia-Titulo {
+        margin: 0 0 7px;
+
+        color: rgb(20, 36, 59);
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.4;
+
+        overflow-wrap: anywhere;
+    }
+
+    .Tecnologia-Mensagem {
+        margin: 0;
+
+        color: rgb(82, 100, 123);
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 1.65;
+
+        overflow-wrap: anywhere;
+    }
+
+    .Tecnologia-Visual {
+        align-self: stretch;
+        min-width: 0;
+        min-height: 115px;
+        overflow: hidden;
+        border-radius: 8px;
+        background: rgb(220, 237, 255);
+    }
+
+    .Tecnologia-Imagem {
+        display: block;
+        width: 100%;
+        height: 100px;
+        min-height: 115px;
+
+        object-fit: cover;
+        object-position: center;
+
+        transition: transform 0.35s ease;
+    }
+}
+
+@media (max-width: 1000px) {
+    .Tecnologia {
+        grid-template-columns: 38px minmax(0, 1fr) 38%;
+        gap: 10px;
+        min-height: 135px;
+        padding: 10px;
+
+        .Tecnologia-Icone {
+            width: 38px;
+            height: 38px;
+
+            i {
+                font-size: 17px;
+            }
+        }
+
+        .Tecnologia-Titulo {
+            font-size: 14px;
+        }
+
+        .Tecnologia-Mensagem {
+            font-size: 10px;
+        }
+
+        .Tecnologia-Visual {
+            min-height: 105px;
+        }
+
+        .Tecnologia-Imagem {
+            min-height: 105px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .Tecnologia {
+        grid-template-columns: 40px minmax(0, 1fr) 35%;
+        gap: 10px;
+        min-height: 125px;
+        padding: 10px;
+
+        .Tecnologia-Icone {
+            width: 38px;
+            height: 38px;
+
+            i {
+                font-size: 16px;
+            }
+        }
+
+        .Tecnologia-Titulo {
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .Tecnologia-Mensagem {
+            font-size: 10px;
+            line-height: 1.55;
+        }
+
+        .Tecnologia-Visual {
+            min-height: 100px;
+        }
+
+        .Tecnologia-Imagem {
+            min-height: 100px;
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .Tecnologia {
+        grid-template-columns: 34px minmax(0, 1fr) 30%;
+        gap: 7px;
+        padding: 8px;
+
+        .Tecnologia-Icone {
+            width: 34px;
+            height: 34px;
+
+            i {
+                font-size: 14px;
+            }
+        }
+
+        .Tecnologia-Titulo {
+            font-size: 12px;
+        }
+
+        .Tecnologia-Mensagem {
+            font-size: 9px;
+        }
+
+        .Tecnologia-Visual,
+        .Tecnologia-Imagem {
+            min-height: 90px;
+        }
+    }
+}
