@@ -47,7 +47,7 @@ export default function MapaUnidades() {
 
                 if (!Array.isArray(dados)) {
                     throw new Error(
-                        'A API não retornou uma lista de unidades.'
+                        'A API não retornou uma lista de unidades'
                     );
                 }
 
@@ -59,7 +59,7 @@ export default function MapaUnidades() {
                 );
 
                 setErro(
-                    'Não foi possível carregar as unidades. Verifique se a API está funcionando.'
+                    'Não foi possível carregar as unidades'
                 );
             } finally {
                 setCarregando(false);
