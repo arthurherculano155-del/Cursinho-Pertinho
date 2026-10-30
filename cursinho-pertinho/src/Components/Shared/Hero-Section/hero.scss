@@ -13,7 +13,7 @@
     background: rgb(5, 25, 52);
     font-family: "Montserrat", sans-serif;
 
-    > .Imagem-Hero {
+    >.Imagem-Hero {
         position: absolute;
         z-index: -2;
         inset: 0 0 0 auto;
@@ -126,13 +126,13 @@
             box-shadow: 0 0 0 3px rgba(55, 93, 255, 0.2);
         }
 
-        > .fa-magnifying-glass {
+        >.fa-magnifying-glass {
             flex: 0 0 auto;
             margin-left: 14px;
             color: rgb(95, 115, 145);
         }
 
-        > input {
+        >input {
             flex: 1;
             width: 0;
             min-width: 0;
@@ -230,6 +230,22 @@
             }
         }
 
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .conhecerProjeto{
+            border-color: rgb(150, 180, 215);
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+
+            &:hover {
+                border-color: rgb(80, 189, 213);
+                background: rgba(255, 255, 255, 0.12);
+            }
+        }
+
         .buscarCursos {
             background: rgb(37, 99, 235);
             color: #fff;
@@ -299,7 +315,7 @@
         margin-top: 74px;
         padding: 35px 6% 28px;
 
-        > .Imagem-Hero {
+        >.Imagem-Hero {
             width: 100%;
             height: 100%;
             object-position: 65% center;
@@ -368,12 +384,12 @@
             min-height: 44px;
             margin-top: 20px;
 
-            > .fa-magnifying-glass {
+            >.fa-magnifying-glass {
                 margin-left: 10px;
                 font-size: 13px;
             }
 
-            > input {
+            >input {
                 height: 42px;
                 padding: 0 7px;
                 font-size: 10px;
@@ -471,7 +487,7 @@
     }
 }
 
-.janelaLista > .tituloLista {
+.janelaLista>.tituloLista {
     margin: 0;
     padding: 26px 30px 18px;
     color: rgb(5, 25, 52);
@@ -481,7 +497,7 @@
     text-align: center;
 }
 
-.janelaLista > .tituloLista::after {
+.janelaLista>.tituloLista::after {
     content: "";
     display: block;
     width: 55px;
@@ -519,7 +535,7 @@
     box-sizing: border-box;
 }
 
-.janelaLista .listaOfertas > .card-Oferta {
+.janelaLista .listaOfertas>.card-Oferta {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -545,18 +561,18 @@
         background-color 0.25s ease;
 }
 
-.janelaLista .listaOfertas > .card-Oferta:hover {
+.janelaLista .listaOfertas>.card-Oferta:hover {
     transform: translateY(-5px);
     border-color: rgb(80, 189, 213);
     box-shadow: 0 12px 28px rgba(5, 25, 52, 0.14);
     background: rgb(252, 254, 255);
 }
 
-.janelaLista .listaOfertas > .card-Oferta:active {
+.janelaLista .listaOfertas>.card-Oferta:active {
     transform: translateY(-2px);
 }
 
-.janelaLista .listaOfertas > .card-Oferta > .instituicao {
+.janelaLista .listaOfertas>.card-Oferta>.instituicao {
     display: block;
     flex: 0 0 165px;
     width: 100%;
@@ -576,12 +592,12 @@
         filter 0.35s ease;
 }
 
-.janelaLista .listaOfertas > .card-Oferta:hover > .instituicao {
+.janelaLista .listaOfertas>.card-Oferta:hover>.instituicao {
     transform: scale(1.025);
     filter: saturate(1.08);
 }
 
-.janelaLista .listaOfertas > .card-Oferta h2 {
+.janelaLista .listaOfertas>.card-Oferta h2 {
     display: block;
     width: 100%;
     margin: 0;
@@ -597,16 +613,16 @@
     transition: color 0.2s ease;
 }
 
-.janelaLista .listaOfertas > .card-Oferta:hover h2 {
+.janelaLista .listaOfertas>.card-Oferta:hover h2 {
     color: rgb(37, 99, 235);
 }
 
-.janelaLista .listaOfertas > .card-Oferta h2::after {
+.janelaLista .listaOfertas>.card-Oferta h2::after {
     content: none;
     display: none;
 }
 
-.janelaLista .listaOfertas > .card-Oferta h3 {
+.janelaLista .listaOfertas>.card-Oferta h3 {
     display: block;
     width: 100%;
     margin: 0;
@@ -619,7 +635,7 @@
     transition: color 0.2s ease;
 }
 
-.janelaLista .listaOfertas > .card-Oferta p {
+.janelaLista .listaOfertas>.card-Oferta p {
     display: block;
     margin: 0;
     padding: 0;
@@ -632,7 +648,7 @@
     transition: color 0.2s ease;
 }
 
-.janelaLista .listaOfertas > .card-Oferta h5 {
+.janelaLista .listaOfertas>.card-Oferta h5 {
     position: static;
     margin: 0;
     padding: 0;
@@ -644,12 +660,12 @@
     transition: color 0.2s ease;
 }
 
-.janelaLista .listaOfertas > .card-Oferta h5::before {
+.janelaLista .listaOfertas>.card-Oferta h5::before {
     content: none;
     display: none;
 }
 
-.janelaLista .listaOfertas > .card-Oferta a {
+.janelaLista .listaOfertas>.card-Oferta a {
     color: rgb(37, 99, 235);
     font-weight: 700;
     text-decoration: none;
@@ -697,7 +713,7 @@
         padding: 10px 20px 22px;
     }
 
-    .janelaLista .listaOfertas > .card-Oferta > .instituicao {
+    .janelaLista .listaOfertas>.card-Oferta>.instituicao {
         flex-basis: 150px;
         height: 150px;
         min-height: 150px;
@@ -716,7 +732,7 @@
         border-radius: 14px;
     }
 
-    .janelaLista > .tituloLista {
+    .janelaLista>.tituloLista {
         padding: 22px 14px 14px;
         font-size: 22px;
     }
@@ -735,11 +751,11 @@
         gap: 14px;
     }
 
-    .janelaLista .listaOfertas > .card-Oferta {
+    .janelaLista .listaOfertas>.card-Oferta {
         padding: 14px;
     }
 
-    .janelaLista .listaOfertas > .card-Oferta > .instituicao {
+    .janelaLista .listaOfertas>.card-Oferta>.instituicao {
         flex-basis: 180px;
         height: 180px;
         min-height: 180px;

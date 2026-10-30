@@ -108,6 +108,10 @@
     padding: 15px 6% 65px;
     background: rgb(255, 255, 255);
 
+    #lista{
+        scroll-margin-top: 90px;
+    }
+
     .lista-tecnologias {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));

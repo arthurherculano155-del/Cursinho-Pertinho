@@ -1,5 +1,5 @@
 import './hero.scss';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import CardInicio from '../../HomeComponents/CardInicio/cardInicio.jsx';
@@ -81,13 +81,13 @@ export default function HeroSection({
             }
         }
 
-        if(usuario){
+        if (usuario) {
             BuscarListaOfertas()
         }
     }, [
         usuario,
         cardsLista,
-        usuario?.id    
+        usuario?.id
     ])
 
     function BuscarPoucaDuracao() {
@@ -206,7 +206,7 @@ export default function HeroSection({
                                                     className="Deletar-Da-Lista"
                                                     onClick={() => DeletarOfertaLista(oferta.id)}
                                                 >
-                                                   <i className="fa-solid fa-minus" /> Remover Oferta
+                                                    <i className="fa-solid fa-minus" /> Remover Oferta
                                                 </button>
                                                 <img
                                                     src={oferta.imagem}
@@ -360,20 +360,34 @@ export default function HeroSection({
 
             {botoes && (
                 <section className="botoesHero">
-                    <button className="buscarCursos">
-                        Buscar Cursos
+                    <button
+                        className="buscarCursos"
+                    >
+                        <Link
+                            to="/explorar-cursos"
+                        >
+                            Buscar Cursos
+                        </Link>
                     </button>
 
                     <button className="explorarAreas">
-                        Explorar Áreas
+                        <a
+                            href="#lista"
+                        >
+                            Explorar Áreas
+                        </a>
                     </button>
                 </section>
             )}
 
             {conhecerProjeto && (
-                <button className="conhecerProjeto">
-                    Conheça o projeto
-                </button>
+                <section className="botoesHero">
+                    <button className="conhecerProjeto">
+                        <a href="#titulo">
+                            Conheça o projeto
+                        </a>
+                    </button>
+                </section>
             )}
         </main>
     );

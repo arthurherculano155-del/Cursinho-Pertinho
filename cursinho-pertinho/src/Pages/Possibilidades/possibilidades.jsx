@@ -53,7 +53,7 @@ export default function Possibilidades() {
                 </section>
 
                 <section className="secao-tecnologias">
-                    <div className="lista-tecnologias">
+                    <div className="lista-tecnologias" id='lista'>
                         <CardTecnologia
                             icone="computer"
                             titulo="Tecnologia"

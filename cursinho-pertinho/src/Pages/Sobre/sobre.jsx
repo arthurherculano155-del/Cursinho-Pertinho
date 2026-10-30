@@ -9,18 +9,19 @@ export default function Sobre() {
         <>
             <Menu />
 
+            <HeroSection
+                imagem="Estudantes.png"
+                titulo="Conectamos pessoas a "
+                tituloSpan="novas oportunidades"
+                mensagem="O Cursinho Pertinho facilita o acesso à informação sobre cursos e caminhos de formação"
+                mensagemDeBaixo="para que cada pessoa possa construir seu futuro. O Cursinho Pertinho facilita a busca por cursos de diferentes áreas, reunindo informações sobre instituições, modalidades, níveis de ensino, preços e localização em um só lugar."
+                conhecerProjeto={true}
+            />
+
             <main className="pagina-sobre">
-                <HeroSection
-                    imagem="Estudantes.png"
-                    titulo="Conectamos pessoas a "
-                    tituloSpan="novas oportunidades"
-                    mensagem="O Cursinho Pertinho facilita o acesso à informação sobre cursos e caminhos de formação"
-                    mensagemDeBaixo="para que cada pessoa possa construir seu futuro. O Cursinho Pertinho facilita a busca por cursos de diferentes áreas, reunindo informações sobre instituições, modalidades, níveis de ensino, preços e localização em um só lugar."
-                    conhecerProjeto={true}
-                />
 
                 <section className="sobre-introducao">
-                    <h2 className="sobre-titulo">Quem somos</h2>
+                    <h2 className="sobre-titulo" id="titulo">Quem somos</h2>
 
                     <div className="sobre-conteudo">
                         <p className="sobre-descricao">
