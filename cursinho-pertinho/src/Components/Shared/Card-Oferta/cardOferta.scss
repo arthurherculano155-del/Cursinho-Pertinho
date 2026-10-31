@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -14,9 +15,9 @@
 
     .Pesquisa-inputs {
         grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
+        display: flex;
+        align-items: center;
+        gap: 0;
         width: 100%;
         margin-bottom: 0;
         padding: 24px;
@@ -27,24 +28,29 @@
             0 2px 5px rgba(16, 24, 40, 0.04),
             0 12px 32px rgba(16, 24, 40, 0.05);
 
-        .input-pesquisa,
-        .Pesquisa-Informacao {
+        .input-pesquisa {
+            flex: 1;
             width: 100%;
             min-width: 0;
-            height: 50px;
+            height: 56px;
             margin: 0;
-            padding: 0 14px;
-            border: 1px solid rgb(208, 213, 221);
-            border-radius: 9px;
-            outline: none;
-            background-color: rgb(255, 255, 255);
+            padding: 0 20px;
+            background: rgb(255, 255, 255);
             color: rgb(24, 34, 48);
+            border: 1px solid rgb(208, 213, 221);
+            border-right: none;
+            border-radius: 10px 0 0 10px;
+            outline: none;
             font-family: inherit;
-            font-size: 0.92rem;
+            font-size: 1rem;
             transition:
                 border-color 0.2s ease,
-                box-shadow 0.2s ease,
-                background-color 0.2s ease;
+                box-shadow 0.2s ease;
+
+            &::placeholder {
+                color: rgb(152, 162, 179);
+                opacity: 1;
+            }
 
             &:hover {
                 border-color: rgb(152, 162, 179);
@@ -52,49 +58,43 @@
 
             &:focus {
                 border-color: rgb(37, 99, 235);
-                box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-            }
-
-            &::placeholder {
-                color: rgb(152, 162, 179);
-                opacity: 1;
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
             }
         }
 
-        .input-pesquisa[type="number"] {
-            appearance: textfield;
-            -moz-appearance: textfield;
-
-            &::-webkit-inner-spin-button,
-            &::-webkit-outer-spin-button {
-                margin: 0;
-            }
-        }
-
-        .Pesquisa-Informacao {
-            appearance: none;
-            padding-right: 38px;
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 60px;
+            height: 56px;
+            padding: 0;
+            background: rgb(37, 99, 235);
+            color: rgb(255, 255, 255);
+            border: 1px solid rgb(37, 99, 235);
+            border-radius: 0 10px 10px 0;
+            font-size: 1.15rem;
             cursor: pointer;
-            background-image:
-                linear-gradient(45deg, transparent 50%, rgb(71, 84, 103) 50%),
-                linear-gradient(135deg, rgb(71, 84, 103) 50%, transparent 50%);
-            background-position:
-                calc(100% - 18px) 22px,
-                calc(100% - 13px) 22px;
-            background-size: 5px 5px;
-            background-repeat: no-repeat;
+            transition:
+                background-color 0.2s ease,
+                box-shadow 0.2s ease;
 
-            &.placeholder-select {
-                color: rgb(152, 162, 179);
+            &:hover {
+                background: rgb(29, 78, 216);
+                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
             }
 
-            option {
-                background-color: rgb(255, 255, 255);
-                color: rgb(24, 34, 48);
+            &:active {
+                background: rgb(30, 64, 175);
+            }
 
-                &:disabled {
-                    color: rgb(152, 162, 179);
-                }
+            &:focus-visible {
+                outline: 3px solid rgb(147, 197, 253);
+                outline-offset: 3px;
+            }
+
+            i {
+                pointer-events: none;
             }
         }
     }
@@ -429,11 +429,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 20px 16px;
 
-        .Pesquisa-inputs {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 14px;
-        }
-
         .card-Oferta {
             .instituicao {
                 flex-basis: 200px;
@@ -453,15 +448,19 @@
         margin-bottom: 48px;
 
         .Pesquisa-inputs {
-            grid-template-columns: minmax(0, 1fr);
-            gap: 12px;
-            padding: 18px;
+            padding: 14px;
             border-radius: 12px;
 
-            .input-pesquisa,
-            .Pesquisa-Informacao {
+            .input-pesquisa {
                 height: 48px;
-                font-size: 0.94rem;
+                padding: 0 12px;
+                font-size: 0.88rem;
+            }
+
+            button {
+                flex-basis: 48px;
+                height: 48px;
+                font-size: 1rem;
             }
         }
 
@@ -549,11 +548,13 @@
 
         .Pesquisa-inputs {
             padding: 14px;
-            gap: 10px;
 
-            .input-pesquisa,
-            .Pesquisa-Informacao {
-                font-size: 0.9rem;
+            .input-pesquisa {
+                font-size: 0.82rem;
+            }
+
+            button {
+                flex-basis: 44px;
             }
         }
 
@@ -606,21 +607,21 @@
                 bottom: 14px;
             }
         }
+    }
 
-        .apagar {
-            padding: 22px 16px;
+    .apagar {
+        padding: 22px 16px;
 
-            h2 {
-                font-size: 1rem;
-            }
+        h2 {
+            font-size: 1rem;
+        }
 
-            .buttons {
-                gap: 8px;
+        .buttons {
+            gap: 8px;
 
-                button {
-                    padding: 10px;
-                    font-size: 0.85rem;
-                }
+            button {
+                padding: 10px;
+                font-size: 0.85rem;
             }
         }
     }

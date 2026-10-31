@@ -10,7 +10,7 @@ import {
     useMap
 } from 'react-leaflet';
 
-import L from 'leaflet';
+import Leaflet from 'leaflet';
 
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -18,7 +18,7 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 import './mapa.scss';
 
-L.Icon.Default.mergeOptions({
+Leaflet.Icon.Default.mergeOptions({
     iconUrl: markerIcon,
     iconRetinaUrl: markerIcon2x,
     shadowUrl: markerShadow
@@ -424,7 +424,7 @@ export default function MapaUnidades() {
                                         lineCap: 'round',
                                         lineJoin: 'round'
                                     }}
-                                />
+                                /> 
                             </>
                         )}
 

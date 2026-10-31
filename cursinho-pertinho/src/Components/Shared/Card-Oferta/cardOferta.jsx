@@ -23,8 +23,10 @@ export default function CardOferta({
     const [cardOferta, setCardOferta] = useState([]);
     const [modal, setModal] = useState(null);
 
-    const [regiaoPesquisa, setRegiaoPesquisa] = useState("");
+    const [pesquisaAnterior, setPesquisaAnterior] = useState("");
     const [cursoPesquisa, setCursoPesquisa] = useState(cursosPesquisa || "");
+
+    const [regiaoPesquisa] = useState("");
     const [instituicaoPesquisa] = useState("");
     const [nivelPesquisa] = useState("");
     const [modalidadePesquisa] = useState("");
@@ -33,7 +35,6 @@ export default function CardOferta({
     const [cargaHoraria] = useState("");
 
     const nivel = iniciante ? "Iniciante" : nivelPesquisa
-    const pesquisaCurso = cursoPesquisa;
     const minimo = cursoGratuito ? 0 : precoMinimo;
     const maximo = cursoGratuito ? 0 : ate100 ? 100 : precoMaximo;
     const modalidade =
@@ -158,25 +159,20 @@ export default function CardOferta({
                     type="text"
                     className="input-pesquisa"
                     placeholder="Insira o nome do curso"
-                    value={pesquisaCurso}
-                    onChange={(e) => setCursoPesquisa(e.target.value)}
+                    value={pesquisaAnterior}
+                    onKeyDown={(e) => {
+                        if(e.key === "Enter"){
+                            setCursoPesquisa(pesquisaAnterior)
+                        }
+                    }}
+                    onChange={(e) => setPesquisaAnterior(e.target.value)}
                 />
 
-                <select
-                    className={`Pesquisa-Informacao ${regiaoPesquisa === "" ? "placeholder-select" : ""}`}
-                    value={regiaoPesquisa}
-                    onChange={(e) => setRegiaoPesquisa(e.target.value)}
+                <button
+                    onClick={() => setCursoPesquisa(pesquisaAnterior)}
                 >
-                    <option value="">
-                        Escolha uma região
-                    </option>
-
-                    <option value="Zona Norte">Zona Norte</option>
-                    <option value="Zona Sul">Zona Sul</option>
-                    <option value="Zona Leste">Zona Leste</option>
-                    <option value="Zona Oeste">Zona Oeste</option>
-                    <option value="Centro">Centro</option>
-                </select>
+                    <i class="fa-solid fa-magnifying-glass" />
+                </button>
             </section>
 
             {ofertasFiltradas.map((oferta) => (
