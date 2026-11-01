@@ -4,6 +4,7 @@ import Menu from '../../Components/Shared/Menu/menu.jsx';
 import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
 import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
 import CardTecnologia from '../../Components/PossibilitiesComponents/cardTecnologia.jsx';
+import Indice from '../../Components/Shared/Indice/indice.jsx';
 
 export default function Possibilidades() {
     return (
@@ -22,9 +23,9 @@ export default function Possibilidades() {
             <main className="pagina-possibilidades">
                 <section className="secao-areas">
                     <div className="conteudo-areas">
-                        <span className="etiqueta-areas">
-                            CONHEÇA NOSSAS ÁREAS
-                        </span>
+                        <Indice
+                            mensagem="ÁREAS PARA O SEU FUTURO"
+                        />
 
                         <h2 className="titulo-areas">
                             Diversas áreas para você
@@ -54,12 +55,35 @@ export default function Possibilidades() {
 
                 <section className="secao-tecnologias">
                     <div className="lista-tecnologias" id='lista'>
+
                         <CardTecnologia
                             icone="computer"
                             titulo="Tecnologia"
                             mensagem="Explore o mundo digital e aprenda sobre programação, desenvolvimento de sistemas, redes e muito mais. Uma área com constante crescimento e cheia de oportunidades."
                             imagem="/Assets/Imgs/tecnologia.jpeg"
                         />
+
+                        <CardTecnologia
+                            icone="lightbulb"
+                            titulo="Criatividade"
+                            mensagem="Desenvolva sua imaginação e transforme ideias em projetos incríveis. Aqui, você encontra cursos voltados para design, artes, audiovisual e muito mais"
+                            imagem="/Assets/Imgs/Arte.webp"
+                        />
+
+                        <CardTecnologia
+                            icone="comment-dots"
+                            titulo="Comunicação"
+                            mensagem="Desenvolva sua expressão, argumentação e criatividade. Aqui, você encontra cursos de idioma, m[idias sociais e muito mais"
+                            imagem="/Assets/Imgs/falas.jpeg"
+                        />
+
+                        <CardTecnologia
+                            icone="chart-simple"
+                            titulo="Negócios"
+                            mensagem="Aprenda sobre gestão, marketing, vendas e empreendedorismo. Prepare-se para liderar, inovar e fazer diferença no mercado de trabalho"
+                            imagem="/Assets/Imgs/investimentos.jpeg"
+                        />
+
                     </div>
                 </section>
             </main>

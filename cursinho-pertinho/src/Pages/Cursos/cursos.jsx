@@ -6,6 +6,7 @@ import Menu from '../../Components/Shared/Menu/menu.jsx';
 import CardOferta from '../../Components/Shared/Card-Oferta/cardOferta.jsx';
 import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
 import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
+import Indice from '../../Components/Shared/Indice/indice.jsx';
 
 export default function ExplorarCursos() {
     const location = useLocation();
@@ -31,31 +32,43 @@ export default function ExplorarCursos() {
                 listaUser={true}
             />
 
-            <section className="Destaques-Cursos">
-                <div className="Destaques-Cabecalho">
+            <main className="pagina-cursos">
+                <section className="secao-explorar-cursos">
+                    <div className="cabecalho-explorar-cursos">
+                        <div>
+                            <Indice
+                                mensagem="Explore oportunidades"
+                            />
 
-                    <h2>
-                        Seu próximo passo começa <span>aqui</span>
-                    </h2>
+                            <h2>
+                                Encontre o curso <span>ideal para você.</span>
+                            </h2>
 
-                    <p>
-                        Descubra oportunidades para desenvolver suas
-                        habilidades, ampliar seus conhecimentos e se
-                        preparar para o mercado de trabalho.
-                    </p>
-                </div>
-            </section>
+                            <p>
+                                Utilize a pesquisa e os filtros para encontrar
+                                cursos de acordo com sua região, seus interesses
+                                e suas possibilidades.
+                            </p>
+                        </div>
 
-            <CardOferta
-                key={cursosPesquisa}
-                cursoGratuito={cursosGratuitos}
-                cursosPesquisa={cursosPesquisa}
-                ate100={cursosAte100}
-                presencial={presencial}
-                online={online}
-                iniciante={iniciante}
-                curtaDuracao={carga}
-            />
+                        <div className="icone-cabecalho-cursos">
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </div>
+
+                    <div className="conteudo-ofertas-cursos">
+                        <CardOferta
+                            cursoGratuito={cursosGratuitos}
+                            cursosPesquisa={cursosPesquisa}
+                            ate100={cursosAte100}
+                            presencial={presencial}
+                            online={online}
+                            iniciante={iniciante}
+                            curtaDuracao={carga}
+                        />
+                    </div>
+                </section>
+            </main>
 
             <Rodape />
         </>

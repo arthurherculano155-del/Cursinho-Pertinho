@@ -1,0 +1,33 @@
+.etiqueta-pagina {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 18px;
+    color: rgb(37, 99, 235);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+
+    &::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        min-width: 8px;
+        border-radius: 50%;
+        background: rgb(37, 99, 235);
+    }
+}
+
+@media (max-width: 500px) {
+    .etiqueta-pagina {
+        font-size: 10px;
+        gap: 8px;
+        margin-bottom: 15px;
+
+        &::before {
+            width: 7px;
+            height: 7px;
+            min-width: 7px;
+        }
+    }
+}

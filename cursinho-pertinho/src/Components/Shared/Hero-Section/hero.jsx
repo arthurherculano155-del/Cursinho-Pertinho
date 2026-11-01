@@ -370,23 +370,21 @@ export default function HeroSection({
                         </Link>
                     </button>
 
-                    <button className="explorarAreas">
-                        <a
-                            href="#lista"
-                        >
+                    <a href="#lista" >
+                        <button className="explorarAreas">
                             Explorar Áreas
-                        </a>
-                    </button>
+                        </button>
+                    </a>
                 </section>
             )}
 
             {conhecerProjeto && (
                 <section className="botoesHero">
-                    <button className="conhecerProjeto">
-                        <a href="#titulo">
+                    <a href="#titulo">
+                        <button className="conhecerProjeto">
                             Conheça o projeto
-                        </a>
-                    </button>
+                        </button>
+                    </a>
                 </section>
             )}
         </main>

@@ -23,7 +23,7 @@ export default function CardOferta({
     const [cardOferta, setCardOferta] = useState([]);
     const [modal, setModal] = useState(null);
 
-    const [pesquisaAnterior, setPesquisaAnterior] = useState("");
+    const [pesquisaAnterior, setPesquisaAnterior] = useState(cursosPesquisa || "");
     const [cursoPesquisa, setCursoPesquisa] = useState(cursosPesquisa || "");
 
     const [regiaoPesquisa] = useState("");
@@ -76,15 +76,15 @@ export default function CardOferta({
     const ofertasFiltradas = useMemo(() => {
         const termo = cursoPesquisa.trim();
 
-        if(!termo)
+        if (!termo)
             return cardOferta;
 
         const fuse = new Fuse(cardOferta, {
             keys: [
-                {name: "curso",  weight: 0.5},
-                {name: "tags",  weight: 0.3},
-                {name: "descricao",  weight: 0.15},
-                {name: "unidade",  weight: 0.05}
+                { name: "curso", weight: 0.5 },
+                { name: "tags", weight: 0.3 },
+                { name: "descricao", weight: 0.15 },
+                { name: "unidade", weight: 0.05 }
             ],
             threshold: 0.35,
             ignoreLocation: true
@@ -108,7 +108,7 @@ export default function CardOferta({
 
             const dados = await resposta.json();
 
-            if(!usuario){
+            if (!usuario) {
                 alert("Você precisa estar logado para adicionar uma oferta.");
                 return
             }
@@ -158,14 +158,19 @@ export default function CardOferta({
                 <input
                     type="text"
                     className="input-pesquisa"
-                    placeholder="Insira o nome do curso"
                     value={pesquisaAnterior}
+                    placeholder="Insira o nome do curso"
                     onKeyDown={(e) => {
-                        if(e.key === "Enter"){
+                        if (e.key === "Enter" && pesquisaAnterior !== "") {
                             setCursoPesquisa(pesquisaAnterior)
                         }
                     }}
-                    onChange={(e) => setPesquisaAnterior(e.target.value)}
+                    onChange={(e) =>
+                        setPesquisaAnterior(
+                            e.target.value !== "" ?
+                                e.target.value :
+                                setCursoPesquisa("")
+                        )}
                 />
 
                 <button

@@ -1,8 +1,9 @@
-
 import './sobre.scss';
 import Menu from '../../Components/Shared/Menu/menu.jsx';
 import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
 import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
+import CardInfo from '../../Components/AboutComponents/cardInfo.jsx';
+import Indice from '../../Components/Shared/Indice/indice.jsx';
 
 export default function Sobre() {
     return (
@@ -20,10 +21,16 @@ export default function Sobre() {
 
             <main className="pagina-sobre">
 
-                <section className="sobre-introducao">
-                    <h2 className="sobre-titulo" id="titulo">Quem somos</h2>
+                <section className="sobre-introducao" id="titulo">
+                    <div className="sobre-cabecalho">
+                        <Indice
+                            mensagem="Conheça nossa plataforma"
+                        />
+                        
+                        <h2 className="sobre-titulo">
+                            Educação mais <span>perto de você.</span>
+                        </h2>
 
-                    <div className="sobre-conteudo">
                         <p className="sobre-descricao">
                             Somos uma plataforma que ajuda você a descobrir
                             cursos, oportunidades e caminhos de formação de
@@ -31,61 +38,92 @@ export default function Sobre() {
                             e preço. Tudo em um só lugar, de forma simples e
                             segura.
                         </p>
+                    </div>
+
+                    <div className="sobre-visual">
+                        <div className="sobre-imagem-fundo"></div>
 
                         <img
                             className="sobre-imagem"
                             src="/Assets/Imgs/mapa.png"
                             alt="Ilustração que representa a localização de cursos e instituições de ensino"
                         />
+
+                        <div className="sobre-imagem-legenda">
+                            <i className="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            <span>Oportunidades perto de você</span>
+                        </div>
                     </div>
                 </section>
 
                 <section className="sobre-beneficios">
-                    <article className="beneficio-card">
-                        <i className="fa-solid fa-crosshairs" aria-hidden="true"></i>
+                    <div className="secao-sobre-cabecalho">
+                        <h2>
+                            Como queremos <span>fazer a diferença?</span>
+                        </h2>
 
-                        <div className="beneficio-conteudo">
-                            <h3>Aproximar oportunidades</h3>
-                            <p>
-                                Conectamos você a cursos e instituições que
-                                fazem sentido para o seu momento e para os
-                                seus objetivos.
-                            </p>
-                        </div>
-                    </article>
+                        <p>
+                            Desenvolvemos uma experiência pensada para
+                            facilitar sua busca e aproximar você da educação.
+                        </p>
+                    </div>
 
-                    <article className="beneficio-card">
-                        <i className="fa-regular fa-file-lines" aria-hidden="true"></i>
+                    <div className="beneficios-lista">
+                        <article className="beneficio-card">
+                            <div className="beneficio-icone azul">
+                                <i className="fa-solid fa-crosshairs" aria-hidden="true"></i>
+                            </div>
 
-                        <div className="beneficio-conteudo">
-                            <h3>Informação acessível</h3>
-                            <p>
-                                Reunimos em um só lugar dados claros e
-                                atualizados para você comparar e escolher
-                                com mais segurança.
-                            </p>
-                        </div>
-                    </article>
+                            <div className="beneficio-conteudo">
+                                <h3>Aproximar oportunidades</h3>
+                                <p>
+                                    Conectamos você a cursos e instituições que
+                                    fazem sentido para o seu momento e para os
+                                    seus objetivos.
+                                </p>
+                            </div>
+                        </article>
 
-                    <article className="beneficio-card">
-                        <i className="fa-solid fa-user" aria-hidden="true"></i>
+                        <article className="beneficio-card">
+                            <div className="beneficio-icone ciano">
+                                <i className="fa-regular fa-file-lines" aria-hidden="true"></i>
+                            </div>
 
-                        <div className="beneficio-conteudo">
-                            <h3>Apoiar escolhas</h3>
-                            <p>
-                                Acreditamos no seu potencial e trabalhamos
-                                para que você encontre o curso ideal para
-                                o seu futuro.
-                            </p>
-                        </div>
-                    </article>
+                            <div className="beneficio-conteudo">
+                                <h3>Informação acessível</h3>
+                                <p>
+                                    Reunimos em um só lugar dados claros e
+                                    atualizados para você comparar e escolher
+                                    com mais segurança.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article className="beneficio-card">
+                            <div className="beneficio-icone verde">
+                                <i className="fa-solid fa-user" aria-hidden="true"></i>
+                            </div>
+
+                            <div className="beneficio-conteudo">
+                                <h3>Apoiar escolhas</h3>
+                                <p>
+                                    Acreditamos no seu potencial e trabalhamos
+                                    para que você encontre o curso ideal para
+                                    o seu futuro.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
                 </section>
 
                 <section className="sobre-missao">
-                    <i className="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                    <div className="missao-icone">
+                        <i className="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                    </div>
 
                     <div className="missao-conteudo">
                         <h2>Nossa missão</h2>
+
                         <p>
                             Tornar a busca por formação mais simples, clara
                             e próxima da realidade de cada pessoa.
@@ -94,46 +132,47 @@ export default function Sobre() {
                 </section>
 
                 <section className="sobre-valores">
-                    <h2 className="valores-titulo">O que valorizamos</h2>
+                    <div className="secao-sobre-cabecalho">
+                        <h2>
+                            O que <span>valorizamos.</span>
+                        </h2>
+
+                        <p>
+                            Princípios que orientam nossa plataforma e a
+                            maneira como queremos transformar o acesso
+                            à informação.
+                        </p>
+                    </div>
 
                     <div className="valores-lista">
-                        <article className="valor-item">
-                            <i className="fa-solid fa-person" aria-hidden="true"></i>
 
-                            <div className="valor-conteudo">
-                                <h3>Acessibilidade</h3>
-                                <p>Educação de qualidade para todos.</p>
-                            </div>
-                        </article>
+                        <CardInfo
+                            icone="person"
+                            titulo="Acessibilidade"
+                            mensagem="Educação de qualidade para todos, com oportunidades acessíveis e inclusivas, independentemente da realidade de cada pessoa"
+                        />
 
-                        <article className="valor-item">
-                            <i className="fa-solid fa-shield" aria-hidden="true"></i>
+                        <CardInfo
+                            icone="shield"
+                            titulo="Transparência"
+                            mensagem="Informações confiáveis, claras e atualizadas para que todos possam fazer escolhas conscientes e encontrar as melhores oportunidades de aprendizado"
+                        />
 
-                            <div className="valor-conteudo">
-                                <h3>Transparência</h3>
-                                <p>Informações confiáveis e atualizadas.</p>
-                            </div>
-                        </article>
+                        <CardInfo
+                            icone="graduation-cap"
+                            titulo="Educação"
+                            mensagem="Mais do que oferecer cursos, acreditamos na educação como caminho para transformar vidas, desenvolver talentos e construir um futuro com mais oportunidades para todos"
+                        />
 
-                        <article className="valor-item">
-                            <i className="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                        <CardInfo
+                            icone="star"
+                            titulo="Oportunidades"
+                            mensagem="Porque todo mundo merece uma chance de aprender, crescer e transformar sua realidade por meio de novas oportunidades de formação e desenvolvimento"
+                        />
 
-                            <div className="valor-conteudo">
-                                <h3>Educação</h3>
-                                <p>Mais do que cursos, formamos futuros.</p>
-                            </div>
-                        </article>
-
-                        <article className="valor-item">
-                            <i className="fa-regular fa-star" aria-hidden="true"></i>
-
-                            <div className="valor-conteudo">
-                                <h3>Oportunidades</h3>
-                                <p>Porque todo mundo merece uma chance.</p>
-                            </div>
-                        </article>
                     </div>
                 </section>
+
             </main>
 
             <Rodape />
