@@ -41,13 +41,13 @@ export default function ExplorarCursos() {
                             />
 
                             <h2>
-                                Encontre o curso <span>ideal para você.</span>
+                                Encontre o curso <span>ideal para você</span>
                             </h2>
 
                             <p>
                                 Utilize a pesquisa e os filtros para encontrar
                                 cursos de acordo com sua região, seus interesses
-                                e suas possibilidades.
+                                e suas possibilidades
                             </p>
                         </div>
 

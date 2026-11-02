@@ -27,14 +27,14 @@ export default function Home() {
                     />
 
                     <h2>
-                        Instituições <span>pertinho de você.</span>
+                        Instituições <span>pertinho de você</span>
                     </h2>
 
                     <p>
                         Explore o mapa e descubra instituições de ensino
                         distribuídas pelas regiões de São Paulo. Encontre
                         unidades próximas e conheça novas oportunidades
-                        de formação.
+                        de formação
                     </p>
                 </div>
 

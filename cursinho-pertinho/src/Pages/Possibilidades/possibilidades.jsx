@@ -32,7 +32,7 @@ export default function Possibilidades() {
                             <br />
                             explorar e construir
                             <br />
-                            <span>o seu futuro.</span>
+                            <span>o seu futuro</span>
                         </h2>
 
                         <p className="descricao-areas">
@@ -40,7 +40,7 @@ export default function Possibilidades() {
                             de possibilidades. Nossas áreas foram pensadas para
                             te ajudar a descobrir seus interesses, desenvolver
                             suas habilidades e se preparar para o mercado de
-                            trabalho ou para a universidade.
+                            trabalho ou para a universidade
                         </p>
                     </div>
 
@@ -59,7 +59,7 @@ export default function Possibilidades() {
                         <CardTecnologia
                             icone="computer"
                             titulo="Tecnologia"
-                            mensagem="Explore o mundo digital e aprenda sobre programação, desenvolvimento de sistemas, redes e muito mais. Uma área com constante crescimento e cheia de oportunidades."
+                            mensagem="Explore o mundo digital e aprenda sobre programação, desenvolvimento de sistemas, redes e muito mais. Uma área com constante crescimento e cheia de oportunidades"
                             imagem="/Assets/Imgs/tecnologia.jpeg"
                         />
 

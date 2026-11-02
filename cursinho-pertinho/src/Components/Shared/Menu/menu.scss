@@ -1,3 +1,4 @@
+
 html {
     scroll-behavior: smooth;
 }
@@ -74,13 +75,13 @@ button {
         border-radius: 10px;
         background: transparent;
         box-shadow: none;
-        transition: 0.2s ease;
+        transition: background 0.2s ease, transform 0.2s ease;
         cursor: pointer;
 
         i {
             color: rgb(24, 34, 48);
             font-size: 23px;
-            transition: 0.2s ease;
+            transition: transform 0.25s ease, color 0.2s ease;
         }
 
         &:hover {
@@ -94,6 +95,10 @@ button {
         &:focus-visible {
             outline: 2px solid rgb(59, 130, 246);
             outline-offset: 2px;
+        }
+
+        &:active {
+            transform: scale(0.94);
         }
     }
 }
@@ -253,13 +258,13 @@ button {
             box-sizing: border-box;
             background: rgb(248, 250, 252);
             object-fit: cover;
-            box-shadow: 0 0 0 1px rgb(255, 255, 255);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: none;
+            transition: border-color 0.2s ease;
         }
 
         &:hover .avatar {
             border-color: rgb(37, 99, 235);
-            box-shadow: 0 0 0 2px rgb(219, 234, 254);
+            box-shadow: none;
         }
 
         &:focus-visible {
@@ -806,14 +811,14 @@ button {
     }
 
     .final {
-        top: 300px;
+        top: 330px;
         display: flex;
         padding-top: 18px;
         background: transparent;
     }
 
     .bnts {
-        top: 345px;
+        top: 375px;
         gap: 8px;
 
         button {
@@ -825,18 +830,33 @@ button {
     }
 
     .user {
-        top: 340px;
+        top: 370px;
         gap: 10px;
+        justify-content: space-between;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
 
         .avatar-button {
             width: 44px;
             height: 44px;
+            flex-shrink: 0;
+
+            .avatar {
+                box-shadow: none;
+            }
+
+            &:hover .avatar {
+                box-shadow: none;
+            }
         }
 
         p {
             display: block;
             flex: 1;
             min-width: 0;
+            margin-left: 10px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -846,9 +866,17 @@ button {
         .sair {
             width: 38px;
             height: 38px;
+            flex-shrink: 0;
+            margin-left: auto;
+            border: none;
+            background: transparent;
 
             &::before {
                 display: none;
+            }
+
+            &:hover {
+                background: rgb(254, 242, 242);
             }
         }
     }
@@ -929,7 +957,7 @@ button {
     }
 
     .final {
-        top: 275px;
+        top: 315px;
 
         .local h3 {
             font-size: 11px;
@@ -937,7 +965,7 @@ button {
     }
 
     .bnts {
-        top: 320px;
+        top: 360px;
 
         button {
             padding: 10px 6px;
@@ -946,7 +974,7 @@ button {
     }
 
     .user {
-        top: 315px;
+        top: 355px;
 
         .avatar-button {
             width: 40px;
@@ -1194,5 +1222,183 @@ button {
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes entradaMenu {
+    from {
+        opacity: 0;
+        transform: translateX(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes entradaLink {
+    from {
+        opacity: 0;
+        transform: translateX(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 800px) {
+    .links {
+        animation: entradaMenu 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .links .link {
+        animation: entradaLink 0.35s ease both;
+    }
+
+    .links .link:nth-child(1) {
+        animation-delay: 0.06s;
+    }
+
+    .links .link:nth-child(2) {
+        animation-delay: 0.12s;
+    }
+
+    .links .link:nth-child(3) {
+        animation-delay: 0.18s;
+    }
+
+    .links .link:nth-child(4) {
+        animation-delay: 0.24s;
+    }
+
+    .final {
+        animation: entradaMenu 0.4s ease 0.16s both;
+    }
+
+    .bnts,
+    .user {
+        animation: entradaMenu 0.4s ease 0.22s both;
+    }
+
+    .menu .abrir-menu i {
+        animation: aparecerIcone 0.2s ease;
+    }
+}
+
+@keyframes aparecerIcone {
+    from {
+        opacity: 0;
+        transform: rotate(-45deg) scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .links {
+        width: min(86%, 340px);
+        border-left: 1px solid rgb(226, 232, 240);
+        box-shadow: -12px 10px 30px rgba(15, 23, 42, 0.14);
+    }
+
+    .links .link a {
+        padding: 14px 13px;
+        border: 1px solid transparent;
+        border-radius: 11px;
+        font-size: 14px;
+        transition:
+            background 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .links .link a.Ativo {
+        border-color: rgb(219, 234, 254);
+        background: rgb(239, 246, 255);
+        color: rgb(29, 78, 216);
+    }
+
+    .links .link a:active {
+        transform: scale(0.98);
+    }
+
+    .final {
+        padding-top: 16px;
+        border-top: none;
+    }
+
+    .bnts {
+        padding-top: 12px;
+        border-top: none;
+    }
+
+    .bnts button {
+        min-height: 42px;
+        border-radius: 10px;
+    }
+
+    .user {
+        padding: 12px 15px;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        justify-content: space-between;
+
+        .avatar-button {
+            flex-shrink: 0;
+
+            .avatar {
+                box-shadow: none;
+            }
+
+            &:hover .avatar {
+                box-shadow: none;
+            }
+        }
+
+        p {
+            flex: 1;
+            min-width: 0;
+            margin-left: 10px;
+        }
+
+        .sair {
+            flex-shrink: 0;
+            margin-left: auto;
+            border: none;
+            background: transparent;
+
+            &::before {
+                display: none;
+            }
+
+            &:hover {
+                background: rgb(254, 242, 242);
+            }
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .links {
+        width: 88%;
+    }
+
+    .links .link a {
+        padding: 13px 11px;
+        font-size: 13px;
+    }
+
+    .user {
+        padding-right: 12px;
+        padding-left: 12px;
     }
 }
