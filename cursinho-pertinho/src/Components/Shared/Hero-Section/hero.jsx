@@ -127,7 +127,7 @@ export default function HeroSection({
     }
 
     function BuscarNomeCurso() {
-        navigate('/explorar-cursos', {
+        navigate('/explorar-cursos#pesquisa', {
             state: { cursosPesquisa }
         });
     }
