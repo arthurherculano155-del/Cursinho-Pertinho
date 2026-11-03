@@ -116,21 +116,6 @@ export default function Sobre() {
                     </div>
                 </section>
 
-                <section className="sobre-missao">
-                    <div className="missao-icone">
-                        <i className="fa-solid fa-paper-plane" aria-hidden="true"></i>
-                    </div>
-
-                    <div className="missao-conteudo">
-                        <h2>Nossa missão</h2>
-
-                        <p>
-                            Tornar a busca por formação mais simples, clara
-                            e próxima da realidade de cada pessoa
-                        </p>
-                    </div>
-                </section>
-
                 <section className="sobre-valores">
                     <div className="secao-sobre-cabecalho">
                         <h2>
