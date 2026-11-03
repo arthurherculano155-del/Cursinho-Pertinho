@@ -56,7 +56,7 @@ export default function ExplorarCursos() {
                         </div>
                     </div>
 
-                    <div className="conteudo-ofertas-cursos">
+                    <div className="conteudo-ofertas-cursos" id="pesquisa">
                         <CardOferta
                             cursoGratuito={cursosGratuitos}
                             cursosPesquisa={cursosPesquisa}
