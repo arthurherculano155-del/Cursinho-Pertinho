@@ -6,6 +6,9 @@
     box-sizing: border-box;
 
     .secao-explorar-cursos {
+        #pesquisa{
+            scroll-margin-top: 90px;
+        }
         width: 97%;
         max-width: 1800px;
         margin: 45px auto 0;
