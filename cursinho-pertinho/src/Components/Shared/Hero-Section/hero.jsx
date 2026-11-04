@@ -91,37 +91,37 @@ export default function HeroSection({
     ])
 
     function BuscarPoucaDuracao() {
-        navigate('/explorar-cursos', {
+        navigate('/explorar-cursos#pesquisa', {
             state: { curtaDuracao }
         });
     }
 
     function BuscarCursoIniciante() {
-        navigate('/explorar-cursos', {
+        navigate('/explorar-cursos#pesquisa', {
             state: { iniciante }
         });
     }
 
     function BuscarCursosOnline() {
-        navigate('/explorar-cursos', {
+        navigate('/explorar-cursos#pesquisa', {
             state: { online }
         });
     }
 
     function BuscarCursosGratuitos() {
-        navigate('/explorar-cursos', {
+        navigate('/explorar-cursos#pesquisa', {
             state: { cursosGratuitos }
         });
     }
 
     function BuscarCursosPresenciais() {
-        navigate('/explorar-cursos', {
+        navigate('/explorar-cursos#pesquisa', {
             state: { presencial }
         });
     }
 
     function BuscarAte100() {
-        navigate('/explorar-cursos', {
+        navigate('/explorar-cursos#pesquisa', {
             state: { ate100 }
         });
     }

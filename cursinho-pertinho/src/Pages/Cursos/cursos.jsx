@@ -7,6 +7,7 @@ import CardOferta from '../../Components/Shared/Card-Oferta/cardOferta.jsx';
 import HeroSection from '../../Components/Shared/Hero-Section/hero.jsx';
 import Rodape from '../../Components/Shared/Rodape/rodape.jsx';
 import Indice from '../../Components/Shared/Indice/indice.jsx';
+import { useEffect } from 'react';
 
 export default function ExplorarCursos() {
     const location = useLocation();
@@ -18,6 +19,14 @@ export default function ExplorarCursos() {
     const online = location.state?.online;
     const iniciante = location.state?.iniciante;
     const carga = location.state?.curtaDuracao;
+
+    useEffect(() => {
+        if (location.hash) {
+            document.querySelector(location.hash)?.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    }, [location]);
 
     return (
         <>
