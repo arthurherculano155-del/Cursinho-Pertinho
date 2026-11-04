@@ -1,4 +1,7 @@
 
+background{}
+
+
 .pagina-possibilidades {
     width: 100%;
     overflow: hidden;
@@ -261,4 +264,60 @@
             transform: none;
         }
     }
+}
+
+.pai2 {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    width: 100%;
+}
+
+.formação {
+    width: 100%;
+    max-width: 1106px;
+    position: relative;
+    
+    bottom: 70px;
+}
+
+.conteudo-formacao {
+    display: flex;
+  
+}
+.formacao-tecnica {
+  
+    width: 100%;
+    height: 170px;
+    border-radius: 20px;
+    background-color: #B5AAAA;
+    box-sizing: border-box;
+    background: #F4FAFF;
+    border: solid 1px #DCE7F5;
+}
+
+.engrenagem {
+  
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 45px;
+    height: 45px;
+}
+
+.formacaoh1 {
+   font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 30px;
+    color: #000000;
+    margin-top: 10px;
+    margin-left: 10px;
+    position: relative;
+    top: 10px;
 }

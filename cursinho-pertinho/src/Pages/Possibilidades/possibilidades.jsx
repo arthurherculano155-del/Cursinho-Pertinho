@@ -86,8 +86,23 @@ export default function Possibilidades() {
 
                     </div>
                 </section>
-            </main>
+                <div className="pai2">
+    
+    
+            <div className="formação">
+                
+                <div className="formacao-tecnica">
 
+                    <div className="conteudo-formacao">
+                        <img className='engrenagem' src="/assets/Imgs/engrenagem.png" alt="" />
+                       <h1 className='formacaoh1'>Formação Técnica</h1>
+                       <p>Descubra novas oportunidades e desenvolva suas habilidades técnicas com nossos cursos especializados.</p>
+                    </div>
+            </div>
+    </div>
+</div>
+            </main>
+                   
             <Rodape />
         </>
     );
