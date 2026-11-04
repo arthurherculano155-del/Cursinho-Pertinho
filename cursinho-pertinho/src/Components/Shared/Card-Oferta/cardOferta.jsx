@@ -301,7 +301,7 @@ export default function CardOferta({
             )))
             :
             (
-                <p>Oferta não encontrada.</p>
+                <p>Ops! Nenhum curso encontrado :(</p>
             )
         }
             
