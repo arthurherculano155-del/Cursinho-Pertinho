@@ -74,7 +74,7 @@ export default function CardOferta({
     ]);
 
     const ofertasFiltradas = useMemo(() => {
-        const termo = cursoPesquisa.trim();
+        const termo = cursoPesquisa?.trim() || "";
 
         if (!termo)
             return cardOferta;
