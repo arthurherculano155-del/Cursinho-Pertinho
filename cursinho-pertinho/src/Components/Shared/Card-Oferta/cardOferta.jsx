@@ -180,7 +180,8 @@ export default function CardOferta({
                 </button>
             </section>
 
-            {ofertasFiltradas.map((oferta) => (
+            {ofertasFiltradas.length > 0 ? (
+                ofertasFiltradas.map((oferta) => (
                 <div
                     className="card-Oferta"
                     key={oferta.id}
@@ -297,7 +298,13 @@ export default function CardOferta({
                         document.body
                     )}
                 </div>
-            ))}
+            )))
+            :
+            (
+                <p>Cursos não encontrados.</p>
+            )
+        }
+            
         </article>
     );
 }
