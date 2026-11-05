@@ -428,7 +428,12 @@ export default function Menu() {
                         <div className="opcoes-sair">
                             <button
                                 className="confirmar-sim"
-                                onClick={sairUsuario}
+                                onClick={() => {
+                                    sairUsuario();
+                                    setTimeout(() => {}, 2000);
+
+                                    setModalSair(false);
+                                }}
                             >
                                 Sim
                             </button>
