@@ -142,8 +142,7 @@ export default function CardOferta({
                 alert(dados.erro);
                 return false;
             }
-
-            alert(`Oferta com ID ${id} deletada!`);
+            
             return true;
         } catch (erro) {
             console.error("Erro ao excluir oferta:", erro);

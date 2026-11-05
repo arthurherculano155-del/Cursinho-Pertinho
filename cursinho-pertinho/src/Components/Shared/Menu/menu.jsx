@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./menu.scss";
 import { NavLink } from "react-router-dom";
+import { createPortal } from "react-dom";
 
 export default function Menu() {
     const API_URL = "https://cursinhopertinho-api.onrender.com";
@@ -19,6 +20,8 @@ export default function Menu() {
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+
+    const [modalSair, setModalSair] = useState(false)
 
     const [usuarioLogado, setUsuarioLogado] = useState(null);
 
@@ -79,8 +82,6 @@ export default function Menu() {
                 alert(dados.erro);
                 return;
             }
-
-            alert(dados.resultado);
 
             localStorage.setItem("usuario", JSON.stringify(dados.usuario));
             localStorage.setItem("token", dados.token);
@@ -353,7 +354,7 @@ export default function Menu() {
 
                             <p>{usuarioLogado.primeiro_nome || "Minha conta"}</p>
 
-                            <button type="button" className="sair" aria-label="Sair da conta" onClick={sairUsuario}>
+                            <button type="button" className="sair" aria-label="Sair da conta" onClick={() => setModalSair(true)}>
                                 <i className="fa-solid fa-arrow-right-from-bracket" />
                             </button>
                         </section>
@@ -412,6 +413,37 @@ export default function Menu() {
                         </form>
                     </section>
                 </div>
+            )}
+
+            {modalSair && createPortal(
+                <article className="fundo modal-sair">
+                    <section className="conteudo-sair">
+                        <h2>{
+
+                            usuarioLogado ? `Tem certeza que deseja sair, 
+                            ${usuarioLogado.primeiro_nome}?` 
+                            :
+                            "Até a próxima!"
+                        }</h2>
+
+                        <div className="opcoes-sair">
+                            <button
+                                className="confirmar-sim"
+                                onClick={sairUsuario}
+                            >
+                                Sim
+                            </button>
+
+                            <button
+                                className="confirmar-nao"
+                                onClick={() => setModalSair(false)}
+                            >
+                                Não
+                            </button>
+                        </div>
+                    </section>
+                </article>,
+                document.body
             )}
 
             {login && (
