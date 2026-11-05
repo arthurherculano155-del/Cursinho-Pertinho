@@ -419,7 +419,6 @@ export default function Menu() {
                 <article className="fundo modal-sair">
                     <section className="conteudo-sair">
                         <h2>{
-
                             usuarioLogado ? `Tem certeza que deseja sair, 
                             ${usuarioLogado.primeiro_nome}?` 
                             :
