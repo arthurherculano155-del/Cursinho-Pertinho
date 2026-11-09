@@ -87,25 +87,25 @@ export default function Possibilidades() {
                     </div>
                 </section>
                 <div className="pai2">
-    
-    
-            <div className="formação">
-                
-                <div className="formacao-tecnica">
 
-                    <div className="conteudo-formacao">
-                        <img className='engrenagem' src="/assets/Imgs/engrenagem.png" alt="" />
-                       <h1 className='formacaoh1'>Formação Técnica</h1>
-                       <p className='conquiste'>Conquiste uma profissão com cursos técnicos nas principais areas do merdado.Uma formação sólida para quem quer entrar nomercado de trabalho com mais preparo
-                       </p>
 
-                       <img  className='trabalhador' src="/assets/Imgs/trabalhador.png" alt="" />
+                    <div className="formação">
+
+                        <div className="formacao-tecnica">
+
+                            <div className="conteudo-formacao">
+                                <img className='engrenagem' src="/Assets/Imgs/engrenagem.png" alt="Engrenagem" />
+                                <h1 className='formacaoh1'>Formação Técnica</h1>
+                                <p className='conquiste'>Conquiste uma profissão com cursos técnicos nas principais areas do merdado.Uma formação sólida para quem quer entrar nomercado de trabalho com mais preparo
+                                </p>
+
+                                <img className='trabalhador' src="/Assets/Imgs/trabalhador.png" alt="Trabalhador" />
+                            </div>
+                        </div>
                     </div>
-            </div>
-    </div>
-</div>
+                </div>
             </main>
-                   
+
             <Rodape />
         </>
     );
