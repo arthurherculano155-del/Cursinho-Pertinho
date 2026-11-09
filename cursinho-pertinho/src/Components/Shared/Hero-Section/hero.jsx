@@ -50,8 +50,6 @@ export default function HeroSection({
             alert(dados.erro)
             return;
         }
-
-        alert("Oferta removida de sua lista!")
     }
 
     useEffect(() => {
