@@ -54,7 +54,7 @@ export default function Possibilidades() {
                 </section>
 
                 <section className="secao-tecnologias">
-                    <div className="lista-tecnologias" id='lista'>
+                    <div className="lista-tecnologias" id="lista">
 
                         <CardTecnologia
                             icone="computer"
@@ -73,7 +73,7 @@ export default function Possibilidades() {
                         <CardTecnologia
                             icone="comment-dots"
                             titulo="Comunicação"
-                            mensagem="Desenvolva sua expressão, argumentação e criatividade. Aqui, você encontra cursos de idioma, m[idias sociais e muito mais"
+                            mensagem="Desenvolva sua expressão, argumentação e criatividade. Aqui, você encontra cursos de idiomas, mídias sociais e muito mais"
                             imagem="/Assets/Imgs/falas.jpeg"
                         />
 
@@ -86,24 +86,37 @@ export default function Possibilidades() {
 
                     </div>
                 </section>
-                <div className="pai2">
 
+                <section className="secao-formacao">
+                    <div className="container-formacao">
+                        <div className="card-formacao-tecnica">
 
-                    <div className="formação">
+                            <div className="conteudo-formacao-tecnica">
+                                <img
+                                    className="icone-formacao"
+                                    src="/Assets/Imgs/engrenagem.png"
+                                    alt="Engrenagem"
+                                />
 
-                        <div className="formacao-tecnica">
+                                <h1 className="titulo-formacao">
+                                    Formação Técnica
+                                </h1>
 
-                            <div className="conteudo-formacao">
-                                <img className='engrenagem' src="/Assets/Imgs/engrenagem.png" alt="Engrenagem" />
-                                <h1 className='formacaoh1'>Formação Técnica</h1>
-                                <p className='conquiste'>Conquiste uma profissão com cursos técnicos nas principais areas do merdado.Uma formação sólida para quem quer entrar nomercado de trabalho com mais preparo
+                                <p className="descricao-formacao">
+                                    Conquiste uma profissão com cursos técnicos nas principais áreas do mercado.
+                                    Uma formação sólida para quem quer entrar no mercado de trabalho com mais preparo.
                                 </p>
 
-                                <img className='trabalhador' src="/Assets/Imgs/trabalhador.png" alt="Trabalhador" />
+                                <img
+                                    className="imagem-profissional"
+                                    src="/Assets/Imgs/trabalhador.png"
+                                    alt="Trabalhador"
+                                />
                             </div>
+
                         </div>
                     </div>
-                </div>
+                </section>
             </main>
 
             <Rodape />
