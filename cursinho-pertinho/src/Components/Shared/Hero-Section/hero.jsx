@@ -358,15 +358,15 @@ export default function HeroSection({
 
             {botoes && (
                 <section className="botoesHero">
+                    <Link
+                            to="/explorar-cursos"
+                    >
                     <button
                         className="buscarCursos"
                     >
-                        <Link
-                            to="/explorar-cursos"
-                        >
                             Buscar Cursos
-                        </Link>
                     </button>
+                    </Link>
 
                     <a href="#lista" >
                         <button className="explorarAreas">
