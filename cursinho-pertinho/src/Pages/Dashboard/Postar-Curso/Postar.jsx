@@ -78,6 +78,10 @@ export default function PostarCursos() {
         setImagem("");
         setLink("");
 
+        setTimeout(() => {
+            window.location.reload()
+        }, 2000)
+
         setListaUnidades([]);
     }
 
