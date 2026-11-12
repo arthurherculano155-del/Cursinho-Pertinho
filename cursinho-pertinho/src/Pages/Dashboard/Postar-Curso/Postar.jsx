@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import DashboardMenu from "../../../Components/Shared/MenuDashboard/menuDash.jsx";
 import CardOferta from "../../../Components/Shared/Card-Oferta/cardOferta.jsx";
 import "./Postar.scss";
+import NotFound from "../../NotFound/notfound.jsx";
 
 export default function PostarCursos() {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
@@ -93,12 +94,8 @@ export default function PostarCursos() {
         setListaUnidades(dados);
     }
 
-    if (!usuario) {
-        return <h1>Você precisa estar logado.</h1>;
-    }
-
-    if (usuario.cargo !== "admin") {
-        return <h1>Você não tem permissão para acessar esta página.</h1>;
+    if (!usuario || usuario.cargo !== 'admin') {
+        return NotFound();
     }
 
     return (

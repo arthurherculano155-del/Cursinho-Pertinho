@@ -1,4 +1,5 @@
 import DashboardMenu from "../../../Components/Shared/MenuDashboard/menuDash";
+import NotFound from "../../NotFound/notfound";
 import "./usuarios.scss"
 import { useState, useEffect } from "react";
 
@@ -78,12 +79,8 @@ export default function Usuarios() {
         usuario
     ])
 
-    if (!usuario) {
-        return <h1>Você precisa estar logado.</h1>
-    }
-
-    if (usuario.cargo !== "admin") {
-        return <h1>Você não tem permissão para acessar essa página.</h1>
+    if (!usuario || usuario.cargo !== 'admin') {
+        return NotFound();
     }
 
     return (
@@ -125,16 +122,16 @@ export default function Usuarios() {
                         />
 
                         {usuario.cargo === "admin" ?
-                        ("") : <i
-                            className="fa-solid fa-trash-can"
-                            onClick={
-                                () => apagarUsuario(usuario.id_usuario)
-                            }
-                        />}
+                            ("") : <i
+                                className="fa-solid fa-trash-can"
+                                onClick={
+                                    () => apagarUsuario(usuario.id_usuario)
+                                }
+                            />}
                     </div>
                 ))}
 
-                
+
             </section>
         </>
     )
